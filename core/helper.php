@@ -1,7 +1,21 @@
 <?php
 
     include 'database.php';
-    
+
+    //From Root Project Name
+    function base_url($target)
+    {
+      $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
+      echo $projectName[1]."/".$target;
+    }
+    //End
+
+    // To Asset Folder
+    function asset($target)
+    {
+      echo "../resource/assets/$target";
+    }
+
     function url($target)
     {
         echo "../$target";

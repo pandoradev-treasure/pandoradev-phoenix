@@ -28,42 +28,42 @@
 
 
 <!-- jQuery -->
-<script src="../resource/assets/plugins/jquery/jquery.min.js"></script>
+<script src="<?php asset('plugins/jquery/jquery.min.js') ?>"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="../resource/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="<?php asset('plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="../resource/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php asset('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 <!-- ChartJS -->
-<script src="../resource/assets/plugins/chart.js/Chart.min.js"></script>
+<script src="<?php asset('plugins/chart.js/Chart.min.js') ?>"></script>
 <!-- Sparkline -->
-<script src="../resource/assets/plugins/sparklines/sparkline.js"></script>
+<script src="<?php asset('plugins/sparklines/sparkline.js') ?>"></script>
 <!-- JQVMap -->
-<script src="../resource/assets/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="../resource/assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="<?php asset('plugins/jqvmap/jquery.vmap.min.js') ?>"></script>
+<script src="<?php asset('plugins/jqvmap/maps/jquery.vmap.usa.js') ?>"></script>
 <!-- jQuery Knob Chart -->
-<script src="../resource/assets/plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="<?php asset('plugins/jquery-knob/jquery.knob.min.js') ?>"></script>
 <!-- daterangepicker -->
-<!-- <script src="../resource/assets/plugins/moment/moment.min.js"></script> -->
-<script src="../resource/assets/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="<?php asset('plugins/moment/moment.min.js') ?>"></script>
+<script src="<?php asset('plugins/daterangepicker/daterangepicker.js') ?>"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="../resource/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="<?php asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') ?>"></script>
 <!-- Summernote -->
-<script src="../resource/assets/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="<?php asset('plugins/summernote/summernote-bs4.min.js') ?>"></script>
 <!-- overlayScrollbars -->
-<script src="../resource/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="<?php asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') ?>"></script>
 <!-- AdminLTE App -->
-<script src="../resource/assets/dist/js/adminlte.js"></script>
+<script src="<?php asset('dist/js/adminlte.js') ?>"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../resource/assets/dist/js/demo.js"></script>
+<script src="<?php asset('dist/js/demo.js') ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../resource/assets/dist/js/pages/dashboard.js"></script>
+<script src="<?php asset('dist/js/pages/dashboard.js') ?>"></script>
 <!-- Datatable -->
-<script src="../resource/assets/plugins/jquery.dataTables.min.js"></script>
-<script src="../resource/assets/plugins/dataTables.bootstrap4.min.js"></script>
+<script src="<?php asset('plugins/jquery.dataTables.min.js') ?>"></script>
+<script src="<?php asset('plugins/dataTables.bootstrap4.min.js') ?>"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
