@@ -1,5 +1,4 @@
-</div>
-              </div><!-- /.card-body -->
+
             </div>
             <!-- /.card -->
           </section>
@@ -48,7 +47,7 @@
 <!-- jQuery Knob Chart -->
 <script src="../resource/assets/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="../resource/assets/plugins/moment/moment.min.js"></script>
+<!-- <script src="../resource/assets/plugins/moment/moment.min.js"></script> -->
 <script src="../resource/assets/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="../resource/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
@@ -68,18 +67,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-
-  $(document).ready(function(){
-    // $('.content-wrapper').attr('style','width:400px');
-  });
-
-  <?php
-    if (@$_GET['mode']) {
-      ?>
-      $("form :input").prop("disabled", true);
-      <?php
-    }
-  ?>
    // Ketika halaman sudah siap (sudah selesai di load)    
 
       $('.data-table').DataTable({
@@ -118,6 +105,19 @@
           })
 
         }); 
+
+        $.each($('.layout'), function(k,v){
+
+          var dir    = $(this).attr('href');
+          dir        = dir.split('/');
+          var path   = window.location.pathname;
+          var result = path.split('/');
+
+          if (result[2] == dir[1]) {
+            $(this).addClass('active');
+          }
+          
+        });
 
 </script>
 </body>

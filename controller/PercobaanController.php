@@ -2,7 +2,16 @@
    
    function store($request)
    {
+      
+      Query::insert('kota',[
 
-      Query::insert('kota',[$request->lorem])->view('siswa/form');
+            $request->nama
 
+      ])->view('kota/data');
+
+   }
+
+   function destroy($request, $id)
+   {
+      Query::delete('kota',$id)->view('kota/data');
    }

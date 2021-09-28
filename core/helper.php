@@ -1,5 +1,7 @@
 <?php
 
+    include 'database.php';
+    
     function url($target)
     {
         echo "../$target";
@@ -10,7 +12,7 @@
         
         $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
 
-        echo "http://localhost/$projectName[1]/core/controller.php?controllerName=$controllerName.php&function=$functionName";
+        return "http://localhost/$projectName[1]/core/controller.php?controllerName=$controllerName.php&function=$functionName&id=$id";
         
     }
 
@@ -173,6 +175,29 @@
         return new self;
       }
 
+      static function delete($table, $id)
+      {
+
+        global $host;
+        global $status;
+
+        $query = mysqli_query($host, "DELETE FROM $table WHERE ".getPrimary($table)." = $id ");
+
+        if ($query) {
+          
+          $status = true;
+
+        }else{
+
+          check($query);
+          $status = false;
+
+        }
+
+        return new self;
+
+      }
+
       public function view($target = 0)
       {
 
@@ -186,17 +211,64 @@
         
       }
 
-      static function delete($table, $id)
+      static function update($table, $id)
       {
         
       }
 
-      static function update($table, $id)
+      static function select($table)
       {
+
+        global $host;
+        return mysqli_query($host, "SELECT * FROM $table ORDER BY ".getPrimary($table)." DESC ");
         
       }
 
 
     }
 
+    function getPrimary($table)
+    {
+      global $host;
+      $query = mysqli_query($host, "SHOW KEYS FROM ".$table." WHERE Key_name = 'PRIMARY'");
+      return mysqli_fetch_object($query)->Column_name;
+    }
+
     /* END MYSQL QUERY*/
+    
+    
+    /* TABLE VIEW*/
+    $no = 1;
+    
+    function tr()
+    {
+      echo "<tr>";
+    }
+
+    function td($list = null, $attr = null)
+    {
+      echo "<td $attr >$list</td>";
+    }
+
+    function endtr()
+    {
+      echo "</tr>";
+    }
+
+    function tombolHapus($target = null, $value = null, $attr  = null)
+    {
+      return "<a href='$target' class='btn btn-sm btn-danger shadow' $attr><i class='fa fa-trash'></i> $value</a>";
+    }
+
+    function tombolForm()
+    { 
+
+      $tombol  = "<div class='mt-3'>";
+        $tombol .= "<a href='data' class='mx-1 btn btn-sm btn-warning float-right shadow'>Kembali</a>";
+        $tombol .= "<button type='reset' class='mx-1 btn btn-sm btn-danger float-right shadow'>Reset</button>";
+        $tombol .= "<button type='submit' class='mx-1 btn btn-sm btn-primary float-right shadow'>Simpan</button>";
+      $tombol .= "</div>";
+
+      echo $tombol;
+      
+    }

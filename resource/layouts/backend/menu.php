@@ -12,11 +12,12 @@
             
             <!-- Perbanyak bagian ini -->
 
-            <a href='<?php url('siswa/form') ?>' class='nav-link'>
+            <a href='<?php url('kota/data') ?>' class='nav-link layout'>
                 <i class='far fa-circle nav-icon'></i>
-                <p>Siswa</p>
+                <p>Kota</p>
             </a>
-            <a href='<?php url('buku/form') ?>' class='nav-link'>
+            
+            <a href='<?php url('buku/data') ?>' class='nav-link layout'>
                 <i class='far fa-circle nav-icon'></i>
                 <p>Buku</p>
             </a>

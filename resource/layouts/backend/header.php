@@ -121,12 +121,5 @@
           <!-- Left col -->
           <section class="col-lg-12">
             <!-- Custom tabs (Charts with tabs)-->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                    Data
-                </h3>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                <div class="tab-content p-0">
+            
                   
