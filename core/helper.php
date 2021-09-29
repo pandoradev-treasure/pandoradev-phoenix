@@ -39,9 +39,9 @@
     {
 
         if ($id) {
-          $id = $id;
+          @$id = $id;
         }else{
-          $id = $_GET['id'];
+          @$id = $_GET['id'];
         }
         
         $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
