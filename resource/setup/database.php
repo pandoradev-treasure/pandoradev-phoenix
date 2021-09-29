@@ -14,7 +14,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         
-                                        <input class="form-control form-control-sm" name="database" type="text" placeholder="Nama Database">
+                                        <input class="form-control form-control-sm" name="database" type="text" value="<?= $DATABASE ?>" placeholder="Nama Database">
 
                                         <small id="emailHelp" class="form-text text-muted">Isikan nama database yang ingin anda buat.</small>
                                     </div>
