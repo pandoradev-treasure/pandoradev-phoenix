@@ -16,7 +16,7 @@
             </thead>
             <tbody>
                 <?php
-                    foreach (Query::select('kategori') as $value) {
+                    foreach (query()->table('kategori')->get() as $value) {
                         tr();
                             td($no++);
                             td($value['nama']);

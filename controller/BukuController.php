@@ -2,27 +2,28 @@
 
     function store($request)
     {
-        
-        Query::insert('buku', [
+
+        query()->insert('buku',[
             $request->judul,
-            $request->deskripsi, 
-            $request->deskripsi_singkat, 
-            $request->penulis, 
+            $request->deskripsi_singkat,
+            $request->deskripsi,
+            $request->penulis,
             $request->kategori_id
-        ])->view('buku/data');
+        ])->view('buku/data',"Berhasil Menambahkan Buku Dengan Judul $request->judul");
 
     }
 
-    function destroy($request, $id)
+    function destroy($request)
     {
-        Query::delete('buku', $id)->view('buku/data');
+        query()->delete('buku', $request->id)->view('buku/data');
     }
 
     function edit($request, $id)
     {
-        $kategori  = Query::select('kategori');
+        
+        $kategori  = query()->table('kategori')->get();
 
-        $dataBuku  = Query::single("buku", $id);
+        $dataBuku  = query()->table('buku')->where('id', $id)->single();
 
         view('buku/form-edit', compact('dataBuku','kategori'));
         
@@ -30,7 +31,7 @@
 
     function update($request, $id)
     {
-        Query::update('buku',[
+        query()->update('buku',[
 
             'judul'             => $request->judul,
             'deskripsi'         => $request->deskripsi,
@@ -38,12 +39,14 @@
             'penulis'           => $request->penulis,
             'kategori_id'       => $request->kategori_id,
             
-        ],$id)->view('buku/data');
+        ],$id);
+
+        view('buku/data');
     }
 
     function create()
     {
-        $kategori = Query::select('kategori');
+        $kategori = query()->table('kategori')->get();
 
         view('buku/form', compact('kategori'));
     }

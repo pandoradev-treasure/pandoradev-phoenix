@@ -66,7 +66,7 @@
 <script src="<?php asset('plugins/dataTables.bootstrap4.min.js') ?>"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+<script src="<?php asset('plugins/sweetalert2@11') ?>"></script>
 <script>
    // Ketika halaman sudah siap (sudah selesai di load)    
 
@@ -121,5 +121,22 @@
         });
 
 </script>
+
+<?php
+  if ($_SESSION["alert"]) {
+    $msg = $_SESSION["alert"];
+  ?>
+    <script>
+      Swal.fire(
+          'Berhasil!',
+          '<?= $msg ?>',
+          'success'
+        );
+    </script>
+  <?php
+    unset($_SESSION["alert"]);
+  }
+?>
+
 </body>
 </html>

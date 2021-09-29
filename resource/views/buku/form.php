@@ -8,7 +8,7 @@
     <div class="tab-content p-0">
 
       <form action="<?= controller('BukuController@store') ?>" method="POST">
-
+      
         <div class="form-group">
             <label for="">Judul</label>
             <input type="text" name="judul" class="form-control">
