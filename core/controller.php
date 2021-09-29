@@ -3,9 +3,21 @@
     $controller = $_GET['controllerName'];
     $id         = $_GET['id'];
 
-    include "../controller/$controller";
-    include "database.php";
-    include "helper.php";
+    @include "../controller/$controller";
+    @include "database.php";
+    @include "helper.php";
 
     //Auto Redirect Controller & Function With Params
-    @$_GET['function']($object = json_decode(json_encode($_REQUEST)), $id);
+    if (!function_exists($_GET['function'])) {
+
+      
+        $file     = @$_GET['controllerName'];
+        $function = @$_GET['function'];
+  
+        include "../resource/errors/error-controller.php";
+
+      }else{
+
+        @$_GET['function']($object = json_decode(json_encode($_REQUEST)), $id);
+
+      }

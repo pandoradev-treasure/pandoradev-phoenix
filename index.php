@@ -33,12 +33,14 @@
         display                : inline-block;
         vertical-align         : middle;
         line-height            : normal;
+        font-size              : 45px;
     }
 
     .desc{
         font-size  : 20px;
         font-family: arial;
-        color      : #3d3d3d;
+        color      : #007bff;
+        margin-top : 16px;
     }
 
     .mt-240{
@@ -57,6 +59,12 @@
         text-decoration-color:#7d5fff;
     }
 
+    .btn-outline-primary:hover{
+        background-color: transparent;
+        color:#5f27cd;
+        border-color:#5f27cd;
+    }
+
 </style>
 <body class="bg">
     <div class="center">
@@ -68,6 +76,11 @@
             data-type='[ "Sekarang kami lebih simple", "Berkarya bersama pandoracode!" ]'>
             <span class="wrap desc"></span>
         </p>
+
+        <div style="margin-top: 10%;">
+            <a href="setup/dashboard"><button type="button" class="btn btn-outline-primary btn-sm">Konfigurasi</button></a>
+            <a href=""><button type="button" class="btn btn-outline-primary btn-sm">Documentation</button></a>
+        </div>
     </div>
 </body>
 </html>
