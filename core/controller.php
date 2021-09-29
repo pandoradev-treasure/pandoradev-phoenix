@@ -3,6 +3,10 @@
     $controller = $_GET['controllerName'];
     $id         = $_GET['id'];
 
+    if ($controller == "setup.php") {
+      include 'setup.php';
+    }
+
     @include "../controller/$controller";
     @include "database.php";
     @include "helper.php";

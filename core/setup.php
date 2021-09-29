@@ -12,10 +12,10 @@
         $query = "CREATE TABLE type_data (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, type_data VARCHAR(30) NOT NULL)";
         $host->query($query);
 
-        Query::insert('type_data',["INT"]);
-        Query::insert('type_data',["VARCHAR"]);
-        Query::insert('type_data',["TEXT"]);
-        Query::insert('type_data',["DATE"]);
+        query()->insert('type_data',["INT"]);
+        query()->insert('type_data',["VARCHAR"]);
+        query()->insert('type_data',["TEXT"]);
+        query()->insert('type_data',["DATE"]);
 
         $query = "CREATE TABLE $table (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY)";
         $host->query($query);
@@ -93,7 +93,7 @@
         $id    = $data[0];
         $table = $data[1];
 
-        Query::delete($table, $id);
+        query()->delete($table, $id);
 
         $table = [$table];
         

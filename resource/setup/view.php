@@ -37,7 +37,7 @@
                                                         }
                                                     ?>
                                                     <td>
-                                                        <a href="<?= controller('SetupController@deleteRowData',$listColumn[0]."/".$table) ?>" class="btn btn-danger btn-sm hover-btn"><i class="fa fa-trash"></i></a>
+                                                        <a href="<?= controller('setup@deleteRowData',$listColumn[0]."/".$table) ?>" class="btn btn-danger btn-sm hover-btn"><i class="fa fa-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php    

@@ -7,7 +7,7 @@
                     <button class="btn float-right add-column btn-primary" type="submit"> <i class="fa fa-plus"></i> </button>
                 </div>
                 <div class="card-body">
-                    <form action="<?= controller('SetupController@processColumn') ?>" method="POST">
+                    <form action="<?= controller('setup@processColumn') ?>" method="POST">
                         <table class="table table-striped table-valign-middle table-bordered">
                             <thead>
                                 <tr>
