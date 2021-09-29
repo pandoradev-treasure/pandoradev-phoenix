@@ -22,7 +22,13 @@
             <tbody>
                 <?php
                     
-                    foreach (Query::select('buku') as $value) {
+                    $data = query()->table('buku')
+                                   ->select('buku.*, buku.id, kategori.nama AS nama_kategori')
+                                   ->join('kategori','kategori.id = buku.kategori_id')
+                                   ->orderBy('buku.id','DESC')
+                                   ->get();
+
+                    foreach ($data as $value) {
                         
                         tr();
                             
@@ -31,7 +37,7 @@
                             td($value['deskripsi']);
                             td($value['deskripsi_singkat']);
                             td($value['penulis']);
-                            td($value['kategori_id']);
+                            td($value['nama_kategori']);
                             td(
                                 tombolHapus(controller('BukuController@destroy', $value['id'])).
                                 tombolEdit(controller('BukuController@edit', $value['id']))

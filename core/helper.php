@@ -6,6 +6,13 @@
 
     @$id  = $_GET['id'];
     
+    // $query = new Query;
+
+    function query()
+    {
+      $query = new Query;
+      return $query;
+    }
 
     //From Root Project Name
     function base_url($target)
@@ -48,115 +55,8 @@
     {
       
       global $host;
-      @$url     = explode("/",@$_SERVER['REQUEST_URI']);
-      @$getFile = explode(".", $url[3]);
-
-      echo '<link rel="stylesheet" href="../resource/assets/dist/css/bootstrap.min.css">';
-
-      if(empty($excecute) || $excecute == '' || $excecute == null || $excecute == 'null'){
-        echo "<body style='padding:20px'>";
-          echo '<div style="color:white;background-color:#18171b;padding:30px;border-radius:7px;box-shadow:2px 9px 13px #c1c1c1">';
-          echo '<span style="float:left;color:#1299da"><span style="color:orange">#</span>'.$_GET['controllerName'].'/'.$_GET['function'].'<span style="color:orange"> :</span></span><br>';
-            echo "<div style='margin-top:10px;margin-left: 19px;'>";
-
-            if (mysqli_errno($host) == 1054) {
-
-              $replace = str_replace('Unknown column','',mysqli_error($host));
-              $replace = str_replace(" in 'field list'",'',$replace);
-
-              echo '<span style="color:#ffffff"><b style="margin-right:6px;color:#e056fd">'.mysqli_errno($host).'</b>|<span style="margin-left:6px">Tidak ditemukan kolom dengan nama'.$replace.'</span></span>';
-            }else{
-              echo '<span style="color:#ffffff"><b style="margin-right:6px;color:#e056fd"><span>'.mysqli_error($host).'</span></span>';
-            }
-
-            echo "</div>";
-          echo '</div>';
-          echo "</body>";
-      }else{
-
-        if (is_string($excecute)) {
-
-          echo "<body style='padding:20px'>";
-          echo '<div style="color:white;background-color:#18171b;padding:30px;border-radius:7px;box-shadow:2px 9px 13px #c1c1c1">';
-          echo '<span style="float:left;color:#1299da"><span style="color:orange">#</span>'.$_GET['controllerName'].'/'.$_GET['function'].'<span style="color:orange"> :</span></span><br>';
-            echo "<div style='margin-top:10px;margin-left: 19px;'>";
-            echo '<i style="color:white">'.var_export($excecute, true).'</i> <span style="color:#f9ca24">($string)</span>';
-            echo "</div>";
-          echo '</div>';
-          echo "</body>";
-
-        }else if(is_array($excecute)){
-
-          echo "<body style='padding:20px'>";
-          echo '<div style="color:white;background-color:#18171b;padding:30px;border-radius:7px;box-shadow:2px 9px 13px #c1c1c1">';
-            echo '<span style="float:left;color:#1299da"><span style="color:orange">#</span>'.$_GET['controllerName'].'/'.$_GET['function'].'<span style="color:orange"> :</span></span><br>';
-            echo '<span style="color:orange">#</span>request<span style="color:orange">:</span> <span style="color:#1299da">array</span> <span style="color:orange">[</span>';
-              echo "<table style='margin-top:10px;margin-left: 20px;'>";
-              foreach ($excecute as $key => $value) {
-                echo "<tr>";
-                  echo "<td style='color:#4cd137;width: 30px;'>";
-                  echo '<span style="color:#ffa502">"</span>';
-                  echo $key;
-                  echo '<span style="color:#ffa502">"</span>';
-                  echo "</td>";
-                  echo "<td width='30px' style='color:#ffa502'>=></td>";
-                  echo "<pre style='color:white'>";
-                  echo "<td style='color:white'><i> ".$value." </i></td>";
-                  echo "</pre>";
-                echo "</tr>";
-              }
-              echo "</table>";
-            echo '<span style="color:orange;margin-left:10px">]</span>';
-          echo '</div>';
-          echo "</body>";
-
-        }else if(is_int($excecute)){
-
-          echo "<body style='padding:20px'>";
-          echo '<div style="color:white;background-color:#18171b;padding:30px;border-radius:7px;box-shadow:2px 9px 13px #c1c1c1">';
-          echo '<span style="float:left;color:#1299da"><span style="color:orange">#</span>'.$_GET['controllerName'].'/'.$_GET['function'].'<span style="color:orange"> :</span></span><br>';
-            echo "<div style='margin-top:10px;margin-left: 19px;'>";
-            echo '<span style="color:#f9ca24">'.var_export($excecute, true).'</span> <i style="color:#7ed6df">int</i>';
-            echo "</div>";
-          echo '</div>';
-          echo "</body>";
-
-        }else{
-          echo "<body style='padding:20px'>";
-          echo '<div style="color:white;background-color:#18171b;padding:30px;border-radius:7px;box-shadow:2px 9px 13px #c1c1c1">';
-            echo '<span style="float:left;color:#1299da"><span style="color:orange">#</span>All Request<span style="color:orange"> :</span></span><br>';
-            echo "<table style='margin-top:10px;margin-left: 19px;'>";
-
-            foreach ($excecute as $key => $value) {
-
-              echo "<tr>";
-                echo "<td style='color:#4cd137;width: 107px;'>";
-                echo '<span style="color:#ffa502">"</span>';
-                echo $key;
-                echo '<span style="color:#ffa502">"</span>';
-                echo "</td>";
-                echo "<td width='30px' style='color:#ffa502'>=></td>";
-                echo "<td style='color:#7ed6df'><i> $value </i></td>";
-              echo "</tr>";
-
-              foreach ($value as $keys => $values) {
-                echo "<tr>";
-                  echo "<td style='color:#4cd137;width: 107px;'>";
-                  echo '<span style="color:#ffa502">"</span>';
-                  echo $key."['$keys']";
-                  echo '<span style="color:#ffa502">"</span>';
-                  echo "</td>";
-                  echo "<td width='30px' style='color:#ffa502'>=></td>";
-                  echo "<td style='color:#7ed6df'><i> $values </i></td>";
-                echo "</tr>";
-              }
-
-            }
-            echo "</table>";
-          echo '</div>';
-          echo "</body>";
-        }
-      }
+      
+      include 'check.php';
 
       die();
       exit();
@@ -189,7 +89,108 @@
 
     class Query{
 
-      static function insert($table = 0, $values)
+      private $table         = "";
+      private $select        = "";
+      private $where         = "";
+      private $orderBy       = "";
+      private $join          = "";
+      private $praFinalQuery = "";
+      private $finalQuery    = "";
+
+      function table($table)
+      {
+          $this->table .= $table;
+          return $this;
+      }
+
+      function select($selectColumn)
+      {
+          $this->select .= "SELECT ".$selectColumn." FROM ".$this->table;
+          return $this;
+      }
+
+      function join($table, $column)
+      {
+          $this->join .= " INNER JOIN $table ON $column";
+          return $this;
+      }
+
+      function where($where, $with)
+      {
+          $this->where .= " WHERE $where = $with";
+          return $this;
+      }
+
+      function orderBy($column, $type)
+      {
+          $this->orderBy .= " ORDER BY $column ".$type;
+          return $this;
+      }
+
+      function get()
+      {
+          global $host;
+
+          if ($this->select) {
+              $this->praFinalQuery = $this->select;
+          }
+
+          if (!$this->select) {
+              $this->praFinalQuery = "SELECT * FROM ".$this->table;
+          }
+
+          if ($this->join) {
+              $this->praFinalQuery = $this->praFinalQuery.$this->join;
+          }
+          
+          if ($this->where) {
+              $this->praFinalQuery .= $this->praFinalQuery.$this->where;
+          }
+
+          if ($this->orderBy) {
+              $this->finalQuery .= $this->praFinalQuery.$this->orderBy; 
+          }else{
+              $this->finalQuery .= $this->praFinalQuery;
+          }
+
+          return mysqli_query($host, $this->finalQuery);
+      }
+
+      function single()
+      {
+        global $host;
+
+          if ($this->select) {
+              $this->praFinalQuery = $this->select;
+          }
+
+          if (!$this->select) {
+              $this->praFinalQuery = "SELECT * FROM ".$this->table;
+          }
+
+          if ($this->join) {
+              $this->praFinalQuery = $this->praFinalQuery.$this->join;
+          }
+          
+          if ($this->where) {
+              $this->finalQuery .= $this->praFinalQuery.$this->where;
+          }else{
+              $this->finalQuery .= $this->praFinalQuery;
+          }
+          return mysqli_fetch_object(mysqli_query($host, $this->finalQuery));
+      }
+
+      function limit($value)
+      {
+          return $this->get()." LIMIT $value";
+      }
+
+      /* 
+        FUNCTION CRUD
+      */
+
+      /* CREATE */
+      public function insert($table = 0, $values)
       {
         
         global $host;
@@ -208,44 +209,24 @@
         $cmdQuery    = $data->query;
         if ($data->query) {
 
-          $data         = true;
-          $status       = true;
+          $data                = true;
+          $status       .= true;
 
         }else{
 
-          $status       = false;
+          $status       .= false;
 
         }
 
         return new self;
       }
+      /* END CREATE */
 
-      static function delete($table, $id)
-      {
-
-        global $host;
-        global $status;
-
-        $query = mysqli_query($host, "DELETE FROM $table WHERE ".getPrimary($table)." = $id ");
-
-        if ($query) {
-          
-          $status = true;
-
-        }else{
-
-          check($query);
-          $status = false;
-
-        }
-
-        return new self;
-
-      }
-
-      static function update($table, $value, $id)
+      /* UPDATE */
+      public function update($table, $value, $id)
       {
           global $host;
+          global $status;
           global $status;
 
           $sql = null;
@@ -258,73 +239,63 @@
           $command = mysqli_query($host, "UPDATE $table SET $sql WHERE ".getPrimary($table)." = $id ");
 
           if ($command) {
-          
-            $status = true;
+
+            $status       .= true;
   
           }else{
   
-            check($command);
-            $status = false;
+            $status       .= false;
   
           }
           session_unset();
-  
+
           return new self;
       }
+      /* END UPDATE */
 
-      public function view($target = 0)
+      /* DELETE */
+      public function delete($table, $id)
       {
 
+        global $host;
         global $status;
-        
-        if ($status == true) {
+
+        $query = mysqli_query($host, "DELETE FROM $table WHERE ".getPrimary($table)." = $id ");
+
+        if ($query) {
+
+          $status       .= true;
+
+        }else{
+
+          $status       .= false;
+
+        }
+
+        return new self;
+
+      }
+      /* END DELETE */
+
+      /* REDIRECT IF TRUE */
+      public function view($target = 0, $msg = 0)
+      {
+        global $status;
+
+        @$_SESSION["alert"] = $msg;
+
+        if ($status) {
           header('location:../'.$target);
         }else{
-          check('error');
-        }
-        
-      }
-
-      static function select($table)
-      {
-
-        global $host;
-        return mysqli_query($host, "SELECT * FROM $table");
-        
-      }
-
-      static function single($table, $where = null)
-      {
-
-        global $host;
-        global $id;
-
-        if ($where) {
-          $query = mysqli_query($host, "SELECT * FROM $table WHERE ".getPrimary($table)."  = $where ");
-        }else{
-          $query = mysqli_query($host, "SELECT * FROM $table");
+          check($status);
         }
 
-        return mysqli_fetch_object($query);
         
       }
-
-      static function table($table)
-      {
-
-        global $host;
-        return mysqli_query($host, "SELECT * FROM $table ORDER BY ".getPrimary($table)." DESC ");
-        
-      }
-
-      static function raw($query)
-      {
-        global $host;
-        return mysqli_query($host, "$query");
-      }
+      /* END REDIRECT */
 
 
-    }
+  }
 
     function getPrimary($table)
     {
@@ -394,5 +365,9 @@
     }
     /* END */
 
+    /* 
+      MENGGANTI DARI [ARRAY] KE OBJECT (SESSION)
+      $data ini akan dipakai untuk view yang memakain function compact
+    */
     @$data = json_decode(json_encode($_SESSION["data"]));
-    
+    /* END */
