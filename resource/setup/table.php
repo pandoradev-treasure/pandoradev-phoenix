@@ -33,10 +33,12 @@
                                 <td><?php echo $no++ ?></td>
                                 <td><?php echo $see[0] ?></td>
                                 <td>
-                                    <a href="../../Config/database.php?backupTable=<?= $see[0] ?>" class="btn btn-success btn-sm hover-btn"><i class="fa fa-file"></i></a>
-                                    <a href="<?= controller('setup@viewData',$see[0]) ?>" class="btn btn-warning btn-sm hover-btn"><i class="fa fa-eye"></i></a>
-                                    <a href="<?= controller('setup@edit', $see[0]) ?>" class="btn btn-primary btn-sm hover-btn"><i class="fa fa-edit"></i></a>
-                                    <a href="<?= controller('setup@deleteTable', $see[0]) ?>" class="btn btn-danger btn-sm hover-btn"><i class="fa fa-trash"></i></a>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="../../Config/database.php?backupTable=<?= $see[0] ?>" class="btn btn-success btn-sm hover-btn mx-1"><i class="fa fa-file"></i></a>
+                                        <a href="<?= controller('setup@viewData',$see[0]) ?>" class="btn btn-warning btn-sm hover-btn mx-1"><i class="fa fa-eye"></i></a>
+                                        <a href="<?= controller('setup@edit', $see[0]) ?>" class="btn btn-primary btn-sm hover-btn mx-1"><i class="fa fa-edit"></i></a>
+                                        <a href="<?= controller('setup@deleteTable', $see[0]) ?>" class="btn btn-danger btn-sm hover-btn mx-1"><i class="fa fa-trash"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                             <?php } ?>

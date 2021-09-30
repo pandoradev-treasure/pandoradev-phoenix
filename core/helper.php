@@ -357,6 +357,13 @@
     }
     /* END */
 
+    /* SECTION */
+    function section(Type $var = null)
+    {
+      # code...
+    }
+    /* END SECTION */
+
     /* 
       MENGGANTI DARI [ARRAY] KE OBJECT (SESSION)
       $data ini akan dipakai untuk view yang memakain function compact
