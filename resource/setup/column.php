@@ -8,7 +8,7 @@
                 </div>
                 <div class="card-body">
                     <form action="<?= controller('setup@processColumn') ?>" method="POST">
-                        <table class="table table-striped table-valign-middle table-bordered">
+                        <table class="table table-valign-middle table-bordered">
                             <thead>
                                 <tr>
                                     <th width="30%">Nama</th>

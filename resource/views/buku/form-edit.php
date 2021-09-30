@@ -23,7 +23,15 @@
                 foreach ($data->kategori as $key => $value) {
                   ?>
 
-                  <option value="<?= $value->id; ?>"><?= $value->nama; ?></option>
+                  <option 
+                  
+                  <?=
+                  
+                     $data->dataBuku->kategori_id == $value->id ? "selected" : "";
+
+                  ?>
+
+                  value="<?= $value->id; ?>"><?= $value->nama; ?></option>
 
                   <?php
                 }

@@ -15,7 +15,7 @@
                     </form>
                 </div><br>
                 <div class="card-body">
-                    <table class="table table-valign-middle table-bordered">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th width="5%">No</th>

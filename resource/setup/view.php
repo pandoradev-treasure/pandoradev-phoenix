@@ -9,7 +9,7 @@
                 
                 <div class="card-body">
                     <form class="table-responsive">
-                        <table class="table table-bordered table-striped table-valign-middle">
+                        <table class="table table-bordered table-valign-middle">
                             <thead>
                                 <tr>
                                     <?php  
