@@ -43,10 +43,10 @@
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">PandoraSetup</div>
-                <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?= url('setup/dashboard') ?>">Dashboard</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?= url('setup/database') ?>">Database</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="<?= url('setup/table') ?>">Table</a>
+                <div class="list-group list-group-flush layouts">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="dashboard">Dashboard</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="database">Database</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="table">Table</a>
                 </div>
             </div>
             <!-- Page content wrapper-->

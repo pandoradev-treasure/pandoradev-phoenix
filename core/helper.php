@@ -5,24 +5,13 @@
     session_start();
 
     @$id  = $_GET['id'];
-    
-    // $query = new Query;
 
-    function query()
-    {
-      $query = new Query;
-      return $query;
-    }
-
-    //From Root Project Name
     function base_url($target)
     {
       $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
       echo $projectName[1]."/".$target;
     }
-    //End
 
-    // To Asset Folder
     function asset($target)
     {
       $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
@@ -39,9 +28,9 @@
     {
 
         if ($id) {
-          $id = $id;
+          @$id = $id;
         }else{
-          $id = $_GET['id'];
+          @$id = $_GET['id'];
         }
         
         $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
@@ -80,12 +69,15 @@
 
     }
 
-    
-    
     /*
      *  MYSQL QUERY
-     *  INSERT INTO TABLE
      */
+
+    function query()
+    {
+      $query = new Query;
+      return $query;
+    }
 
     class Query{
 
@@ -295,7 +287,7 @@
       /* END REDIRECT */
 
 
-  }
+    }
 
     function getPrimary($table)
     {
@@ -364,6 +356,13 @@
       mysqli_fetch_object($params);
     }
     /* END */
+
+    /* SECTION */
+    function section(Type $var = null)
+    {
+      # code...
+    }
+    /* END SECTION */
 
     /* 
       MENGGANTI DARI [ARRAY] KE OBJECT (SESSION)

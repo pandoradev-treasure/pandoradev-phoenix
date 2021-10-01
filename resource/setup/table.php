@@ -7,7 +7,7 @@
                     <a href="../../Config/database.php?backupAllTable=true" class="float-right btn btn-sm btn-primary"><i class="far fa-task"></i>Backup Table</a>
                 </div>
                 <div style="margin-top: 20px;" class="float-left">
-                    <form class="form-inline" action="<?= controller('SetupController@store') ?>" method="POST">
+                    <form class="form-inline" action="<?= controller('setup@store') ?>" method="POST">
                         <div class="form-group mx-sm-3">
                             <input type="text" required class="form-control" placeholder="Nama Tabel" name="nama_table">
                         </div>
@@ -15,7 +15,7 @@
                     </form>
                 </div><br>
                 <div class="card-body">
-                    <table class="table table-valign-middle table-bordered">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
@@ -33,10 +33,12 @@
                                 <td><?php echo $no++ ?></td>
                                 <td><?php echo $see[0] ?></td>
                                 <td>
-                                    <a href="../../Config/database.php?backupTable=<?= $see[0] ?>" class="btn btn-success btn-sm hover-btn"><i class="fa fa-file"></i></a>
-                                    <a href="<?= controller('SetupController@viewData',$see[0]) ?>" class="btn btn-warning btn-sm hover-btn"><i class="fa fa-eye"></i></a>
-                                    <a href="<?= controller('SetupController@edit', $see[0]) ?>" class="btn btn-primary btn-sm hover-btn"><i class="fa fa-edit"></i></a>
-                                    <a href="<?= controller('SetupController@deleteTable', $see[0]) ?>" class="btn btn-danger btn-sm hover-btn"><i class="fa fa-trash"></i></a>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="../../Config/database.php?backupTable=<?= $see[0] ?>" class="btn btn-success btn-sm hover-btn mx-1"><i class="fa fa-file"></i></a>
+                                        <a href="<?= controller('setup@viewData',$see[0]) ?>" class="btn btn-warning btn-sm hover-btn mx-1"><i class="fa fa-eye"></i></a>
+                                        <a href="<?= controller('setup@edit', $see[0]) ?>" class="btn btn-primary btn-sm hover-btn mx-1"><i class="fa fa-edit"></i></a>
+                                        <a href="<?= controller('setup@deleteTable', $see[0]) ?>" class="btn btn-danger btn-sm hover-btn mx-1"><i class="fa fa-trash"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                             <?php } ?>

@@ -15,7 +15,7 @@
 
     function destroy($request)
     {
-        query()->delete('buku', $request->id)->view('buku/data');
+        query()->delete('buku', $request->id)->view('buku/data',"Berhasil Dihapus");
     }
 
     function edit($request, $id)
@@ -39,9 +39,7 @@
             'penulis'           => $request->penulis,
             'kategori_id'       => $request->kategori_id,
             
-        ],$id);
-
-        view('buku/data');
+        ],$id)->view('buku/data',"Berhasil Update !");
     }
 
     function create()

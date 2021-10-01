@@ -12,10 +12,10 @@
         $query = "CREATE TABLE type_data (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, type_data VARCHAR(30) NOT NULL)";
         $host->query($query);
 
-        Query::insert('type_data',["INT"]);
-        Query::insert('type_data',["VARCHAR"]);
-        Query::insert('type_data',["TEXT"]);
-        Query::insert('type_data',["DATE"]);
+        query()->insert('type_data',["INT"]);
+        query()->insert('type_data',["VARCHAR"]);
+        query()->insert('type_data',["TEXT"]);
+        query()->insert('type_data',["DATE"]);
 
         $query = "CREATE TABLE $table (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY)";
         $host->query($query);
@@ -93,7 +93,7 @@
         $id    = $data[0];
         $table = $data[1];
 
-        Query::delete($table, $id);
+        query()->delete($table, $id);
 
         $table = [$table];
         
@@ -169,27 +169,26 @@
 
         $content = "<?php\n\n";
 
-        $content .= '
-            $AUTH          = '.$auth.';
-            
-            #$AUTH = FITUR LOGIN & REGISTER
-            #Ubah isi variable $AUTH dari false menjadi true, jika ingin mengaktifkan fitur Login & Register
+$content .= '
+    $AUTH          = '.$auth.';
+    
+    #$AUTH = FITUR LOGIN & REGISTER
+    #Ubah isi variable $AUTH dari false menjadi true, jika ingin mengaktifkan fitur Login & Register
 
-            $REDIRECT      = "";
-            //$REDIRECT = UNTUK REDIRECT / PINDAH HALAMAN PADA SAAT PANDORACODE DIAKSES
+    $REDIRECT      = "";
+    //$REDIRECT = UNTUK REDIRECT / PINDAH HALAMAN PADA SAAT PANDORACODE DIAKSES
 
-            $CHECKDB       = false;
+    $CHECKDB       = false;
 
-            #$CHECK = PENGECEKAN DATABASE
-            #Ubah isi variable $CHECK dari false menjadi true, jika ingin mengaktifkan fungsi check database
+    #$CHECK = PENGECEKAN DATABASE
+    #Ubah isi variable $CHECK dari false menjadi true, jika ingin mengaktifkan fungsi check database
 
-            $HOST          = "'.$host.'";
-            $USER          = "'.$user.'";
-            $PASSWORD      = "'.$password.'";
-            $DATABASE      = "'.$database.'";
+    $HOST          = "'.$host.'";
+    $USER          = "'.$user.'";
+    $PASSWORD      = "'.$password.'";
+    $DATABASE      = "'.$database.'";
 
-            #Jika Host, User, Password tidak diisi maka otomatis akan mengikuti settingan default XAMPP
-        ';
+    #Jika Host, User, Password tidak diisi maka otomatis akan mengikuti settingan default XAMPP';
 
         fwrite($myfile, $content);
         fclose($myfile);

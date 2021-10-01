@@ -2,7 +2,7 @@
 
     function store($request)
     {
-        Query::insert('kategori',[
+        query()->insert('kategori',[
             $request->nama_kategori
         ])->view('kategori/data');
     }

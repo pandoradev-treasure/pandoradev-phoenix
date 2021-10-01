@@ -1,3 +1,4 @@
+<?php include 'core/autoload-htaccess.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

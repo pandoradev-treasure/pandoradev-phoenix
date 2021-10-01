@@ -5,7 +5,7 @@
                 <div class="card-header" >
                     <span style="font-size: 20px;font-family:calibri">Konfigurasi Database</span>
                 </div>
-                <form action="<?= controller('SetupController@createDB') ?>" method="POST">
+                <form action="<?= controller('setup@createDB') ?>" method="POST">
                     <div class="card-body">
 
                         <div class="form-group row">
