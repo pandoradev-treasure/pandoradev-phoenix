@@ -287,7 +287,7 @@
       /* END REDIRECT */
 
 
-  }
+    }
 
     function getPrimary($table)
     {
