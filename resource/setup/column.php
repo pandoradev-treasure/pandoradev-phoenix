@@ -37,7 +37,7 @@
                                     <tr>
                                         <td><input name="name_column[]" tabindex="1" required type="text" class="form-control" value="<?php echo $see[0]; ?>"></td>
                                         <td>
-                                            <select name="type_data[]" id="" class="form-control">
+                                            <select name="type_data[]" id="" class="form-control js-example-basic-single">
                                                 <?php
                                                     $data = $host->query("SELECT * FROM type_data");
                                                     var_dump($data);

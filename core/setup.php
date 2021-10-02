@@ -217,3 +217,54 @@ $content .= '
             view('setup/table');
         }
     }
+
+    function importAllTable()
+    {
+        $hit = 0;
+        foreach (glob("../database/table/*") as $see) {
+            $hit = count(glob($see."/*.*"));
+            foreach (glob($see."/*.*") as $lihat) {
+                if ($hit == 1) {
+                    $content = file_get_contents($lihat);
+                    $backup  = query()->raw($content);
+                }else{
+                    $hit--;
+                }
+            }   
+        }   
+        view('setup/table');
+    }
+
+    function backupAllTable()
+    {
+        global $DATABASE;
+        $query = query()->raw("SHOW TABLES");
+        while($see = mysqli_fetch_assoc($query)){
+            $nama_table = $see['Tables_in_'.$DATABASE];
+            mkdir("../database/table/".$nama_table);
+            $myfile  = fopen("../database/table/$nama_table/".date("d-m-Y").".sql", "w") or die("Unable to open file!");
+
+            $show_table = mysqli_fetch_object(query()->raw("SHOW CREATE TABLE $nama_table"));
+
+            $content = $show_table->{"Create Table"};
+            fwrite($myfile, $content);
+            fclose($myfile);
+        }
+        view('setup/table');
+    }
+
+    function backupTable($table)
+    {
+        global $DATABASE;
+        $table = $table->id;
+        mkdir("../database/table/".$table);
+        $myfile  = fopen("../database/table/$table/".date("d-m-Y").".sql", "w") or die("Unable to open file!");
+
+        $show_table = mysqli_fetch_object(query()->raw("SHOW CREATE TABLE $table"));
+
+        $content = $show_table->{"Create Table"};
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        view('setup/table');
+    }

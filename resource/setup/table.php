@@ -4,7 +4,8 @@
             <div class="card" style="box-shadow:2px 2px 36px #e1e1e1">
                 <div class="card-header">
                     <span style="font-size: 20px;font-family:calibri"><?= $DATABASE ?></span> <a href="database" style="cursor: pointer;" class="">⚙️</a>
-                    <a href="../../Config/database.php?backupAllTable=true" class="float-right btn btn-sm btn-primary"><i class="far fa-task"></i>Backup Table</a>
+                    <a href="<?= controller('setup@backupAllTable') ?>" class="float-right btn btn-sm btn-primary"><i class="far fa-task"></i>Backup Table</a>
+                    <a href="<?= controller('setup@importAllTable') ?>" class="float-right btn btn-sm btn-success"><i class="far fa-task"></i>Import Table</a>
                 </div>
                 <div style="margin-top: 20px;" class="float-left">
                     <form class="form-inline" action="<?= controller('setup@store') ?>" method="POST">
@@ -34,7 +35,7 @@
                                 <td><?php echo $see[0] ?></td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <a href="../../Config/database.php?backupTable=<?= $see[0] ?>" class="btn btn-success btn-sm hover-btn mx-1"><i class="fa fa-file"></i></a>
+                                        <a href="<?= controller('setup@backupTable', $see[0]) ?>" class="btn btn-success btn-sm hover-btn mx-1"><i class="fa fa-file"></i></a>
                                         <a href="<?= controller('setup@viewData',$see[0]) ?>" class="btn btn-warning btn-sm hover-btn mx-1"><i class="fa fa-eye"></i></a>
                                         <a href="<?= controller('setup@edit', $see[0]) ?>" class="btn btn-primary btn-sm hover-btn mx-1"><i class="fa fa-edit"></i></a>
                                         <a href="<?= controller('setup@deleteTable', $see[0]) ?>" class="btn btn-danger btn-sm hover-btn mx-1"><i class="fa fa-trash"></i></a>
