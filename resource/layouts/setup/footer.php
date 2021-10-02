@@ -48,18 +48,18 @@
         var row = null;
 
         row += `<tr>`;
-            row += `<td><input type="text" name="name_column[]" required class="form-control"></td>`;
+            row += `<td><input tabindex="2" type="text" name="name_column[]" required class="form-control"></td>`;
             row += `<td>
-                        <select name="type_data[]" id="" class="form-control">
+                        <select tabindex="3" name="type_data[]" id="" class="form-control">
                             <option value="INT">INT</option>
                             <option value="VARCHAR">VARCHAR</option>
                             <option value="TEXT">TEXT</option>
                             <option value="DATE">DATE</option>
                         </select>
                     </td>`;
-            row += `<td><input name="lenght[]" required type="text" class="form-control"></td>`;
-            row += `<td><center><input name="auto_increment[]" type="radio"></center></td>`;
-            row += `<td><center><input name="primary_key[]" type="radio"></center></td>`;
+            row += `<td><input tabindex="4" name="lenght[]" required type="text" class="form-control"></td>`;
+            row += `<td><center><input tabindex="5" name="auto_increment[]" type="radio"></center></td>`;
+            row += `<td><center><input tabindex="6" name="primary_key[]" type="radio"></center></td>`;
             row += `<td>
                         <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
                     </td>`;
