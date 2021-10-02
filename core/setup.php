@@ -83,6 +83,8 @@
         $query = "DROP TABLE ".$table;
         $host->query($query);
 
+        $_SESSION["alert_delete_table"] = "Berhasil Dihapus!";
+
         view('setup/table');
 
     }

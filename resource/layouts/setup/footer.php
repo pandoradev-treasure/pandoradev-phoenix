@@ -34,6 +34,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?= asset('dist/js/pages/dashboard.js') ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="<?php asset('plugins/sweetalert2@11') ?>"></script>
 <script>
     $(document).ready(function() {
         $('.js-example-basic-single').select2({
@@ -72,5 +73,39 @@
         $(this).parents('tr').remove();
     });
 
+    $('.delete-table').click(function(el){
+        el.preventDefault();
 
+        var url   = $(this).data('url');
+        var table = $(this).data('table');
+
+        console.log(url);
+        Swal.fire({
+            title: 'Apakah anda yakin ingin menghapus table '+table+'?',
+            showDenyButton: true,
+            confirmButtonText: 'Hapus',
+            denyButtonText: `Batal`,
+            }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                window.location = url;
+            } else if (result.isDenied) {
+                Swal.fire('Gagal menghapus table '+table, '', 'info')
+            }
+        })
+    });
 </script>
+
+<?php
+    if (isset($_SESSION["alert_delete_table"])) {
+        ?>
+            <script>
+            Swal.fire(
+                'Berhasil Dihapus!',
+                'Table berhasil dihapus!',
+                'success'
+                )
+            </script>
+        <?php
+    } unset($_SESSION["alert_delete_table"]);
+?>
