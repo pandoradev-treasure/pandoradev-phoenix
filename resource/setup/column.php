@@ -37,7 +37,7 @@
                                     <tr>
                                         <td><input name="name_column[]" tabindex="1" required type="text" class="form-control" value="<?php echo $see[0]; ?>"></td>
                                         <td>
-                                            <select name="type_data[]" id="" class="form-control js-example-basic-single">
+                                            <select name="type_data[]" tabindex="3" id="" class="form-control js-example-basic-single">
                                                 <?php
                                                     $data = $host->query("SELECT * FROM type_data");
                                                     var_dump($data);
@@ -57,8 +57,8 @@
                                             </select>
 
                                         </td>
-                                        <td><input name="lenght[]" required type="number" class="form-control" value="<?php echo $jumlah[0]; ?>"></td>
-                                        <td><center><input 
+                                        <td><input name="lenght[]" tabindex="5" required type="number" class="form-control" value="<?php echo $jumlah[0]; ?>"></td>
+                                        <td><center><input tabindex="6"
                                                 <?php  
                                                     if ($see[2] == "NO") {
                                                         echo "checked";
@@ -66,7 +66,7 @@
                                                 ?> 
                                             name="auto_increment[]" type="radio"></center></td>
                                         <td>
-                                            <center><input
+                                            <center><input tabindex="7"
                                                 <?php  
                                                     if ($see[3] == "PRI") {
                                                         echo "checked";
