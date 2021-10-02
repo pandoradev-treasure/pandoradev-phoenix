@@ -1,4 +1,10 @@
-<?php include 'core/autoload-htaccess.php'; ?>
+<?php 
+    include 'core/autoload-htaccess.php'; 
+    include 'configuration.php'; 
+    if ($REDIRECT) {
+        header('location:'.$REDIRECT);
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
