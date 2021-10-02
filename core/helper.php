@@ -177,6 +177,12 @@
           return $this->get()." LIMIT $value";
       }
 
+      function raw($query)
+      {
+        global $host;
+        return mysqli_query($host, $query);
+      }
+
       /* 
         FUNCTION CRUD
       */
