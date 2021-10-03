@@ -3,7 +3,7 @@
     function store($request)
     {
 
-        query()->insert('buku',[
+        query()->insert('buku', [
             $request->judul,
             $request->deskripsi_singkat,
             $request->deskripsi,
@@ -47,4 +47,4 @@
         $kategori = query()->table('kategori')->get();
 
         view('buku/form', compact('kategori'));
-    }                                                                                                                                                                                    
+    }                                                                                                                                                                                                                            

@@ -4,7 +4,7 @@
             <div class="card" style="box-shadow:2px 2px 36px #e1e1e1">
                 <div class="card-header">
                     <span style="font-size: 20px;font-family:calibri"> <b>Tabel : </b> <?= $data->table[0] ?></span>
-                    <a href="../../Config/database.php?backupAllData=<?= $data->table[0] ?>"></a>
+                    <a href="<?= controller('setup@backupDataTable',$data->table[0]) ?>" class="float-right btn btn-sm btn-primary"><i class="far fa-task"></i>Backup Data</a>
                 </div>
                 
                 <div class="card-body">

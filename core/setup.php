@@ -21,8 +21,9 @@
         $host->query($query);
 
         $table = [$table];
+        $check = [$request->check];
 
-        view('setup/column', compact('table'));
+        view('setup/column', compact('table','check'));
     }
 
     function processColumn($request)
@@ -30,12 +31,13 @@
         global $host;
 
         $table = $request->table;
+        $table_new = $request->nama_table;
 
 
         $query = "DROP TABLE ".$table;
         $host->query($query);
 
-        $data  = "CREATE TABLE $table (";
+        $data  = "CREATE TABLE $table_new (";
 
         for ($i=0; $i < count($request->name_column); $i++) { 
 
@@ -76,14 +78,21 @@
         view('setup/view', compact('table'));
     }
 
-    function deleteTable($request, $table)
+    function cancel_table($request)
+    {
+        return deleteTable($request, $request->id, true);
+    }
+
+    function deleteTable($request, $table, $cancel = false)
     {
         global $host;
 
         $query = "DROP TABLE ".$table;
         $host->query($query);
 
-        $_SESSION["alert_delete_table"] = "Berhasil Dihapus!";
+        if ($cancel) {
+            $_SESSION["alert_delete_table"] = "Berhasil Dihapus!";
+        }
 
         view('setup/table');
 
@@ -270,6 +279,23 @@ $content .= '
 
         view('setup/table');
     }
+
+    function backupDataTable($table)
+    {
+        global $DATABASE;
+        $table = $table->id;
+        mkdir("../database/table/".$table);
+        $myfile  = fopen("../database/table/$table/".date("d-m-Y").".sql", "w") or die("Unable to open file!");
+
+        $show_table = mysqli_fetch_object(query()->raw("SHOW CREATE TABLE $table"));
+
+        $content = $show_table->{"Create Table"};
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        view('setup/table');
+    }
+
 
     /*
     * Setup Controller
