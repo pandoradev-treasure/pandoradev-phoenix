@@ -53,6 +53,11 @@
 
     // REDIRECT
 
+    function alert($msg)
+    {
+      @$_SESSION["alert"] = $msg;
+    }
+
     function view($target, $data = null)
     {
       

@@ -11,6 +11,8 @@
     @include "database.php";
     @include "helper.php";
 
+    new Query;
+
     //Auto Redirect Controller & Function With Params
     if (!function_exists($_GET['function'])) {
 

@@ -32,6 +32,9 @@
     <!-- Datatable -->
     <link rel="stylesheet" href="<?php asset('plugins/dataTables.bootstrap4.min.css') ?>">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="<?= asset('codemirror/lib/codemirror.css') ?>">
+    <link rel="stylesheet" href="<?= asset('codemirror/theme/material-darker.css') ?>">
     </head>
     <style>
         .select2-container--default .select2-selection--single{
@@ -44,9 +47,10 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">PandoraSetup</div>
                 <div class="list-group list-group-flush layouts">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="dashboard">Dashboard</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="database">Database</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="table">Table</a>
+                    <!-- <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="dashboard">Dashboard</a> -->
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="database"><img src="<?= asset('server.png') ?>" style="max-width:20px"> Database </a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="table"><img src="<?= asset('list.png') ?>" style="max-width:20px"> Table </a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="controller"><img src="<?= asset('controller.png') ?>" style="max-width:20px"> Controller </a>
                 </div>
             </div>
             <!-- Page content wrapper-->

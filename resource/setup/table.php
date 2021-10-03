@@ -25,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php  
+                            <?php
                                 $query = $host->query("SHOW TABLES FROM $DATABASE WHERE tables_in_".$DATABASE." != 'type_data' ");
                                 $no = 1;
                                 while ($see = mysqli_fetch_row($query)) {
@@ -38,7 +38,7 @@
                                         <a href="<?= controller('setup@backupTable', $see[0]) ?>" class="btn btn-success btn-sm hover-btn mx-1"><i class="fa fa-file"></i></a>
                                         <a href="<?= controller('setup@viewData',$see[0]) ?>" class="btn btn-warning btn-sm hover-btn mx-1"><i class="fa fa-eye"></i></a>
                                         <a href="<?= controller('setup@edit', $see[0]) ?>" class="btn btn-primary btn-sm hover-btn mx-1"><i class="fa fa-edit"></i></a>
-                                        <a href="<?= controller('setup@deleteTable', $see[0]) ?>" class="btn btn-danger btn-sm hover-btn mx-1"><i class="fa fa-trash"></i></a>
+                                        <a data-table="<?= $see[0] ?>" data-url="<?= controller('setup@deleteTable', $see[0]) ?>" class="btn btn-danger btn-sm hover-btn mx-1 delete-table"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>
