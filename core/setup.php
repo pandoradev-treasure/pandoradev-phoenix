@@ -277,6 +277,24 @@ $content .= '
 
     function CreateController($request)
     {
+        
+        $cekFile  = false;
+        $namaFile = str_replace('.php','',$request->controller).".php";
+
+        foreach (glob("../controller/$namaFile") as $see) {
+            $cekFile = true;
+        }
+
+        if ($cekFile) {
+
+            alert('Nama File Sudah Ada!','Gunakan nama lain','error');
+            view('setup/controller');
+            
+            die();
+            exit();
+            
+        }
+
         $controllerName = str_replace(".php","",$request->controller);
         
 
@@ -375,4 +393,49 @@ $content .= '
         $file = [$name];
 
         view('setup/detail-file', compact('file'));
+    }
+
+    function deleteFileController($request)
+    {
+        unlink('../controller/'.$request->id);
+        alert('Berhasil Dihapus!');
+        view('setup/controller');
+    }
+
+    function editNamaController($request)
+    {
+        $cekFile  = false;
+
+        $file     = [$request->old_file];
+
+        $namaFile = str_replace('.php', '', $request->new_name_file).".php";
+
+        foreach (glob("../controller/$namaFile") as $see) {
+            $cekFile = true;
+        }
+
+        if ($cekFile) {
+
+            alert('Nama File Sudah Ada!','Gunakan nama lain','error');
+            view('setup/detail-file', compact('file'));
+            
+        }else{
+            
+            unlink('../controller/'.$request->old_file);
+
+            $myfile  = fopen("../controller/$namaFile", "w") or die("Unable to open file!");
+
+            $content = $request->data_new_code;
+
+            fwrite($myfile, $content);
+            fclose($myfile);
+
+            alert('Berhasil','Berhasil mengupdate nama file controller!');
+            
+            $file = [$namaFile];
+
+            view('setup/detail-file', compact('file'));
+
+        }
+
     }

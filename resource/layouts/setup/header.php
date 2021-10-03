@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>PandoraSetup</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="<?= asset('setup/css/styles.css') ?>" rel="stylesheet" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>PandoraSetup</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="<?= asset('setup/css/styles.css') ?>" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php asset('plugins/fontawesome-free/css/all.min.css') ?>">
     <!-- Ionicons -->
@@ -35,35 +36,41 @@
 
     <link rel="stylesheet" href="<?= asset('codemirror/lib/codemirror.css') ?>">
     <link rel="stylesheet" href="<?= asset('codemirror/theme/material-darker.css') ?>">
-    </head>
-    <style>
-        .select2-container--default .select2-selection--single{
-            padding: 2px;
-        }
-    </style>
-    <body>
-        <div class="d-flex" id="wrapper">
-            <!-- Sidebar-->
-            <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">PandoraSetup</div>
-                <div class="list-group list-group-flush layouts">
-                    <!-- <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="dashboard">Dashboard</a> -->
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="database"><img src="<?= asset('server.png') ?>" style="max-width:20px"> Database </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="table"><img src="<?= asset('list.png') ?>" style="max-width:20px"> Table </a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="controller"><img src="<?= asset('controller.png') ?>" style="max-width:20px"> Controller </a>
-                </div>
+</head>
+<style>
+    .select2-container--default .select2-selection--single {
+        padding: 2px;
+    }
+</style>
+
+<body>
+    <audio id="myAudio">
+        <source src="<?= asset('success.mp3') ?>" type="audio/ogg">
+        <source src="<?= asset('success.mp3') ?>" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-light">PandoraSetup</div>
+            <div class="list-group list-group-flush layouts">
+                <!-- <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="dashboard">Dashboard</a> -->
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="database"><img src="<?= asset('server.png') ?>" style="max-width:20px"> Database </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="table"><img src="<?= asset('list.png') ?>" style="max-width:20px"> Table </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="controller"><img src="<?= asset('controller.png') ?>" style="max-width:20px"> Controller </a>
             </div>
-            <!-- Page content wrapper-->
-            <div id="page-content-wrapper">
-                <!-- Top navigation-->
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="container-fluid">
-                        <button class="btn btn-primary" id="sidebarToggle"> Menu </button>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li class="nav-item active"><a class="nav-link" href="<?= url('') ?>">Halaman Awal</a></li>
-                            </ul>
-                        </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- Top navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="container-fluid">
+                    <button class="btn btn-primary" id="sidebarToggle"> Menu </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                            <li class="nav-item active"><a class="nav-link" href="<?= url('') ?>">Halaman Awal</a></li>
+                        </ul>
                     </div>
-                </nav>
+                </div>
+            </nav>

@@ -1,10 +1,11 @@
 </div>
-        </div>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="<?= asset('setup/js/scripts.js') ?>"></script>
-    </body>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="<?= asset('setup/js/scripts.js') ?>"></script>
+</body>
+
 </html>
 <!-- jQuery -->
 <script src="<?= asset('plugins/jquery/jquery.min.js') ?>"></script>
@@ -12,7 +13,7 @@
 <script src="<?= asset('plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?= asset('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
@@ -50,14 +51,14 @@
 
         $('.sidebarT').hide();
     });
-    
-    $('.add-column').click(function(){
+
+    $('.add-column').click(function() {
 
         var row = null;
 
         row += `<tr>`;
-            row += `<td><input tabindex="2" type="text" name="name_column[]" required class="form-control"></td>`;
-            row += `<td>
+        row += `<td><input tabindex="2" type="text" name="name_column[]" required class="form-control"></td>`;
+        row += `<td>
                         <select tabindex="4" name="type_data[]" id="" class="form-control">
                             <option value="INT">INT</option>
                             <option value="VARCHAR">VARCHAR</option>
@@ -65,10 +66,10 @@
                             <option value="DATE">DATE</option>
                         </select>
                     </td>`;
-            row += `<td><input tabindex="5" name="lenght[]" required type="text" class="form-control"></td>`;
-            row += `<td><center><input tabindex="6" name="auto_increment[]" type="radio"></center></td>`;
-            row += `<td><center><input tabindex="7" name="primary_key[]" type="radio"></center></td>`;
-            row += `<td>
+        row += `<td><input tabindex="5" name="lenght[]" required type="text" class="form-control"></td>`;
+        row += `<td><center><input tabindex="6" name="auto_increment[]" type="radio"></center></td>`;
+        row += `<td><center><input tabindex="7" name="primary_key[]" type="radio"></center></td>`;
+        row += `<td>
                         <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
                     </td>`;
         row += `</tr>`;
@@ -76,104 +77,88 @@
         $('tbody').append(row);
     });
 
-    $('body').on('click','.delete-column',function(){
+    $('body').on('click', '.delete-column', function() {
         $(this).parents('tr').remove();
     });
 
-    $('.delete-table').click(function(el){
+    $('.delete-table').click(function(el) {
         el.preventDefault();
 
-        var url   = $(this).data('url');
+        var url = $(this).data('url');
         var table = $(this).data('table');
 
         console.log(url);
         Swal.fire({
-            title: 'Apakah anda yakin ingin menghapus table '+table+'?',
+            title: 'Apakah anda yakin ingin menghapus ' + table + '?',
             showDenyButton: true,
             confirmButtonText: 'Hapus',
             denyButtonText: `Batal`,
-            }).then((result) => {
+        }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 window.location = url;
             } else if (result.isDenied) {
-                Swal.fire('Gagal menghapus table '+table, '', 'info')
+                Swal.fire('Gagal menghapus ' + table, '', 'info')
             }
         })
     });
 </script>
 
 <?php
-    if (isset($_SESSION["alert_delete_table"])) {
-        ?>
-            <script>
-            Swal.fire(
-                'Berhasil Dihapus!',
-                'Table berhasil dihapus!',
-                'success'
-                )
-            </script>
-        <?php
-    } unset($_SESSION["alert_delete_table"]);
+if (isset($_SESSION["alert_delete_table"])) {
+    ?>
+    <script>
+        Swal.fire(
+            'Berhasil Dihapus!',
+            'Table berhasil dihapus!',
+            'success'
+        )
+    </script>
+<?php
+}
+unset($_SESSION["alert_delete_table"]);
 ?>
 
 <?php
-    if (isset($_SESSION["alert"])) {
-        $alert = $_SESSION["alert"];
-        ?>
-            <script>
-            Swal.fire(
-                'Berhasil!',
-                '<?= $alert ?>',
-                'success'
-                )
-            </script>
-        <?php
-    } unset($_SESSION["alert"]);
+if (isset($_SESSION["title_alert"])) {
+
+    $title      = $_SESSION["title_alert"];
+    $alert      = $_SESSION["message_alert"];
+    $type_alert = $_SESSION["type_alert"];
+
+    ?>
+    <script>
+        Swal.fire(
+            '<?= $title ?>',
+            '<?= $alert ?>',
+            '<?= $type_alert ?>'
+        );
+    </script>
+    <script>
+        var x = document.getElementById("myAudio");
+        x.play();
+    </script>
+<?php
+}
+unset($_SESSION["title_alert"]);
+unset($_SESSION["message_alert"]);
+unset($_SESSION["type_alert"]);
 ?>
 
-<!-- FOR CODE MIRROR -->
-<!-- <script>
-    //  CodeMirror.fromTextArea(document.getElementById('code'), {
-    //     lineNumbers: true,
-    //     mode: 'application/x-httpd-php',
-    // }).on('change', editor => {
-    //     console.log(editor.getValue());
-    // });
+<?php
+foreach (glob("../controller/*") as $key => $see) {
 
-    $(document).ready(function(){
-        var code = $('.codemirror-textarea')[0];
-        var editor = CodeMirror.fromTextArea(code, {
-            lineNumbers: true,
-            matchBrackets: true,
-            mode: "application/x-httpd-php",
-            indentUnit: 4,
-            indentWithTabs: true,
-            theme : "material-darker"
-        });
-    });
-</script>
-
- -->
-
-
-
-
- <?php
-    foreach (glob("../controller/*") as $key => $see) {
-    
-    $explode = explode("/",$see);
-?>
-<script>
-
-    var editor = CodeMirror.fromTextArea(document.getElementById('<?= $explode[2] ?>'), {
+    $explode = explode("/", $see);
+    ?>
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById('<?= $explode[2] ?>'), {
             lineNumbers: true,
             matchBrackets: true,
             mode: "application/x-httpd-php",
             indentUnit: 4,
             indentWithTabs: true,
             autoRefresh: true,
-            theme : "material-darker"
+            theme: "material-darker",
         });
 
         editor.on('change', editor => {
@@ -184,5 +169,5 @@
         $('.data-code').text($('.data-code-old').text());
 
         editor.setSize(null, 1000);
-</script>
+    </script>
 <?php } ?>

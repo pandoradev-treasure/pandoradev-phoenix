@@ -53,9 +53,25 @@
 
     // REDIRECT
 
-    function alert($msg)
+    function alert($title = 0,$msg = 0, $typeAlert = 0)
     {
-      @$_SESSION["alert"] = $msg;
+
+      if (!$title) {
+        $title = "Berhasil!";
+      }
+
+      if (!$msg) {
+        $msg = "Berhasil";
+      }
+
+      if (!$typeAlert) {
+        $typeAlert = "success";
+      }
+      
+      @$_SESSION["title_alert"]   = $title;
+      @$_SESSION["message_alert"] = $msg;
+      @$_SESSION["type_alert"]    = $typeAlert;
+      
     }
 
     function view($target, $data = null)
