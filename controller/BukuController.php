@@ -47,4 +47,4 @@
         $kategori = query()->table('kategori')->get();
 
         view('buku/form', compact('kategori'));
-    }
+    }                                                                                                                                                                                    

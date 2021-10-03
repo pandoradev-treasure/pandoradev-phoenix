@@ -35,6 +35,13 @@
 <script src="<?= asset('dist/js/pages/dashboard.js') ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="<?php asset('plugins/sweetalert2@11') ?>"></script>
+<script src="<?= asset('codemirror/lib/codemirror.js') ?>"></script>
+<script src="<?= asset('codemirror/mode/php/php.js') ?>"></script>
+<script src="<?= asset('codemirror/mode/htmlmixed/htmlmixed.js') ?>"></script>
+<script src="<?= asset('codemirror/mode/xml/xml.js') ?>"></script>
+<script src="<?= asset('codemirror/mode/clike/clike.js') ?>"></script>
+<script src="<?= asset('codemirror/mode/css/css.js') ?>"></script>
+<script src="<?= asset('codemirror/addon/display/autorefresh.js') ?>"></script>
 <script>
     $(document).ready(function() {
         $('.js-example-basic-single').select2({
@@ -109,3 +116,73 @@
         <?php
     } unset($_SESSION["alert_delete_table"]);
 ?>
+
+<?php
+    if (isset($_SESSION["alert"])) {
+        $alert = $_SESSION["alert"];
+        ?>
+            <script>
+            Swal.fire(
+                'Berhasil!',
+                '<?= $alert ?>',
+                'success'
+                )
+            </script>
+        <?php
+    } unset($_SESSION["alert"]);
+?>
+
+<!-- FOR CODE MIRROR -->
+<!-- <script>
+    //  CodeMirror.fromTextArea(document.getElementById('code'), {
+    //     lineNumbers: true,
+    //     mode: 'application/x-httpd-php',
+    // }).on('change', editor => {
+    //     console.log(editor.getValue());
+    // });
+
+    $(document).ready(function(){
+        var code = $('.codemirror-textarea')[0];
+        var editor = CodeMirror.fromTextArea(code, {
+            lineNumbers: true,
+            matchBrackets: true,
+            mode: "application/x-httpd-php",
+            indentUnit: 4,
+            indentWithTabs: true,
+            theme : "material-darker"
+        });
+    });
+</script>
+
+ -->
+
+
+
+
+ <?php
+    foreach (glob("../controller/*") as $key => $see) {
+    
+    $explode = explode("/",$see);
+?>
+<script>
+
+    var editor = CodeMirror.fromTextArea(document.getElementById('<?= $explode[2] ?>'), {
+            lineNumbers: true,
+            matchBrackets: true,
+            mode: "application/x-httpd-php",
+            indentUnit: 4,
+            indentWithTabs: true,
+            autoRefresh: true,
+            theme : "material-darker"
+        });
+
+        editor.on('change', editor => {
+            console.log(editor.getValue());
+            $('.data-code').text(editor.getValue());
+        });
+
+        $('.data-code').text($('.data-code-old').text());
+
+        editor.setSize(null, 1000);
+</script>
+<?php } ?>

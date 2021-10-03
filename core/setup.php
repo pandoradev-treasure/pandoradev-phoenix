@@ -270,3 +270,109 @@ $content .= '
 
         view('setup/table');
     }
+
+    /*
+    * Setup Controller
+    */
+
+    function CreateController($request)
+    {
+        $controllerName = str_replace(".php","",$request->controller);
+        
+
+        $myfile  = fopen("../controller/$controllerName.php", "w") or die("Unable to open file!");
+
+        $content = "<?php";
+
+        if ($request->auto_function) {
+            $content .= "
+            
+    function TambahData('$'request)
+    {
+
+        /*
+        *[PandoraCode]
+        *di function ini anda bisa memberikan kode
+        *untuk tambah data, berikut contoh kode insert :
+        */
+        query()->insert('table',[
+
+            '$'request->x
+
+        ])->view('folder/file','Berhasil Ditambahkan!');
+
+    }
+
+    function EditData('$'request)
+    {
+
+        /*
+        *[PandoraCode]
+        *di function ini anda bisa memberikan kode
+        *untuk persiapan edit data
+        */
+
+    }
+
+    function UpdateData('$'request)
+    {
+
+        /*
+        *[PandoraCode]
+        *di function ini anda bisa memberikan kode
+        *untuk update data
+        */
+
+    }
+
+    function HapusData('$'request)
+    {
+
+        /*
+        *[PandoraCode]
+        *di function ini anda bisa memberikan kode
+        *untuk delete data
+        */
+
+    }"
+    
+    ;    
+        }
+
+        $content = str_replace("'$'request",'$request',$content);
+
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        alert('Berhasil menambahkan controller!');
+
+        view('setup/controller');
+    }
+
+
+    /*
+    * Detail File
+    * Get File
+    */
+
+    function detailFile($request)
+    {
+        $file = [$request->id];
+        view('setup/detail-file', compact('file'));
+    }
+
+    function UpdateController($request, $name)
+    {
+        $myfile  = fopen("../controller/$name", "w") or die("Unable to open file!");
+
+        $content = $request->data_new_code;
+
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        alert('Berhasil mengupdate controller '.$name);
+        
+        $file = [$name];
+
+        view('setup/detail-file', compact('file'));
+    }
