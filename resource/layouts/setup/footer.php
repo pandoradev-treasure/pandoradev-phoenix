@@ -134,10 +134,25 @@ if (isset($_SESSION["title_alert"])) {
             '<?= $type_alert ?>'
         );
     </script>
+
+    <?php
+        if ($type_alert == "error") {
+    ?>
     <script>
-        var x = document.getElementById("myAudio");
+        var x = document.getElementById("myAudioError");
         x.play();
     </script>
+    <?php
+        }else{
+        ?>
+            <script>
+                var x = document.getElementById("myAudioSuccess");
+                x.play();
+            </script>
+        <?php
+        }
+    ?>
+
 <?php
 }
 unset($_SESSION["title_alert"]);

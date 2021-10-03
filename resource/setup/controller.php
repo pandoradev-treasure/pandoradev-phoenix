@@ -80,10 +80,10 @@
                                     </th>
                                     <th>
                                         <a target="_blank" href="<?= controller('setup@detailFile', $explode[2]) ?>">
-                                            <img class="export-png" src="<?= asset('export.png') ?>" style="max-width:20px;margin-left: 5px;margin-bottom: 3px;">
+                                            <img class="export-png" src="<?= asset('setup/export.png') ?>" style="max-width:20px;margin-left: 5px;margin-bottom: 3px;">
                                         </a>
                                         <a class="delete-table" data-table="<?= $explode[2] ?>" data-url="<?= controller('setup@deleteFileController', $explode[2]) ?>">
-                                            <img class="delete-png" src="<?= asset('delete.png') ?>" style="max-width:20px;margin-left: 5px;margin-bottom: 3px;">
+                                            <img class="delete-png" src="<?= asset('setup/delete.png') ?>" style="max-width:20px;margin-left: 5px;margin-bottom: 3px;">
                                         </a>
                                     </th>
                                 </tr>

@@ -44,9 +44,15 @@
 </style>
 
 <body>
-    <audio id="myAudio">
+    <audio id="myAudioSuccess">
         <source src="<?= asset('success.mp3') ?>" type="audio/ogg">
         <source src="<?= asset('success.mp3') ?>" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="myAudioError">
+        <source src="<?= asset('windows_error.mp3') ?>" type="audio/ogg">
+        <source src="<?= asset('windows_error.mp3') ?>" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <div class="d-flex" id="wrapper">
@@ -55,9 +61,37 @@
             <div class="sidebar-heading border-bottom bg-light">PandoraSetup</div>
             <div class="list-group list-group-flush layouts">
                 <!-- <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="dashboard">Dashboard</a> -->
-                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="database"><img src="<?= asset('server.png') ?>" style="max-width:20px"> Database </a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="table"><img src="<?= asset('list.png') ?>" style="max-width:20px"> Table </a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="controller"><img src="<?= asset('controller.png') ?>" style="max-width:20px"> Controller </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="database"><img src="<?= asset('setup/server.png') ?>" style="max-width:20px"> Database </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="table"><img src="<?= asset('setup/list.png') ?>" style="max-width:20px"> Table </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="controller"><img src="<?= asset('setup/controller.png') ?>" style="max-width:20px"> Controller </a>
+
+                
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><img src="<?= asset('setup/web-settings.png') ?>" style="max-width:20px"> Backend </a>
+                <div id="accordion">
+
+                    <div class="card">
+                        <?php
+                             if (str_contains($_SERVER['REQUEST_URI'],'backend')) {
+        
+                                $class = "show";
+                                
+                            }
+                        
+                        ?>
+                        <div id="collapseOne" class="collapse <?= $class ?>" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+
+                            <a href="backend-header" class="list-group-item list-group-item-action list-group-item-light"><img src="<?= asset('setup/header.png') ?>" style="max-width:20px"> Header </a>
+
+                            <a href="backend-menu" class="list-group-item list-group-item-action list-group-item-light"><img src="<?= asset('setup/menu.png') ?>" style="max-width:20px"> Menu </a>
+                            
+                            <a href="backend-footer" class="list-group-item list-group-item-action list-group-item-light"><img src="<?= asset('setup/footer.png') ?>" style="max-width:20px"> Footer </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
         <!-- Page content wrapper-->
