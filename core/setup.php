@@ -577,7 +577,7 @@ $content .= '
                 ';
             }
 
-            if (!$request->type_view) {
+            if (!$request->type_view || $request->type_view == "blank") {
                 $content = "";
             }
 

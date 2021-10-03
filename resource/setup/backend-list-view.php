@@ -72,6 +72,7 @@
 
                                         <select name="type_view" class="form-control" id="">
                                             <option disabled selected>-Pilih Tipe-</option>
+                                            <option value="blank">Blank Page</option>
                                             <option value="table">Table</option>
                                             <option value="form">Form</option>
                                         </select>
