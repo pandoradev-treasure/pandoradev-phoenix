@@ -485,88 +485,144 @@ $content .= '
      function CreateFolderAndFileBackend($request)
      {
 
-         $folder = "";
-         if ($request->exist_folder) {
+        $folder = "";
+        if ($request->exist_folder) {
 
-             $folder = $request->exist_folder;
+            $folder = $request->exist_folder;
 
         }else{
 
-             $folder = $request->folder;
+            $folder = $request->folder;
 
-         }
+        }
 
-         mkdir('../resource/views/backend/'.$folder);
+        $cekFile  = false;
 
-         $file = str_replace('.php','',$request->file);
+        $namaFile = str_replace('.php', '', $request->file).".php";
 
-         $myfile  = fopen("../resource/views/backend/$folder/$file.php", "w") or die("Unable to open file!");
+        foreach (glob("../resource/views/backend/$folder/$namaFile") as $see) {
+            $cekFile = true;
+        }
 
-         if ($request->type_view == "table") {
-             $content = '<div class="card">
-    <div class="card-header">
-        <h3 class="card-title">
-            Judul
-        </h3>
-        <a href="" class="btn btn-sm btn-primary shadow float-right">Tambah</a>
-    </div><!-- /.card-header -->
-    <div class="card-body">
-        <div class="tab-content p-0">
-            <table class="table table-striped data-table">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Kolom 1</th>
-                        <th>Kolom 2</th>
-                        <th>Kolom 3</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>A</td>
-                        <td>B</td>
-                        <td>C</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div><!-- /.card-body -->
-</div>
-';
-         }
+        if ($cekFile) {
 
-         if ($request->type_view == "form") {
-            $content = '<div class="card">
-    <div class="card-header">
-        <h3 class="card-title">
-            Judul
-        </h3>
-        <a href="" class="btn btn-sm btn-primary shadow float-right">Tambah</a>
-    </div><!-- /.card-header -->
-    <div class="card-body">
-        <div class="tab-content p-0">
-        <form action="" method="POST">
-      
-        <div class="form-group">
-            <label for="">Label</label>
-            <input type="text" name="name_of_field" class="form-control">
-        </div>
+            alert('Nama File Sudah Ada!','Gunakan nama lain','error');
+            view('setup/backend-list-view');
 
-        <?php tombolForm() ?>
+        }else{
+            
 
-      </form>
-        </div>
-    </div><!-- /.card-body -->
-</div>
-            ';
-         }
+            mkdir('../resource/views/backend/'.$folder);
 
-         fwrite($myfile, $content);
-         fclose($myfile);
+            $file = str_replace('.php','',$request->file);
 
-         alert('Berhasil','Berhasil membuat file '.$request->file.'!','success');
+            $myfile  = fopen("../resource/views/backend/$folder/$file.php", "w") or die("Unable to open file!");
 
-         view('setup/backend-list-view');
+            if ($request->type_view == "table") {
+                $content = '<div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                Judul
+            </h3>
+            <a href="" class="btn btn-sm btn-primary shadow float-right">Tambah</a>
+        </div><!-- /.card-header -->
+        <div class="card-body">
+            <div class="tab-content p-0">
+                <table class="table table-striped data-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Kolom 1</th>
+                            <th>Kolom 2</th>
+                            <th>Kolom 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- /.card-body -->
+    </div>
+    ';
+            }
 
+            if ($request->type_view == "form") {
+                $content = '<div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                Judul
+            </h3>
+        </div><!-- /.card-header -->
+        <div class="card-body">
+            <div class="tab-content p-0">
+            <form action="" method="POST">
+        
+            <div class="form-group">
+                <label for="">Label</label>
+                <input type="text" name="name_of_field" class="form-control">
+            </div>
+
+            <?php tombolForm() ?>
+
+        </form>
+            </div>
+        </div><!-- /.card-body -->
+    </div>
+                ';
+            }
+
+            if (!$request->type_view) {
+                $content = "";
+            }
+
+            fwrite($myfile, $content);
+            fclose($myfile);
+
+            alert('Berhasil','Berhasil membuat file '.$request->file.'!','success');
+
+            view('setup/backend-list-view');
+        }
+
+     }
+
+     function deleteFileBackend($request, $id)
+     {
+        unlink('../resource/views/backend/'.$id);
+        alert('Berhasil Dihapus!');
+        view('setup/backend-list-view');
+     }
+
+     function editNamaFileBackend($request, $id)
+     {
+
+        $cekFile  = false;
+
+        $namaFile = str_replace('.php', '', $request->new_name_file).".php";
+
+        foreach (glob("../resource/views/$id/$namaFile") as $see) {
+            $cekFile = true;
+        }
+
+        if ($cekFile) {
+
+            alert('Nama File Sudah Ada!','Gunakan nama lain','error');
+            view('setup/backend-list-view');
+
+        }else{
+            $oldfile = $request->old_file;
+            $newfile = str_replace('.php','',$request->new_name_file).".php";
+
+            rename("../resource/views/$id/$oldfile","../resource/views/$id/$newfile");
+
+            alert('Berhasil','Berhasil merubah nama file menjadi '.$newfile.'!','success');
+
+            view('setup/backend-list-view');
+        }
+         
      }

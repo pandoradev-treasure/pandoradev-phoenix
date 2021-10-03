@@ -43,6 +43,8 @@
 <script src="<?= asset('codemirror/mode/clike/clike.js') ?>"></script>
 <script src="<?= asset('codemirror/mode/css/css.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/display/autorefresh.js') ?>"></script>
+<script src="<?= asset('codemirror/keymap/sublime.js') ?>"></script>
+<script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 <script>
     $(document).ready(function() {
         $('.js-example-basic-single').select2({
@@ -167,13 +169,19 @@ foreach (glob("../controller/*") as $key => $see) {
     ?>
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById('<?= $explode[2] ?>'), {
-            lineNumbers: true,
-            matchBrackets: true,
-            mode: "application/x-httpd-php",
-            indentUnit: 4,
-            indentWithTabs: true,
-            autoRefresh: true,
-            theme: "material-darker",
+            keyMap                 : "sublime",
+            autoCloseBrackets      : true,
+            lineNumbers            : true,
+            matchBrackets          : true,
+            mode                   : "application/x-httpd-php",
+            indentUnit             : 4,
+            indentWithTabs         : true,
+            autoRefresh            : true,
+            theme                  : "material-darker",
+            matchBrackets          : true,
+            showCursorWhenSelecting: true,
+            tabSize                : 2,
+            autoCloseTags          : true
         });
 
         editor.on('change', editor => {
@@ -190,13 +198,19 @@ foreach (glob("../controller/*") as $key => $see) {
 
 <script>
     var editor = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
-        lineNumbers: true,
-        matchBrackets: true,
-        mode: "application/x-httpd-php",
-        indentUnit: 4,
-        indentWithTabs: true,
-        autoRefresh: true,
-        theme: "material-darker",
+        keyMap                 : "sublime",
+        autoCloseBrackets      : true,
+        lineNumbers            : true,
+        matchBrackets          : true,
+        mode                   : "application/x-httpd-php",
+        indentUnit             : 4,
+        indentWithTabs         : true,
+        autoRefresh            : true,
+        theme                  : "material-darker",
+        matchBrackets          : true,
+        showCursorWhenSelecting: true,
+        tabSize                : 2,
+        autoCloseTags          : true
     });
 
     editor.on('change', editor => {
@@ -210,6 +224,7 @@ foreach (glob("../controller/*") as $key => $see) {
 </script>
 
 <script>
+
     $('.name-folder').keyup(function() {
         $('.exist_folder').val('');
         $('.append-folder-name').html($(this).val());

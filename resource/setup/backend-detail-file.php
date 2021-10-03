@@ -10,9 +10,6 @@
                 <form action="<?= controller('setup@UpdateFileBackend', $data->file[0]) ?>" method="POST" enctype="multipart/form-data">
                     <div class="card-header">
                         <span style="font-size: 20px;font-family:calibri;padding:5px;border-radius: 4px;color:#2c3e50"><?= $data->file[0] ?></span>
-                        <a data-toggle="modal" data-target="#exampleModal">
-                            <img class="export-png" src="<?= asset('setup/edit.png') ?>" style="max-width:20px;margin-left: 5px;margin-bottom: 3px;">
-                        </a>
 
                         <button type="submit" class="btn btn-outline-primary float-right btn-sm">
                             Simpan
