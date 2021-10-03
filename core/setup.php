@@ -378,6 +378,12 @@ $content .= '
         $file = [$request->id];
         view('setup/detail-file', compact('file'));
     }
+    
+    function detailFileBackend($request)
+    {
+        $file = [$request->id];
+        view('setup/backend-detail-file', compact('file'));
+    }
 
     function UpdateController($request, $name)
     {
@@ -393,6 +399,22 @@ $content .= '
         $file = [$name];
 
         view('setup/detail-file', compact('file'));
+    }
+
+    function UpdateFileBackend($request, $name)
+    {
+        $myfile  = fopen("../resource/views/backend/$name", "w") or die("Unable to open file!");
+        
+        $content = $request->data_new_code;
+
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        alert('Berhasil mengupdate file '.$name);
+        
+        $file = [$name];
+
+        view('setup/backend-detail-file', compact('file'));
     }
 
     function deleteFileController($request)
@@ -439,3 +461,112 @@ $content .= '
         }
 
     }
+
+
+    /*
+     *Update File layouts/backend/menu.php 
+     */
+
+     function UpdateFileMenuBackend($request)
+     {
+        
+        $myfile  = fopen("../resource/layouts/backend/menu.php", "w") or die("Unable to open file!");
+
+        $content = $request->data_new_code;
+
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        alert('Berhasil','Berhasil mengupdate file menu.php!','success');
+
+        view('setup/backend-menu');
+     }
+
+     function CreateFolderAndFileBackend($request)
+     {
+
+         $folder = "";
+         if ($request->exist_folder) {
+
+             $folder = $request->exist_folder;
+
+        }else{
+
+             $folder = $request->folder;
+
+         }
+
+         mkdir('../resource/views/backend/'.$folder);
+
+         $file = str_replace('.php','',$request->file);
+
+         $myfile  = fopen("../resource/views/backend/$folder/$file.php", "w") or die("Unable to open file!");
+
+         if ($request->type_view == "table") {
+             $content = '<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            Judul
+        </h3>
+        <a href="" class="btn btn-sm btn-primary shadow float-right">Tambah</a>
+    </div><!-- /.card-header -->
+    <div class="card-body">
+        <div class="tab-content p-0">
+            <table class="table table-striped data-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Kolom 1</th>
+                        <th>Kolom 2</th>
+                        <th>Kolom 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>A</td>
+                        <td>B</td>
+                        <td>C</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><!-- /.card-body -->
+</div>
+';
+         }
+
+         if ($request->type_view == "form") {
+            $content = '<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            Judul
+        </h3>
+        <a href="" class="btn btn-sm btn-primary shadow float-right">Tambah</a>
+    </div><!-- /.card-header -->
+    <div class="card-body">
+        <div class="tab-content p-0">
+        <form action="" method="POST">
+      
+        <div class="form-group">
+            <label for="">Label</label>
+            <input type="text" name="name_of_field" class="form-control">
+        </div>
+
+        <?php tombolForm() ?>
+
+      </form>
+        </div>
+    </div><!-- /.card-body -->
+</div>
+            ';
+         }
+
+         fwrite($myfile, $content);
+         fclose($myfile);
+
+         alert('Berhasil','Berhasil membuat file '.$request->file.'!','success');
+
+         view('setup/backend-list-view');
+
+     }

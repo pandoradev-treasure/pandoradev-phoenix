@@ -114,7 +114,7 @@
           var path   = window.location.pathname;
           var result = path.split('/');
 
-          if (result[2] == dir[1]) {
+          if (result[3] == dir[1]) {
             $(this).addClass('active');
           }
           

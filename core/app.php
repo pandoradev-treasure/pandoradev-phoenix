@@ -24,7 +24,7 @@
         if ($_GET['params']) {
 
             $url           = $_GET['params'];
-
+            // check($url);
             $layoutsHeader = include "../resource/layouts/backend/header.php";
             $getfile       = include "../resource/views/$url.php";
             $layoutsFooter = include "../resource/layouts/backend/footer.php";

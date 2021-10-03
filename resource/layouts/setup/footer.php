@@ -137,21 +137,21 @@ if (isset($_SESSION["title_alert"])) {
 
     <?php
         if ($type_alert == "error") {
-    ?>
-    <script>
-        var x = document.getElementById("myAudioError");
-        x.play();
-    </script>
+            ?>
+        <script>
+            var x = document.getElementById("myAudioError");
+            x.play();
+        </script>
     <?php
-        }else{
-        ?>
-            <script>
-                var x = document.getElementById("myAudioSuccess");
-                x.play();
-            </script>
-        <?php
+        } else {
+            ?>
+        <script>
+            var x = document.getElementById("myAudioSuccess");
+            x.play();
+        </script>
+    <?php
         }
-    ?>
+        ?>
 
 <?php
 }
@@ -186,3 +186,38 @@ foreach (glob("../controller/*") as $key => $see) {
         editor.setSize(null, 1000);
     </script>
 <?php } ?>
+
+
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "application/x-httpd-php",
+        indentUnit: 4,
+        indentWithTabs: true,
+        autoRefresh: true,
+        theme: "material-darker",
+    });
+
+    editor.on('change', editor => {
+        console.log(editor.getValue());
+        $('.data-code').text(editor.getValue());
+    });
+
+    $('.data-code').text($('.data-code-old').text());
+
+    editor.setSize(null, 1000);
+</script>
+
+<script>
+    $('.name-folder').keyup(function() {
+        $('.exist_folder').val('');
+        $('.append-folder-name').html($(this).val());
+    });
+
+    $('.exist_folder').on('change', function() {
+        $('.name-folder').val('');
+        $('.name-folder').removeAttr('required');
+        $('.append-folder-name').html($(this).val());
+    });
+</script>

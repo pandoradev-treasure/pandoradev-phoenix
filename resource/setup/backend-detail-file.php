@@ -7,7 +7,7 @@
     <div class="row">
         <div>
             <div class="" style="box-shadow:2px 2px 36px #e1e1e1">
-                <form action="<?= controller('setup@UpdateController', $data->file[0]) ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= controller('setup@UpdateFileBackend', $data->file[0]) ?>" method="POST" enctype="multipart/form-data">
                     <div class="card-header">
                         <span style="font-size: 20px;font-family:calibri;padding:5px;border-radius: 4px;color:#2c3e50"><?= $data->file[0] ?></span>
                         <a data-toggle="modal" data-target="#exampleModal">
@@ -19,7 +19,7 @@
                         </button>
                     </div>
                     <textarea class="mb-3 data-code-old" id="code-mirror">
-<?= file_get_contents('../controller/' . $data->file[0]) ?>
+<?= file_get_contents('../resource/views/backend/'.$data->file[0]) ?>
                 </textarea>
                     <div class="card-body">
                         <textarea style="display: none;" name="data_new_code" class="data-code" id="" cols="30" rows="10"></textarea>
