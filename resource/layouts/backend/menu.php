@@ -9,22 +9,27 @@
     <ul class="nav nav-treeview">
 
         <li class="nav-item">
-            
+
             <!-- Perbanyak bagian ini -->
-			
-						
-						<a href='<?php url('kategori/data') ?>' class='nav-link layout'>
+
+
+            <a href='<?php url('backend/kelas/table') ?>' class='nav-link layout'>
                 <i class='far fa-circle nav-icon'></i>
                 <p>kategori</p>
             </a>
-						<a href='<?php url('users/data') ?>' class='nav-link layout'>
+            <a href='<?php url('users/data') ?>' class='nav-link layout'>
                 <i class='far fa-circle nav-icon'></i>
                 <p>Users</p>
             </a>
-            
+
+            <a href='<?php url('backend/coba/data') ?>' class='nav-link layout'>
+                <i class='far fa-circle nav-icon'></i>
+                <p>Coba</p>
+            </a>
+
 
         </li>
-        
+
     </ul>
 
-</li>                                                                                                                                                                                                                                                                                                                                                                                                                
+</li>

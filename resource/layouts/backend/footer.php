@@ -107,18 +107,29 @@
 
         }); 
 
-        $.each($('.layout'), function(k,v){
+        // $.each($('.layout'), function(k,v){
 
-          var dir    = $(this).attr('href');
-          dir        = dir.split('/');
-          var path   = window.location.pathname;
-          var result = path.split('/');
 
-          if (result[3] == dir[1]) {
-            $(this).addClass('active');
-          }
+        //   var data = $(this).attr('href');
+        //   console.log(data);
+
+
+        //   var dir    = $(this).attr('href');
+        //   dir        = dir.split('/');
+        //   var path   = window.location.pathname;
+        //   var result = path.split('/');
           
-        });
+        //   console.log(result[2]+"/"+result[3]+"/"+result[4]);
+
+        //   if (data == result[2]+"/"+result[3]+"/"+result[4] || data == result[3]+"/"+result[4]) {
+        //     $(this).removeAttr('href');
+        //   }
+          
+        //   if (result[3] == dir[1]) {
+        //     $(this).addClass('active');
+        //   }
+          
+        // });
 
 </script>
 

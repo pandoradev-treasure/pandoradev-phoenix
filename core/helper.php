@@ -21,7 +21,8 @@
 
     function url($target)
     {
-        echo "../$target";
+        $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
+        echo "http://$_SERVER[HTTP_HOST]/$projectName[1]/$target";
     }
 
     function controller($controllerName, $id = 0)
@@ -36,7 +37,7 @@
         $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
         $controllerName = explode("@",$controllerName);
 
-        return "http://localhost/$projectName[1]/core/controller.php?controllerName=$controllerName[0].php&function=$controllerName[1]&id=$id";
+        echo "http://localhost/$projectName[1]/core/controller.php?controllerName=$controllerName[0].php&function=$controllerName[1]&id=$id";
         
     }
 
