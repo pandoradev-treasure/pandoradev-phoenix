@@ -134,7 +134,7 @@
 </script>
 
 <?php
-  if ($_SESSION["alert"] || ) {
+  if ($_SESSION["alert"] ) {
     $msg = $_SESSION["alert"];
   ?>
     <script>
