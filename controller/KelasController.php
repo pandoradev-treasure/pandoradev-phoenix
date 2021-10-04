@@ -4,8 +4,8 @@
     {
 
         query()->insert('kelas',[
-			$request->nama
-		])->view('backend/kelas/data','Berhasil Menambahkan Data!');
+							$request->nama
+				])->view('backend/kelas/data','Berhasil Menambahkan Data!');
 
     }
 
@@ -36,4 +36,4 @@
 		
 		query()->delete('kelas', $id)->view('backend/kelas/data',"Berhasil Menghapus Data!");
 
-    }                                                                                                
+    }                                                                                                                                                                                                

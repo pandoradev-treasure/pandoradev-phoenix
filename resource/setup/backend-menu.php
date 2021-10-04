@@ -11,7 +11,7 @@
                     <div class="card-header">
                     <span style="font-size: 20px;font-family:calibri;padding:5px;border-radius: 4px;color:#2c3e50">layouts/backend/menu.php</span>
 
-                        <button type="submit" class="btn btn-outline-primary float-right btn-sm">
+                        <button type="submit" class="btn save-file btn-outline-primary float-right btn-sm">
                             Simpan
                         </button>
                     </div>

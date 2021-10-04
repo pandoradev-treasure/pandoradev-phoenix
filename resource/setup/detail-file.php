@@ -14,7 +14,7 @@
                             <img class="export-png" src="<?= asset('setup/edit.png') ?>" style="max-width:20px;margin-left: 5px;margin-bottom: 3px;">
                         </a>
 
-                        <button type="submit" class="btn btn-outline-primary float-right btn-sm">
+                        <button type="submit" class="btn btn-outline-primary float-right save-file btn-sm">
                             Simpan
                         </button>
                     </div>

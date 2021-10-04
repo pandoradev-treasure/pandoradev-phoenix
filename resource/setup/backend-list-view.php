@@ -27,14 +27,14 @@
                                 <div class="row">
                                     <div class="col-md-4">
 
-                                        <input class="form-control name-folder" name="folder" type="text" required placeholder="AwesomeFolder">
+                                        <input class="form-control form-control-sm  name-folder" name="folder" type="text" required placeholder="AwesomeFolder">
                                         <small id="emailHelp" class="form-text text-muted">Isikan nama folder yang
                                             ingin anda buat.</small>
 
                                     </div>
                                     <div class="col-md-4">
 
-                                        <select name="exist_folder" id="" class="exist_folder form-control">
+                                        <select name="exist_folder" id="" class="exist_folder js-example-basic-single form-control">
                                             <option value="" selected disabled>-Pilih Folder-</option>
 
                                             <?php
@@ -44,7 +44,7 @@
                                                 $see = explode('/', $see);
 
                                                 ?>
-                                                <option value="<?= $see[4] ?>"><?= $see[4] ?></option>
+                                                <option value="<?= $see[4] ?>" style="background-image:url(<?= asset('setup/folder.png') ?>);"> <?= $see[4] ?></option>
                                             <?php } ?>
                                         </select>
 
@@ -62,7 +62,7 @@
                                 <div class="row">
                                     <div class="col-md-4" style="margin-top: 8px;">
 
-                                        <input placeholder="AwesomeFile" type="text" name="file" class="form-control">
+                                        <input placeholder="AwesomeFile" type="text" name="file" class="form-control form-control-sm">
 
                                         <small id="emailHelp" class="form-text text-muted">Isikan nama file yang
                                             ingin anda buat di dalam folder <code class="append-folder-name"></code>.</small>
@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="col-md-4" style="margin-top: 8px;">
 
-                                        <select name="type_view" class="form-control" id="">
+                                        <select name="type_view" class="form-control form-control-sm" id="">
                                             <option disabled selected>-Pilih Tipe-</option>
                                             <option value="blank">Blank Page</option>
                                             <option value="table">Table</option>
@@ -109,7 +109,13 @@
                             ?>
                             <br>
                             <span style="color:#4b6584; margin-top:150px">
-                                <?= $see[4] ?>
+                             <?= $see[4] ?> 
+                                <a class="delete-table" data-table="<?= $see[4] ?>" data-url="<?= controller('setup@deleteFolderBackend',  'backend/'.$see[4]) ?>">
+                                    <img class="delete-png" src="<?= asset('setup/cancel.png') ?>" style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
+                                </a>
+                                <a data-toggle="modal" data-target="#exampleModal">
+                                    <img class="export-png" src="<?= asset('setup/edit.png') ?>" style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
+                                </a>
                             </span>
                             <?php
                                 foreach (glob("../resource/views/backend/$see[4]/*") as $key => $seefile) {

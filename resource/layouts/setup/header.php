@@ -76,7 +76,7 @@
 
                     <div class="card">
                         <?php
-                        if (str_contains($_SERVER['REQUEST_URI'], 'backend')) {
+                        if (strstr($_SERVER['REQUEST_URI'], 'backend')) {
 
                             $class = "show";
                         }
@@ -104,7 +104,7 @@
 
                     <div class="card">
                         <?php
-                        if (str_contains($_SERVER['REQUEST_URI'], 'frontend')) {
+                        if (strstr($_SERVER['REQUEST_URI'], 'frontend')) {
 
                             $classFrontend = "show";
                         }

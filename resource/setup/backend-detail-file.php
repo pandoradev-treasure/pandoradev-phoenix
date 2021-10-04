@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <span style="font-size: 20px;font-family:calibri;padding:5px;border-radius: 4px;color:#2c3e50"><?= $data->file[0] ?></span>
 
-                        <button type="submit" class="btn btn-outline-primary float-right btn-sm">
+                        <button type="submit" class="btn btn-outline-primary float-right btn-sm save-file">
                             Simpan
                         </button>
                     </div>

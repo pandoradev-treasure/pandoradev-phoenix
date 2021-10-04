@@ -12,7 +12,8 @@
             
             <!-- Perbanyak bagian ini -->
 			
-			<a href='<?php url('kelas/data') ?>' class='nav-link layout'>
+						
+						<a href='<?php url('kelas/data') ?>' class='nav-link layout'>
                 <i class='far fa-circle nav-icon'></i>
                 <p>Kelas</p>
             </a>
@@ -22,4 +23,4 @@
         
     </ul>
 
-</li>                                                                                                                                                                                                
+</li>                                                                                                                                                                                                                                                                                                

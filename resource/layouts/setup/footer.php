@@ -130,11 +130,38 @@ if (isset($_SESSION["title_alert"])) {
 
     ?>
     <script>
-        Swal.fire(
-            '<?= $title ?>',
-            '<?= $alert ?>',
-            '<?= $type_alert ?>'
-        );
+        // Swal.fire(
+        //     '<?= $title ?>',
+        //     '<?= $alert ?>',
+        //     '<?= $type_alert ?>'
+        // );
+
+        // const Toast = Swal.mixin({
+        // toast: true,
+        // position: 'top-end',
+        // showConfirmButton: false,
+        // timer: 3000,
+        // timerProgressBar: true,
+        // didOpen: (toast) => {
+        //     toast.addEventListener('mouseenter', Swal.stopTimer)
+        //     toast.addEventListener('mouseleave', Swal.resumeTimer)
+        // }
+        // })
+
+        // Toast.fire({
+        // icon: 'success',
+        // title: '<?= $title ?>',
+        // text: "lorem"
+        // })
+
+        Swal.fire({
+            position         : 'top-end',
+            icon             : '<?= $type_alert ?>',
+            toast            : true,
+            title            : '<?= $title ?>',
+            showConfirmButton: false,
+            timer            : 2000
+        })
     </script>
 
     <?php
@@ -236,3 +263,35 @@ foreach (glob("../controller/*") as $key => $see) {
         $('.append-folder-name').html($(this).val());
     });
 </script>
+
+
+<?php
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false) {
+        ?>
+
+        <script type="text/javascript">
+            $(document).keydown(function(e) {
+                
+                var key = undefined;
+                var possible = [ e.key, e.keyIdentifier, e.keyCode, e.which ];
+
+                while (key === undefined && possible.length > 0)
+                {
+                    key = possible.pop();
+                }
+
+                if (key && (key == '115' || key == '83' ) && (e.ctrlKey || e.metaKey) && !(e.altKey))
+                {
+                    e.preventDefault();
+                    $( ".save-file" ).first().trigger( "click" );
+                    return false;
+                }
+                return true;
+                }); 
+        </script>
+
+        <?php
+        
+    }
+?>
+

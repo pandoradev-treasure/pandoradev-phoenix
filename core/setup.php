@@ -385,6 +385,23 @@ $content .= '
         view('setup/backend-detail-file', compact('file'));
     }
 
+    function deleteFolderBackend($request, $namaFolder)
+    {
+        $files = glob('../resource/views/'.$namaFolder.'/*');
+
+        
+        foreach ($files as $key => $value) {
+            
+            $files = explode('/', $value);
+            unlink('../resource/views/'.$namaFolder.'/'.$files[5]);
+        }
+
+        rmdir('../resource/views/'.$namaFolder);
+
+        alert("Berhasil !","Berhasil Hapus Folder Beserta File Di dalamnya!");
+        view('setup/backend-list-view');
+    }
+
     function UpdateController($request, $name)
     {
         $myfile  = fopen("../controller/$name", "w") or die("Unable to open file!");
