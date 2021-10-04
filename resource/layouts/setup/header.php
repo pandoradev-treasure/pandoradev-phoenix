@@ -171,13 +171,12 @@
                             <?php
                             
                                 $check = shell_exec('git pull origin featured/yuz');
-                                if ($check == "Already up to date.") {
+                                // if ($check == "Already up to date.") {
                             ?>
                             <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
                                 data-target="#exampleModal">
                                 Perbarui Versi
                             </button>
-                            <?php } ?>
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -227,4 +226,3 @@
                 }
                 
             ?>
-            
