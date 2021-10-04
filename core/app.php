@@ -16,7 +16,7 @@
         $url           = explode("/",$url);
 
         $layoutsHeader = include "../resource/layouts/setup/header.php";
-        $getfile       = include "../resource/setup/$url[1].php";
+        $getfile       = include "../resource/setup/backend/$url[1].php";
         $layoutsFooter = include "../resource/layouts/setup/footer.php";
 
     }else{
