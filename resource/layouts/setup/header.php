@@ -140,7 +140,7 @@
                                     $check = shell_exec('git pull origin featured/yuz');
                                     echo $check;
                                 ?>
-                                <button name="cek-update" class="btn btn-outline-primary btn-sm">Cek Pembaruan</button>
+                                <button name="cek-update" class="btn btn-outline-primary btn-sm">Cek Pembaruans</button>
                             </form>
                         </ul>
                     </div>
