@@ -21,7 +21,8 @@
 
     function url($target)
     {
-        echo "../$target";
+        $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
+        echo "http://$_SERVER[HTTP_HOST]/$projectName[1]/$target";
     }
 
     function controller($controllerName, $id = 0)
