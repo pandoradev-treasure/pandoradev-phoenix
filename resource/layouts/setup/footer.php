@@ -161,7 +161,11 @@ if (isset($_SESSION["title_alert"])) {
             title            : '<?= $title ?>',
             showConfirmButton: false,
             timer            : 2000
-        })
+        });
+
+        <?php
+            unset($_SESSION["data"]);    
+        ?>
     </script>
 
     <?php
@@ -187,6 +191,7 @@ if (isset($_SESSION["title_alert"])) {
 unset($_SESSION["title_alert"]);
 unset($_SESSION["message_alert"]);
 unset($_SESSION["type_alert"]);
+unset($_SESSION["data"]); 
 ?>
 
 <?php
@@ -294,4 +299,3 @@ foreach (glob("../controller/*") as $key => $see) {
         
     }
 ?>
-
