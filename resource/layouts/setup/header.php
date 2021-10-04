@@ -64,7 +64,7 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
         <div class="border-end bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-light">PandoraSetup</div>
+            <div class="sidebar-heading border-bottom bg-light" style="font-size: 17px;">PandoraSetup</div>
             <div class="list-group list-group-flush layouts">
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="database"><img src="<?= asset('setup/server.png') ?>" style="max-width:20px"> Database </a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="table"><img src="<?= asset('setup/list.png') ?>" style="max-width:20px"> Table </a>
@@ -87,7 +87,7 @@
 
                                 <a href="backend-header" class="list-group-item list-group-item-action list-group-item-light"><img src="<?= asset('setup/header.png') ?>" style="max-width:20px"> Header </a>
 
-                                <a href="backend-menu" class="list-group-item list-group-item-action list-group-item-light"><img src="<?= asset('setup/menu.png') ?>" style="max-width:20px"> Menu </a>
+                                <a href="backend-menu" class="list-group-item list-group-item-action list-group-item-light "><img src="<?= asset('setup/menu.png') ?>" style="max-width:20px"> Menu </a>
 
                                 <a href="backend-footer" class="list-group-item list-group-item-action list-group-item-light"><img src="<?= asset('setup/footer.png') ?>" style="max-width:20px"> Footer </a>
 
@@ -131,12 +131,30 @@
             <!-- Top navigation-->
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <div class="container-fluid">
-                    <button class="btn btn-primary" id="sidebarToggle"> Menu </button>
+                    <button class="btn btn-primary" id="sidebarToggle"> Sidebar </button>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                            <li class="nav-item active"><a class="nav-link" href="<?= url('') ?>">Halaman Awal</a></li>
+                            <form action="" method="POST">
+                                <button name="cek-update" class="btn btn-outline-primary btn-sm">Cek Pembaruan</button>
+                            </form>
                         </ul>
                     </div>
                 </div>
             </nav>
+
+            <?php
+
+                if (isset($_POST['cek-update'])) {
+                    return ExecuteShell();
+                }
+
+                function ExecuteShell()
+                {
+
+                    $check = shell_exec('git pull origin featured/yuz');
+                    alert('Already up to date');
+
+                }
+                
+            ?>
