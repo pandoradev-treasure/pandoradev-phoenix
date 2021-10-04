@@ -49,6 +49,9 @@
         });
 
         $('.sidebarT').hide();
+
+        $("input[name='primary_old']").val($('#old_primary').val());
+        console.log($('#old_primary').val());
     });
     
     $('.add-column').click(function(){
@@ -56,18 +59,18 @@
         var row = null;
 
         row += `<tr>`;
-            row += `<td><input tabindex="2" type="text" name="name_column[]" required class="form-control"></td>`;
+            row += `<td><input tabindex="2" type="text" name="new_name_column[]" required class="form-control"></td>`;
             row += `<td>
-                        <select tabindex="4" name="type_data[]" id="" class="form-control">
+                        <select tabindex="4" name="new_type_data[]" id="" class="form-control js-example-basic-single">
                             <option value="INT">INT</option>
                             <option value="VARCHAR">VARCHAR</option>
                             <option value="TEXT">TEXT</option>
                             <option value="DATE">DATE</option>
                         </select>
                     </td>`;
-            row += `<td><input tabindex="5" name="lenght[]" required type="text" class="form-control"></td>`;
-            row += `<td><center><input tabindex="6" name="auto_increment[]" type="radio"></center></td>`;
-            row += `<td><center><input tabindex="7" name="primary_key[]" type="radio"></center></td>`;
+            row += `<td><input tabindex="5" name="new_length[]" required type="text" class="form-control"></td>`;
+            row += `<td><center><input tabindex="6" name="new_auto_increment[]" type="radio"></center></td>`;
+            row += `<td><center><input tabindex="7" name="primary_key" type="radio"></center></td>`;
             row += `<td>
                         <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
                     </td>`;
@@ -76,8 +79,16 @@
         $('tbody').append(row);
     });
 
+    $("input[name='primary_key']").change(function(){
+        $("input[name='primary_new']").val($(this).parents('tr').find("input.name_column").val());
+    });
+
     $('body').on('click','.delete-column',function(){
-        $(this).parents('tr').remove();
+        $(this).parents('tr').hide();
+        
+        var x = $(this).parents('tr').find('input.deleted').val("true");
+        var x = $(this).parents('tr').find('td > .input-table').removeAttr("required");
+        console.log(x);
     });
 
     $('.delete-table').click(function(el){

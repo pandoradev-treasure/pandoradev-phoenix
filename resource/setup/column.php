@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-10 offset-md-1">
             <div class="card" style="box-shadow:2px 2px 36px #e1e1e1">
-                <form action="<?= controller('setup@processColumn') ?>" method="POST">
+                <form action="<?= controller('setup@updateColumn') ?>" method="POST">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-4">
@@ -55,9 +55,10 @@
                                 ?>
                                     <input type="hidden" value="<?= $table ?>" name="table">
                                     <tr>
-                                        <td><input name="name_column[]" tabindex="1" required type="text" class="form-control" value="<?php echo $see[0]; ?>"></td>
+                                        <td><input name="name_column[]" tabindex="1" required type="text" class="form-control input-table name_column" value="<?php echo $see[0]; ?>" <?php echo ($see[3] == "PRI") ? "id='old_primary'" : ""; ?>></td>
+                                        
                                         <td>
-                                            <select name="type_data[]" tabindex="3" id="" class="form-control js-example-basic-single">
+                                            <select name="type_data[]" tabindex="3" id="" class="form-control js-example-basic-single input-table">
                                                 <?php
                                                 $type_data = $host->query("SELECT * FROM type_data");
                                                 while ($listTypeData = mysqli_fetch_assoc($type_data)) {
@@ -74,30 +75,28 @@
                                             </select>
 
                                         </td>
-                                        <td><input name="lenght[]" tabindex="5" required type="number" class="form-control" value="<?php echo $jumlah[0]; ?>"></td>
+                                        <td><input name="length[]" tabindex="5" required type="number" class="form-control input-table" value="<?php echo $jumlah[0]; ?>"></td>
                                         <td>
-                                            <center><input tabindex="6" <?php
-                                                                        if ($see[2] == "NO") {
-                                                                            echo "checked";
-                                                                        }
-                                                                        ?> name="auto_increment[]" type="radio"></center>
+                                            <center><input class="input-table" tabindex="6" <?php echo ($see[2] == "NO") ? "checked" : ""; ?> name="auto_increment[]" type="radio"></center>
                                         </td>
                                         <td>
-                                            <center><input tabindex="7" <?php
-                                                                        if ($see[3] == "PRI") {
-                                                                            echo "checked";
-                                                                        }
-                                                                        ?> name="primary_key[]" type="radio"></center>
+                                            <center><input class="input-table" tabindex="7" <?php echo ($see[3] == "PRI") ? "checked" : ""; ?> name="primary_key" type="radio"></center>
                                         </td>
                                         <td>
                                             <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
                                         </td>
+                                        <input name="deleted[]" type="hidden" class="deleted" value="">
+                                        <input name="total_column[]" type="hidden" value="">
+                                        <!-- <input name="primary" type="hidden" value=""> -->
+                                        <!-- <input name="" type="hidden" value=""> -->
                                     </tr>
-                                <?php } ?>
+                                    <?php } ?>
+                                    <input name="primary_old" type="hidden" value="">
+                                    <input name="primary_new" type="hidden" value="">
                             </tbody>
                         </table><br>
                         <div class="float-right">
-                            <button type="submit" class="btn btn-primary btn-sm" name="send">
+                            <button tabindex="8" type="submit" class="btn btn-primary btn-sm" name="send">
                                 Simpan
                             </button>
                             <?php

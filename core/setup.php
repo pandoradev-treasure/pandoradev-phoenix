@@ -66,6 +66,75 @@
         view('setup/table');
     }
     
+    function updateColumn($request)
+    {
+        global $host;
+
+        $table           = $request->table;
+        $table_new       = $request->nama_table;
+        
+        echo "<pre>";
+        $desc_table      = $host->query("DESC $table");
+        $sql_table       = "ALTER TABLE $table ";
+        
+        // OLD COLUMN
+        $name_column     = $request->name_column;
+        $type_data       = $request->type_data;
+        $length          = $request->length;
+        $status_delete   = $request->deleted;
+        
+        // NEW COLUMN
+        $new_name_column = $request->new_name_column;
+        $new_type_data   = $request->new_type_data;
+        $new_length      = $request->new_length;
+
+        // PRIMARY
+        $old_primary     = $request->primary_old;
+        $new_primary     = $request->primary_new;
+        
+        var_dump($request);
+        if ($table != $table_new) {
+            echo "hai";
+        }
+
+        for ($i=0; $i < count($request->total_column); $i++) { 
+            $see_field = mysqli_fetch_array($desc_table);
+
+            // ADD FIELD
+            if (!empty($new_name_column[$i]) && !empty($new_type_data[$i]) && !empty($new_length[$i]) ) {
+                $sql_table .= " ADD COLUMN ".$new_name_column[$i]." ".$new_type_data[$i]."(".$new_length[$i].")";
+            }
+
+            // EDIT FIELD
+            if ($see_field[0] != $name_column[$i]) {
+                $sql_table .= " CHANGE ".$see_field[0]." ".$name_column[$i]." ".$type_data[$i]."(".$length[$i].")";
+            }
+
+            // DELETE FIELD
+            if (!empty($status_delete[$i])) {
+                $sql_table .= " DROP COLUMN ".$name_column[$i];
+            }
+
+            
+        }
+
+        // RUN ALL OVER
+        $sql_table .= ";";
+        // $host->query($sql_table);
+        
+        //CHANGE PRIMARY
+        if ($old_primary != $new_primary) {
+            if(!empty($old_primary)){
+                $sql_table .= " DROP PRIMARY KEY;";
+                // $host->query($sql_table);
+            }
+            $sql_table = "ALTER TABLE $table ADD PRIMARY KEY ($new_primary);";
+            // $host->query($sql_table);
+        }
+
+        // view('setup/table');
+    }
+    
     function edit($request, $table)
     {
         $table = [$table];
