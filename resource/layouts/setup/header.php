@@ -136,6 +136,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                             <form action="" method="POST">
+                                <?php
+                                    $check = shell_exec('git pull origin featured/yuz');
+                                    echo $check;
+                                ?>
                                 <button name="cek-update" class="btn btn-outline-primary btn-sm">Cek Pembaruan</button>
                             </form>
                         </ul>
@@ -153,7 +157,7 @@
                 {
 
                     $check = shell_exec('git pull origin featured/yuz');
-                    alert('Already up to date');
+                    alert('Berhasil Di Update');
 
                 }
                 
