@@ -36,4 +36,4 @@
 		
 		query()->delete('kelas', $id)->view('backend/kelas/data',"Berhasil Menghapus Data!");
 
-    }                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                

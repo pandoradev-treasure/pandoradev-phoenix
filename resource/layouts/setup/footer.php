@@ -271,7 +271,7 @@ foreach (glob("../controller/*") as $key => $see) {
 
 
 <?php
-    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false) {
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-menu') !== false) {
         ?>
 
         <script type="text/javascript">
@@ -293,6 +293,19 @@ foreach (glob("../controller/*") as $key => $see) {
                 }
                 return true;
                 }); 
+        </script>
+
+        <?php
+        
+    }
+?>
+
+<?php
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false) {
+        ?>
+
+        <script type="text/javascript">
+            $('body').addClass('sb-sidenav-toggled');
         </script>
 
         <?php
