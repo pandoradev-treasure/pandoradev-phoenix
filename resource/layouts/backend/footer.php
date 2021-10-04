@@ -134,7 +134,7 @@
 </script>
 
 <?php
-  if ($_SESSION["alert"]) {
+  if ($_SESSION["alert"] ) {
     $msg = $_SESSION["alert"];
   ?>
     <script>
@@ -149,5 +149,51 @@
   }
 ?>
 
+<?php
+if (isset($_SESSION["title_alert"])) {
+
+    $title      = $_SESSION["title_alert"];
+    $alert      = $_SESSION["message_alert"];
+    $type_alert = $_SESSION["type_alert"];
+
+    ?>
+    <script>
+        
+        Swal.fire(
+          '<?= $title ?>',
+          '<?= $alert ?>',
+          '<?= $type_alert ?>'
+        );
+
+        <?php
+            unset($_SESSION["data"]);    
+        ?>
+    </script>
+
+    <?php
+        if ($type_alert == "error") {
+            ?>
+        <script>
+            var x = document.getElementById("myAudioError");
+            x.play();
+        </script>
+    <?php
+        } else {
+            ?>
+        <script>
+            var x = document.getElementById("myAudioSuccess");
+            x.play();
+        </script>
+    <?php
+        }
+        ?>
+
+<?php
+}
+unset($_SESSION["title_alert"]);
+unset($_SESSION["message_alert"]);
+unset($_SESSION["type_alert"]);
+unset($_SESSION["data"]); 
+?>
 </body>
 </html>
