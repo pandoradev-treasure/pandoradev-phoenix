@@ -25,6 +25,10 @@ if (strpos($_GET['params'], 'setup') !== false) {
         $url           = $_GET['params'];
         $url           = explode("/",$url);
 
+        if (!$url[1]) {
+            $url[1] = "index";
+        }
+
         $layoutsHeader = include "../resource/layouts/setup/header.php";
         $getfile       = include "../resource/setup/$url[1].php";
         $layoutsFooter = include "../resource/layouts/setup/footer.php";
@@ -37,9 +41,15 @@ if (strpos($_GET['params'], 'setup') !== false) {
 
             // echo "<pre>";
             // var_dump($url);
-            // check($url);
+            if (file_exists('../resource/views/backend/'.$url)) {
+                $url = $url;
+            }else{
+                $url = "backend/dashboard";
+            }
+
             $layoutsHeader = include "../resource/layouts/backend/header.php";
             $getfile       = include "../resource/views/$url.php";
+
             $layoutsFooter = include "../resource/layouts/backend/footer.php";
             
 

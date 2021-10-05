@@ -47,6 +47,10 @@
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 <script>
     $(document).ready(function() {
+        $('.preview').click(function(){
+            var datacode = $('.data-code-old').text();
+            $('.result-preview').html(datacode);
+        });
         $('.js-example-basic-single').select2({
             width: 'resolve' // need to override the changed default
         });
@@ -59,28 +63,45 @@
         var row = null;
 
         row += `<tr>`;
-        row += `<td><input tabindex="2" type="text" name="name_column[]" required class="form-control"></td>`;
-        row += `<td>
-                        <select tabindex="4" name="type_data[]" id="" class="form-control">
-                            <option value="INT">INT</option>
-                            <option value="VARCHAR">VARCHAR</option>
-                            <option value="TEXT">TEXT</option>
-                            <option value="DATE">DATE</option>
+            row += `<td><input tabindex="2" type="text" name="new_name_column[]" required class="form-control"></td>`;
+            row += `<td>
+                        <select tabindex="4" name="type_data[]" id="" class="form-control js-example-basic-single">
+                        <?php
+                                                    $type_data = $host->query("SELECT * FROM type_data");
+                                                    while ($listTypeData = mysqli_fetch_assoc($type_data)) {
+                                                ?>
+                                                    <option <?php echo ($listTypeData['type_data'] == strtoupper($dataType)) ? "selected" : "";?> value="<?= $listTypeData['type_data'] ?>-<?= $listTypeData['name_data'] ?>"><?= $listTypeData['name_data'] ?></option>
+                                                <?php
+                                                    }
+                                                ?>
                         </select>
                     </td>`;
-        row += `<td><input tabindex="5" name="lenght[]" required type="text" class="form-control"></td>`;
-        row += `<td><center><input tabindex="6" name="auto_increment[]" type="radio"></center></td>`;
-        row += `<td><center><input tabindex="7" name="primary_key[]" type="radio"></center></td>`;
-        row += `<td>
+            row += `<td><input tabindex="5" name="new[]" required type="text" class="form-control"></td>`;
+            row += `<td><center><input tabindex="6" name="auto_increment" type="radio"></center></td>`;
+            row += `<td><center><input tabindex="7" name="primary_key" type="radio"></center></td>`;
+            row += `<td>
                         <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
                     </td>`;
+            row += `<input name="total_column[]" type="hidden" value="">`;
         row += `</tr>`;
 
         $('tbody').append(row);
     });
 
-    $('body').on('click', '.delete-column', function() {
-        $(this).parents('tr').remove();
+    $("input[name='primary_key']").change(function(){
+        $("input[name='primary_key']").val($(this).parents('tr').find("input.name_column").val());
+    });
+    
+    $("input[name='auto_increment']").change(function(){
+        $("input[name='auto_increment']").val($(this).parents('tr').find("input.name_column").val());
+    });
+
+    $('body').on('click','.delete-column',function(){
+        $(this).parents('tr').hide();
+        
+        var x = $(this).parents('tr').find('input.deleted').val("true");
+        var x = $(this).parents('tr').find('td > .input-table').removeAttr("required");
+        console.log(x);
     });
 
     $('.delete-table').click(function(el) {
@@ -130,32 +151,9 @@ if (isset($_SESSION["title_alert"])) {
 
     ?>
     <script>
-        // Swal.fire(
-        //     '<?= $title ?>',
-        //     '<?= $alert ?>',
-        //     '<?= $type_alert ?>'
-        // );
-
-        // const Toast = Swal.mixin({
-        // toast: true,
-        // position: 'top-end',
-        // showConfirmButton: false,
-        // timer: 3000,
-        // timerProgressBar: true,
-        // didOpen: (toast) => {
-        //     toast.addEventListener('mouseenter', Swal.stopTimer)
-        //     toast.addEventListener('mouseleave', Swal.resumeTimer)
-        // }
-        // })
-
-        // Toast.fire({
-        // icon: 'success',
-        // title: '<?= $title ?>',
-        // text: "lorem"
-        // })
 
         Swal.fire({
-            position         : 'top-end',
+            position         : 'top-right',
             icon             : '<?= $type_alert ?>',
             toast            : true,
             title            : '<?= $title ?>',
@@ -305,10 +303,80 @@ foreach (glob("../controller/*") as $key => $see) {
         ?>
 
         <script type="text/javascript">
-            $('body').addClass('sb-sidenav-toggled');
+            
+            $('.menu-sidebar').css("display","none");
+            $('.show-hide').click(function(){
+                // $('.remove-display').show();
+                $('.first-sidebar').toggle();
+            });
         </script>
 
         <?php
         
+    }else{
+        ?>
+        <script>
+            $('.remove-display').css("display","none");
+            $('.show-hide').css("display","none");
+        </script>
+        <?php
     }
 ?>
+
+<script>
+    jQuery(document).bind("keydown", function(e){
+        if(e.ctrlKey && e.keyCode == 80){
+            e.preventDefault();
+            $( ".preview" ).first().trigger( "click" );
+            return false;
+        }
+    });
+
+    jQuery(document).bind("keydown", function(e){
+        if(e.ctrlKey && e.keyCode == 66){
+            e.preventDefault();
+            $( ".sidebarHide" ).first().trigger( "click" );
+            return false;
+        }
+    });
+    
+    $(".pandora-fade").click(function() {
+        $(this).fadeIn(3000);
+    });
+    
+
+    setTimeout(function() {
+        $('.button-trigger-pandorasetup').trigger("click");
+    },10);
+
+    setTimeout(function() {
+        $('.button-trigger-pandorasetup-second').trigger("click");
+    },2800);
+
+    setTimeout(function() {
+        $('.button-trigger-pandorasetup-third').trigger("click");
+    },5500);
+
+    setTimeout(function() {
+        $( ".link-database" ).first().trigger( "click" );
+    },9300);
+
+    $(".button-trigger-pandorasetup").click(function(){
+        $(".pandora-fade").fadeIn(2000);
+        $(".pandora-fade").fadeOut();
+    });
+
+    $(".button-trigger-pandorasetup-second").click(function(){
+        $(".pandora-fade-second").fadeIn(2000);
+        $(".pandora-fade-second").fadeOut();
+    });
+
+    $(".button-trigger-pandorasetup-third").click(function(){
+        $(".pandora-fade-third").fadeIn(3000);
+        $(".pandora-fade-third").fadeOut();
+    });
+
+    $('.link-database').click(function(){
+        window.location.replace("setup/database");
+    })
+</script>
