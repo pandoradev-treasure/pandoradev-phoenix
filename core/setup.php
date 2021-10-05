@@ -819,3 +819,27 @@ $content .= '
         }
          
      }
+
+     function editNamaFolderBackend($request, $id)
+     {
+         /* Store the path of source file */
+
+        $folderPath = "../resource/views/$id";
+
+        
+
+        /* Store the path of destination file */
+
+        $destinationFolderPath = "../resource/views/backend/$request->new_name_file";
+
+        if(rename($folderPath, $destinationFolderPath) ) {  
+
+            
+            alert('Nama folder sudah diganti menjadi '.$request->new_name_file.'','Berhasil','success');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+        }  else{
+            alert('Mungkin nama folder sudah terpakai folder lain','error','error');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+     }
