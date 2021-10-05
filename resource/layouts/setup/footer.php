@@ -50,8 +50,8 @@
 
         $('.sidebarT').hide();
 
-        $("input[name='primary_old']").val($('#old_primary').val());
-        console.log($('#old_primary').val());
+        $("input[name='primary_old']").val($('.old_primary').val());
+        $("input[name='auto_increment_old']").val($('.old_auto_increment').val());
     });
     
     $('.add-column').click(function(){
@@ -61,26 +61,35 @@
         row += `<tr>`;
             row += `<td><input tabindex="2" type="text" name="new_name_column[]" required class="form-control"></td>`;
             row += `<td>
-                        <select tabindex="4" name="new_type_data[]" id="" class="form-control js-example-basic-single">
-                            <option value="INT">INT</option>
-                            <option value="VARCHAR">VARCHAR</option>
-                            <option value="TEXT">TEXT</option>
-                            <option value="DATE">DATE</option>
+                        <select tabindex="4" name="type_data[]" id="" class="form-control js-example-basic-single">
+                        <?php
+                                                    $type_data = $host->query("SELECT * FROM type_data");
+                                                    while ($listTypeData = mysqli_fetch_assoc($type_data)) {
+                                                ?>
+                                                    <option <?php echo ($listTypeData['type_data'] == strtoupper($dataType)) ? "selected" : "";?> value="<?= $listTypeData['type_data'] ?>-<?= $listTypeData['name_data'] ?>"><?= $listTypeData['name_data'] ?></option>
+                                                <?php
+                                                    }
+                                                ?>
                         </select>
                     </td>`;
-            row += `<td><input tabindex="5" name="new_length[]" required type="text" class="form-control"></td>`;
-            row += `<td><center><input tabindex="6" name="new_auto_increment[]" type="radio"></center></td>`;
-            row += `<td><center><input tabindex="7" name="primary_key" type="radio"></center></td>`;
+            row += `<td><input tabindex="5" name="new[]" required type="text" class="form-control"></td>`;
+            row += `<td><center><input tabindex="6" name="auto_increment[]" type="radio"></center></td>`;
+            row += `<td><center><input tabindex="7" name="primary_key[]" type="radio"></center></td>`;
             row += `<td>
                         <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
                     </td>`;
+            row += `<input name="total_column[]" type="hidden" value="">`;
         row += `</tr>`;
 
         $('tbody').append(row);
     });
 
     $("input[name='primary_key']").change(function(){
-        $("input[name='primary_new']").val($(this).parents('tr').find("input.name_column").val());
+        $("input[name='primary_key']").val($(this).parents('tr').find("input.name_column").val());
+    });
+    
+    $("input[name='auto_increment']").change(function(){
+        $("input[name='auto_increment']").val($(this).parents('tr').find("input.name_column").val());
     });
 
     $('body').on('click','.delete-column',function(){

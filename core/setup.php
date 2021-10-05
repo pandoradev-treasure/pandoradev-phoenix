@@ -9,13 +9,54 @@
         @$query = "DROP TABLE type_data";
         $host->query($query);
 
-        $query = "CREATE TABLE type_data (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, type_data VARCHAR(30) NOT NULL)";
+        $query = "CREATE TABLE type_data (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, type_data VARCHAR(30) NOT NULL, name_data VARCHAR(30) NOT NULL)";
         $host->query($query);
 
-        query()->insert('type_data',["INT"]);
-        query()->insert('type_data',["VARCHAR"]);
-        query()->insert('type_data',["TEXT"]);
-        query()->insert('type_data',["DATE"]);
+        // numeric
+        query()->insert('type_data',["numeric","INT"]);
+        query()->insert('type_data',["numeric","TINYINT"]);
+        query()->insert('type_data',["numeric","SMALLINT"]);
+        query()->insert('type_data',["numeric","MEDIUMINT"]);
+        query()->insert('type_data',["numeric","BIGINT"]);
+        query()->insert('type_data',["numeric","DECIMAL"]);
+        query()->insert('type_data',["numeric","FLOAT"]);
+        query()->insert('type_data',["numeric","DOUBLE"]);
+        query()->insert('type_data',["numeric","BIT"]);
+        query()->insert('type_data',["numeric","BOOLEAN"]);
+
+        // string
+        query()->insert('type_data',["string","VARCHAR"]);
+        query()->insert('type_data',["string","TEXT"]);
+        query()->insert('type_data',["string","CHAR"]);
+        query()->insert('type_data',["string","BINARY"]);
+        query()->insert('type_data',["string","VARBINARY"]);
+        query()->insert('type_data',["string","TINYBLOB"]);
+        query()->insert('type_data',["string","BLOB"]);
+        query()->insert('type_data',["string","MEDIUMBLOB"]);
+        query()->insert('type_data',["string","LONGBLOB"]);
+        query()->insert('type_data',["string","TINYTEXT"]);
+        query()->insert('type_data',["string","MEDIUMTEXT"]);
+        query()->insert('type_data',["string","LONGTEXT"]);
+        query()->insert('type_data',["string","ENUM"]);
+        query()->insert('type_data',["string","SET"]);
+
+        // date
+        query()->insert('type_data',["date","DATE"]);
+        query()->insert('type_data',["date","TIME"]);
+        query()->insert('type_data',["date","DATETIME"]);
+        query()->insert('type_data',["date","TIMESTAMP"]);
+        query()->insert('type_data',["date","YEAR"]);
+        
+        // spatial
+        query()->insert('type_data',["spatial","GEOMETRY"]);
+        query()->insert('type_data',["spatial","POINT"]);
+        query()->insert('type_data',["spatial","LINESTRING"]);
+        query()->insert('type_data',["spatial","POLYGON"]);
+        query()->insert('type_data',["spatial","GEOMETRYCOLLECTION"]);
+        query()->insert('type_data',["spatial","MULTILINESTRING"]);
+        query()->insert('type_data',["spatial","MULTIPOINT"]);
+        query()->insert('type_data',["spatial","MULTIPOLYGON"]);
+
 
         $query = "CREATE TABLE $table (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY)";
         $host->query($query);
@@ -26,45 +67,45 @@
         view('setup/column', compact('table','check'));
     }
 
-    function processColumn($request)
-    {
-        global $host;
+    // function processColumn($request)
+    // {
+    //     global $host;
 
-        $table = $request->table;
-        $table_new = $request->nama_table;
+    //     $table = $request->table;
+    //     $table_new = $request->nama_table;
 
 
-        $query = "DROP TABLE ".$table;
-        $host->query($query);
+    //     $query = "DROP TABLE ".$table;
+    //     $host->query($query);
 
-        $data  = "CREATE TABLE $table_new (";
+    //     $data  = "CREATE TABLE $table_new (";
 
-        for ($i=0; $i < count($request->name_column); $i++) { 
+    //     for ($i=0; $i < count($request->name_column); $i++) { 
 
-            if (@$request->primary_key[$i] == "on") {
-                $primaryKey = " PRIMARY KEY";
-            }else{
-                $primaryKey = "";
-            }
+    //         if (@$request->primary_key[$i] == "on") {
+    //             $primaryKey = " PRIMARY KEY";
+    //         }else{
+    //             $primaryKey = "";
+    //         }
 
-            if (@$request->auto_increment[$i] == "on") {
-                $ai = " AUTO_INCREMENT";
-            }else{
-                $ai = "";
-            }
+    //         if (@$request->auto_increment[$i] == "on") {
+    //             $ai = " AUTO_INCREMENT";
+    //         }else{
+    //             $ai = "";
+    //         }
 
-            $data .= $request->name_column[$i]." ".$request->type_data[$i]."(".$request->lenght[$i].")".@$ai.$primaryKey.",";
-        }
+    //         $data .= $request->name_column[$i]." ".$request->type_data[$i]."(".$request->length[$i].")".@$ai.$primaryKey.",";
+    //     }
 
-        $data  .= ")";
+    //     $data  .= ")";
 
         
-        $data   = str_replace(",)",")",$data);
+    //     $data   = str_replace(",)",")",$data);
 
-        $host->query($data);
+    //     $host->query($data);
 
-        view('setup/table');
-    }
+    //     view('setup/table');
+    // }
     
     function updateColumn($request)
     {
@@ -75,64 +116,105 @@
         
         echo "<pre>";
         $desc_table      = $host->query("DESC $table");
-        $sql_table       = "ALTER TABLE $table ";
         
         // OLD COLUMN
         $name_column     = $request->name_column;
-        $type_data       = $request->type_data;
         $length          = $request->length;
         $status_delete   = $request->deleted;
+        $data_type_data = $request->type_data;
         
         // NEW COLUMN
         $new_name_column = $request->new_name_column;
-        $new_type_data   = $request->new_type_data;
-        $new_length      = $request->new_length;
-
+        // $new_length      = $request->new_length;
+        
         // PRIMARY
         $old_primary     = $request->primary_old;
-        $new_primary     = $request->primary_new;
+        $new_primary     = $request->primary_key;
         
-        var_dump($request);
-        if ($table != $table_new) {
-            echo "hai";
-        }
+        // AUTO INCREMENT
+        $old_auto_increment     = $request->auto_increment_old;
+        $new_auto_increment     = $request->auto_increment;
+        
+        // var_dump($request);
+        
 
+        $sql_table = "";
         for ($i=0; $i < count($request->total_column); $i++) { 
+            if ($table != $table_new) {
+                $sql_table .= "RENAME TABLE $table TO $table_new";
+            }else{
+                $sql_table .= "ALTER TABLE $table ";
+            }
+
+            $pecah_type_data = explode("-",$data_type_data[$i]);
+            $type_data          = $pecah_type_data[0];
+            $nama_type_data     = $pecah_type_data[1];
+
             $see_field = mysqli_fetch_array($desc_table);
 
+            $pecah_old_type_data     = explode("(", $see_field[1]);
+            $old_name_type_data = $pecah_old_type_data[0];
+            @$old_length_type_data  = explode(")", $old_name_type_data[1]);
+
             // ADD FIELD
-            if (!empty($new_name_column[$i]) && !empty($new_type_data[$i]) && !empty($new_length[$i]) ) {
-                $sql_table .= " ADD COLUMN ".$new_name_column[$i]." ".$new_type_data[$i]."(".$new_length[$i].")";
+            if (!empty($new_name_column[$i]) && !empty($nama_type_data) && !empty($length[$i]) ) {
+                $sql_table .= " ADD COLUMN ".$new_name_column[$i]." ".$nama_type_data."(".$length[$i].")";
             }
 
             // EDIT FIELD
-            if ($see_field[0] != $name_column[$i]) {
-                $sql_table .= " CHANGE ".$see_field[0]." ".$name_column[$i]." ".$type_data[$i]."(".$length[$i].")";
+            if ($see_field[0] != $name_column[$i] || $old_name_type_data != $nama_type_data || $old_length_type_data != $length[$i]) {
+                $sql_table .= " CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].")";
             }
-
+            var_dump($see_field[0] != $name_column[$i] || $old_name_type_data != $nama_type_data || $old_length_type_data != $length[$i]);
+            // var_dump($sql_table);
+            // die();
             // DELETE FIELD
             if (!empty($status_delete[$i])) {
                 $sql_table .= " DROP COLUMN ".$name_column[$i];
             }
 
-            
-        }
+            $sql_table .= ";";
 
-        // RUN ALL OVER
-        $sql_table .= ";";
-        // $host->query($sql_table);
-        
-        //CHANGE PRIMARY
-        if ($old_primary != $new_primary) {
-            if(!empty($old_primary)){
-                $sql_table .= " DROP PRIMARY KEY;";
-                // $host->query($sql_table);
+            // CHANGE PRIMARY
+            if ($new_primary == $name_column[$i] && $old_primary != $new_primary){
+                $sql_table .= "ALTER TABLE $table DROP PRIMARY KEY;";
+                
+                if ($old_primary == $old_auto_increment) {
+                    $sql_table .= "ALTER TABLE $table CHANGE $old_auto_increment $old_auto_increment ".$nama_type_data."(".$length[$i].");";
+                }
+                
+                $sql_table .= "ALTER TABLE $table ADD PRIMARY KEY ($new_primary);";
             }
-            $sql_table = "ALTER TABLE $table ADD PRIMARY KEY ($new_primary);";
-            // $host->query($sql_table);
+            
+            // CHANGE AUTO INCREMENT
+            if ($new_auto_increment == $name_column[$i] && $old_auto_increment != $new_auto_increment) {
+                
+                $sql_table .= "ALTER TABLE $table DROP PRIMARY KEY;";
+                
+                $sql_table .= "ALTER TABLE $table CHANGE $old_auto_increment $old_auto_increment ".$nama_type_data."(".$length[$i].");";
+                
+                $sql_table .= "ALTER TABLE $table ADD PRIMARY KEY ($new_auto_increment);";
+                $sql_table .= "ALTER TABLE $table CHANGE $new_auto_increment $new_auto_increment ".$nama_type_data."(".$length[$i].") AUTO_INCREMENT;";
+
+                if ($type_data != "numeric") {
+                    $sql_table = "";
+                }
+            }
+
+        }
+        
+        $all_sql = explode(";", $sql_table);
+        for ($i=0; $i < count($all_sql); $i++) { 
+            if (!empty($all_sql[$i])) {
+                var_dump($all_sql[$i]);
+                $check = $host->query($all_sql[$i].";");
+                var_dump($check);
+            }
         }
 
-        // view('setup/table');
+        var_dump($sql_table);
+
+        view('setup/table');
     }
     
     function edit($request, $table)
