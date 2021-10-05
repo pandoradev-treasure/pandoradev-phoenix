@@ -43,9 +43,19 @@
 
                                                 $see = explode('/', $see);
 
+                                                $attr = '';
+
+                                                if ($see[4] == "dashboard.php") {
+                                                    ?>
+                                                    
+                                                    <?php
+                                                }else{
+
                                                 ?>
-                                                <option value="<?= $see[4] ?>" style="background-image:url(<?= asset('setup/folder.png') ?>);"> <?= $see[4] ?></option>
+                                                <option <?= $attr ?> value="<?= $see[4] ?>"> <?= $see[4] ?></option>
+                                                <?php } ?>
                                             <?php } ?>
+                                            
                                         </select>
 
 
@@ -106,9 +116,15 @@
 
                             $see = explode('/', $see);
 
+                            $attr = 'style="color:#4b6584; margin-top:150px"';
+
+                            if ($see[4] == "dashboard.php") {
+                                $attr = 'style="display:none;color:#4b6584; margin-top:150px"';
+                            }
+
                             ?>
+                            <span <?= $attr ?> >
                             <br>
-                            <span style="color:#4b6584; margin-top:150px">
                              <?= $see[4] ?> 
                                 <a class="delete-table" data-table="<?= $see[4] ?>" data-url="<?= controller('setup@deleteFolderBackend',  'backend/'.$see[4]) ?>">
                                     <img class="delete-png" src="<?= asset('setup/cancel.png') ?>" style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
