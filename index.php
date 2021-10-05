@@ -1,5 +1,5 @@
 <?php 
-    include 'core/autoload-htaccess.php'; 
+    // include 'core/autoload-htaccess.php'; 
     include 'configuration.php'; 
     if ($REDIRECT) {
         header('location:'.$REDIRECT);

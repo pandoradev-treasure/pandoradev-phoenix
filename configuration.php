@@ -6,7 +6,7 @@
     #$AUTH = FITUR LOGIN & REGISTER
     #Ubah isi variable $AUTH dari false menjadi true, jika ingin mengaktifkan fitur Login & Register
 
-    $REDIRECT      = "";
+    $REDIRECT      = "backend/dashboard";
     //$REDIRECT = UNTUK REDIRECT / PINDAH HALAMAN PADA SAAT PANDORACODE DIAKSES
 
     $CHECKDB       = false;
