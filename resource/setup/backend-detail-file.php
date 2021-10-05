@@ -10,6 +10,9 @@
                 <form action="<?= controller('setup@UpdateFileBackend', $data->file[0]) ?>" method="POST"
                     enctype="multipart/form-data">
                     <div class="card-header">
+                        <?php
+                            if ($data->file[0]) {
+                        ?>
                         <span
                             style="font-size: 20px;font-family:calibri;padding:5px;border-radius: 4px;color:#2c3e50"><?= $data->file[0] ?></span>
 
@@ -20,6 +23,9 @@
                             data-target="#exampleModalPreview">
                             Preview
                         </a>
+                        <?php }else{
+                            echo "<code>Pilih file terlebih dahulu!</code>";
+                        } ?>
 
                     </div>
                     <textarea class="mb-3 data-code-old" id="code-mirror"><?= file_get_contents('../resource/views/backend/'.$data->file[0]) ?></textarea>

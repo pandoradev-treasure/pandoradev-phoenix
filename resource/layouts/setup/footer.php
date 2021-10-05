@@ -136,7 +136,7 @@ if (isset($_SESSION["title_alert"])) {
     <script>
 
         Swal.fire({
-            position         : 'top',
+            position         : 'top-right',
             icon             : '<?= $type_alert ?>',
             toast            : true,
             title            : '<?= $title ?>',

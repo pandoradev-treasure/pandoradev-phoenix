@@ -8,14 +8,14 @@
         <div class="tab-content p-0">
         <form action="" method="POST">
     
-        <div class="form-group">
-            <label for="">Nama Siswa</label>
-            <input type="text" name="name_of_field" class="form-control">
-        </div>
+						<div class="form-group">
+								<label for="">Nama Siswa</label>
+								<input type="text" name="name_of_field" class="form-control">
+						</div>
 
-        <?php tombolForm() ?>
+						<?php tombolForm() ?>
 
-    </form>
+				</form>
         </div>
     </div><!-- /.card-body -->
 </div>
