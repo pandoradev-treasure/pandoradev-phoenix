@@ -11,9 +11,6 @@ $REDIRECT      = "backend/dashboard";
 
 $CHECKDB       = false;
 
-#$CHECK = PENGECEKAN DATABASE
-#Ubah isi variable $CHECK dari false menjadi true, jika ingin mengaktifkan fungsi check database
-
 $HOST          = "";
 $USER          = "";
 $PASSWORD      = "";
