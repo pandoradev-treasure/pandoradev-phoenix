@@ -75,10 +75,10 @@
         <!-- Sidebar-->
         <div class="menu-sidebar border-end bg-white first-sidebar" id="sidebar-wrapper">
             <div class=" sidebar-heading border-bottom bg-light" style="font-size: 17px;">
-            <span>
+            <a href="<?= url('setup') ?>">
                 <b>PandoraSetup</b>
                 <img src="<?= asset('setup/coding.png') ?>" style="max-width: 16px;" alt="">
-            </span>
+            </a>
             </div>
             <div class=" list-group list-group-flush layouts">
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
