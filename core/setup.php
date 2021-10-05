@@ -206,8 +206,7 @@
                 var_dump($check);
             }
         }
-        die();
-
+        
         view('setup/table');
     }
 
