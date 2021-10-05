@@ -49,9 +49,6 @@
         });
 
         $('.sidebarT').hide();
-
-        $("input[name='primary_old']").val($('.old_primary').val());
-        $("input[name='auto_increment_old']").val($('.old_auto_increment').val());
     });
     
     $('.add-column').click(function(){
@@ -73,8 +70,8 @@
                         </select>
                     </td>`;
             row += `<td><input tabindex="5" name="new[]" required type="text" class="form-control"></td>`;
-            row += `<td><center><input tabindex="6" name="auto_increment[]" type="radio"></center></td>`;
-            row += `<td><center><input tabindex="7" name="primary_key[]" type="radio"></center></td>`;
+            row += `<td><center><input tabindex="6" name="auto_increment" type="radio"></center></td>`;
+            row += `<td><center><input tabindex="7" name="primary_key" type="radio"></center></td>`;
             row += `<td>
                         <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
                     </td>`;

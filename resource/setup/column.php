@@ -51,7 +51,17 @@
                                 $query = $host->query("DESC " . $table);
 
                                 $no = 1;
+
+                                $db_primary_key = "";
+                                $db_auto_increment = "";
+                                $primary_key = ($see[3] == "PRI") ? "checked value='".$see[0]."'" : "";
                                 while ($see = mysqli_fetch_row($query)) {
+                                    if ($see[3] == "PRI") {
+                                        $db_primary_key = $see[0];
+                                    }
+                                    if ($see[5] == "auto_increment") {
+                                        $db_auto_increment = $see[0];
+                                    }
 
                                     $tipe     = explode("(", $see[1]);
                                     $dataType = $tipe[0];
@@ -67,6 +77,7 @@
                                                 <?php
                                                     $type_data = $host->query("SELECT * FROM type_data");
                                                     while ($listTypeData = mysqli_fetch_assoc($type_data)) {
+                                                        var_dump($listTypeData['name_data'] == strtoupper($dataType));
                                                 ?>
                                                     <option <?php echo ($listTypeData['type_data'] == strtoupper($dataType)) ? "selected" : "";?> value="<?= $listTypeData['type_data'] ?>-<?= $listTypeData['name_data'] ?>"><?= $listTypeData['name_data'] ?></option>
                                                 <?php
@@ -77,10 +88,10 @@
                                         </td>
                                         <td><input name="length[]" tabindex="5" required type="number" class="form-control input-table" value="<?php echo $jumlah[0]; ?>"></td>
                                         <td>
-                                            <center><input class="input-table" tabindex="6" <?php echo ($see[5] == "auto_increment") ? "checked" : ""; ?> name="auto_increment" type="radio"></center>
+                                            <center><input class="input-table" tabindex="6" <?php echo ($see[5] == "auto_increment") ? "checked value='".$see[0]."'" : ""; ?> name="auto_increment" type="radio"></center>
                                         </td>
                                         <td>
-                                            <center><input class="input-table" tabindex="7" <?php echo ($see[3] == "PRI") ? "checked" : ""; ?> name="primary_key" type="radio"></center>
+                                            <center><input class="input-table" tabindex="7" <?php echo ($see[3] == "PRI") ? "checked value='".$see[0]."'" : ""; ?> name="primary_key" type="radio"></center>
                                         </td>
                                         <td>
                                             <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
@@ -90,8 +101,8 @@
                                         <input name="primary" type="hidden" value="">
                                     </tr>
                                     <?php } ?>
-                                    <input name="primary_old" type="hidden" value="">
-                                    <input name="auto_increment_old" type="hidden" value="">
+                                    <input name="primary_old" type="hidden" <?php echo (!empty($db_primary_key)) ? "value='$db_primary_key'" : ""; ?>>
+                                    <input name="auto_increment_old" type="hidden" <?php echo (!empty($db_auto_increment)) ? "value='$db_auto_increment'" : ""; ?>>
                             </tbody>
                         </table><br>
                         <div class="float-right">

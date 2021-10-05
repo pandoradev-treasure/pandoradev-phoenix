@@ -142,8 +142,6 @@
         for ($i=0; $i < count($request->total_column); $i++) { 
             if ($table != $table_new) {
                 $sql_table .= "RENAME TABLE $table TO $table_new";
-            }else{
-                $sql_table .= "ALTER TABLE $table ";
             }
 
             $pecah_type_data = explode("-",$data_type_data[$i]);
@@ -152,31 +150,31 @@
 
             $see_field = mysqli_fetch_array($desc_table);
 
-            $pecah_old_type_data     = explode("(", $see_field[1]);
-            $old_name_type_data = $pecah_old_type_data[0];
-            @$old_length_type_data  = explode(")", $old_name_type_data[1]);
+            $pecah_old_type_data   = explode("(", $see_field[1]);
+            $old_name_type_data    = strtoupper($pecah_old_type_data[0]);
+            @$old_length_type_data = explode(")", $pecah_old_type_data[1]);
 
             // ADD FIELD
             if (!empty($new_name_column[$i]) && !empty($nama_type_data) && !empty($length[$i]) ) {
-                $sql_table .= " ADD COLUMN ".$new_name_column[$i]." ".$nama_type_data."(".$length[$i].")";
+                $sql_table .= "ALTER TABLE $table ADD COLUMN ".$new_name_column[$i]." ".$nama_type_data."(".$length[$i].");";
             }
 
             // EDIT FIELD
-            if ($see_field[0] != $name_column[$i] || $old_name_type_data != $nama_type_data || $old_length_type_data != $length[$i]) {
-                $sql_table .= " CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].")";
+            if ($see_field[0] != $name_column[$i] || $old_name_type_data != $nama_type_data || $old_length_type_data[0] != $length[$i]) {
+                if ($name_column[$i] == $old_auto_increment) {
+                    $sql_table .= "ALTER TABLE $table CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].") AUTO_INCREMENT;";
+                }else{
+                    $sql_table .= "ALTER TABLE $table CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].");";
+
+                }
             }
-            var_dump($see_field[0] != $name_column[$i] || $old_name_type_data != $nama_type_data || $old_length_type_data != $length[$i]);
-            // var_dump($sql_table);
-            // die();
+
             // DELETE FIELD
             if (!empty($status_delete[$i])) {
-                $sql_table .= " DROP COLUMN ".$name_column[$i];
+                $sql_table .= "ALTER TABLE $table DROP COLUMN ".$name_column[$i].";";
             }
 
-            $sql_table .= ";";
-
-            // CHANGE PRIMARY
-            if ($new_primary == $name_column[$i] && $old_primary != $new_primary){
+            if ($new_primary == $name_column[$i] && !empty($new_primary_key) && $old_primary != $new_primary){
                 $sql_table .= "ALTER TABLE $table DROP PRIMARY KEY;";
                 
                 if ($old_primary == $old_auto_increment) {
@@ -184,10 +182,11 @@
                 }
                 
                 $sql_table .= "ALTER TABLE $table ADD PRIMARY KEY ($new_primary);";
+                echo "hai";
             }
             
             // CHANGE AUTO INCREMENT
-            if ($new_auto_increment == $name_column[$i] && $old_auto_increment != $new_auto_increment) {
+            if ($new_auto_increment == $name_column[$i] && !empty($new_auto_increment)  && $old_auto_increment != $new_auto_increment) {
                 
                 $sql_table .= "ALTER TABLE $table DROP PRIMARY KEY;";
                 
