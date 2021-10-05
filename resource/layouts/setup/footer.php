@@ -308,10 +308,18 @@ foreach (glob("../controller/*") as $key => $see) {
 
 <script>
     jQuery(document).bind("keydown", function(e){
-    if(e.ctrlKey && e.keyCode == 80){
-        e.preventDefault();
-        $( ".preview" ).first().trigger( "click" );
-        return false;
-    }
+        if(e.ctrlKey && e.keyCode == 80){
+            e.preventDefault();
+            $( ".preview" ).first().trigger( "click" );
+            return false;
+        }
     });
+
+    // jQuery(document).bind("keyup keydown", function(e){
+    //     if(e.ctrlKey && e.keyCode == 82){
+    //         e.preventDefault();
+            
+    //         return false;
+    //     }
+    // });
 </script>

@@ -53,6 +53,10 @@
     .delete-png {
         filter: invert(48%) sepia(42%) saturate(3927%) hue-rotate(333deg) brightness(99%) contrast(86%);
     }
+
+    .export-png {
+        filter: invert(38%) sepia(33%) saturate(2930%) hue-rotate(193deg) brightness(112%) contrast(102%);
+    }
 </style>
 
 <body>
@@ -73,11 +77,11 @@
             <div class=" sidebar-heading border-bottom bg-light" style="font-size: 17px;">PandoraSetup</div>
             <div class=" list-group list-group-flush layouts">
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
-                    href="database"><img src="<?= asset('setup/server.png') ?>" style="max-width:20px"> Database </a>
+                    href="database"><img src="<?= asset('setup/database.png') ?>" style="max-width:20px"> Database </a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="table"><img
-                        src="<?= asset('setup/list.png') ?>" style="max-width:20px"> Table </a>
+                        src="<?= asset('setup/table.png') ?>" style="max-width:20px"> Table </a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
-                    href="controller"><img src="<?= asset('setup/controller.png') ?>" style="max-width:20px"> Controller
+                    href="controller"><img src="<?= asset('setup/controller.png') ?>" class="export-png" style="max-width:20px"> Controller
                 </a>
 
                 <span class="title-menu">Views</span>
