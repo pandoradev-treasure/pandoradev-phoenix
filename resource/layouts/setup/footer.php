@@ -235,30 +235,7 @@
         })
     });
 
-    var editor = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
-        keyMap: "sublime",
-        autoCloseBrackets: true,
-        lineNumbers: true,
-        matchBrackets: true,
-        mode: "application/x-httpd-php",
-        indentUnit: 4,
-        indentWithTabs: true,
-        autoRefresh: true,
-        theme: "material-darker",
-        matchBrackets: true,
-        showCursorWhenSelecting: true,
-        tabSize: 2,
-        autoCloseTags: true
-    });
-
-    editor.on('change', editor => {
-        console.log(editor.getValue());
-        $('.data-code').text(editor.getValue());
-    });
-
-    $('.data-code').text($('.data-code-old').text());
-
-    editor.setSize(null, 1000);
+    
     $(document).keydown(function(e) {
 
         var key = undefined;
@@ -332,4 +309,31 @@
 
         editor.setSize(null, 1000);
     <?php } ?>
+</script>
+
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
+        keyMap: "sublime",
+        autoCloseBrackets: true,
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "application/x-httpd-php",
+        indentUnit: 4,
+        indentWithTabs: true,
+        autoRefresh: true,
+        theme: "material-darker",
+        matchBrackets: true,
+        showCursorWhenSelecting: true,
+        tabSize: 2,
+        autoCloseTags: true
+    });
+
+    editor.on('change', editor => {
+        console.log(editor.getValue());
+        $('.data-code').text(editor.getValue());
+    });
+
+    $('.data-code').text($('.data-code-old').text());
+
+    editor.setSize(null, 1000);
 </script>
