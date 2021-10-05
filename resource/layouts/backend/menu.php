@@ -9,17 +9,17 @@
     <ul class="nav nav-treeview">
 
         <li class="nav-item">
-            
+
             <!-- Perbanyak bagian ini -->
-			
-						
-						<a href='<?php url('backend/buku/data') ?>' class='nav-link layout'>
+
+
+            <a href='<?php url('backend/buku/data') ?>' class='nav-link layout'>
                 <i class='far fa-circle nav-icon'></i>
                 <p>Buku</p>
             </a>
-            
+
         </li>
-        
+
     </ul>
 
-</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+</li>

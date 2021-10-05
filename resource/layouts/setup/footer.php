@@ -12,7 +12,7 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="<?= asset('plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
+<script type="text/javascript">
     $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
@@ -45,7 +45,8 @@
 <script src="<?= asset('codemirror/addon/display/autorefresh.js') ?>"></script>
 <script src="<?= asset('codemirror/keymap/sublime.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
-<script>
+
+<script type="text/javascript">
     $(document).ready(function() {
         $('.preview').click(function(){
             var datacode = $('.data-code-old').text();
@@ -130,7 +131,7 @@
 <?php
 if (isset($_SESSION["alert_delete_table"])) {
     ?>
-    <script>
+    <script type="text/javascript">
         Swal.fire(
             'Berhasil Dihapus!',
             'Table berhasil dihapus!',
@@ -150,7 +151,7 @@ if (isset($_SESSION["title_alert"])) {
     $type_alert = $_SESSION["type_alert"];
 
     ?>
-    <script>
+    <script type="text/javascript">
 
         Swal.fire({
             position         : 'top-right',
@@ -169,14 +170,14 @@ if (isset($_SESSION["title_alert"])) {
     <?php
         if ($type_alert == "error") {
             ?>
-        <script>
+        <script type="text/javascript">
             var x = document.getElementById("myAudioError");
             x.play();
         </script>
     <?php
         } else {
             ?>
-        <script>
+        <script type="text/javascript">
             var x = document.getElementById("myAudioSuccess");
             x.play();
         </script>
@@ -197,7 +198,7 @@ foreach (glob("../controller/*") as $key => $see) {
 
     $explode = explode("/", $see);
     ?>
-    <script>
+    <script type="text/javascript">
         var editor = CodeMirror.fromTextArea(document.getElementById('<?= $explode[2] ?>'), {
             keyMap                 : "sublime",
             autoCloseBrackets      : true,
@@ -226,7 +227,7 @@ foreach (glob("../controller/*") as $key => $see) {
 <?php } ?>
 
 
-<script>
+<script type="text/javascript">
     var editor = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
         keyMap                 : "sublime",
         autoCloseBrackets      : true,
@@ -253,7 +254,7 @@ foreach (glob("../controller/*") as $key => $see) {
     editor.setSize(null, 1000);
 </script>
 
-<script>
+<script type="text/javascript">
 
     $('.name-folder').keyup(function() {
         $('.exist_folder').val('');
@@ -315,7 +316,7 @@ foreach (glob("../controller/*") as $key => $see) {
         
     }else{
         ?>
-        <script>
+        <script type="text/javascript">
             $('.remove-display').css("display","none");
             $('.show-hide').css("display","none");
         </script>
@@ -323,7 +324,7 @@ foreach (glob("../controller/*") as $key => $see) {
     }
 ?>
 
-<script>
+<script type="text/javascript">
     jQuery(document).bind("keydown", function(e){
         if(e.ctrlKey && e.keyCode == 80){
             e.preventDefault();
