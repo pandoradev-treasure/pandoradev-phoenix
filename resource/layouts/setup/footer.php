@@ -47,6 +47,49 @@
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 
 <script type="text/javascript">
+<?php
+    if (isset($_SESSION["title_alert"])) {
+
+        $title      = $_SESSION["title_alert"];
+        $alert      = $_SESSION["message_alert"];
+        $type_alert = $_SESSION["type_alert"];
+
+        ?>
+
+        Swal.fire({
+            position: 'top-right',
+            icon: '<?= $type_alert ?>',
+            toast: true,
+            title: '<?= $title ?>',
+            showConfirmButton: false,
+            timer: 2000
+        });
+
+        <?php
+            unset($_SESSION["data"]);
+            ?>
+
+        <?php
+            if ($type_alert == "error") {
+                ?>
+            var x = document.getElementById("myAudioError");
+            x.play();
+        <?php
+            } else {
+                ?>
+            var x = document.getElementById("myAudioSuccess");
+            x.play();
+        <?php
+            }
+            ?>
+
+    <?php
+    }
+    unset($_SESSION["title_alert"]);
+    unset($_SESSION["message_alert"]);
+    unset($_SESSION["type_alert"]);
+    unset($_SESSION["data"]);
+    ?>
     $(document).ready(function() {
         $('.preview').click(function() {
             var datacode = $('.data-code-old').text();
@@ -233,49 +276,7 @@
         return true;
     });
 
-    <?php
-    if (isset($_SESSION["title_alert"])) {
-
-        $title      = $_SESSION["title_alert"];
-        $alert      = $_SESSION["message_alert"];
-        $type_alert = $_SESSION["type_alert"];
-
-        ?>
-
-        Swal.fire({
-            position: 'top-right',
-            icon: '<?= $type_alert ?>',
-            toast: true,
-            title: '<?= $title ?>',
-            showConfirmButton: false,
-            timer: 2000
-        });
-
-        <?php
-            unset($_SESSION["data"]);
-            ?>
-
-        <?php
-            if ($type_alert == "error") {
-                ?>
-            var x = document.getElementById("myAudioError");
-            x.play();
-        <?php
-            } else {
-                ?>
-            var x = document.getElementById("myAudioSuccess");
-            x.play();
-        <?php
-            }
-            ?>
-
-    <?php
-    }
-    unset($_SESSION["title_alert"]);
-    unset($_SESSION["message_alert"]);
-    unset($_SESSION["type_alert"]);
-    unset($_SESSION["data"]);
-    ?>
+    
 
 
     <?php
