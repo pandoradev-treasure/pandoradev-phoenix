@@ -11,8 +11,9 @@
                     <form class="form-inline" action="<?= controller('setup@store') ?>" method="POST">
                         <div class="form-group mx-sm-3">
                             <input type="text" required class="form-control" placeholder="Nama Tabel" name="nama_table">
+                            <input type="hidden" required class="form-control" value="true" name="check">
                         </div>
-                        <button class="btn add-column btn-primary btn-sm" name="tambah_table" type="submit"><i class="fa fa-plus"></i></button>
+                        <button class="btn  btn-primary btn-sm" name="tambah_table" type="submit"><i class="fa fa-plus"></i></button>
                     </form>
                 </div><br>
                 <div class="card-body">
