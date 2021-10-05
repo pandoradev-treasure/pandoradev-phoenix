@@ -120,7 +120,7 @@
                                     class="list-group-item list-group-item-action list-group-item-light"><img
                                         src="<?= asset('setup/footer.png') ?>" style="max-width:20px"> Footer </a>
 
-                                <a href="<?= url('backend-setup/list-view') ?>"
+                                <a href="<?= url('setup/backend-list-view') ?>"
                                     class="list-group-item list-group-item-action list-group-item-light"><img
                                         src="<?= asset('setup/list-view.png') ?>" style="max-width:20px"> List View </a>
 
