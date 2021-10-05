@@ -117,15 +117,13 @@
         echo "<pre>";
         $desc_table      = $host->query("DESC $table");
         
-        // OLD COLUMN
-        $name_column     = $request->name_column;
-        $length          = $request->length;
-        $status_delete   = $request->deleted;
+        //COLUMN
+        $name_column    = $request->name_column;
+        $length         = $request->length;
+        $status_delete  = $request->deleted;
         $data_type_data = $request->type_data;
+        $type_column    = $request->new_data;
         
-        // NEW COLUMN
-        $new_name_column = $request->new_name_column;
-        // $new_length      = $request->new_length;
         
         // PRIMARY
         $old_primary     = $request->primary_old;
@@ -135,15 +133,13 @@
         $old_auto_increment     = $request->auto_increment_old;
         $new_auto_increment     = $request->auto_increment;
         
-        // var_dump($request);
-        
 
         $sql_table = "";
-        for ($i=0; $i < count($request->total_column); $i++) { 
-            if ($table != $table_new) {
-                $sql_table .= "RENAME TABLE $table TO $table_new";
-            }
 
+        if ($table != $table_new) {
+            $sql_table .= "RENAME TABLE $table TO $table_new";
+        }
+        for ($i=0; $i < count($request->total_column); $i++) { 
             $pecah_type_data = explode("-",$data_type_data[$i]);
             $type_data          = $pecah_type_data[0];
             $nama_type_data     = $pecah_type_data[1];
@@ -155,43 +151,43 @@
             @$old_length_type_data = explode(")", $pecah_old_type_data[1]);
 
             // ADD FIELD
-            if (!empty($new_name_column[$i]) && !empty($nama_type_data) && !empty($length[$i]) ) {
-                $sql_table .= "ALTER TABLE $table ADD COLUMN ".$new_name_column[$i]." ".$nama_type_data."(".$length[$i].");";
+            if (!empty($name_column[$i]) && !empty($nama_type_data) && !empty($length[$i]) && $type_column[$i] == "yes") {
+                $sql_table .= "ALTER TABLE $table ADD COLUMN ".$name_column[$i]." ".$nama_type_data."(".$length[$i].");";
             }
 
             // EDIT FIELD
-            if ($see_field[0] != $name_column[$i] || $old_name_type_data != $nama_type_data || $old_length_type_data[0] != $length[$i]) {
-                if ($name_column[$i] == $old_auto_increment) {
-                    $sql_table .= "ALTER TABLE $table CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].") AUTO_INCREMENT;";
-                }else{
-                    $sql_table .= "ALTER TABLE $table CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].");";
-
+            if ($type_column[$i] == "no") {
+                if ($see_field[0] != $name_column[$i] || $old_name_type_data != $nama_type_data || $old_length_type_data[0] != $length[$i] ) {
+                    if ($name_column[$i] == $old_auto_increment) {
+                        $sql_table .= "ALTER TABLE $table CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].") AUTO_INCREMENT;";
+                    }else{
+                        $sql_table .= "ALTER TABLE $table CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].");";
+                        
+                    }
                 }
             }
-
+                
             // DELETE FIELD
             if (!empty($status_delete[$i])) {
                 $sql_table .= "ALTER TABLE $table DROP COLUMN ".$name_column[$i].";";
             }
 
-            if ($new_primary == $name_column[$i] && !empty($new_primary_key) && $old_primary != $new_primary){
-                $sql_table .= "ALTER TABLE $table DROP PRIMARY KEY;";
-                
+            // CHANGE PRIMARY
+            if ($new_primary == $name_column[$i] && !empty($new_primary) && $old_primary != $new_primary){
                 if ($old_primary == $old_auto_increment) {
                     $sql_table .= "ALTER TABLE $table CHANGE $old_auto_increment $old_auto_increment ".$nama_type_data."(".$length[$i].");";
                 }
+                $sql_table .= "ALTER TABLE $table DROP PRIMARY KEY;";
                 
                 $sql_table .= "ALTER TABLE $table ADD PRIMARY KEY ($new_primary);";
-                echo "hai";
             }
             
             // CHANGE AUTO INCREMENT
             if ($new_auto_increment == $name_column[$i] && !empty($new_auto_increment)  && $old_auto_increment != $new_auto_increment) {
                 
-                $sql_table .= "ALTER TABLE $table DROP PRIMARY KEY;";
-                
                 $sql_table .= "ALTER TABLE $table CHANGE $old_auto_increment $old_auto_increment ".$nama_type_data."(".$length[$i].");";
-                
+                $sql_table .= "ALTER TABLE $table DROP PRIMARY KEY;";
+                        
                 $sql_table .= "ALTER TABLE $table ADD PRIMARY KEY ($new_auto_increment);";
                 $sql_table .= "ALTER TABLE $table CHANGE $new_auto_increment $new_auto_increment ".$nama_type_data."(".$length[$i].") AUTO_INCREMENT;";
 
@@ -199,8 +195,8 @@
                     $sql_table = "";
                 }
             }
-
         }
+
         
         $all_sql = explode(";", $sql_table);
         for ($i=0; $i < count($all_sql); $i++) { 
@@ -210,10 +206,14 @@
                 var_dump($check);
             }
         }
-
-        var_dump($sql_table);
+        die();
 
         view('setup/table');
+    }
+
+    function fixingUpdateColumn($request)
+    {
+
     }
     
     function edit($request, $table)

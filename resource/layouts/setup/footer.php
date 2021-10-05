@@ -56,7 +56,7 @@
         var row = null;
 
         row += `<tr>`;
-            row += `<td><input tabindex="2" type="text" name="new_name_column[]" required class="form-control"></td>`;
+            row += `<td><input tabindex="2" type="text" name="name_column[]" required class="form-control"></td>`;
             row += `<td>
                         <select tabindex="4" name="type_data[]" id="" class="form-control js-example-basic-single">
                         <?php
@@ -69,13 +69,14 @@
                                                 ?>
                         </select>
                     </td>`;
-            row += `<td><input tabindex="5" name="new[]" required type="text" class="form-control"></td>`;
+            row += `<td><input tabindex="5" name="length[]" required type="text" class="form-control"></td>`;
             row += `<td><center><input tabindex="6" name="auto_increment" type="radio"></center></td>`;
             row += `<td><center><input tabindex="7" name="primary_key" type="radio"></center></td>`;
             row += `<td>
                         <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
                     </td>`;
             row += `<input name="total_column[]" type="hidden" value="">`;
+            row += `<input name="new_data[]" type="hidden" value="yes">`;
         row += `</tr>`;
 
         $('tbody').append(row);

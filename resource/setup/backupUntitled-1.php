@@ -65,6 +65,7 @@
 
                                     $tipe     = explode("(", $see[1]);
                                     $dataType = $tipe[0];
+
                                     @$jumlah  = explode(")", $tipe[1]);
                                 ?>
                                     <input type="hidden" value="<?= $table ?>" name="table">
@@ -76,8 +77,9 @@
                                                 <?php
                                                     $type_data = $host->query("SELECT * FROM type_data");
                                                     while ($listTypeData = mysqli_fetch_assoc($type_data)) {
+                                                        var_dump($listTypeData['name_data'] == strtoupper($dataType));
                                                 ?>
-                                                    <option <?php echo ($listTypeData['name_data'] == strtoupper($dataType)) ? "selected" : "";?> value="<?= $listTypeData['type_data'] ?>-<?= $listTypeData['name_data'] ?>"><?= $listTypeData['name_data'] ?></option>
+                                                    <option <?php echo ($listTypeData['type_data'] == strtoupper($dataType)) ? "selected" : "";?> value="<?= $listTypeData['type_data'] ?>-<?= $listTypeData['name_data'] ?>"><?= $listTypeData['name_data'] ?></option>
                                                 <?php
                                                     }
                                                 ?>
@@ -98,7 +100,6 @@
                                         <input name="total_column[]" type="hidden" value="">
                                         <input name="primary" type="hidden" value="">
                                     </tr>
-                                    <input name="new_data[]" type="hidden" value="no">
                                     <?php } ?>
                                     <input name="primary_old" type="hidden" <?php echo (!empty($db_primary_key)) ? "value='$db_primary_key'" : ""; ?>>
                                     <input name="auto_increment_old" type="hidden" <?php echo (!empty($db_auto_increment)) ? "value='$db_auto_increment'" : ""; ?>>
