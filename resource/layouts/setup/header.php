@@ -160,6 +160,40 @@
             </div>
         </div>
 
+        <?php
+            @$dataUrlSekarang = explode('/',$_SERVER['REQUEST_URI']);
+            if (@$dataUrlSekarang[3] == "detail-file") {
+        ?>
+        <!-- for controller files -->
+        <div class="remove-display border-end bg-white second-sidebar" id="sidebar-wrapper">
+            <div class="remove-display sidebar-heading border-bottom bg-light" style="font-size: 17px;">Controllers</div>
+            <div class="remove-display list-group list-group-flush">
+                <div class="card-body" style="margin-top: -30px;">
+                    <div id="accordion" style="margin-top: 20px;">
+                        <?php
+
+                            foreach (glob("../controller/*") as $key => $fileController) {
+                                
+                            $fileController = explode('/', $fileController);
+
+                            ?>
+                        <span style="color:#4b6584">
+
+                            <img class="export-png" src="<?= asset('setup/controller.png') ?>" style="max-width:15px;">
+                            <a target="" href="<?= controller('setup@detailFile', $fileController[2]) ?>"
+                                style="color: #2c3e50;cursor:pointer">
+                                <span style="margin-left: 7px;"><?= $fileController[2] ?></span>
+                            </a>
+                        </span><br>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end for controller files -->
+        <?php
+            }else{
+        ?>
         <!-- for menu -->
         <div class="remove-display border-end bg-white second-sidebar" id="sidebar-wrapper">
             <div class="remove-display sidebar-heading border-bottom bg-light" style="font-size: 17px;">Views</div>
@@ -167,30 +201,29 @@
                 <div class="card-body" style="margin-top: -30px;">
                     <div id="accordion" style="margin-top: 20px;">
                         <?php
-                        foreach (glob("../resource/views/backend/*") as $key => $see) {
-                            
-                            $attr = null;
-                            $see = explode('/', $see);
-                            if ($see[4] == "dashboard.php") {
-                                $attr = "style='display:none'";
-                            }
-                            ?>
+                            foreach (glob("../resource/views/backend/*") as $key => $see) {
+                                
+                                $attr = null;
+                                $see = explode('/', $see);
+                                if ($see[4] == "dashboard.php") {
+                                    $attr = "style='display:none'";
+                                }
+                                ?>
                         <span <?= $attr ?> style="color:#4b6584">
 
-                            <img src="<?= asset('setup/folder.png') ?>"
-                                style="max-width:15px;">
-                                <a style="color: #2c3e50;cursor:pointer" data-toggle="collapse"
+                            <img src="<?= asset('setup/folder.png') ?>" style="max-width:15px;">
+                            <a style="color: #2c3e50;cursor:pointer" data-toggle="collapse"
                                 data-target="#demo<?= $see[4] ?>">
                                 <span style="margin-left: 7px;"><?= $see[4] ?></span>
                             </a>
                         </span>
                         <?php
-                                    //For Views Files
-                                    foreach (glob("../resource/views/backend/$see[4]/*") as $key => $seefile) {
+                            //For Views Files
+                            foreach (glob("../resource/views/backend/$see[4]/*") as $key => $seefile) {
 
-                                        $seefile = explode('/', $seefile);
-                                        $seefile = $seefile[5];
-                                    ?>
+                                $seefile = explode('/', $seefile);
+                                $seefile = $seefile[5];
+                            ?>
 
                         <div style="margin-left: 17px;" id="demo<?= $see[4] ?>" class="collapse">
                             <img src="<?= asset('setup/file.png') ?>" style="max-width:14px"> <a
@@ -203,60 +236,62 @@
                             </a>
                             <a data-toggle="modal" class="float-right"
                                 data-target="#exampleModals<?= str_replace('.','',$seefile) ?>">
-                                <img class="export-png" src="<?= asset('setup/edit.png') ?>"
+                                <img class="export-png edit-name" src="<?= asset('setup/edit.png') ?>"
                                     style="max-width:14px;margin-left: 5px;margin-bottom: 3px;">
                             </a>
                         </div>
 
-                            <div style="margin-bottom: 8px;">
+                        <div style="margin-bottom: 8px;">
 
 
-                                <div class="modal fade" id="exampleModals<?= str_replace('.','',$seefile) ?>" tabindex="-1"
-                                    role="dialog" aria-labelledby="exampleModalsLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalsLabel">Edit Nama File </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form
-                                                action="<?= controller('setup@editNamaFileBackend', 'backend/'.$see[4]) ?>"
-                                                method="POST">
-                                                <div class="modal-body">
-                                                    <div class="form-inline">
-                                                        <div class="form-group mb-2">
-                                                            <input type="text" readonly class="form-control-plaintext"
-                                                                id="staticEmail2" value="<?= $seefile ?>">
-                                                        </div>
-                                                        <div class="form-group mx-sm-3 mb-2">
-                                                            <label for="inputPassword2" class="sr-only">Nama Baru</label>
-                                                            <input name="new_name_file" required type="text"
-                                                                class="form-control" id="inputPassword2"
-                                                                placeholder="Nama Baru">
-                                                        </div>
-                                                        <input type="hidden" name="old_file" value="<?= $seefile ?>">
-                                                        <textarea style="display: none;" name="data_new_code"
-                                                            class="data-code" id="" cols="30" rows="10"></textarea>
-                                                        <button type="submit"
-                                                            class="btn btn-primary btn-sm mb-2">Ubah</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                            <div class="modal fade" id="exampleModals<?= str_replace('.','',$seefile) ?>" tabindex="-1"
+                                role="dialog" aria-labelledby="exampleModalsLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalsLabel">Edit Nama File </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
+                                        <form
+                                            action="<?= controller('setup@editNamaFileBackend', 'backend/'.$see[4]) ?>"
+                                            method="POST">
+                                            <div class="modal-body">
+                                                <div class="form-inline">
+                                                    <div class="form-group mb-2">
+                                                        <input type="text" readonly class="form-control-plaintext"
+                                                            id="staticEmail2" value="<?= $seefile ?>">
+                                                    </div>
+                                                    <div class="form-group mx-sm-3 mb-2">
+                                                        <label for="inputPassword2" class="sr-only">Nama Baru</label>
+                                                        <input autofocus name="new_name_file" required type="text"
+                                                            class="form-control nama-file-baru" id="inputPassword2"
+                                                            placeholder="Nama Baru">
+                                                    </div>
+                                                    <input type="hidden" name="old_file" value="<?= $seefile ?>">
+                                                    <textarea style="display: none;" name="data_new_code"
+                                                        class="data-code" id="" cols="30" rows="10"></textarea>
+                                                    <button type="submit"
+                                                        class="btn btn-primary btn-sm mb-2">Ubah</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            <?php } ?>
+                        </div>
+                        <?php } ?>
                         <?php } ?>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
+        <!-- end for menu -->
+        <!-- end else -->
+        <?php } ?>
+
+
         <!-- Page content wrapper-->
         <div id="page-content-wrapper">
             <!-- Top navigation-->

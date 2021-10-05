@@ -1,6 +1,6 @@
 <?php
             
-    function TambahData($request)
+    function TambahDatas($request)
     {
 
         query()->insert('kelas',[
@@ -36,4 +36,4 @@
 		
 		query()->delete('kelas', $id)->view('backend/kelas/data',"Berhasil Menghapus Data!");
 
-    }                                                                                                                                                                                                                                
+    }                                                                                                                                                                                                                                                                                

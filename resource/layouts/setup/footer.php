@@ -47,6 +47,10 @@
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 <script>
     $(document).ready(function() {
+        $('.preview').click(function(){
+            var datacode = $('.data-code-old').text();
+            $('.result-preview').html(datacode);
+        });
         $('.js-example-basic-single').select2({
             width: 'resolve' // need to override the changed default
         });
@@ -132,7 +136,7 @@ if (isset($_SESSION["title_alert"])) {
     <script>
 
         Swal.fire({
-            position         : 'top-end',
+            position         : 'top',
             icon             : '<?= $type_alert ?>',
             toast            : true,
             title            : '<?= $title ?>',
@@ -301,3 +305,13 @@ foreach (glob("../controller/*") as $key => $see) {
         <?php
     }
 ?>
+
+<script>
+    jQuery(document).bind("keydown", function(e){
+    if(e.ctrlKey && e.keyCode == 80){
+        e.preventDefault();
+        $( ".preview" ).first().trigger( "click" );
+        return false;
+    }
+    });
+</script>

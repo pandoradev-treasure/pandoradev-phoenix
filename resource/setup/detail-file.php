@@ -10,17 +10,21 @@
                 <form action="<?= controller('setup@UpdateController', $data->file[0]) ?>" method="POST" enctype="multipart/form-data">
                     <div class="card-header">
                         <span style="font-size: 20px;font-family:calibri;padding:5px;border-radius: 4px;color:#2c3e50"><?= $data->file[0] ?></span>
-                        <a data-toggle="modal" data-target="#exampleModal">
-                            <img class="export-png" src="<?= asset('setup/edit.png') ?>" style="max-width:20px;margin-left: 5px;margin-bottom: 3px;">
-                        </a>
+                        <?php
+                            if ($data) {
+                        ?>
+                            <a data-toggle="modal" data-target="#exampleModal">
+                                <img class="export-png" src="<?= asset('setup/edit.png') ?>" style="max-width:20px;margin-left: 5px;margin-bottom: 3px;">
+                            </a>
+                            <button type="submit" class="btn btn-outline-primary float-right save-file btn-sm">
+                                Simpan
+                            </button>
+                        <?php
+                            }
+                        ?>
 
-                        <button type="submit" class="btn btn-outline-primary float-right save-file btn-sm">
-                            Simpan
-                        </button>
                     </div>
-                    <textarea class="mb-3 data-code-old" id="code-mirror">
-<?= file_get_contents('../controller/' . $data->file[0]) ?>
-                </textarea>
+                    <textarea class="mb-3 data-code-old" id="code-mirror"><?= file_get_contents('../controller/' . $data->file[0]) ?></textarea>
                     <div class="card-body">
                         <textarea style="display: none;" name="data_new_code" class="data-code" id="" cols="30" rows="10"></textarea>
                     </div>

@@ -3,7 +3,7 @@
             <h3 class="card-title">
                 Judul
             </h3>
-            <a href="" class="btn btn-sm btn-primary shadow float-right">Tambah</a>
+            <a href="" class="btn btn-sm btn-primary shadow float-right">Tambah Data</a>
         </div><!-- /.card-header -->
         <div class="card-body">
             <div class="tab-content p-0">
@@ -27,4 +27,5 @@
                 </table>
             </div>
         </div><!-- /.card-body -->
-    </div>                                                                                                                                                                                                                                                                                        
+    </div>
+                                                                                                                                                                                                                                                    
