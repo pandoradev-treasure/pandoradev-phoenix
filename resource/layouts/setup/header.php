@@ -82,11 +82,11 @@
             </div>
             <div class=" list-group list-group-flush layouts">
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
-                    href="database"><img src="<?= asset('setup/database.png') ?>" style="max-width:20px"> Database </a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="table"><img
+                    href="<?= url('setup/database') ?>"><img src="<?= asset('setup/database.png') ?>" style="max-width:20px"> Database </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="<?= url('setup/table') ?>"><img
                         src="<?= asset('setup/table.png') ?>" style="max-width:20px"> Table </a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
-                    href="controller"><img src="<?= asset('setup/controller.png') ?>" class="export-png" style="max-width:20px"> Controller
+                    href="<?= url('setup/controller') ?>"><img src="<?= asset('setup/controller.png') ?>" class="export-png" style="max-width:20px"> Controller
                 </a>
 
                 <span class="title-menu">Views</span>
@@ -108,19 +108,19 @@
                             data-parent="#accordion">
                             <div class="card-body">
 
-                                <a href="backend-header"
+                                <a href="<?= url('setup/backend-header') ?>"
                                     class="list-group-item list-group-item-action list-group-item-light"><img
                                         src="<?= asset('setup/header.png') ?>" style="max-width:20px"> Header </a>
 
-                                <a href="backend-menu"
+                                <a href="<?= url('setup/backend-menu') ?>"
                                     class="list-group-item list-group-item-action list-group-item-light "><img
                                         src="<?= asset('setup/menu.png') ?>" style="max-width:20px"> Menu </a>
 
-                                <a href="backend-footer"
+                                <a href="<?= url('setup/backend-footer') ?>"
                                     class="list-group-item list-group-item-action list-group-item-light"><img
                                         src="<?= asset('setup/footer.png') ?>" style="max-width:20px"> Footer </a>
 
-                                <a href="backend-list-view"
+                                <a href="<?= url('backend-setup/list-view') ?>"
                                     class="list-group-item list-group-item-action list-group-item-light"><img
                                         src="<?= asset('setup/list-view.png') ?>" style="max-width:20px"> List View </a>
 
@@ -149,15 +149,15 @@
                             data-parent="#accordionSecond">
                             <div class="card-body">
 
-                                <a href="frontend-header"
+                                <a href="<?= url('setup/frontend-header') ?>"
                                     class="list-group-item list-group-item-action list-group-item-light"><img
                                         src="<?= asset('setup/header.png') ?>" style="max-width:20px"> Header </a>
 
-                                <a href="frontend-menu"
+                                <a href="<?= url('setup/frontend-menu') ?>"
                                     class="list-group-item list-group-item-action list-group-item-light"><img
                                         src="<?= asset('setup/menu.png') ?>" style="max-width:20px"> Menu </a>
 
-                                <a href="frontend-footer"
+                                <a href="<?= url('setup/frontend-footer') ?>"
                                     class="list-group-item list-group-item-action list-group-item-light"><img
                                         src="<?= asset('setup/footer.png') ?>" style="max-width:20px"> Footer </a>
 
