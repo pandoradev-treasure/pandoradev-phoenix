@@ -48,15 +48,80 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.preview').click(function(){
+        $('.preview').click(function() {
             var datacode = $('.data-code-old').text();
             $('.result-preview').html(datacode);
         });
         $('.js-example-basic-single').select2({
             width: 'resolve' // need to override the changed default
         });
+        jQuery(document).bind("keydown", function(e) {
+            if (e.ctrlKey && e.keyCode == 80) {
+                e.preventDefault();
+                $(".preview").first().trigger("click");
+                return false;
+            }
+        });
 
+        jQuery(document).bind("keydown", function(e) {
+            if (e.ctrlKey && e.keyCode == 66) {
+                e.preventDefault();
+                $(".sidebarHide").first().trigger("click");
+                return false;
+            }
+        });
+
+        $(".pandora-fade").click(function() {
+            $(this).fadeIn(3000);
+        });
+
+
+        setTimeout(function() {
+            $('.button-trigger-pandorasetup').trigger("click");
+        }, 10);
+
+        setTimeout(function() {
+            $('.button-trigger-pandorasetup-second').trigger("click");
+        }, 2800);
+
+        setTimeout(function() {
+            $('.button-trigger-pandorasetup-third').trigger("click");
+        }, 5500);
+
+        setTimeout(function() {
+            $(".link-database").first().trigger("click");
+        }, 9300);
+
+        $(".button-trigger-pandorasetup").click(function() {
+            $(".pandora-fade").fadeIn(2000);
+            $(".pandora-fade").fadeOut();
+        });
+
+        $(".button-trigger-pandorasetup-second").click(function() {
+            $(".pandora-fade-second").fadeIn(2000);
+            $(".pandora-fade-second").fadeOut();
+        });
+
+        $(".button-trigger-pandorasetup-third").click(function() {
+            $(".pandora-fade-third").fadeIn(3000);
+            $(".pandora-fade-third").fadeOut();
+        });
+
+        $('.link-database').click(function() {
+            window.location.replace("setup/database");
+        });
         $('.sidebarT').hide();
+    });
+
+    $('.name-folder').on('keyup keypress',function() {
+        $('.exist_folder').val('');
+        $('.append-folder-name').html($(this).val());
+    });
+
+    $('.exist_folder').on('change', function() {
+        $('.name-folder').val('');
+        $('.name-folder').removeAttr('required');
+        $('.append-folder-name').html($(this).val());
     });
 
     $('.add-column').click(function() {
@@ -64,42 +129,42 @@
         var row = null;
 
         row += `<tr>`;
-            row += `<td><input tabindex="2" type="text" name="new_name_column[]" required class="form-control"></td>`;
-            row += `<td>
+        row += `<td><input tabindex="2" type="text" name="new_name_column[]" required class="form-control"></td>`;
+        row += `<td>
                         <select tabindex="4" name="type_data[]" id="" class="form-control js-example-basic-single">
                         <?php
-                                                    $type_data = $host->query("SELECT * FROM type_data");
-                                                    while ($listTypeData = mysqli_fetch_assoc($type_data)) {
-                                                ?>
-                                                    <option <?php echo ($listTypeData['type_data'] == strtoupper($dataType)) ? "selected" : "";?> value="<?= $listTypeData['type_data'] ?>-<?= $listTypeData['name_data'] ?>"><?= $listTypeData['name_data'] ?></option>
+                        $type_data = $host->query("SELECT * FROM type_data");
+                        while ($listTypeData = mysqli_fetch_assoc($type_data)) {
+                            ?>
+                                                    <option <?php echo ($listTypeData['type_data'] == strtoupper($dataType)) ? "selected" : ""; ?> value="<?= $listTypeData['type_data'] ?>-<?= $listTypeData['name_data'] ?>"><?= $listTypeData['name_data'] ?></option>
                                                 <?php
-                                                    }
+                                                }
                                                 ?>
                         </select>
                     </td>`;
-            row += `<td><input tabindex="5" name="new[]" required type="text" class="form-control"></td>`;
-            row += `<td><center><input tabindex="6" name="auto_increment" type="radio"></center></td>`;
-            row += `<td><center><input tabindex="7" name="primary_key" type="radio"></center></td>`;
-            row += `<td>
+        row += `<td><input tabindex="5" name="new[]" required type="text" class="form-control"></td>`;
+        row += `<td><center><input tabindex="6" name="auto_increment" type="radio"></center></td>`;
+        row += `<td><center><input tabindex="7" name="primary_key" type="radio"></center></td>`;
+        row += `<td>
                         <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
                     </td>`;
-            row += `<input name="total_column[]" type="hidden" value="">`;
+        row += `<input name="total_column[]" type="hidden" value="">`;
         row += `</tr>`;
 
         $('tbody').append(row);
     });
 
-    $("input[name='primary_key']").change(function(){
+    $("input[name='primary_key']").change(function() {
         $("input[name='primary_key']").val($(this).parents('tr').find("input.name_column").val());
     });
-    
-    $("input[name='auto_increment']").change(function(){
+
+    $("input[name='auto_increment']").change(function() {
         $("input[name='auto_increment']").val($(this).parents('tr').find("input.name_column").val());
     });
 
-    $('body').on('click','.delete-column',function(){
+    $('body').on('click', '.delete-column', function() {
         $(this).parents('tr').hide();
-        
+
         var x = $(this).parents('tr').find('input.deleted').val("true");
         var x = $(this).parents('tr').find('td > .input-table').removeAttr("required");
         console.log(x);
@@ -126,122 +191,21 @@
             }
         })
     });
-</script>
 
-<?php
-if (isset($_SESSION["alert_delete_table"])) {
-    ?>
-    <script type="text/javascript">
-        Swal.fire(
-            'Berhasil Dihapus!',
-            'Table berhasil dihapus!',
-            'success'
-        )
-    </script>
-<?php
-}
-unset($_SESSION["alert_delete_table"]);
-?>
-
-<?php
-if (isset($_SESSION["title_alert"])) {
-
-    $title      = $_SESSION["title_alert"];
-    $alert      = $_SESSION["message_alert"];
-    $type_alert = $_SESSION["type_alert"];
-
-    ?>
-    <script type="text/javascript">
-
-        Swal.fire({
-            position         : 'top-right',
-            icon             : '<?= $type_alert ?>',
-            toast            : true,
-            title            : '<?= $title ?>',
-            showConfirmButton: false,
-            timer            : 2000
-        });
-
-        <?php
-            unset($_SESSION["data"]);    
-        ?>
-    </script>
-
-    <?php
-        if ($type_alert == "error") {
-            ?>
-        <script type="text/javascript">
-            var x = document.getElementById("myAudioError");
-            x.play();
-        </script>
-    <?php
-        } else {
-            ?>
-        <script type="text/javascript">
-            var x = document.getElementById("myAudioSuccess");
-            x.play();
-        </script>
-    <?php
-        }
-        ?>
-
-<?php
-}
-unset($_SESSION["title_alert"]);
-unset($_SESSION["message_alert"]);
-unset($_SESSION["type_alert"]);
-unset($_SESSION["data"]); 
-?>
-
-<?php
-foreach (glob("../controller/*") as $key => $see) {
-
-    $explode = explode("/", $see);
-    ?>
-    <script type="text/javascript">
-        var editor = CodeMirror.fromTextArea(document.getElementById('<?= $explode[2] ?>'), {
-            keyMap                 : "sublime",
-            autoCloseBrackets      : true,
-            lineNumbers            : true,
-            matchBrackets          : true,
-            mode                   : "application/x-httpd-php",
-            indentUnit             : 4,
-            indentWithTabs         : true,
-            autoRefresh            : true,
-            theme                  : "material-darker",
-            matchBrackets          : true,
-            showCursorWhenSelecting: true,
-            tabSize                : 2,
-            autoCloseTags          : true
-        });
-
-        editor.on('change', editor => {
-            console.log(editor.getValue());
-            $('.data-code').text(editor.getValue());
-        });
-
-        $('.data-code').text($('.data-code-old').text());
-
-        editor.setSize(null, 1000);
-    </script>
-<?php } ?>
-
-
-<script type="text/javascript">
     var editor = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
-        keyMap                 : "sublime",
-        autoCloseBrackets      : true,
-        lineNumbers            : true,
-        matchBrackets          : true,
-        mode                   : "application/x-httpd-php",
-        indentUnit             : 4,
-        indentWithTabs         : true,
-        autoRefresh            : true,
-        theme                  : "material-darker",
-        matchBrackets          : true,
+        keyMap: "sublime",
+        autoCloseBrackets: true,
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "application/x-httpd-php",
+        indentUnit: 4,
+        indentWithTabs: true,
+        autoRefresh: true,
+        theme: "material-darker",
+        matchBrackets: true,
         showCursorWhenSelecting: true,
-        tabSize                : 2,
-        autoCloseTags          : true
+        tabSize: 2,
+        autoCloseTags: true
     });
 
     editor.on('change', editor => {
@@ -252,132 +216,119 @@ foreach (glob("../controller/*") as $key => $see) {
     $('.data-code').text($('.data-code-old').text());
 
     editor.setSize(null, 1000);
-</script>
+    $(document).keydown(function(e) {
 
-<script type="text/javascript">
+        var key = undefined;
+        var possible = [e.key, e.keyIdentifier, e.keyCode, e.which];
 
-    $('.name-folder').keyup(function() {
-        $('.exist_folder').val('');
-        $('.append-folder-name').html($(this).val());
+        while (key === undefined && possible.length > 0) {
+            key = possible.pop();
+        }
+
+        if (key && (key == '115' || key == '83') && (e.ctrlKey || e.metaKey) && !(e.altKey)) {
+            e.preventDefault();
+            $(".save-file").first().trigger("click");
+            return false;
+        }
+        return true;
     });
 
-    $('.exist_folder').on('change', function() {
-        $('.name-folder').val('');
-        $('.name-folder').removeAttr('required');
-        $('.append-folder-name').html($(this).val());
-    });
-</script>
+    <?php
+    if (isset($_SESSION["title_alert"])) {
 
+        $title      = $_SESSION["title_alert"];
+        $alert      = $_SESSION["message_alert"];
+        $type_alert = $_SESSION["type_alert"];
 
-<?php
-    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-menu') !== false) {
         ?>
 
-        <script type="text/javascript">
-            $(document).keydown(function(e) {
-                
-                var key = undefined;
-                var possible = [ e.key, e.keyIdentifier, e.keyCode, e.which ];
-
-                while (key === undefined && possible.length > 0)
-                {
-                    key = possible.pop();
-                }
-
-                if (key && (key == '115' || key == '83' ) && (e.ctrlKey || e.metaKey) && !(e.altKey))
-                {
-                    e.preventDefault();
-                    $( ".save-file" ).first().trigger( "click" );
-                    return false;
-                }
-                return true;
-                }); 
-        </script>
+        Swal.fire({
+            position: 'top-right',
+            icon: '<?= $type_alert ?>',
+            toast: true,
+            title: '<?= $title ?>',
+            showConfirmButton: false,
+            timer: 2000
+        });
 
         <?php
-        
-    }
-?>
+            unset($_SESSION["data"]);
+            ?>
 
-<?php
+        <?php
+            if ($type_alert == "error") {
+                ?>
+            var x = document.getElementById("myAudioError");
+            x.play();
+        <?php
+            } else {
+                ?>
+            var x = document.getElementById("myAudioSuccess");
+            x.play();
+        <?php
+            }
+            ?>
+
+    <?php
+    }
+    unset($_SESSION["title_alert"]);
+    unset($_SESSION["message_alert"]);
+    unset($_SESSION["type_alert"]);
+    unset($_SESSION["data"]);
+    ?>
+
+
+    <?php
     if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false) {
         ?>
 
-        <script type="text/javascript">
-            
-            $('.menu-sidebar').css("display","none");
-            $('.show-hide').click(function(){
-                // $('.remove-display').show();
-                $('.first-sidebar').toggle();
-            });
-        </script>
 
-        <?php
-        
-    }else{
-        ?>
-        <script type="text/javascript">
-            $('.remove-display').css("display","none");
-            $('.show-hide').css("display","none");
-        </script>
-        <?php
+        $('.menu-sidebar').css("display", "none");
+        $('.show-hide').click(function() {
+            // $('.remove-display').show();
+            $('.first-sidebar').toggle();
+        });
+
+    <?php
+
+    } else {
+    ?>
+        $('.remove-display').css("display", "none");
+        $('.show-hide').css("display", "none");
+    <?php
     }
-?>
+    ?>
 
-<script type="text/javascript">
-    jQuery(document).bind("keydown", function(e){
-        if(e.ctrlKey && e.keyCode == 80){
-            e.preventDefault();
-            $( ".preview" ).first().trigger( "click" );
-            return false;
-        }
-    });
-
-    jQuery(document).bind("keydown", function(e){
-        if(e.ctrlKey && e.keyCode == 66){
-            e.preventDefault();
-            $( ".sidebarHide" ).first().trigger( "click" );
-            return false;
-        }
-    });
-    
-    $(".pandora-fade").click(function() {
-        $(this).fadeIn(3000);
-    });
     
 
-    setTimeout(function() {
-        $('.button-trigger-pandorasetup').trigger("click");
-    },10);
+    <?php
+    foreach (glob("../controller/*") as $key => $see) {
 
-    setTimeout(function() {
-        $('.button-trigger-pandorasetup-second').trigger("click");
-    },2800);
+        $explode = explode("/", $see);
+        ?>
+        var editor = CodeMirror.fromTextArea(document.getElementById('<?= $explode[2] ?>'), {
+            keyMap: "sublime",
+            autoCloseBrackets: true,
+            lineNumbers: true,
+            matchBrackets: true,
+            mode: "application/x-httpd-php",
+            indentUnit: 4,
+            indentWithTabs: true,
+            autoRefresh: true,
+            theme: "material-darker",
+            matchBrackets: true,
+            showCursorWhenSelecting: true,
+            tabSize: 2,
+            autoCloseTags: true
+        });
 
-    setTimeout(function() {
-        $('.button-trigger-pandorasetup-third').trigger("click");
-    },5500);
+        editor.on('change', editor => {
+            console.log(editor.getValue());
+            $('.data-code').text(editor.getValue());
+        });
 
-    setTimeout(function() {
-        $( ".link-database" ).first().trigger( "click" );
-    },9300);
+        $('.data-code').text($('.data-code-old').text());
 
-    $(".button-trigger-pandorasetup").click(function(){
-        $(".pandora-fade").fadeIn(2000);
-        $(".pandora-fade").fadeOut();
-    });
-
-    $(".button-trigger-pandorasetup-second").click(function(){
-        $(".pandora-fade-second").fadeIn(2000);
-        $(".pandora-fade-second").fadeOut();
-    });
-
-    $(".button-trigger-pandorasetup-third").click(function(){
-        $(".pandora-fade-third").fadeIn(3000);
-        $(".pandora-fade-third").fadeOut();
-    });
-
-    $('.link-database').click(function(){
-        window.location.replace("setup/database");
-    })
+        editor.setSize(null, 1000);
+    <?php } ?>
 </script>

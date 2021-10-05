@@ -176,8 +176,8 @@
         </div>
 
         <?php
-            @$dataUrlSekarang = explode('/',$_SERVER['REQUEST_URI']);
-            if (@$dataUrlSekarang[3] == "detail-file") {
+            $dataUrlSekarang = explode('/',$_SERVER['REQUEST_URI']);
+            if ($dataUrlSekarang[3] == "detail-file") {
         ?>
         <!-- for controller files -->
         <div class="remove-display border-end bg-white second-sidebar" id="sidebar-wrapper">
@@ -208,7 +208,7 @@
         </div>
         <!-- end for controller files -->
         <?php
-            }else{
+            }else if($dataUrlSekarang[3] == "backend-detail-file"){
         ?>
         <!-- for menu -->
         <div class="remove-display border-end bg-white second-sidebar" id="sidebar-wrapper">
@@ -459,7 +459,9 @@
             <!-- Top navigation-->
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <div class="container-fluid">
+                    <?php if($dataUrlSekarang[3] == "backend-detail-file"){ ?>
                     <button class="show-hide btn btn-warning mr-2 btn-sm">Tampil / Sembunyikan</button>
+                    <?php } ?>
                     <!-- <p>Hai</p>
                     <p >Lorem</p> -->
                     <button class="btn btn-primary btn-sm sidebarHide" id="sidebarToggle"> Tampil / Sembunyikan Sidebar </button>
