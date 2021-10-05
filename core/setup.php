@@ -399,7 +399,7 @@ $content .= '
         rmdir('../resource/views/'.$namaFolder);
 
         alert("Berhasil !","Berhasil Hapus Folder Beserta File Di dalamnya!");
-        view('setup/backend-list-view');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function UpdateController($request, $name)
@@ -523,8 +523,8 @@ $content .= '
 
         if ($cekFile) {
 
-            alert('Nama File Sudah Ada!','Gunakan nama lain','error');
-            view('setup/backend-list-view');
+            alert('Nama file sudah ada, gunakan nama file lain!','Gunakan nama lain','error');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
 
         }else{
             
@@ -577,16 +577,16 @@ $content .= '
     </div><!-- /.card-header -->
     <div class="card-body">
         <div class="tab-content p-0">
-        <form action="" method="POST">
-    
-        <div class="form-group">
-            <label for="">Label</label>
-            <input type="text" name="name_of_field" class="form-control">
-        </div>
+            <form action="" method="POST">
+        
+                <div class="form-group">
+                    <label for="">Label</label>
+                    <input type="text" name="name_of_field" class="form-control">
+                </div>
 
-        <?php tombolForm() ?>
+                <?php tombolForm() ?>
 
-    </form>
+            </form>
         </div>
     </div><!-- /.card-body -->
 </div>';
@@ -601,7 +601,7 @@ $content .= '
 
             alert('Berhasil','Berhasil membuat file '.$request->file.'!','success');
 
-            view('setup/backend-list-view');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
      }
@@ -610,7 +610,7 @@ $content .= '
      {
         unlink('../resource/views/backend/'.$id);
         alert('Berhasil Dihapus!');
-        view('setup/backend-list-view');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
      }
 
      function editNamaFileBackend($request, $id)
@@ -627,7 +627,7 @@ $content .= '
         if ($cekFile) {
 
             alert('Nama File Sudah Ada!','Gunakan nama lain','error');
-            view('setup/backend-list-view');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
 
         }else{
             $oldfile = $request->old_file;

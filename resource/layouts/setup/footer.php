@@ -315,11 +315,11 @@ foreach (glob("../controller/*") as $key => $see) {
         }
     });
 
-    // jQuery(document).bind("keyup keydown", function(e){
-    //     if(e.ctrlKey && e.keyCode == 82){
-    //         e.preventDefault();
-            
-    //         return false;
-    //     }
-    // });
+    jQuery(document).bind("keydown", function(e){
+        if(e.ctrlKey && e.keyCode == 66){
+            e.preventDefault();
+            $( ".sidebarHide" ).first().trigger( "click" );
+            return false;
+        }
+    });
 </script>

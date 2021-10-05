@@ -57,6 +57,10 @@
     .export-png {
         filter: invert(38%) sepia(33%) saturate(2930%) hue-rotate(193deg) brightness(112%) contrast(102%);
     }
+
+    *{
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
 </style>
 
 <body>
@@ -75,18 +79,21 @@
         <!-- Sidebar-->
         <div class="menu-sidebar border-end bg-white first-sidebar" id="sidebar-wrapper">
             <div class=" sidebar-heading border-bottom bg-light" style="font-size: 17px;">
-            <a href="<?= url('setup') ?>">
-                <b>PandoraSetup</b>
-                <img src="<?= asset('setup/coding.png') ?>" style="max-width: 16px;" alt="">
-            </a>
+                <a href="<?= url('setup') ?>">
+                    <b>PandoraSetup</b>
+                    <img src="<?= asset('setup/coding.png') ?>" style="max-width: 16px;" alt="">
+                </a>
             </div>
             <div class=" list-group list-group-flush layouts">
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
-                    href="<?= url('setup/database') ?>"><img src="<?= asset('setup/database.png') ?>" style="max-width:20px"> Database </a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku" href="<?= url('setup/table') ?>"><img
-                        src="<?= asset('setup/table.png') ?>" style="max-width:20px"> Table </a>
+                    href="<?= url('setup/database') ?>"><img src="<?= asset('setup/database.png') ?>"
+                        style="max-width:20px"> Database </a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
-                    href="<?= url('setup/controller') ?>"><img src="<?= asset('setup/controller.png') ?>" class="export-png" style="max-width:20px"> Controller
+                    href="<?= url('setup/table') ?>"><img src="<?= asset('setup/table.png') ?>" style="max-width:20px">
+                    Table </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
+                    href="<?= url('setup/controller') ?>"><img src="<?= asset('setup/controller.png') ?>"
+                        class="export-png" style="max-width:20px"> Controller
                 </a>
 
                 <span class="title-menu">Views</span>
@@ -175,7 +182,8 @@
         ?>
         <!-- for controller files -->
         <div class="remove-display border-end bg-white second-sidebar" id="sidebar-wrapper">
-            <div class="remove-display sidebar-heading border-bottom bg-light" style="font-size: 17px;">Controllers</div>
+            <div class="remove-display sidebar-heading border-bottom bg-light" style="font-size: 17px;">Controllers
+            </div>
             <div class="remove-display list-group list-group-flush">
                 <div class="card-body" style="margin-top: -30px;">
                     <div id="accordion" style="margin-top: 20px;">
@@ -209,6 +217,114 @@
             <div class="remove-display list-group list-group-flush">
                 <div class="card-body" style="margin-top: -30px;">
                     <div id="accordion" style="margin-top: 20px;">
+                        <div style="margin-bottom:10px">
+                            <a data-toggle="modal" data-target="#AddNewFileOrFolder" style="cursor:pointer"><img
+                                    src="<?= asset('setup/add-file.png') ?>" style="max-width: 20px;cursor:pointer" alt=""><span
+                                    style="margin-left: 7px;">Buat baru</span></a>
+                        </div>
+                        <!-- Modal Add File / Folder-->
+                        <div class="modal fade" id="AddNewFileOrFolder" tabindex="-1" role="dialog"
+                            aria-labelledby="AddNewFileOrFolderLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <span style="font-size: 20px;font-family:calibri">Buat Folder & File</span>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                    <div>
+                                        <form action="<?= controller('setup@CreateFolderAndFileBackend') ?>" method="POST" enctype="multipart/form-data">
+                                            <div class="card-body">
+
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Nama Folder </label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+
+                                                                <input class="form-control form-control-sm  name-folder" name="folder" type="text" required placeholder="AwesomeFolder">
+                                                                <small id="emailHelp" class="form-text text-muted">Isikan nama folder yang
+                                                                    ingin anda buat.</small>
+
+                                                            </div>
+                                                            <div class="col-md-4">
+
+                                                                <select name="exist_folder" id="" class="exist_folder js-example-basic-single form-control">
+                                                                    <option value="" selected disabled>-Pilih Folder-</option>
+
+                                                                    <?php
+
+                                                                    foreach (glob("../resource/views/backend/*") as $key => $see) {
+
+                                                                        $see = explode('/', $see);
+
+                                                                        $attr = '';
+
+                                                                        if ($see[4] == "dashboard.php") {
+                                                                            ?>
+                                                                            
+                                                                            <?php
+                                                                        }else{
+
+                                                                        ?>
+                                                                        <option <?= $attr ?> value="<?= $see[4] ?>"> <?= $see[4] ?></option>
+                                                                        <?php } ?>
+                                                                    <?php } ?>
+                                                                    
+                                                                </select>
+
+
+                                                                <small id="emailHelp" class="form-text text-muted">Atau pilih dari folder yang sudah ada.</small>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Nama File</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-4" style="margin-top: 8px;">
+
+                                                                <input placeholder="AwesomeFile" type="text" name="file" class="form-control form-control-sm">
+
+                                                                <small id="emailHelp" class="form-text text-muted">Isikan nama file yang
+                                                                    ingin anda buat di dalam folder <code class="append-folder-name"></code>.</small>
+
+                                                            </div>
+                                                            <div class="col-md-4" style="margin-top: 8px;">
+
+                                                                <select name="type_view" class="form-control form-control-sm" id="">
+                                                                    <option disabled selected>-Pilih Tipe-</option>
+                                                                    <option value="blank">Blank Page</option>
+                                                                    <option value="table">Table</option>
+                                                                    <option value="form">Form</option>
+                                                                </select>
+
+                                                                <small id="emailHelp" class="form-text text-muted">
+                                                                    Pilih tipe untuk desain file anda.
+                                                                </small>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="float-right">
+                                                    <button type="submit" class="btn btn-sm btn-primary">Buat</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <?php
                             foreach (glob("../resource/views/backend/*") as $key => $see) {
                                 
@@ -224,6 +340,12 @@
                             <a style="color: #2c3e50;cursor:pointer" data-toggle="collapse"
                                 data-target="#demo<?= $see[4] ?>">
                                 <span style="margin-left: 7px;"><?= $see[4] ?></span>
+                            </a>
+                            <a class="delete-table" data-table="<?= $see[4] ?>" data-url="<?= controller('setup@deleteFolderBackend',  'backend/'.$see[4]) ?>">
+                                <img class="delete-png" src="<?= asset('setup/cancel.png') ?>" style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
+                            </a>
+                            <a data-toggle="modal" data-target="#EditNamaFileView">
+                                <img class="export-png" src="<?= asset('setup/edit.png') ?>" style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
                             </a>
                         </span>
                         <?php
@@ -309,7 +431,7 @@
                     <button class="show-hide btn btn-warning mr-2 btn-sm">Tampil / Sembunyikan</button>
                     <!-- <p>Hai</p>
                     <p >Lorem</p> -->
-                    <button class="btn btn-primary btn-sm" id="sidebarToggle"> Tampil / Sembunyikan Sidebar </button>
+                    <button class="btn btn-primary btn-sm sidebarHide" id="sidebarToggle"> Tampil / Sembunyikan Sidebar </button>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation"><span

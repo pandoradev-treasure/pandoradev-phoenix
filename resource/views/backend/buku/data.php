@@ -1,9 +1,9 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">
-            Data Buku
+            Judul
         </h3>
-        <a href="" class="btn btn-sm btn-primary shadow float-right">Tambah</a>
+        <a href="<?= url('backend/buku/form') ?>" class="btn btn-sm btn-primary shadow float-right">Tambah</a>
     </div><!-- /.card-header -->
     <div class="card-body">
         <div class="tab-content p-0">
@@ -11,18 +11,24 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kolom 1</th>
-                        <th>Kolom 2</th>
-                        <th>Kolom 3</th>
+                        <th>Judul</th>
+                        <th>Deskripsi</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+										<?php
+												foreach( query()->table('buku')->get() as $dataBuku ){
+										?>
                     <tr>
-                        <td>1</td>
-                        <td>A</td>
-                        <td>B</td>
-                        <td>C</td>
+												<td><?= $no++ ?></td>
+												<td><?= $dataBuku['judul'] ?></td>
+												<td><?= $dataBuku['deskripsi'] ?></td>
+												<td>
+													<a href="<?php controller('BukuController@delete', $dataBuku['id']) ?>" class="btn btn-danger btn-sm">hapus</a>
+												</td>
                     </tr>
+										<?php } ?>
                 </tbody>
             </table>
         </div>
