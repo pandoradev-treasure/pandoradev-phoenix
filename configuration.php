@@ -1,22 +1,19 @@
 <?php
 
 
-    $AUTH          = false;
-    
-    #$AUTH = FITUR LOGIN & REGISTER
-    #Ubah isi variable $AUTH dari false menjadi true, jika ingin mengaktifkan fitur Login & Register
+$AUTH          = false;
 
     $REDIRECT      = "";
     //$REDIRECT = UNTUK REDIRECT / PINDAH HALAMAN PADA SAAT PANDORACODE DIAKSES
 
-    $CHECKDB       = false;
+$REDIRECT      = "backend/dashboard";
+//$REDIRECT = UNTUK REDIRECT / PINDAH HALAMAN PADA SAAT PANDORACODE DIAKSES
 
-    #$CHECK = PENGECEKAN DATABASE
-    #Ubah isi variable $CHECK dari false menjadi true, jika ingin mengaktifkan fungsi check database
+$CHECKDB       = false;
 
-    $HOST          = "";
-    $USER          = "";
-    $PASSWORD      = "";
-    $DATABASE      = "new_pandoracode";
+$HOST          = "";
+$USER          = "";
+$PASSWORD      = "";
+$DATABASE      = "new_pandoracode";
 
     #Jika Host, User, Password tidak diisi maka otomatis akan mengikuti settingan default XAMPP
