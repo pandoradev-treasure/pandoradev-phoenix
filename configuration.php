@@ -6,7 +6,7 @@
     #$AUTH = FITUR LOGIN & REGISTER
     #Ubah isi variable $AUTH dari false menjadi true, jika ingin mengaktifkan fitur Login & Register
 
-    $REDIRECT      = "backend/dashboard";
+    $REDIRECT      = "";
     //$REDIRECT = UNTUK REDIRECT / PINDAH HALAMAN PADA SAAT PANDORACODE DIAKSES
 
     $CHECKDB       = false;
@@ -17,6 +17,6 @@
     $HOST          = "";
     $USER          = "";
     $PASSWORD      = "";
-    $DATABASE      = "pandoracode_development";
+    $DATABASE      = "new_pandoracode";
 
     #Jika Host, User, Password tidak diisi maka otomatis akan mengikuti settingan default XAMPP

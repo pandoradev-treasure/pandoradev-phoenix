@@ -80,8 +80,7 @@
         <div class="menu-sidebar border-end bg-white first-sidebar" id="sidebar-wrapper">
             <div class=" sidebar-heading border-bottom bg-light" style="font-size: 17px;">
                 <a href="<?= url('setup') ?>">
-                    <b>PandoraSetup</b>
-                    <img src="<?= asset('setup/coding.png') ?>" style="max-width: 16px;" alt="">
+                    <strong>Pandora</strong>Setup.
                 </a>
             </div>
             <div class=" list-group list-group-flush layouts">

@@ -31,9 +31,15 @@
 
             // echo "<pre>";
             // var_dump($url);
-            // check($url);
+            if (file_exists('../resource/views/backend/'.$url)) {
+                $url = $url;
+            }else{
+                $url = "backend/dashboard";
+            }
+
             $layoutsHeader = include "../resource/layouts/backend/header.php";
             $getfile       = include "../resource/views/$url.php";
+
             $layoutsFooter = include "../resource/layouts/backend/footer.php";
             
 
