@@ -24,5 +24,4 @@
         PandoraSetup
         <img src="<?= asset('setup/coding.png') ?>" style="max-width: 40px;" alt="">
     </h1>
-    <p>Apa-apa yang kita lakukan, semoga bermanfaat :)</p>
 </div>
