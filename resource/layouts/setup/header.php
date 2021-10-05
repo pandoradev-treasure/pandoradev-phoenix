@@ -74,7 +74,12 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
         <div class="menu-sidebar border-end bg-white first-sidebar" id="sidebar-wrapper">
-            <div class=" sidebar-heading border-bottom bg-light" style="font-size: 17px;">PandoraSetup</div>
+            <div class=" sidebar-heading border-bottom bg-light" style="font-size: 17px;">
+            <span>
+                <b>PandoraSetup</b>
+                <img src="<?= asset('setup/coding.png') ?>" style="max-width: 16px;" alt="">
+            </span>
+            </div>
             <div class=" list-group list-group-flush layouts">
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
                     href="database"><img src="<?= asset('setup/database.png') ?>" style="max-width:20px"> Database </a>

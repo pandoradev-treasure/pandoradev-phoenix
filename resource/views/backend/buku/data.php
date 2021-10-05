@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">
-            Judul
+            Data Buku
         </h3>
         <a href="" class="btn btn-sm btn-primary shadow float-right">Tambah</a>
     </div><!-- /.card-header -->
