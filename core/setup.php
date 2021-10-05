@@ -639,7 +639,8 @@ $content .= '
 
             alert('Berhasil','Berhasil merubah nama file menjadi '.$newfile.'!','success');
 
-            view('setup/backend-list-view');
+            // view('setup/backend-list-view');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
          
      }

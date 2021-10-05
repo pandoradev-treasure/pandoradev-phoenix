@@ -130,29 +130,6 @@ if (isset($_SESSION["title_alert"])) {
 
     ?>
     <script>
-        // Swal.fire(
-        //     '<?= $title ?>',
-        //     '<?= $alert ?>',
-        //     '<?= $type_alert ?>'
-        // );
-
-        // const Toast = Swal.mixin({
-        // toast: true,
-        // position: 'top-end',
-        // showConfirmButton: false,
-        // timer: 3000,
-        // timerProgressBar: true,
-        // didOpen: (toast) => {
-        //     toast.addEventListener('mouseenter', Swal.stopTimer)
-        //     toast.addEventListener('mouseleave', Swal.resumeTimer)
-        // }
-        // })
-
-        // Toast.fire({
-        // icon: 'success',
-        // title: '<?= $title ?>',
-        // text: "lorem"
-        // })
 
         Swal.fire({
             position         : 'top-end',
@@ -305,10 +282,22 @@ foreach (glob("../controller/*") as $key => $see) {
         ?>
 
         <script type="text/javascript">
-            $('body').addClass('sb-sidenav-toggled');
+            
+            $('.menu-sidebar').css("display","none");
+            $('.show-hide').click(function(){
+                // $('.remove-display').show();
+                $('.first-sidebar').toggle();
+            });
         </script>
 
         <?php
         
+    }else{
+        ?>
+        <script>
+            $('.remove-display').css("display","none");
+            $('.show-hide').css("display","none");
+        </script>
+        <?php
     }
 ?>
