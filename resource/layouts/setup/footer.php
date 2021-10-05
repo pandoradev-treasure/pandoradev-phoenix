@@ -1,10 +1,11 @@
 </div>
-        </div>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="<?= asset('setup/js/scripts.js') ?>"></script>
-    </body>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="<?= asset('setup/js/scripts.js') ?>"></script>
+</body>
+
 </html>
 <!-- jQuery -->
 <script src="<?= asset('plugins/jquery/jquery.min.js') ?>"></script>
@@ -12,7 +13,7 @@
 <script src="<?= asset('plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?= asset('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
@@ -42,16 +43,22 @@
 <script src="<?= asset('codemirror/mode/clike/clike.js') ?>"></script>
 <script src="<?= asset('codemirror/mode/css/css.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/display/autorefresh.js') ?>"></script>
+<script src="<?= asset('codemirror/keymap/sublime.js') ?>"></script>
+<script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 <script>
     $(document).ready(function() {
+        $('.preview').click(function(){
+            var datacode = $('.data-code-old').text();
+            $('.result-preview').html(datacode);
+        });
         $('.js-example-basic-single').select2({
             width: 'resolve' // need to override the changed default
         });
 
         $('.sidebarT').hide();
     });
-    
-    $('.add-column').click(function(){
+
+    $('.add-column').click(function() {
 
         var row = null;
 
@@ -97,100 +104,114 @@
         console.log(x);
     });
 
-    $('.delete-table').click(function(el){
+    $('.delete-table').click(function(el) {
         el.preventDefault();
 
-        var url   = $(this).data('url');
+        var url = $(this).data('url');
         var table = $(this).data('table');
 
         console.log(url);
         Swal.fire({
-            title: 'Apakah anda yakin ingin menghapus table '+table+'?',
+            title: 'Apakah anda yakin ingin menghapus ' + table + '?',
             showDenyButton: true,
             confirmButtonText: 'Hapus',
             denyButtonText: `Batal`,
-            }).then((result) => {
+        }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 window.location = url;
             } else if (result.isDenied) {
-                Swal.fire('Gagal menghapus table '+table, '', 'info')
+                Swal.fire('Gagal menghapus ' + table, '', 'info')
             }
         })
     });
 </script>
 
 <?php
-    if (isset($_SESSION["alert_delete_table"])) {
-        ?>
-            <script>
-            Swal.fire(
-                'Berhasil Dihapus!',
-                'Table berhasil dihapus!',
-                'success'
-                )
-            </script>
-        <?php
-    } unset($_SESSION["alert_delete_table"]);
+if (isset($_SESSION["alert_delete_table"])) {
+    ?>
+    <script>
+        Swal.fire(
+            'Berhasil Dihapus!',
+            'Table berhasil dihapus!',
+            'success'
+        )
+    </script>
+<?php
+}
+unset($_SESSION["alert_delete_table"]);
 ?>
 
 <?php
-    if (isset($_SESSION["alert"])) {
-        $alert = $_SESSION["alert"];
-        ?>
-            <script>
-            Swal.fire(
-                'Berhasil!',
-                '<?= $alert ?>',
-                'success'
-                )
-            </script>
-        <?php
-    } unset($_SESSION["alert"]);
-?>
+if (isset($_SESSION["title_alert"])) {
 
-<!-- FOR CODE MIRROR -->
-<!-- <script>
-    //  CodeMirror.fromTextArea(document.getElementById('code'), {
-    //     lineNumbers: true,
-    //     mode: 'application/x-httpd-php',
-    // }).on('change', editor => {
-    //     console.log(editor.getValue());
-    // });
+    $title      = $_SESSION["title_alert"];
+    $alert      = $_SESSION["message_alert"];
+    $type_alert = $_SESSION["type_alert"];
 
-    $(document).ready(function(){
-        var code = $('.codemirror-textarea')[0];
-        var editor = CodeMirror.fromTextArea(code, {
-            lineNumbers: true,
-            matchBrackets: true,
-            mode: "application/x-httpd-php",
-            indentUnit: 4,
-            indentWithTabs: true,
-            theme : "material-darker"
+    ?>
+    <script>
+
+        Swal.fire({
+            position         : 'top-right',
+            icon             : '<?= $type_alert ?>',
+            toast            : true,
+            title            : '<?= $title ?>',
+            showConfirmButton: false,
+            timer            : 2000
         });
-    });
-</script>
 
- -->
+        <?php
+            unset($_SESSION["data"]);    
+        ?>
+    </script>
 
+    <?php
+        if ($type_alert == "error") {
+            ?>
+        <script>
+            var x = document.getElementById("myAudioError");
+            x.play();
+        </script>
+    <?php
+        } else {
+            ?>
+        <script>
+            var x = document.getElementById("myAudioSuccess");
+            x.play();
+        </script>
+    <?php
+        }
+        ?>
 
-
-
- <?php
-    foreach (glob("../controller/*") as $key => $see) {
-    
-    $explode = explode("/",$see);
+<?php
+}
+unset($_SESSION["title_alert"]);
+unset($_SESSION["message_alert"]);
+unset($_SESSION["type_alert"]);
+unset($_SESSION["data"]); 
 ?>
-<script>
 
-    var editor = CodeMirror.fromTextArea(document.getElementById('<?= $explode[2] ?>'), {
-            lineNumbers: true,
-            matchBrackets: true,
-            mode: "application/x-httpd-php",
-            indentUnit: 4,
-            indentWithTabs: true,
-            autoRefresh: true,
-            theme : "material-darker"
+<?php
+foreach (glob("../controller/*") as $key => $see) {
+
+    $explode = explode("/", $see);
+    ?>
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById('<?= $explode[2] ?>'), {
+            keyMap                 : "sublime",
+            autoCloseBrackets      : true,
+            lineNumbers            : true,
+            matchBrackets          : true,
+            mode                   : "application/x-httpd-php",
+            indentUnit             : 4,
+            indentWithTabs         : true,
+            autoRefresh            : true,
+            theme                  : "material-darker",
+            matchBrackets          : true,
+            showCursorWhenSelecting: true,
+            tabSize                : 2,
+            autoCloseTags          : true
         });
 
         editor.on('change', editor => {
@@ -201,5 +222,121 @@
         $('.data-code').text($('.data-code-old').text());
 
         editor.setSize(null, 1000);
-</script>
+    </script>
 <?php } ?>
+
+
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
+        keyMap                 : "sublime",
+        autoCloseBrackets      : true,
+        lineNumbers            : true,
+        matchBrackets          : true,
+        mode                   : "application/x-httpd-php",
+        indentUnit             : 4,
+        indentWithTabs         : true,
+        autoRefresh            : true,
+        theme                  : "material-darker",
+        matchBrackets          : true,
+        showCursorWhenSelecting: true,
+        tabSize                : 2,
+        autoCloseTags          : true
+    });
+
+    editor.on('change', editor => {
+        console.log(editor.getValue());
+        $('.data-code').text(editor.getValue());
+    });
+
+    $('.data-code').text($('.data-code-old').text());
+
+    editor.setSize(null, 1000);
+</script>
+
+<script>
+
+    $('.name-folder').keyup(function() {
+        $('.exist_folder').val('');
+        $('.append-folder-name').html($(this).val());
+    });
+
+    $('.exist_folder').on('change', function() {
+        $('.name-folder').val('');
+        $('.name-folder').removeAttr('required');
+        $('.append-folder-name').html($(this).val());
+    });
+</script>
+
+
+<?php
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-menu') !== false) {
+        ?>
+
+        <script type="text/javascript">
+            $(document).keydown(function(e) {
+                
+                var key = undefined;
+                var possible = [ e.key, e.keyIdentifier, e.keyCode, e.which ];
+
+                while (key === undefined && possible.length > 0)
+                {
+                    key = possible.pop();
+                }
+
+                if (key && (key == '115' || key == '83' ) && (e.ctrlKey || e.metaKey) && !(e.altKey))
+                {
+                    e.preventDefault();
+                    $( ".save-file" ).first().trigger( "click" );
+                    return false;
+                }
+                return true;
+                }); 
+        </script>
+
+        <?php
+        
+    }
+?>
+
+<?php
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false) {
+        ?>
+
+        <script type="text/javascript">
+            
+            $('.menu-sidebar').css("display","none");
+            $('.show-hide').click(function(){
+                // $('.remove-display').show();
+                $('.first-sidebar').toggle();
+            });
+        </script>
+
+        <?php
+        
+    }else{
+        ?>
+        <script>
+            $('.remove-display').css("display","none");
+            $('.show-hide').css("display","none");
+        </script>
+        <?php
+    }
+?>
+
+<script>
+    jQuery(document).bind("keydown", function(e){
+        if(e.ctrlKey && e.keyCode == 80){
+            e.preventDefault();
+            $( ".preview" ).first().trigger( "click" );
+            return false;
+        }
+    });
+
+    jQuery(document).bind("keydown", function(e){
+        if(e.ctrlKey && e.keyCode == 66){
+            e.preventDefault();
+            $( ".sidebarHide" ).first().trigger( "click" );
+            return false;
+        }
+    });
+</script>

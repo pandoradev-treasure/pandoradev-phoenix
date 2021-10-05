@@ -453,6 +453,24 @@ $content .= '
 
     function CreateController($request)
     {
+        
+        $cekFile  = false;
+        $namaFile = str_replace('.php','',$request->controller).".php";
+
+        foreach (glob("../controller/$namaFile") as $see) {
+            $cekFile = true;
+        }
+
+        if ($cekFile) {
+
+            alert('Nama File Sudah Ada!','Gunakan nama lain','error');
+            view('setup/controller');
+            
+            die();
+            exit();
+            
+        }
+
         $controllerName = str_replace(".php","",$request->controller);
         
 
@@ -536,6 +554,29 @@ $content .= '
         $file = [$request->id];
         view('setup/detail-file', compact('file'));
     }
+    
+    function detailFileBackend($request)
+    {
+        $file = [$request->id];
+        view('setup/backend-detail-file', compact('file'));
+    }
+
+    function deleteFolderBackend($request, $namaFolder)
+    {
+        $files = glob('../resource/views/'.$namaFolder.'/*');
+
+        
+        foreach ($files as $key => $value) {
+            
+            $files = explode('/', $value);
+            unlink('../resource/views/'.$namaFolder.'/'.$files[5]);
+        }
+
+        rmdir('../resource/views/'.$namaFolder);
+
+        alert("Berhasil !","Berhasil Hapus Folder Beserta File Di dalamnya!");
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 
     function UpdateController($request, $name)
     {
@@ -552,3 +593,228 @@ $content .= '
 
         view('setup/detail-file', compact('file'));
     }
+
+    function UpdateFileBackend($request, $name)
+    {
+        $myfile  = fopen("../resource/views/backend/$name", "w") or die("Unable to open file!");
+        
+        $content = $request->data_new_code;
+
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        alert('Berhasil mengupdate file '.$name);
+        
+        $file = [$name];
+
+        view('setup/backend-detail-file', compact('file'));
+    }
+
+    function deleteFileController($request)
+    {
+        unlink('../controller/'.$request->id);
+        alert('Berhasil Dihapus!');
+        view('setup/controller');
+    }
+
+    function editNamaController($request)
+    {
+        $cekFile  = false;
+
+        $file     = [$request->old_file];
+
+        $namaFile = str_replace('.php', '', $request->new_name_file).".php";
+
+        foreach (glob("../controller/$namaFile") as $see) {
+            $cekFile = true;
+        }
+
+        if ($cekFile) {
+
+            alert('Nama File Sudah Ada!','Gunakan nama lain','error');
+            view('setup/detail-file', compact('file'));
+            
+        }else{
+            
+            unlink('../controller/'.$request->old_file);
+
+            $myfile  = fopen("../controller/$namaFile", "w") or die("Unable to open file!");
+
+            $content = $request->data_new_code;
+
+            fwrite($myfile, $content);
+            fclose($myfile);
+
+            alert('Berhasil','Berhasil mengupdate nama file controller!');
+            
+            $file = [$namaFile];
+
+            view('setup/detail-file', compact('file'));
+
+        }
+
+    }
+
+
+    /*
+     *Update File layouts/backend/menu.php 
+     */
+
+     function UpdateFileMenuBackend($request)
+     {
+        
+        $myfile  = fopen("../resource/layouts/backend/menu.php", "w") or die("Unable to open file!");
+
+        $content = $request->data_new_code;
+
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        alert('Berhasil','Berhasil mengupdate file menu.php!','success');
+
+        view('setup/backend-menu');
+     }
+
+     function CreateFolderAndFileBackend($request)
+     {
+
+        $folder = "";
+        if ($request->exist_folder) {
+
+            $folder = $request->exist_folder;
+
+        }else{
+
+            $folder = $request->folder;
+
+        }
+
+        $cekFile  = false;
+
+        $namaFile = str_replace('.php', '', $request->file).".php";
+
+        foreach (glob("../resource/views/backend/$folder/$namaFile") as $see) {
+            $cekFile = true;
+        }
+
+        if ($cekFile) {
+
+            alert('Nama file sudah ada, gunakan nama file lain!','Gunakan nama lain','error');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+        }else{
+            
+
+            mkdir('../resource/views/backend/'.$folder);
+
+            $file = str_replace('.php','',$request->file);
+
+            $myfile  = fopen("../resource/views/backend/$folder/$file.php", "w") or die("Unable to open file!");
+
+            if ($request->type_view == "table") {
+                $content = '<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            Judul
+        </h3>
+        <a href="" class="btn btn-sm btn-primary shadow float-right">Tambah</a>
+    </div><!-- /.card-header -->
+    <div class="card-body">
+        <div class="tab-content p-0">
+            <table class="table table-striped data-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Kolom 1</th>
+                        <th>Kolom 2</th>
+                        <th>Kolom 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>A</td>
+                        <td>B</td>
+                        <td>C</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><!-- /.card-body -->
+</div>';
+            }
+
+            if ($request->type_view == "form") {
+                $content = '<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            Judul
+        </h3>
+    </div><!-- /.card-header -->
+    <div class="card-body">
+        <div class="tab-content p-0">
+            <form action="" method="POST">
+        
+                <div class="form-group">
+                    <label for="">Label</label>
+                    <input type="text" name="name_of_field" class="form-control">
+                </div>
+
+                <?php tombolForm() ?>
+
+            </form>
+        </div>
+    </div><!-- /.card-body -->
+</div>';
+            }
+
+            if (!$request->type_view || $request->type_view == "blank") {
+                $content = "";
+            }
+
+            fwrite($myfile, $content);
+            fclose($myfile);
+
+            alert('Berhasil','Berhasil membuat file '.$request->file.'!','success');
+
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+
+     }
+
+     function deleteFileBackend($request, $id)
+     {
+        unlink('../resource/views/backend/'.$id);
+        alert('Berhasil Dihapus!');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+     }
+
+     function editNamaFileBackend($request, $id)
+     {
+
+        $cekFile  = false;
+
+        $namaFile = str_replace('.php', '', $request->new_name_file).".php";
+
+        foreach (glob("../resource/views/$id/$namaFile") as $see) {
+            $cekFile = true;
+        }
+
+        if ($cekFile) {
+
+            alert('Nama File Sudah Ada!','Gunakan nama lain','error');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+        }else{
+            $oldfile = $request->old_file;
+            $newfile = str_replace('.php','',$request->new_name_file).".php";
+
+            rename("../resource/views/$id/$oldfile","../resource/views/$id/$newfile");
+
+            alert('Berhasil','Berhasil merubah nama file menjadi '.$newfile.'!','success');
+
+            // view('setup/backend-list-view');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+         
+     }

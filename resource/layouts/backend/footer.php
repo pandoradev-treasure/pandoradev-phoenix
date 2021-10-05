@@ -107,23 +107,34 @@
 
         }); 
 
-        $.each($('.layout'), function(k,v){
+        // $.each($('.layout'), function(k,v){
 
-          var dir    = $(this).attr('href');
-          dir        = dir.split('/');
-          var path   = window.location.pathname;
-          var result = path.split('/');
 
-          if (result[2] == dir[1]) {
-            $(this).addClass('active');
-          }
+        //   var data = $(this).attr('href');
+        //   console.log(data);
+
+
+        //   var dir    = $(this).attr('href');
+        //   dir        = dir.split('/');
+        //   var path   = window.location.pathname;
+        //   var result = path.split('/');
           
-        });
+        //   console.log(result[2]+"/"+result[3]+"/"+result[4]);
+
+        //   if (data == result[2]+"/"+result[3]+"/"+result[4] || data == result[3]+"/"+result[4]) {
+        //     $(this).removeAttr('href');
+        //   }
+          
+        //   if (result[3] == dir[1]) {
+        //     $(this).addClass('active');
+        //   }
+          
+        // });
 
 </script>
 
 <?php
-  if ($_SESSION["alert"]) {
+  if ($_SESSION["alert"] ) {
     $msg = $_SESSION["alert"];
   ?>
     <script>
@@ -138,5 +149,51 @@
   }
 ?>
 
+<?php
+if (isset($_SESSION["title_alert"])) {
+
+    $title      = $_SESSION["title_alert"];
+    $alert      = $_SESSION["message_alert"];
+    $type_alert = $_SESSION["type_alert"];
+
+    ?>
+    <script>
+        
+        Swal.fire(
+          '<?= $title ?>',
+          '<?= $alert ?>',
+          '<?= $type_alert ?>'
+        );
+
+        <?php
+            unset($_SESSION["data"]);    
+        ?>
+    </script>
+
+    <?php
+        if ($type_alert == "error") {
+            ?>
+        <script>
+            var x = document.getElementById("myAudioError");
+            x.play();
+        </script>
+    <?php
+        } else {
+            ?>
+        <script>
+            var x = document.getElementById("myAudioSuccess");
+            x.play();
+        </script>
+    <?php
+        }
+        ?>
+
+<?php
+}
+unset($_SESSION["title_alert"]);
+unset($_SESSION["message_alert"]);
+unset($_SESSION["type_alert"]);
+unset($_SESSION["data"]); 
+?>
 </body>
 </html>

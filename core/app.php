@@ -15,6 +15,10 @@
         $url           = $_GET['params'];
         $url           = explode("/",$url);
 
+        if (!$url[1]) {
+            $url[1] = "index";
+        }
+
         $layoutsHeader = include "../resource/layouts/setup/header.php";
         $getfile       = include "../resource/setup/$url[1].php";
         $layoutsFooter = include "../resource/layouts/setup/footer.php";
@@ -25,6 +29,9 @@
 
             $url           = $_GET['params'];
 
+            // echo "<pre>";
+            // var_dump($url);
+            // check($url);
             $layoutsHeader = include "../resource/layouts/backend/header.php";
             $getfile       = include "../resource/views/$url.php";
             $layoutsFooter = include "../resource/layouts/backend/footer.php";
