@@ -1,6 +1,7 @@
-# /controller/*
-# /core/*
-# /database/*
-# /resource/*
-# configuration.php
-# index.php
+/controller/*
+/core/*
+/database/*
+/resource/*
+configuration.php
+index.php
+.htaccess
