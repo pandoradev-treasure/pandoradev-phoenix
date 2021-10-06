@@ -1,6 +1,6 @@
 # /controller/*
 # /core/*
 # /database/*
-# /resource/*
+# /resource/setup/*
 # configuration.php
 # index.php

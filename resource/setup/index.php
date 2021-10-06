@@ -15,7 +15,7 @@
 
     .text {
         /* font-weight            : bolder; */
-        font-size              : 45px;
+        font-size              : 30px;
         color : #3d3d3d
     }
 </style>

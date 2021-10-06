@@ -176,8 +176,8 @@
         </div>
 
         <?php
-            @$dataUrlSekarang = explode('/',$_SERVER['REQUEST_URI']);
-            if (@$dataUrlSekarang[3] == "detail-file") {
+            $dataUrlSekarang = explode('/',$_SERVER['REQUEST_URI']);
+            if ($dataUrlSekarang[3] == "detail-file") {
         ?>
         <!-- for controller files -->
         <div class="remove-display border-end bg-white second-sidebar" id="sidebar-wrapper">
@@ -208,7 +208,7 @@
         </div>
         <!-- end for controller files -->
         <?php
-            }else{
+            }else if($dataUrlSekarang[3] == "backend-detail-file"){
         ?>
         <!-- for menu -->
         <div class="remove-display border-end bg-white second-sidebar" id="sidebar-wrapper">
@@ -289,7 +289,7 @@
                                                         <div class="row">
                                                             <div class="col-md-4" style="margin-top: 8px;">
 
-                                                                <input placeholder="AwesomeFile" type="text" name="file" class="form-control form-control-sm">
+                                                                <input required placeholder="AwesomeFile" type="text" name="file" class="form-control form-control-sm">
 
                                                                 <small id="emailHelp" class="form-text text-muted">Isikan nama file yang
                                                                     ingin anda buat di dalam folder <code class="append-folder-name"></code>.</small>
@@ -343,9 +343,39 @@
                             <a class="delete-table" data-table="<?= $see[4] ?>" data-url="<?= controller('setup@deleteFolderBackend',  'backend/'.$see[4]) ?>">
                                 <img class="delete-png" src="<?= asset('setup/cancel.png') ?>" style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
                             </a>
-                            <a data-toggle="modal" data-target="#EditNamaFileView">
+                            <a data-toggle="modal" data-target="#FolderName<?= str_replace('.','',$see[4]) ?>">
                                 <img class="export-png" src="<?= asset('setup/edit.png') ?>" style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
                             </a>
+
+                            <!-- Edit Name Folder -->
+                            <div class="modal fade" id="FolderName<?= str_replace('.','',$see[4]) ?>" tabindex="-9" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Nama Folder </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="<?= controller('setup@editNamaFolderBackend', 'backend/'.$see[4]) ?>" method="POST">
+                                            <div class="modal-body">
+                                                <div class="form-inline">
+                                                    <div class="form-group mb-2">
+                                                        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?= $see[4] ?>">
+                                                    </div>
+                                                    <div class="form-group mx-sm-3 mb-2">
+                                                        <label for="inputPassword2" class="sr-only">Nama Baru</label>
+                                                        <input name="new_name_file" required type="text" class="form-control" id="inputPassword2" placeholder="Nama Baru">
+                                                    </div>
+                                                    <input type="hidden" name="old_file" value="<?= $seefile ?>">
+                                                    <textarea style="display: none;" name="data_new_code" class="data-code" id="" cols="30" rows="10"></textarea>
+                                                    <button type="submit" class="btn btn-primary btn-sm mb-2">Ubah</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </span>
                         <?php
                             //For Views Files
@@ -356,9 +386,11 @@
                             ?>
 
                         <div style="margin-left: 17px;" id="demo<?= $see[4] ?>" class="collapse">
+                        
                             <img src="<?= asset('setup/file.png') ?>" style="max-width:14px"> <a
                                 href="<?= controller('setup@detailFileBackend', $see[4] . "/" . $seefile) ?>"
                                 class="link" style="color:#1e272e"><?= $seefile ?></a>
+
                             <a class="delete-table float-right" data-table="<?= $seefile ?>"
                                 data-url="<?= controller('setup@deleteFileBackend',  $see[4] . "/" . $seefile) ?>">
                                 <img class="delete-png" src="<?= asset('setup/delete.png') ?>"
@@ -427,7 +459,9 @@
             <!-- Top navigation-->
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <div class="container-fluid">
+                    <?php if($dataUrlSekarang[3] == "backend-detail-file"){ ?>
                     <button class="show-hide btn btn-warning mr-2 btn-sm">Tampil / Sembunyikan</button>
+                    <?php } ?>
                     <!-- <p>Hai</p>
                     <p >Lorem</p> -->
                     <button class="btn btn-primary btn-sm sidebarHide" id="sidebarToggle"> Tampil / Sembunyikan Sidebar </button>

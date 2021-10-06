@@ -37,7 +37,7 @@
         background             : linear-gradient(to right, #5b28ff 30%, #04c3ff 70%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        display                : inline-block;
+        /* display                : inline-block; */
         vertical-align         : middle;
         line-height            : normal;
         font-size              : 45px;
@@ -75,17 +75,20 @@
 </style>
 <body class="bg">
     <div class="center">
-        <h1 class="text">
-            PANDORACODE 1.2
-        </h1>
+        <span class="text">
+            PANDORACODE
+        </span>
+        <div class="text" style="margin-top: -40px;margin-left: 284px;color:#3d3d3d" >
+            <span style="font-size: 13px;">[phoenix]</span>
+        </div>
         <!-- <p class="desc">Lebih <span class="high">simple</span>, dan <span class="high">efisien</span>.</p> -->
-        <p href="" class="typewrite desc" data-period="2000" 
+        <!-- <p href="" class="typewrite desc" data-period="2000" 
             data-type='[ "Sekarang kami lebih simple", "Berkarya bersama pandoracode!" ]'>
             <span class="wrap desc"></span>
-        </p>
+        </p> -->
 
         <div style="margin-top: 10%;">
-            <a href="setup/database"><button type="button" class="btn btn-outline-primary btn-sm">Konfigurasi</button></a>
+            <a href="setup"><button type="button" class="btn btn-outline-primary btn-sm">Konfigurasi</button></a>
             <a href=""><button type="button" class="btn btn-outline-primary btn-sm">Documentation</button></a>
         </div>
     </div>
