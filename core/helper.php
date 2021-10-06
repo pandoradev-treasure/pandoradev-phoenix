@@ -131,7 +131,7 @@
 
       function where($where, $with)
       {
-          $this->where .= " WHERE $where = $with";
+          $this->where .= " WHERE $where = '$with'";
           return $this;
       }
 
@@ -143,7 +143,7 @@
 
       function get()
       {
-          global $host;
+        global $host;
 
           if ($this->select) {
               $this->praFinalQuery = $this->select;
@@ -158,11 +158,7 @@
           }
           
           if ($this->where) {
-              $this->praFinalQuery .= $this->praFinalQuery.$this->where;
-          }
-
-          if ($this->orderBy) {
-              $this->finalQuery .= $this->praFinalQuery.$this->orderBy; 
+              $this->finalQuery .= $this->praFinalQuery.$this->where;
           }else{
               $this->finalQuery .= $this->praFinalQuery;
           }
@@ -191,6 +187,7 @@
           }else{
               $this->finalQuery .= $this->praFinalQuery;
           }
+
           return mysqli_fetch_object(mysqli_query($host, $this->finalQuery));
       }
 
@@ -386,9 +383,10 @@
     /* END */
 
     /* SECTION */
-    function section(Type $var = null)
+
+    function hitung($data)
     {
-      # code...
+      return $data->num_rows;
     }
     /* END SECTION */
 
