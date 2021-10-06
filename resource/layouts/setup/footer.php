@@ -130,7 +130,8 @@ unset($_SESSION["data"]);
         $('.js-example-basic-single').select2({
             width: 'resolve' // need to override the changed default
         });
-    setTimeout(function() {
+
+        setTimeout(function() {
             $('.button-trigger-pandorasetup').trigger("click");
         }, 10);
 
@@ -140,6 +141,10 @@ unset($_SESSION["data"]);
 
         setTimeout(function() {
             $('.button-trigger-pandorasetup-third').trigger("click");
+        }, 5500);
+
+        setTimeout(function() {
+            $('.button-trigger-pandorasetup-four').trigger("click");
         }, 5500);
 
         setTimeout(function() {
@@ -159,6 +164,11 @@ unset($_SESSION["data"]);
         $(".button-trigger-pandorasetup-third").click(function() {
             $(".pandora-fade-third").fadeIn(3000);
             $(".pandora-fade-third").fadeOut();
+        });
+        
+        $(".button-trigger-pandorasetup-four").click(function() {
+            $(".pandora-fade-four").fadeIn(3000);
+            $(".pandora-fade-four").fadeOut();
         });
 
         $('.link-database').click(function() {
