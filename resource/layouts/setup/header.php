@@ -85,7 +85,7 @@
     ?>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
-        <div <?= $attrForSideBar ?> class="menu-sidebar border-end bg-white first-sidebar" style="z-index: 99999;" id="sidebar-wrapper">
+        <div <?= $attrForSideBar ?> class="menu-sidebar border-end bg-white first-sidebar" id="sidebar-wrapper">
             <div class=" sidebar-heading border-bottom bg-light" style="font-size: 17px;">
                 <a href="<?= url('setup') ?>">
                     Pandora<b>Setup</b>
