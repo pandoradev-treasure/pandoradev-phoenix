@@ -21,7 +21,7 @@
 </style>
 <div class="center">
     <span style="display:none" class="text pandora-fade">
-        Hi.
+        Hi kami pandoradev.
     </span>
 
 </div>

@@ -27,14 +27,14 @@
                                 <div class="row">
                                     <div class="col-md-4">
 
-                                        <input class="form-control form-control-sm  name-folder" name="folder" type="text" required placeholder="AwesomeFolder">
+                                        <input tabindex="1" class="form-control form-control-sm  name-folder" name="folder" type="text" required placeholder="AwesomeFolder">
                                         <small id="emailHelp" class="form-text text-muted">Isikan nama folder yang
                                             ingin anda buat.</small>
 
                                     </div>
                                     <div class="col-md-4">
 
-                                        <select name="exist_folder" id="" class="exist_folder js-example-basic-single form-control">
+                                        <select tabindex="2" name="exist_folder" id="" class="exist_folder js-example-basic-single form-control">
                                             <option value="" selected disabled>-Pilih Folder-</option>
 
                                             <?php
@@ -72,15 +72,15 @@
                                 <div class="row">
                                     <div class="col-md-4" style="margin-top: 8px;">
 
-                                        <input placeholder="AwesomeFile" type="text" name="file" class="form-control form-control-sm">
-
+                                        <input tabindex="3" required placeholder="AwesomeFile" type="text" name="file" class="form-control form-control-sm">
+ 
                                         <small id="emailHelp" class="form-text text-muted">Isikan nama file yang
                                             ingin anda buat di dalam folder <code class="append-folder-name"></code>.</small>
 
                                     </div>
                                     <div class="col-md-4" style="margin-top: 8px;">
 
-                                        <select name="type_view" class="form-control form-control-sm" id="">
+                                        <select tabindex="4" name="type_view" class="form-control form-control-sm" id="">
                                             <option disabled selected>-Pilih Tipe-</option>
                                             <option value="blank">Blank Page</option>
                                             <option value="table">Table</option>
@@ -98,7 +98,7 @@
 
                         <div class="float-right">
                             <button type="submit" class="btn btn-outline-info btn-sm">Bantuan</button>
-                            <button type="submit" class="btn btn-sm btn-primary">Buat</button>
+                            <button type="submit" tabindex="5" class="btn btn-sm btn-primary">Buat</button>
                         </div>
                     </div>
                 </form>
