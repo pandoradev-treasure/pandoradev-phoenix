@@ -123,6 +123,13 @@ unset($_SESSION["type_alert"]);
 unset($_SESSION["data"]); 
 ?>
 <script>
+    $('.preview').click(function(){
+            var datacode = $('.data-code-old').text();
+            $('.result-preview').html(datacode);
+        });
+        $('.js-example-basic-single').select2({
+            width: 'resolve' // need to override the changed default
+        });
     setTimeout(function() {
             $('.button-trigger-pandorasetup').trigger("click");
         }, 10);
@@ -157,21 +164,21 @@ unset($_SESSION["data"]);
         $('.link-database').click(function() {
             window.location.replace("setup/database");
         });
-    jQuery(document).bind("keydown", function(e){
-        if(e.ctrlKey && e.keyCode == 80){
-            e.preventDefault();
-            $( ".preview" ).first().trigger( "click" );
-            return false;
-        }
-    });
+        jQuery(document).bind("keydown", function(e){
+            if(e.ctrlKey && e.keyCode == 80){
+                e.preventDefault();
+                $( ".preview" ).first().trigger( "click" );
+                return false;
+            }
+        });
 
-    jQuery(document).bind("keydown", function(e){
-        if(e.ctrlKey && e.keyCode == 66){
-            e.preventDefault();
-            $( ".sidebarHide" ).first().trigger( "click" );
-            return false;
-        }
-    });
+        jQuery(document).bind("keydown", function(e){
+            if(e.ctrlKey && e.keyCode == 66){
+                e.preventDefault();
+                $( ".sidebarHide" ).first().trigger( "click" );
+                return false;
+            }
+        });
     var editorCode = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
         keyMap                 : "sublime",
         autoCloseBrackets      : true,
@@ -304,13 +311,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
 
 <script>
     $(document).ready(function() {
-        $('.preview').click(function(){
-            var datacode = $('.data-code-old').text();
-            $('.result-preview').html(datacode);
-        });
-        $('.js-example-basic-single').select2({
-            width: 'resolve' // need to override the changed default
-        });
+        
 
         $('.sidebarT').hide();
     });
