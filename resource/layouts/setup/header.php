@@ -76,16 +76,16 @@
         <source src="<?= asset('windows_error.mp3') ?>" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+    <?php
+        @$dataUrlSekarang = explode('/',$_SERVER['REQUEST_URI']);
+        $attrForSideBar = null;
+        if (@$dataUrlSekarang[3] == "") {
+            $attrForSideBar = "style='display:none'";
+        }
+    ?>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
-        <?php
-            @$dataUrlSekarang = explode('/',$_SERVER['REQUEST_URI']);
-            $attrForSideBar = null;
-            if (@$dataUrlSekarang[3] == "") {
-                $attrForSideBar = "style='display:none'";
-            }
-        ?>
-        <div <?= $attrForSideBar ?> class="menu-sidebar border-end bg-white first-sidebar" id="sidebar-wrapper">
+        <div <?= $attrForSideBar ?> class="menu-sidebar border-end bg-white first-sidebar" style="z-index: 99999;" id="sidebar-wrapper">
             <div class=" sidebar-heading border-bottom bg-light" style="font-size: 17px;">
                 <a href="<?= url('setup') ?>">
                     Pandora<b>Setup</b>
@@ -99,7 +99,7 @@
                        style="max-width:20px"> Database </a>
                 <?php 
                 
-                    if ($host) {
+                    if ($host && $DATABASE) {
 
                 ?>
 
@@ -196,6 +196,7 @@
                     }
                 ?>
             </div>
+            <!-- footer -->
         </div>
 
         <?php
@@ -488,12 +489,12 @@
         <!-- Page content wrapper-->
         <div id="page-content-wrapper">
             <!-- Top navigation-->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <nav <?= $attrForSideBar ?> class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <div class="container-fluid" style="padding: 3.5px;">
-                    <button class="show-hide btn btn-warning mr-2 btn-sm">Tampil / Sembunyikan</button>
+                    <button class="show-hide btn mr-2 btn-sm"><img src="<?= asset('setup/list.png') ?>" alt="" style="max-width: 20px;"></button>
                     <!-- <p>Hai</p>
                     <p >Lorem</p> -->
-                    <button class="btn btn-primary btn-sm sidebarHide" id="sidebarToggle"> Tampil / Sembunyikan Sidebar </button>
+                    <button class="btn btn-sm sidebarHide" id="sidebarToggle"> <img src="<?= asset('setup/menu.png') ?>" alt="" style="max-width: 20px;"> </button>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation"><span
