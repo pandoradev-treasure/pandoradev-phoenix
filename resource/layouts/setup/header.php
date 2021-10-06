@@ -85,11 +85,24 @@
     ?>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
-        <div <?= $attrForSideBar ?> class="menu-sidebar border-end bg-white first-sidebar" style="z-index: 99999;" id="sidebar-wrapper">
+        <div <?= $attrForSideBar ?> class="menu-sidebar border-end bg-white first-sidebar" id="sidebar-wrapper">
             <div class=" sidebar-heading border-bottom bg-light" style="font-size: 17px;">
-                <a href="<?= url('setup') ?>">
-                    Pandora<b>Setup</b>
-                </a>
+
+                <?php
+                    if ($host && $DATABASE) {
+                ?>
+                    <a href="<?= url('setup/database') ?>">
+                        Pandora<b>Setup</b>
+                    </a>
+                <?php
+                    }else{
+                        ?>
+                        <a href="<?= url('setup') ?>">
+                            Pandora<b>Setup</b>
+                        </a>
+                        <?php
+                    }
+                ?>
             </div>
             <div class=" list-group list-group-flush layouts">
                
@@ -210,6 +223,75 @@
             <div class="remove-display list-group list-group-flush">
                 <div class="card-body" style="margin-top: -30px;">
                     <div id="accordion" style="margin-top: 20px;">
+                    <div style="margin-bottom:10px">
+                        <a data-toggle="modal" data-target="#AddNewFileController" style="cursor:pointer"><img
+                            src="<?= asset('setup/add-file.png') ?>" style="max-width: 20px;cursor:pointer" alt=""><span
+                            style="margin-left: 7px;">Buat baru</span></a>
+                        </div>
+
+                        <!-- Modal Add File / Folder-->
+                        <div class="modal fade" id="AddNewFileController" tabindex="-1" role="dialog"
+                            aria-labelledby="AddNewFileControllerLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <span style="font-size: 20px;font-family:calibri">Buat Controller</span>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                    <div>
+                                        <form action="<?= controller('setup@CreateController') ?>" method="POST" enctype="multipart/form-data">
+                                            <div class="card-body">
+
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Nama Controller </label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+
+                                                                <input class="form-control" name="controller" type="text" required placeholder="AwesomeController">
+                                                                <small id="emailHelp" class="form-text text-muted">Isikan nama controller yang
+                                                                    ingin anda buat.</small>
+
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Fungsi Otomatis</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6" style="margin-top: 8px;">
+
+                                                                <input type="checkbox" checked name="auto_function" id="">
+                                                                <small id="emailHelp" class="form-text text-muted">
+                                                                    Jika anda centang, maka <code>function dasar</code> otomatis akan terbuat,
+                                                                    seperti : <br>
+                                                                    <code>TambahData()</code>, <code>EditData()</code>,
+                                                                    <code>UpdateData()</code>, <code>HapusData()</code>
+                                                                </small>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="float-right">
+                                                    <button type="submit" class="btn btn-outline-info btn-sm">Bantuan</button>
+                                                    <button type="submit" class="btn btn-sm btn-primary">Buat</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <?php
 
                             foreach (glob("../controller/*") as $key => $fileController) {
@@ -219,11 +301,17 @@
                             ?>
                         <span style="color:#4b6584">
 
-                            <img class="export-png" src="<?= asset('setup/controller.png') ?>" style="max-width:15px;">
+                            <img class="export-png" src="<?= asset('setup/controller.png') ?>" style="max-width:13px;">
                             <a target="" href="<?= controller('setup@detailFile', $fileController[2]) ?>"
                                 style="color: #2c3e50;cursor:pointer">
-                                <span style="margin-left: 7px;"><?= $fileController[2] ?></span>
+                                <span style="margin-left: 3px;font-size:14px"><?= $fileController[2] ?></span>
                             </a>
+
+                            <!-- Tombol Delete Controller -->
+                            <a class="delete-table" data-table="<?= $fileController[2] ?>" data-url="<?= controller('setup@deleteFileController', $fileController[2]) ?>">
+                                <img class="delete-png float-right" src="<?= asset('setup/cancel.png') ?>" style="max-width:8px;margin-left: 5px;margin-top:11.3px">
+                            </a>
+
                         </span><br>
                         <?php } ?>
                     </div>
@@ -365,13 +453,13 @@
                                 <span style="margin-left: 7px;"><?= $see[4] ?></span>
                             </a>
                             <a class="delete-table" data-table="<?= $see[4] ?>" data-url="<?= controller('setup@deleteFolderBackend',  'backend/'.$see[4]) ?>">
-                                <img class="delete-png" src="<?= asset('setup/cancel.png') ?>" style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
+                                <img class="delete-png float-right" src="<?= asset('setup/cancel.png') ?>" style="max-width:10px;margin-left: 5px;margin-top:9px">
                             </a>
 
                             <!-- Edit Nama Folder -->
                             <a data-toggle="modal" data-target="#EditFolderNameInDetail<?= str_replace('.','',$see[4]) ?>">
-                                <img class="export-png" src="<?= asset('setup/edit.png') ?>"
-                                    style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
+                                <img class="float-right export-png" src="<?= asset('setup/edit.png') ?>"
+                                    style="max-width:10px;margin-left: 5px;margin-top:9px">
                             </a>
 
                             <!-- Modal Edit Name Folder -->
@@ -420,18 +508,18 @@
                             ?>
 
                         <div style="margin-left: 17px;" id="demo<?= $see[4] ?>" class="collapse">
-                            <img src="<?= asset('setup/file.png') ?>" style="max-width:14px"> <a
+                            <img src="<?= asset('setup/file.png') ?>" style="max-width:13px"> <a
                                 href="<?= controller('setup@detailFileBackend', $see[4] . "/" . $seefile) ?>"
                                 class="link" style="color:#1e272e"><?= $seefile ?></a>
                             <a class="delete-table float-right" data-table="<?= $seefile ?>"
                                 data-url="<?= controller('setup@deleteFileBackend',  $see[4] . "/" . $seefile) ?>">
-                                <img class="delete-png" src="<?= asset('setup/delete.png') ?>"
-                                    style="max-width:14px;margin-left: 5px;margin-bottom: 3px;">
+                                <img class="delete-png" src="<?= asset('setup/cancel.png') ?>"
+                                    style="max-width:13px;margin-left: 5px;margin-bottom: 3px;">
                             </a>
                             <a data-toggle="modal" class="float-right"
                                 data-target="#exampleModals<?= str_replace('.','',$seefile) ?>">
                                 <img class="export-png edit-name" src="<?= asset('setup/edit.png') ?>"
-                                    style="max-width:14px;margin-left: 5px;margin-bottom: 3px;">
+                                    style="max-width:13px;margin-left: 5px;margin-bottom: 3px;">
                             </a>
                         </div>
 

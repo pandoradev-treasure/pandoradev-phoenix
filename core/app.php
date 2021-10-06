@@ -9,6 +9,13 @@
     error_reporting(0);
     ini_set('display_errors', 0);
 
+    if ($_GET['params'] == 'dokumentasi') {
+        
+        include '../documentation.php';
+        die();
+
+    }
+
 
     if (strpos($_GET['params'],'setup') !== false) {
         

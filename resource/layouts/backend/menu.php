@@ -15,6 +15,11 @@
                 <i class='far fa-circle nav-icon'></i>
                 <p>Nama menu</p>
             </a>
+						<a href='<?php url('backend/users/data') ?>' class='nav-link layout'>
+                <i class='far fa-circle nav-icon'></i>
+                <p>Users</p>
+            </a>
+						
             
         </li>
         

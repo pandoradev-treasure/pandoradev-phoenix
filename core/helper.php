@@ -129,9 +129,15 @@
           return $this;
       }
 
-      function where($where, $with)
+      function where($where, $operator, $with = null)
       {
-          $this->where .= " WHERE $where = '$with'";
+
+          if (!$with) {
+            $this->where .= " WHERE $where = '$operator'";
+          }else{
+            $this->where .= " WHERE $where $operator '$with'";
+          }
+
           return $this;
       }
 
@@ -271,13 +277,18 @@
       /* END UPDATE */
 
       /* DELETE */
-      public function delete($table, $id)
+      public function delete($table, $id, $column = 0)
       {
 
         global $host;
         global $status;
 
-        $query = mysqli_query($host, "DELETE FROM $table WHERE ".getPrimary($table)." = $id ");
+        if (!$column) {
+          $query = mysqli_query($host, "DELETE FROM $table WHERE ".getPrimary($table)." = $id ");
+        }else{
+          $query = mysqli_query($host, "DELETE FROM $table WHERE $id = $column ");
+        }
+
 
         if ($query) {
 

@@ -463,7 +463,7 @@ $content .= '
 
         if ($cekFile) {
 
-            alert('Nama File Sudah Ada!','Gunakan nama lain','error');
+            alert('Nama file sudah ada!','Gunakan nama lain','error');
             view('setup/controller');
             
             die();
@@ -491,7 +491,7 @@ $content .= '
         */
         query()->insert('table',[
 
-            '$'request->x
+            '$'request->x /*isikan sebagai name inputan*/
 
         ])->view('folder/file','Berhasil Ditambahkan!');
 
@@ -506,6 +506,10 @@ $content .= '
         *untuk persiapan edit data
         */
 
+        '$'variable = query()->table('table')->where('id','$'request->id)->single();
+
+        view('folder/file', compact('variable'));
+
     }
 
     function UpdateData('$'request)
@@ -516,6 +520,13 @@ $content .= '
         *di function ini anda bisa memberikan kode
         *untuk update data
         */
+
+        query()->update('table',[
+
+            'column' => '$'request->name_input,
+            'column2' => '$'request->name_input2,
+
+        ], '$'request->id)->view('folder/file','pesan jika berhasil');
 
     }
 
@@ -528,19 +539,21 @@ $content .= '
         *untuk delete data
         */
 
+        query()->delete('table', '$'request->id)->view('folder/file','pesan jika berhasil');
+
     }"
     
     ;    
         }
 
-        $content = str_replace("'$'request",'$request',$content);
+        $content = str_replace("'$'",'$',$content);
 
         fwrite($myfile, $content);
         fclose($myfile);
 
-        alert('Berhasil menambahkan controller!');
+        alert('Berhasil membuat controller '.$namaFile);
 
-        view('setup/controller');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
 
@@ -614,7 +627,7 @@ $content .= '
     {
         unlink('../controller/'.$request->id);
         alert('Berhasil Dihapus!');
-        view('setup/controller');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function editNamaController($request)
@@ -673,6 +686,36 @@ $content .= '
         alert('Berhasil','Berhasil mengupdate file menu.php!','success');
 
         view('setup/backend-menu');
+     }
+
+     function UpdateFileHeaderBackend($request)
+     {
+        
+        $myfile  = fopen("../resource/layouts/backend/header.php", "w") or die("Unable to open file!");
+
+        $content = $request->data_new_code;
+
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        alert('Berhasil','Berhasil mengupdate file header.php!','success');
+
+        view('setup/backend-header');
+     }
+
+     function UpdateFileFooterBackend($request)
+     {
+        
+        $myfile  = fopen("../resource/layouts/backend/footer.php", "w") or die("Unable to open file!");
+
+        $content = $request->data_new_code;
+
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        alert('Berhasil','Berhasil mengupdate file footer.php!','success');
+
+        view('setup/backend-footer');
      }
 
      function CreateFolderAndFileBackend($request)
