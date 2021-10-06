@@ -46,9 +46,10 @@
     }
 
     .title-menu {
-        margin-left: 16px;
+        margin-left: 14px;
         margin-top: 10px;
         color: #7f8c8d;
+        font-size: 11px;
     }
 
     .delete-png {
@@ -579,10 +580,10 @@
             <!-- Top navigation-->
             <nav <?= $attrForSideBar ?> class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <div class="container-fluid" style="padding: 3.5px;">
-                    <button class="show-hide btn mr-2 btn-sm"><img src="<?= asset('setup/list.png') ?>" alt="" style="max-width: 20px;"></button>
+                    <button class="show-hide btn mr-2 btn-sm"><img src="<?= asset('setup/list.png') ?>" alt="" style="max-width: 17px;"></button>
                     <!-- <p>Hai</p>
                     <p >Lorem</p> -->
-                    <button class="btn btn-sm sidebarHide" id="sidebarToggle"> <img src="<?= asset('setup/menu.png') ?>" alt="" style="max-width: 20px;"> </button>
+                    <button class="btn btn-sm sidebarHide" id="sidebarToggle"> <img src="<?= asset('setup/menu.png') ?>" alt="" style="max-width: 17px;"> </button>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation"><span
