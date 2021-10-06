@@ -47,6 +47,262 @@
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/display/placeholder.js') ?>"></script>
 <script>
+    var editorTerminal = CodeMirror.fromTextArea(document.getElementById('terminal'), {
+        keyMap                 : "sublime",
+        autoCloseBrackets      : true,
+        matchBrackets          : true,
+        mode                   : "application/x-httpd-php",
+        indentUnit             : 4,
+        indentWithTabs         : true,
+        autoRefresh            : true,
+        theme                  : "the-matrix",
+        matchBrackets          : true,
+        showCursorWhenSelecting: true,
+        tabSize                : 2,
+        autoCloseTags          : true
+    });
+
+    editorTerminal.on('change', editor => {
+        console.log(editorTerminal.getValue());
+        $('.data-code').text(editorTerminal.getValue());
+    });
+
+    $('.data-code').text($('.data-code-old').text());
+
+    editorTerminal.setSize(null, 350);
+
+    editorTerminal.focus();
+</script>
+<?php
+if (isset($_SESSION["title_alert"])) {
+
+    $title      = $_SESSION["title_alert"];
+    $alert      = $_SESSION["message_alert"];
+    $type_alert = $_SESSION["type_alert"];
+
+    ?>
+    <script>
+
+        Swal.fire({
+            position         : 'top-right',
+            icon             : '<?= $type_alert ?>',
+            toast            : true,
+            title            : '<?= $title ?>',
+            showConfirmButton: false,
+            timer            : 2000
+        });
+
+        <?php
+            unset($_SESSION["data"]);    
+        ?>
+    </script>
+
+    <?php
+        if ($type_alert == "error") {
+            ?>
+        <script>
+            var x = document.getElementById("myAudioError");
+            x.play();
+        </script>
+    <?php
+        } else {
+            ?>
+        <script>
+            var x = document.getElementById("myAudioSuccess");
+            x.play();
+        </script>
+    <?php
+        }
+        ?>
+
+<?php
+}
+unset($_SESSION["title_alert"]);
+unset($_SESSION["message_alert"]);
+unset($_SESSION["type_alert"]);
+unset($_SESSION["data"]); 
+?>
+<script>
+    setTimeout(function() {
+            $('.button-trigger-pandorasetup').trigger("click");
+        }, 10);
+
+        setTimeout(function() {
+            $('.button-trigger-pandorasetup-second').trigger("click");
+        }, 2800);
+
+        setTimeout(function() {
+            $('.button-trigger-pandorasetup-third').trigger("click");
+        }, 5500);
+
+        setTimeout(function() {
+            $(".link-database").first().trigger("click");
+        }, 9300);
+
+        $(".button-trigger-pandorasetup").click(function() {
+            $(".pandora-fade").fadeIn(2000);
+            $(".pandora-fade").fadeOut();
+        });
+
+        $(".button-trigger-pandorasetup-second").click(function() {
+            $(".pandora-fade-second").fadeIn(2000);
+            $(".pandora-fade-second").fadeOut();
+        });
+
+        $(".button-trigger-pandorasetup-third").click(function() {
+            $(".pandora-fade-third").fadeIn(3000);
+            $(".pandora-fade-third").fadeOut();
+        });
+
+        $('.link-database').click(function() {
+            window.location.replace("setup/database");
+        });
+    jQuery(document).bind("keydown", function(e){
+        if(e.ctrlKey && e.keyCode == 80){
+            e.preventDefault();
+            $( ".preview" ).first().trigger( "click" );
+            return false;
+        }
+    });
+
+    jQuery(document).bind("keydown", function(e){
+        if(e.ctrlKey && e.keyCode == 66){
+            e.preventDefault();
+            $( ".sidebarHide" ).first().trigger( "click" );
+            return false;
+        }
+    });
+    var editorCode = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
+        keyMap                 : "sublime",
+        autoCloseBrackets      : true,
+        lineNumbers            : true,
+        matchBrackets          : true,
+        mode                   : "application/x-httpd-php",
+        indentUnit             : 4,
+        indentWithTabs         : true,
+        autoRefresh            : true,
+        theme                  : "material-darker",
+        matchBrackets          : true,
+        showCursorWhenSelecting: true,
+        tabSize                : 2,
+        autoCloseTags          : true
+    });
+
+    editorCode.on('change', editor => {
+        console.log(editorCode.getValue());
+        $('.data-code').text(editorCode.getValue());
+    });
+
+    $('.data-code').text($('.data-code-old').text());
+
+    editorCode.setSize(null, 1000);
+
+</script>
+<?php
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-menu') !== false) {
+        ?>
+
+        <script type="text/javascript">
+            $(document).keydown(function(e) {
+                
+                var key = undefined;
+                var possible = [ e.key, e.keyIdentifier, e.keyCode, e.which ];
+
+                while (key === undefined && possible.length > 0)
+                {
+                    key = possible.pop();
+                }
+
+                if (key && (key == '115' || key == '83' ) && (e.ctrlKey || e.metaKey) && !(e.altKey))
+                {
+                    e.preventDefault();
+                    $( ".save-file" ).first().trigger( "click" );
+                    return false;
+                }
+                return true;
+                }); 
+        </script>
+
+        <?php
+        
+    }
+?>
+
+<?php
+if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
+    ?>
+
+    <script type="text/javascript">
+        $(document).keydown(function(e) {
+            
+            var key = undefined;
+            var possible = [ e.key, e.keyIdentifier, e.keyCode, e.which ];
+
+            while (key === undefined && possible.length > 0)
+            {
+                key = possible.pop();
+            }
+
+            if (key == '13')
+            {
+                e.preventDefault();
+                $( ".execute-cmd" ).first().trigger( "click" );
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'top',
+                showConfirmButton: false,
+                timer: 4400,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'info',
+                title: 'Tunggu sebentar...'
+                })
+                return false;
+            }
+            return true;
+            }); 
+    </script>
+
+    <?php
+    
+}
+
+?>
+
+<?php
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false) {
+        ?>
+
+        <script type="text/javascript">
+            
+            $('.menu-sidebar').css("display","none");
+            $('.show-hide').click(function(){
+                // $('.remove-display').show();
+                $('.first-sidebar').toggle();
+            });
+        </script>
+
+        <?php
+        
+    }else{
+        ?>
+        <script>
+            $('.remove-display').css("display","none");
+            $('.show-hide').css("display","none");
+        </script>
+        <?php
+    }
+    
+    
+?>
+
+<script>
     $(document).ready(function() {
         $('.preview').click(function(){
             var datacode = $('.data-code-old').text();
@@ -129,6 +385,22 @@
     });
 </script>
 
+
+<script>
+
+    $('.name-folder').keyup(function() {
+        $('.exist_folder').val('');
+        $('.append-folder-name').html($(this).val());
+    });
+
+    $('.exist_folder').on('change', function() {
+        $('.name-folder').val('');
+        $('.name-folder').removeAttr('required');
+        $('.append-folder-name').html($(this).val());
+    });
+</script>
+
+
 <?php
 if (isset($_SESSION["alert_delete_table"])) {
     ?>
@@ -144,55 +416,7 @@ if (isset($_SESSION["alert_delete_table"])) {
 unset($_SESSION["alert_delete_table"]);
 ?>
 
-<?php
-if (isset($_SESSION["title_alert"])) {
 
-    $title      = $_SESSION["title_alert"];
-    $alert      = $_SESSION["message_alert"];
-    $type_alert = $_SESSION["type_alert"];
-
-    ?>
-    <script>
-
-        Swal.fire({
-            position         : 'top-right',
-            icon             : '<?= $type_alert ?>',
-            toast            : true,
-            title            : '<?= $title ?>',
-            showConfirmButton: false,
-            timer            : 2000
-        });
-
-        <?php
-            unset($_SESSION["data"]);    
-        ?>
-    </script>
-
-    <?php
-        if ($type_alert == "error") {
-            ?>
-        <script>
-            var x = document.getElementById("myAudioError");
-            x.play();
-        </script>
-    <?php
-        } else {
-            ?>
-        <script>
-            var x = document.getElementById("myAudioSuccess");
-            x.play();
-        </script>
-    <?php
-        }
-        ?>
-
-<?php
-}
-unset($_SESSION["title_alert"]);
-unset($_SESSION["message_alert"]);
-unset($_SESSION["type_alert"]);
-unset($_SESSION["data"]); 
-?>
 
 <?php
 foreach (glob("../controller/*") as $key => $see) {
@@ -228,228 +452,3 @@ foreach (glob("../controller/*") as $key => $see) {
 <?php } ?>
 
 
-<script>
-    var editor = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
-        keyMap                 : "sublime",
-        autoCloseBrackets      : true,
-        lineNumbers            : true,
-        matchBrackets          : true,
-        mode                   : "application/x-httpd-php",
-        indentUnit             : 4,
-        indentWithTabs         : true,
-        autoRefresh            : true,
-        theme                  : "material-darker",
-        matchBrackets          : true,
-        showCursorWhenSelecting: true,
-        tabSize                : 2,
-        autoCloseTags          : true
-    });
-
-    editor.on('change', editor => {
-        console.log(editor.getValue());
-        $('.data-code').text(editor.getValue());
-    });
-
-    $('.data-code').text($('.data-code-old').text());
-
-    editor.setSize(null, 1000);
-</script>
-
-<script>
-    var editor = CodeMirror.fromTextArea(document.getElementById('terminal'), {
-        keyMap                 : "sublime",
-        autoCloseBrackets      : true,
-        matchBrackets          : true,
-        mode                   : "application/x-httpd-php",
-        indentUnit             : 4,
-        indentWithTabs         : true,
-        autoRefresh            : true,
-        theme                  : "the-matrix",
-        matchBrackets          : true,
-        showCursorWhenSelecting: true,
-        tabSize                : 2,
-        autoCloseTags          : true
-    });
-
-    editor.on('change', editor => {
-        console.log(editor.getValue());
-        $('.data-code').text(editor.getValue());
-    });
-
-    $('.data-code').text($('.data-code-old').text());
-
-    editor.setSize(null, 350);
-
-    editor.focus();
-</script>
-
-<script>
-
-    $('.name-folder').keyup(function() {
-        $('.exist_folder').val('');
-        $('.append-folder-name').html($(this).val());
-    });
-
-    $('.exist_folder').on('change', function() {
-        $('.name-folder').val('');
-        $('.name-folder').removeAttr('required');
-        $('.append-folder-name').html($(this).val());
-    });
-</script>
-
-
-<?php
-    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-menu') !== false) {
-        ?>
-
-        <script type="text/javascript">
-            $(document).keydown(function(e) {
-                
-                var key = undefined;
-                var possible = [ e.key, e.keyIdentifier, e.keyCode, e.which ];
-
-                while (key === undefined && possible.length > 0)
-                {
-                    key = possible.pop();
-                }
-
-                if (key && (key == '115' || key == '83' ) && (e.ctrlKey || e.metaKey) && !(e.altKey))
-                {
-                    e.preventDefault();
-                    $( ".save-file" ).first().trigger( "click" );
-                    return false;
-                }
-                return true;
-                }); 
-        </script>
-
-        <?php
-        
-    }
-?>
-
-<?php
-    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false) {
-        ?>
-
-        <script type="text/javascript">
-            
-            $('.menu-sidebar').css("display","none");
-            $('.show-hide').click(function(){
-                // $('.remove-display').show();
-                $('.first-sidebar').toggle();
-            });
-        </script>
-
-        <?php
-        
-    }else{
-        ?>
-        <script>
-            $('.remove-display').css("display","none");
-            $('.show-hide').css("display","none");
-        </script>
-        <?php
-    }
-?>
-
-<script>
-    jQuery(document).bind("keydown", function(e){
-        if(e.ctrlKey && e.keyCode == 80){
-            e.preventDefault();
-            $( ".preview" ).first().trigger( "click" );
-            return false;
-        }
-    });
-
-    jQuery(document).bind("keydown", function(e){
-        if(e.ctrlKey && e.keyCode == 66){
-            e.preventDefault();
-            $( ".sidebarHide" ).first().trigger( "click" );
-            return false;
-        }
-    });
-</script>
-<script>
-    setTimeout(function() {
-            $('.button-trigger-pandorasetup').trigger("click");
-        }, 10);
-
-        setTimeout(function() {
-            $('.button-trigger-pandorasetup-second').trigger("click");
-        }, 2800);
-
-        setTimeout(function() {
-            $('.button-trigger-pandorasetup-third').trigger("click");
-        }, 5500);
-
-        setTimeout(function() {
-            $(".link-database").first().trigger("click");
-        }, 9300);
-
-        $(".button-trigger-pandorasetup").click(function() {
-            $(".pandora-fade").fadeIn(2000);
-            $(".pandora-fade").fadeOut();
-        });
-
-        $(".button-trigger-pandorasetup-second").click(function() {
-            $(".pandora-fade-second").fadeIn(2000);
-            $(".pandora-fade-second").fadeOut();
-        });
-
-        $(".button-trigger-pandorasetup-third").click(function() {
-            $(".pandora-fade-third").fadeIn(3000);
-            $(".pandora-fade-third").fadeOut();
-        });
-
-        $('.link-database').click(function() {
-            window.location.replace("setup/database");
-        });
-
-</script>
-
-<?php
-    if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
-        ?>
-
-        <script type="text/javascript">
-            $(document).keydown(function(e) {
-                
-                var key = undefined;
-                var possible = [ e.key, e.keyIdentifier, e.keyCode, e.which ];
-
-                while (key === undefined && possible.length > 0)
-                {
-                    key = possible.pop();
-                }
-
-                if (key == '13')
-                {
-                    e.preventDefault();
-                    $( ".execute-cmd" ).first().trigger( "click" );
-                    const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top',
-                    showConfirmButton: false,
-                    timer: 4400,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                    })
-
-                    Toast.fire({
-                    icon: 'info',
-                    title: 'Tunggu sebentar...'
-                    })
-                    return false;
-                }
-                return true;
-                }); 
-        </script>
-
-        <?php
-        
-    }
-?>
