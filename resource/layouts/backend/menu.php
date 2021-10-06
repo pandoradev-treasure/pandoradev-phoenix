@@ -10,19 +10,10 @@
 
         <li class="nav-item">
             
-<<<<<<< HEAD
-            <!-- Perbanyak bagian ini -->
-			
-						
-						<a href='<?php url('backend/kategori/data') ?>' class='nav-link layout'>
-                <i class='far fa-circle nav-icon'></i>
-                <p>Kategori</p>
-=======
             <!-- Perbanyak bagian ini -->	
             <a href='<?php url('backend/folder/file') ?>' class='nav-link layout'>
                 <i class='far fa-circle nav-icon'></i>
                 <p>Nama menu</p>
->>>>>>> 103dda61c0401a17c611e055316dd8d7b0c9ef09
             </a>
 						<a href='<?php url('backend/users/data') ?>' class='nav-link layout'>
                 <i class='far fa-circle nav-icon'></i>
@@ -34,8 +25,4 @@
         
     </ul>
 
-<<<<<<< HEAD
-</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-=======
 </li>
->>>>>>> 103dda61c0401a17c611e055316dd8d7b0c9ef09
