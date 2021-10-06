@@ -470,7 +470,7 @@
         <div id="page-content-wrapper">
             <!-- Top navigation-->
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <div class="container-fluid">
+                <div class="container-fluid" style="padding: 3.5px;">
                     <button class="show-hide btn btn-warning mr-2 btn-sm">Tampil / Sembunyikan</button>
                     <!-- <p>Hai</p>
                     <p >Lorem</p> -->

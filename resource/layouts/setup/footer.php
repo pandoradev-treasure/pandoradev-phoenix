@@ -429,7 +429,7 @@ foreach (glob("../controller/*") as $key => $see) {
                     $( ".execute-cmd" ).first().trigger( "click" );
                     const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-end',
+                    position: 'top',
                     showConfirmButton: false,
                     timer: 4400,
                     timerProgressBar: true,
@@ -440,7 +440,7 @@ foreach (glob("../controller/*") as $key => $see) {
                     })
 
                     Toast.fire({
-                    icon: 'success',
+                    icon: 'info',
                     title: 'Tunggu sebentar...'
                     })
                     return false;
