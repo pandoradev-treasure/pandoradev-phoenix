@@ -277,7 +277,7 @@
 								</tr>
 								<tr>
 									<th>Connected View</th>
-									<td><code>exampleMethod()->view("target_url","pesan");</code></td>
+									<td><code>example()->view("target_url","pesan");</code></td>
 								</tr>
 								<tr>
 									<th>Check</th>
@@ -297,7 +297,7 @@
 								</tr>
 								<tr>
 									<th>Controller</th>
-									<td><code>controller("namaController@method", id);</code></td>
+									<td><code>controller("namaController@method", params);</code></td>
 								</tr>
 								<tr>
 									<th>URL</th>
@@ -305,11 +305,11 @@
 								</tr>
 								<tr>
 									<th>TombolHapus</th>
-									<td><code>tombolHapus("target","value","attribt");</code></td>
+									<td><code>tombolHapus("target","value","attribut");</code></td>
 								</tr>
 								<tr>
 									<th>tombolEdit</th>
-									<td><code>tombolEdit("target","value","attribt");</code></td>
+									<td><code>tombolEdit("target","value","attribut");</code></td>
 								</tr>
 								<tr>
 									<th>TombolForm</th>
@@ -461,6 +461,247 @@
 							<!--//content-->
 						</div>
 						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									join("nama_table","nama_kolom");
+								</h4>
+								<p> Digunakan untuk membuat relasi <b>INNER JOIN</b> pada tabel database
+									, menerima 2 parameter. Contoh : <code>join("categori","nama");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									insert("nama_tabel",[ '$value1' => '$value1', '$value2' => '$value2' ]);
+								</h4>
+								<p> Digunakan untuk insert/create data ke database
+									, menerima 2 parameter dimana parameter ke 1 berisi nama tabel, dan parameter ke 2 bersifat <b>(array)</b> yang berisi data. Contoh : <code>insert("users", [ 'username' => 'yuzron', 'email' => 'yuz@yuz.yuz' ]);</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									update("nama_tabel",[ '$value1' => '$value1', '$value2' => '$value2' ], id );
+								</h4>
+								<p> Digunakan untuk update data ke database
+									, menerima 3 parameter dimana parameter ke 1 berisi nama tabel, parameter ke 2 bersifat <b>(array)</b> yang berisi data, dan parameter ke 3 adalah <b>ID</b>. Contoh : <code>insert("users", [ 'username' => 'yuzron', 'email' => 'yuz@yuz.yuz' ], id );</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									delete("nama_tabel", id );
+								</h4>
+								<p> Digunakan untuk menghapus data di database
+									, menerima 2 parameter dimana parameter ke 1 berisi nama tabel, dan parameter ke 2 adalah <b>ID</b>. Contoh : <code>delete("users", id );</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									view("target_url",parsing_data);
+								</h4>
+								<p> Digunakan untuk meredirect kehalaman yang di inginkan dengan membawa data
+									, menerima 2 parameter dimana parameter ke 1 berisi target_url, dan parameter ke 2 adalah data parsingnya. Contoh : <code>view("home/index",compact('data'));</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									example()->view("target_url","pesan");
+								</h4>
+								<p> Digunakan untuk meredirect kehalaman yang di inginkan dengan membawa pessan <b>alert</b> yang dibuat secara otomatis
+									, menerima 2 parameter dimana parameter ke 1 berisi target_url, dan parameter ke 2 adalah pesan yang ingin anda sampaikan. Contoh : <code>query()->tabel('users')->view("home/index","sukses!");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									check(eksekusi_data);
+								</h4>
+								<p> Digunakan untuk mengeksekusi kode dengan tampilan interaktif hasil karya para DEVELOPER PANDORACODE
+									, menerima 1 parameter. Contoh : <code>check('qwertyuiop');</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									alert("judul_pesan","pesan","type_alert");
+								</h4>
+								<p> Digunakan untuk menampilkan alert
+									, menerima 3 parameter. Contoh : <code>alert("Update","Berhasil Update Data","success");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									hitung(data);
+								</h4>
+								<p> Digunakan untuk menghitung jumlah data
+									, menerima 1 parameter. Contoh : <code>hitung($data);</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									asset("target_url");
+								</h4>
+								<p> Digunakan untuk mengarah ke directori yang ada di dalam folder asset
+									, menerima 1 parameter. Contoh : <code>asset("/img/pandoracode.jpg");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									controller("namaController@method", params);
+								</h4>
+								<p> Digunakan untuk mengarah ke controller
+									, menerima 2 parameter. Contoh : <code>controller("UsersContoller@index", $data);</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									url("target_url");
+								</h4>
+								<p> Digunakan untuk mengarah ke directori folder view
+									, menerima 2 parameter. Contoh : <code>url("about/index");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									tombolHapus("target","value","attribt");
+								</h4>
+								<p> Digunakan untuk membuat tombol hapus otomatis
+									, menerima 3 parameter dimana parameter ke 1 berisi target_url saat di klik <b><code>href=""</code></b>,parameter ke 2 berisi value dan parameter ke 3 berisi attribut. Contoh : <code>tombolHapus(controller(UsersController@Hapus),"Hapus","attribut");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									tombolEdit("target","value","attribt");
+								</h4>
+								<p> Digunakan untuk membuat tombol Edit otomatis
+									, menerima 3 parameter dimana parameter ke 1 berisi target_url saat di klik <b><code>href=""</code></b>,parameter ke 2 berisi value dan parameter ke 3 berisi attribut. Contoh : <code>tombolHapus(controller(UsersController@Edit),"Edit","attribut");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									tombolForm();
+								</h4>
+								<p> Digunakan untuk membuat tombol khusus di form yang sudah di handle oleh programer PANDORACODE
+									,tidak menerima parameter . Contoh : <code>tombolForm();</code> hasilnya : menampilkan 3 tombol, yaitu submit,reset,kembali
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+
 
 					</section>
 					<!--//section-->
