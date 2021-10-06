@@ -288,7 +288,7 @@
                             ?>
                         <span style="color:#4b6584">
 
-                            <img class="export-png" src="<?= asset('setup/controller.png') ?>" style="max-width:14px;">
+                            <img class="export-png" src="<?= asset('setup/controller.png') ?>" style="max-width:13px;">
                             <a target="" href="<?= controller('setup@detailFile', $fileController[2]) ?>"
                                 style="color: #2c3e50;cursor:pointer">
                                 <span style="margin-left: 3px;font-size:14px"><?= $fileController[2] ?></span>
@@ -440,13 +440,13 @@
                                 <span style="margin-left: 7px;"><?= $see[4] ?></span>
                             </a>
                             <a class="delete-table" data-table="<?= $see[4] ?>" data-url="<?= controller('setup@deleteFolderBackend',  'backend/'.$see[4]) ?>">
-                                <img class="delete-png" src="<?= asset('setup/cancel.png') ?>" style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
+                                <img class="delete-png float-right" src="<?= asset('setup/cancel.png') ?>" style="max-width:10px;margin-left: 5px;margin-top:9px">
                             </a>
 
                             <!-- Edit Nama Folder -->
                             <a data-toggle="modal" data-target="#EditFolderNameInDetail<?= str_replace('.','',$see[4]) ?>">
-                                <img class="export-png" src="<?= asset('setup/edit.png') ?>"
-                                    style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
+                                <img class="float-right export-png" src="<?= asset('setup/edit.png') ?>"
+                                    style="max-width:10px;margin-left: 5px;margin-top:9px">
                             </a>
 
                             <!-- Modal Edit Name Folder -->
@@ -495,18 +495,18 @@
                             ?>
 
                         <div style="margin-left: 17px;" id="demo<?= $see[4] ?>" class="collapse">
-                            <img src="<?= asset('setup/file.png') ?>" style="max-width:14px"> <a
+                            <img src="<?= asset('setup/file.png') ?>" style="max-width:13px"> <a
                                 href="<?= controller('setup@detailFileBackend', $see[4] . "/" . $seefile) ?>"
                                 class="link" style="color:#1e272e"><?= $seefile ?></a>
                             <a class="delete-table float-right" data-table="<?= $seefile ?>"
                                 data-url="<?= controller('setup@deleteFileBackend',  $see[4] . "/" . $seefile) ?>">
-                                <img class="delete-png" src="<?= asset('setup/delete.png') ?>"
-                                    style="max-width:14px;margin-left: 5px;margin-bottom: 3px;">
+                                <img class="delete-png" src="<?= asset('setup/cancel.png') ?>"
+                                    style="max-width:13px;margin-left: 5px;margin-bottom: 3px;">
                             </a>
                             <a data-toggle="modal" class="float-right"
                                 data-target="#exampleModals<?= str_replace('.','',$seefile) ?>">
                                 <img class="export-png edit-name" src="<?= asset('setup/edit.png') ?>"
-                                    style="max-width:14px;margin-left: 5px;margin-bottom: 3px;">
+                                    style="max-width:13px;margin-left: 5px;margin-bottom: 3px;">
                             </a>
                         </div>
 

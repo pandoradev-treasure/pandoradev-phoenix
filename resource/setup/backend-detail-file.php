@@ -14,7 +14,12 @@
                             if ($data->file[0]) {
                         ?>
                         <span
-                            style="font-size: 20px;font-family:calibri;padding:5px;border-radius: 4px;color:#2c3e50"><?= $data->file[0] ?></span>
+                            style="font-size: 20px;font-family:calibri;padding:5px;border-radius: 4px;color:#2c3e50"><?= $data->file[0] ?>
+                        </span>
+
+                        <a target="_blank" href="<?= url('backend/'.str_replace('.php','',$data->file[0])) ?>">
+                            <img src="<?= asset('setup/rocket.png') ?>" style="width: 20px;" alt="">
+                        </a>
 
                         <button type="submit" class="btn ml-2 btn-outline-primary float-right btn-sm save-file">
                             Simpan
