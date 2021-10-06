@@ -86,7 +86,7 @@
 
         <div style="margin-top: 10%;">
             <a href="setup"><button type="button" class="btn btn-outline-dark btn-sm">Konfigurasi</button></a>
-            <a href=""><button type="button" class="btn btn-outline-dark btn-sm">Documentation</button></a>
+            <a href="dokumentasi"><button type="button" class="btn btn-outline-dark btn-sm">Dokumentasi</button></a>
         </div>
     </div>
 </body>
