@@ -1,50 +1,36 @@
 </div>
 </div>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="<?= asset('setup/js/scripts.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('setup/js/scripts.js') ?>"></script>
 </body>
 
 </html>
 <!-- jQuery -->
-<script src="<?= asset('plugins/jquery/jquery.min.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('plugins/jquery/jquery.min.js') ?>"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="<?= asset('plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script type="text/javascript">
+<script type="text/javascript" type="text/javascript">
     $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="<?= asset('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 
-<!-- JQVMap -->
-<script src="<?= asset('plugins/jqvmap/jquery.vmap.min.js') ?>"></script>
-<script src="<?= asset('plugins/jqvmap/maps/jquery.vmap.usa.js') ?>"></script>
-<!-- jQuery Knob Chart -->
-<script src="<?= asset('plugins/jquery-knob/jquery.knob.min.js') ?>"></script>
 
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="<?= asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') ?>"></script>
-<!-- Summernote -->
-<script src="<?= asset('plugins/summernote/summernote-bs4.min.js') ?>"></script>
 <!-- AdminLTE App -->
-<script src="<?= asset('dist/js/adminlte.js') ?>"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= asset('dist/js/demo.js') ?>"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= asset('dist/js/pages/dashboard.js') ?>"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="<?php asset('plugins/sweetalert2@11') ?>"></script>
-<script src="<?= asset('codemirror/lib/codemirror.js') ?>"></script>
-<script src="<?= asset('codemirror/mode/php/php.js') ?>"></script>
-<script src="<?= asset('codemirror/mode/htmlmixed/htmlmixed.js') ?>"></script>
-<script src="<?= asset('codemirror/mode/xml/xml.js') ?>"></script>
-<script src="<?= asset('codemirror/mode/clike/clike.js') ?>"></script>
-<script src="<?= asset('codemirror/mode/css/css.js') ?>"></script>
-<script src="<?= asset('codemirror/addon/display/autorefresh.js') ?>"></script>
-<script src="<?= asset('codemirror/keymap/sublime.js') ?>"></script>
-<script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('dist/js/adminlte.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('dist/js/pages/dashboard.js') ?>"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript" src="<?php asset('plugins/sweetalert2@11') ?>"></script>
+<script type="text/javascript" src="<?= asset('codemirror/lib/codemirror.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('codemirror/mode/php/php.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('codemirror/mode/htmlmixed/htmlmixed.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('codemirror/mode/xml/xml.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('codemirror/mode/clike/clike.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('codemirror/mode/css/css.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('codemirror/addon/display/autorefresh.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('codemirror/keymap/sublime.js') ?>"></script>
+<script type="text/javascript" src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 
 <script type="text/javascript">
 <?php

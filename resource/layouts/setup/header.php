@@ -20,18 +20,10 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
         href="<?php asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') ?>">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="<?php asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="<?php asset('plugins/jqvmap/jqvmap.min.css') ?>">
+   
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php asset('dist/css/adminlte.min.css') ?>">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="<?php asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="<?php asset('plugins/daterangepicker/daterangepicker.css') ?>">
-    <!-- summernote -->
-    <link rel="stylesheet" href="<?php asset('plugins/summernote/summernote-bs4.min.css') ?>">
+
     <!-- Datatable -->
     <link rel="stylesheet" href="<?php asset('plugins/dataTables.bootstrap4.min.css') ?>">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
