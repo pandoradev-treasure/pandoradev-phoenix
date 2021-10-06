@@ -10,16 +10,14 @@
 
         <li class="nav-item">
             
-            <!-- Perbanyak bagian ini -->
-			
-						
-						<a href='<?php url('backend/buku/data') ?>' class='nav-link layout'>
+            <!-- Perbanyak bagian ini -->	
+            <a href='<?php url('backend/folder/file') ?>' class='nav-link layout'>
                 <i class='far fa-circle nav-icon'></i>
-                <p>Buku</p>
+                <p>Nama menu</p>
             </a>
             
         </li>
         
     </ul>
 
-</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+</li>
