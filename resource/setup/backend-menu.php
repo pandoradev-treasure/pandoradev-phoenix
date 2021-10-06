@@ -15,9 +15,7 @@
                             Simpan
                         </button>
                     </div>
-                    <textarea class="mb-3 data-code-old" id="code-mirror">
-<?= file_get_contents('../resource/layouts/backend/menu.php') ?>
-                </textarea>
+                    <textarea class="mb-3 data-code-old" id="code-mirror"><?= file_get_contents('../resource/layouts/backend/menu.php') ?></textarea>
                     <div class="card-body">
                         <textarea style="display: none;" name="data_new_code" class="data-code" id="" cols="30" rows="10"></textarea>
                     </div>

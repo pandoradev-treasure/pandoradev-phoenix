@@ -9,14 +9,21 @@
     error_reporting(0);
     ini_set('display_errors', 0);
 
+    if ($_GET['params'] == 'dokumentasi') {
+        
+        include '../documentation.php';
+        die();
+
+    }
+
 
     if (strpos($_GET['params'],'setup') !== false) {
         
         $url           = $_GET['params'];
         $url           = explode("/",$url);
 
-        if (!$url[1]) {
-            $url[1] = "index";
+        if (!@$url[1]) {
+            @$url[1] = "index";
         }
 
         $layoutsHeader = include "../resource/layouts/setup/header.php";

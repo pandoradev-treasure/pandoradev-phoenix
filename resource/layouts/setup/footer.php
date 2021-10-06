@@ -1,5 +1,15 @@
+<!-- Footer -->
 </div>
+<footer <?= $attrForSideBar ?> class="text-center text-lg-start bg-light text-muted" style="bottom: 0;position: absolute;width:100%">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+    © <?= date('Y') ?> Copyright:
+    <a class="text-reset fw-bold">PANDORADEV</a>
+  </div>
+  <!-- Copyright -->
+</footer>
 </div>
+<!-- Footer -->
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
@@ -130,7 +140,8 @@ unset($_SESSION["data"]);
         $('.js-example-basic-single').select2({
             width: 'resolve' // need to override the changed default
         });
-    setTimeout(function() {
+
+        setTimeout(function() {
             $('.button-trigger-pandorasetup').trigger("click");
         }, 10);
 
@@ -140,6 +151,10 @@ unset($_SESSION["data"]);
 
         setTimeout(function() {
             $('.button-trigger-pandorasetup-third').trigger("click");
+        }, 5500);
+
+        setTimeout(function() {
+            $('.button-trigger-pandorasetup-four').trigger("click");
         }, 5500);
 
         setTimeout(function() {
@@ -159,6 +174,11 @@ unset($_SESSION["data"]);
         $(".button-trigger-pandorasetup-third").click(function() {
             $(".pandora-fade-third").fadeIn(3000);
             $(".pandora-fade-third").fadeOut();
+        });
+        
+        $(".button-trigger-pandorasetup-four").click(function() {
+            $(".pandora-fade-four").fadeIn(3000);
+            $(".pandora-fade-four").fadeOut();
         });
 
         $('.link-database').click(function() {
