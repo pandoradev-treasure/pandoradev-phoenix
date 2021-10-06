@@ -341,3 +341,40 @@ foreach (glob("../controller/*") as $key => $see) {
         }
     });
 </script>
+<script>
+    setTimeout(function() {
+            $('.button-trigger-pandorasetup').trigger("click");
+        }, 10);
+
+        setTimeout(function() {
+            $('.button-trigger-pandorasetup-second').trigger("click");
+        }, 2800);
+
+        setTimeout(function() {
+            $('.button-trigger-pandorasetup-third').trigger("click");
+        }, 5500);
+
+        setTimeout(function() {
+            $(".link-database").first().trigger("click");
+        }, 9300);
+
+        $(".button-trigger-pandorasetup").click(function() {
+            $(".pandora-fade").fadeIn(2000);
+            $(".pandora-fade").fadeOut();
+        });
+
+        $(".button-trigger-pandorasetup-second").click(function() {
+            $(".pandora-fade-second").fadeIn(2000);
+            $(".pandora-fade-second").fadeOut();
+        });
+
+        $(".button-trigger-pandorasetup-third").click(function() {
+            $(".pandora-fade-third").fadeIn(3000);
+            $(".pandora-fade-third").fadeOut();
+        });
+
+        $('.link-database').click(function() {
+            window.location.replace("setup/database");
+        });
+
+</script>

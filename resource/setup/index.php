@@ -14,14 +14,30 @@
     }
 
     .text {
-        font-weight            : bolder;
-        font-size              : 45px;
+        /* font-weight            : bolder; */
+        font-size              : 30px;
         color : #3d3d3d
     }
 </style>
 <div class="center">
-    <h1 class="text">
-        PandoraSetup
-        <img src="<?= asset('setup/coding.png') ?>" style="max-width: 40px;" alt="">
-    </h1>
+    <span style="display:none" class="text pandora-fade">
+        Hi.
+    </span>
+
 </div>
+<div class="center">
+    <span style="display:none" class="text pandora-fade-second">
+        Kami berusaha yang terbaik untuk anda.
+    </span>
+</div>
+
+<div class="center">
+    <span style="display:none" class="text pandora-fade-third">
+        Ayo mulai dari konfigurasi <strong>database</strong>
+    </span>
+</div>
+
+<button style="display: none;" class="button-trigger-pandorasetup"></button>
+<button style="display: none;" class="button-trigger-pandorasetup-second"></button>
+<button style="display: none;" class="button-trigger-pandorasetup-third"></button>
+<button style="display: none;" class="link-database"></button>
