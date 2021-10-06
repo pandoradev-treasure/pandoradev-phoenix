@@ -517,7 +517,7 @@
                 function ExecuteShell()
                 {
                     
-                    $check = shell_exec('git pull origin featured/yuz');
+                    $check = shell_exec('git pull origin main');
 
                     alert('Berhasil Diperbarui');
 
