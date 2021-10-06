@@ -219,7 +219,7 @@
         </div>
         <!-- end for controller files -->
         <?php
-            }else{
+            }else if (@$dataUrlSekarang[3] == "backend-detail-file"){
         ?>
         <!-- for menu -->
         <div class="remove-display border-end bg-white second-sidebar" id="sidebar-wrapper">
