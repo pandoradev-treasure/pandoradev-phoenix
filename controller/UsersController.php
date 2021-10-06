@@ -2,12 +2,6 @@
             
     function TambahData($request)
     {
-				
-				$getData = query()->table('users')->select('*')->where('nama', "x")->get();
-				
-				
-				check(count($getData));
-				
         query()->insert('users',[
 
             $request->nama,
@@ -26,7 +20,7 @@
         *di function ini anda bisa memberikan kode
         *untuk persiapan edit data
         */
-				$data = query()->table('users',$request->id)->single();
+				$data = query()->table('users')->where('id',$request->id)->single();
 				view('backend/users/form-edit',compact('data'));
 
     }
