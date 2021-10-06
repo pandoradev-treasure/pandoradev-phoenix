@@ -76,17 +76,17 @@
 <body class="bg">
     <div class="center">
         <h1 class="text">
-            PANDORACODE 1.2
+            <img src="resource/assets/logo.png" alt="" style="max-width: 400px;">
         </h1>
         <!-- <p class="desc">Lebih <span class="high">simple</span>, dan <span class="high">efisien</span>.</p> -->
-        <p href="" class="typewrite desc" data-period="2000" 
+        <!-- <p href="" class="typewrite desc" data-period="2000" 
             data-type='[ "Sekarang kami lebih simple", "Berkarya bersama pandoracode!" ]'>
             <span class="wrap desc"></span>
-        </p>
+        </p> -->
 
         <div style="margin-top: 10%;">
-            <a href="setup/database"><button type="button" class="btn btn-outline-primary btn-sm">Konfigurasi</button></a>
-            <a href=""><button type="button" class="btn btn-outline-primary btn-sm">Documentation</button></a>
+            <a href="setup/database"><button type="button" class="btn btn-outline-dark btn-sm">Konfigurasi</button></a>
+            <a href=""><button type="button" class="btn btn-outline-dark btn-sm">Documentation</button></a>
         </div>
     </div>
 </body>
