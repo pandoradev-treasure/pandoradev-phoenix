@@ -129,9 +129,40 @@
                                 <a class="delete-table" data-table="<?= $see[4] ?>" data-url="<?= controller('setup@deleteFolderBackend',  'backend/'.$see[4]) ?>">
                                     <img class="delete-png" src="<?= asset('setup/cancel.png') ?>" style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
                                 </a>
-                                <a data-toggle="modal" data-target="#exampleModal">
+                                <a data-toggle="modal" data-target="#EditFolderName<?= str_replace('.','',$see[4]) ?>">
                                     <img class="export-png" src="<?= asset('setup/edit.png') ?>" style="max-width:10px;margin-left: 5px;margin-bottom: 3px;">
                                 </a>
+
+                                 <!-- Modal Edit Name Folder -->
+                                <div class="modal fade" id="EditFolderName<?= str_replace('.','',$see[4]) ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit Nama Folder </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="<?= controller('setup@editNamaFolderBackend', 'backend/'.$see[4]) ?>" method="POST">
+                                                <div class="modal-body">
+                                                    <div class="form-inline">
+                                                        <div class="form-group mb-2">
+                                                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?= $see[4] ?>">
+                                                        </div>
+                                                        <div class="form-group mx-sm-3 mb-2">
+                                                            <label for="inputPassword2" class="sr-only">Nama Baru</label>
+                                                            <input name="new_name_file" required type="text" class="form-control" id="inputPassword2" placeholder="Nama Baru">
+                                                        </div>
+                                                        <input type="hidden" name="old_file" value="<?= $seefile ?>">
+                                                        <textarea style="display: none;" name="data_new_code" class="data-code" id="" cols="30" rows="10"></textarea>
+                                                        <button type="submit" class="btn btn-primary btn-sm mb-2">Ubah</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </span>
                             <?php
                                 foreach (glob("../resource/views/backend/$see[4]/*") as $key => $seefile) {
