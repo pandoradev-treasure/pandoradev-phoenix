@@ -14,9 +14,10 @@
 
     function asset($target)
     {
+
       $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
-      $root        = $_SERVER['HTTP_HOST'];
-      echo "http://$root/$projectName[1]/resource/assets/$target";
+      echo "http://$_SERVER[HTTP_HOST]/$projectName[1]/resource/assets/$target";
+      
     }
 
     function url($target)
