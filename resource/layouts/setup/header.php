@@ -92,9 +92,17 @@
                 </a>
             </div>
             <div class=" list-group list-group-flush layouts">
+               
+
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
-                    href="<?= url('setup/database') ?>"><img src="<?= asset('setup/database.png') ?>"
-                        style="max-width:20px"> Database </a>
+                   href="<?= url('setup/database') ?>"><img src="<?= asset('setup/database.png') ?>"
+                       style="max-width:20px"> Database </a>
+                <?php 
+                
+                    if ($host) {
+
+                ?>
+
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
                     href="<?= url('setup/table') ?>"><img src="<?= asset('setup/table.png') ?>" style="max-width:20px">
                     Table </a>
@@ -183,6 +191,10 @@
                     </div>
 
                 </div>
+                <?php
+
+                    }
+                ?>
             </div>
         </div>
 
