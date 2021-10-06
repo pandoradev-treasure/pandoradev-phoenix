@@ -131,9 +131,9 @@
 
       function where($where, $operator, $with = null)
       {
-        
+
           if (!$with) {
-            $this->where .= " WHERE $where = '$with'";
+            $this->where .= " WHERE $where = '$operator'";
           }else{
             $this->where .= " WHERE $where $operator '$with'";
           }
