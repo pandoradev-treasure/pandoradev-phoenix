@@ -9,7 +9,9 @@
             <div class="" style="box-shadow:2px 2px 36px #e1e1e1">
                 <form action="<?= controller('setup@UpdateFileHeaderBackend') ?>" method="POST" enctype="multipart/form-data">
                     <div class="card-header">
-                    <span style="font-size: 20px;font-family:calibri;padding:5px;border-radius: 4px;color:#2c3e50">layouts/backend/header.php</span>
+                    <span style="font-size: 18px;font-family:calibri;padding:5px;border-radius: 4px;color:#2c3e50">
+                       <img src="<?= asset('setup/folder.png') ?>" style="max-width: 18px;" alt=""> layouts/backend/header.php
+                    </span>
 
                         <button type="submit" class="save-file btn save-file btn-outline-primary float-right btn-sm">
                             Simpan
