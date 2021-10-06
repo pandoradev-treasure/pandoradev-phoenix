@@ -87,9 +87,22 @@
         <!-- Sidebar-->
         <div <?= $attrForSideBar ?> class="menu-sidebar border-end bg-white first-sidebar" id="sidebar-wrapper">
             <div class=" sidebar-heading border-bottom bg-light" style="font-size: 17px;">
-                <a href="<?= url('setup') ?>">
-                    Pandora<b>Setup</b>
-                </a>
+
+                <?php
+                    if ($host && $DATABASE) {
+                ?>
+                    <a href="<?= url('setup/database') ?>">
+                        Pandora<b>Setup</b>
+                    </a>
+                <?php
+                    }else{
+                        ?>
+                        <a href="<?= url('setup') ?>">
+                            Pandora<b>Setup</b>
+                        </a>
+                        <?php
+                    }
+                ?>
             </div>
             <div class=" list-group list-group-flush layouts">
                
