@@ -427,6 +427,22 @@ foreach (glob("../controller/*") as $key => $see) {
                 {
                     e.preventDefault();
                     $( ".execute-cmd" ).first().trigger( "click" );
+                    const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2300,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    })
+
+                    Toast.fire({
+                    icon: 'success',
+                    title: 'Tunggu sebentar...'
+                    })
                     return false;
                 }
                 return true;
