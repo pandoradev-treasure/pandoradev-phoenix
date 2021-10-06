@@ -38,6 +38,7 @@
 
     <link rel="stylesheet" href="<?= asset('codemirror/lib/codemirror.css') ?>">
     <link rel="stylesheet" href="<?= asset('codemirror/theme/material-darker.css') ?>">
+    <link rel="stylesheet" href="<?= asset('codemirror/theme/the-matrix.css') ?>">
 </head>
 <style>
     .select2-container--default .select2-selection--single {
@@ -93,6 +94,9 @@
                 <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
                     href="<?= url('setup/controller') ?>"><img src="<?= asset('setup/controller.png') ?>"
                         class="export-png" style="max-width:20px"> Controller
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
+                    href="<?= url('setup/cmd') ?>"><img src="<?= asset('setup/coding.png') ?>" style="max-width:20px"> Terminal
                 </a>
 
                 <span class="title-menu">Views</span>

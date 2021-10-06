@@ -255,6 +255,33 @@ foreach (glob("../controller/*") as $key => $see) {
 </script>
 
 <script>
+    var editor = CodeMirror.fromTextArea(document.getElementById('terminal'), {
+        keyMap                 : "sublime",
+        autoCloseBrackets      : true,
+        lineNumbers            : true,
+        matchBrackets          : true,
+        mode                   : "application/x-httpd-php",
+        indentUnit             : 4,
+        indentWithTabs         : true,
+        autoRefresh            : true,
+        theme                  : "the-matrix",
+        matchBrackets          : true,
+        showCursorWhenSelecting: true,
+        tabSize                : 2,
+        autoCloseTags          : true
+    });
+
+    editor.on('change', editor => {
+        console.log(editor.getValue());
+        $('.data-code').text(editor.getValue());
+    });
+
+    $('.data-code').text($('.data-code-old').text());
+
+    editor.setSize(null, 350);
+</script>
+
+<script>
 
     $('.name-folder').keyup(function() {
         $('.exist_folder').val('');
