@@ -221,51 +221,7 @@
 							<thead>
 								<tr>
 									<th>Create / Insert</th>
-									<td><code>insertData("nama_tabel"," '$value1','$value2' ")</code></td>
-								</tr>
-								<tr>
-									<th>Update</th>
-									<td><code>updateData("nama_tabel"," nama_kolom = '$value', nama_kolom_2 = '$value2' ", "$id")</code></td>
-								</tr>
-								<tr>
-									<th>Delete</th>
-									<td><code>deleteData("nama_tabel", "$id")</code></td>
-								</tr>
-								<tr>
-									<th>Ambil Tabel</th>
-									<td><code>ambilTabel("nama_tabel")</code></td>
-								</tr>
-								<tr>
-									<th>Fetch Assoc</th>
-									<td><code>ambilData("$variableTable")</code></td>
-								</tr>
-								<tr>
-									<th>Relasi / Join</th>
-									<td><code>relation("table","relation_table","select_column")</code></td>
-								</tr>
-								<tr>
-									<th>Asset Ke Direktori Public</th>
-									<td><code>asset('nama_folder')</code></td>
-								</tr>
-								<tr>
-									<th>Cek Value Variabel</th>
-									<td><code>check($variable)</code></td>
-								</tr>
-								<tr>
-									<th>Format Mata Uang Rupiah</th>
-									<td><code>rupiah($variable)</code></td>
-								</tr>
-								<tr>
-									<th>Raw Query</th>
-									<td><code>rawQuery("query anda")</code></td>
-								</tr>
-								<tr>
-									<th>Check Perbandingan</th>
-									<td><code>checkSama($list, $loopingData)</code></td>
-								</tr>
-								<tr>
-									<th>Alert Notif</th>
-									<td><code>notif($query, $table, $msg)</code></td>
+									<td><code>insert("nama_tabel"," '$value1','$value2' ")</code></td>
 								</tr>
 							</thead>
 						</table>

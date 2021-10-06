@@ -14,11 +14,11 @@
                 </div>
 								<div class="form-group">
                     <label for="">Email</label>
-                    <input type="email" name="email" class="form-control" value="<?= $data->data->nama ?>">
+                    <input type="email" name="email" class="form-control" value="<?= $data->data->email ?>">
                 </div>
 								<div class="form-group">
                     <label for="">Password</label>
-                    <input type="password" name="password" class="form-control" value="<?= $data->data->nama ?>">
+                    <input type="password" name="password" class="form-control" value="<?= $data->data->password ?>">
                 </div>
 
                 <?php tombolForm() ?>
