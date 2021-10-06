@@ -688,6 +688,36 @@ $content .= '
         view('setup/backend-menu');
      }
 
+     function UpdateFileHeaderBackend($request)
+     {
+        
+        $myfile  = fopen("../resource/layouts/backend/header.php", "w") or die("Unable to open file!");
+
+        $content = $request->data_new_code;
+
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        alert('Berhasil','Berhasil mengupdate file header.php!','success');
+
+        view('setup/backend-header');
+     }
+
+     function UpdateFileFooterBackend($request)
+     {
+        
+        $myfile  = fopen("../resource/layouts/backend/footer.php", "w") or die("Unable to open file!");
+
+        $content = $request->data_new_code;
+
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        alert('Berhasil','Berhasil mengupdate file footer.php!','success');
+
+        view('setup/backend-footer');
+     }
+
      function CreateFolderAndFileBackend($request)
      {
 

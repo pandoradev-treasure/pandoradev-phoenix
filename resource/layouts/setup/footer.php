@@ -226,7 +226,7 @@ unset($_SESSION["data"]);
 
 </script>
 <?php
-    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-menu') !== false) {
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-menu') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-header') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-footer') !== false) {
         ?>
 
         <script type="text/javascript">
