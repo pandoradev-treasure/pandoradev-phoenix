@@ -210,6 +210,75 @@
             <div class="remove-display list-group list-group-flush">
                 <div class="card-body" style="margin-top: -30px;">
                     <div id="accordion" style="margin-top: 20px;">
+                    <div style="margin-bottom:10px">
+                        <a data-toggle="modal" data-target="#AddNewFileController" style="cursor:pointer"><img
+                            src="<?= asset('setup/add-file.png') ?>" style="max-width: 20px;cursor:pointer" alt=""><span
+                            style="margin-left: 7px;">Buat baru</span></a>
+                        </div>
+
+                        <!-- Modal Add File / Folder-->
+                        <div class="modal fade" id="AddNewFileController" tabindex="-1" role="dialog"
+                            aria-labelledby="AddNewFileControllerLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <span style="font-size: 20px;font-family:calibri">Buat Controller</span>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                    <div>
+                                        <form action="<?= controller('setup@CreateController') ?>" method="POST" enctype="multipart/form-data">
+                                            <div class="card-body">
+
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Nama Controller </label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+
+                                                                <input class="form-control" name="controller" type="text" required placeholder="AwesomeController">
+                                                                <small id="emailHelp" class="form-text text-muted">Isikan nama controller yang
+                                                                    ingin anda buat.</small>
+
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Fungsi Otomatis</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6" style="margin-top: 8px;">
+
+                                                                <input type="checkbox" checked name="auto_function" id="">
+                                                                <small id="emailHelp" class="form-text text-muted">
+                                                                    Jika anda centang, maka <code>function dasar</code> otomatis akan terbuat,
+                                                                    seperti : <br>
+                                                                    <code>TambahData()</code>, <code>EditData()</code>,
+                                                                    <code>UpdateData()</code>, <code>HapusData()</code>
+                                                                </small>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="float-right">
+                                                    <button type="submit" class="btn btn-outline-info btn-sm">Bantuan</button>
+                                                    <button type="submit" class="btn btn-sm btn-primary">Buat</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <?php
 
                             foreach (glob("../controller/*") as $key => $fileController) {
@@ -219,11 +288,17 @@
                             ?>
                         <span style="color:#4b6584">
 
-                            <img class="export-png" src="<?= asset('setup/controller.png') ?>" style="max-width:15px;">
+                            <img class="export-png" src="<?= asset('setup/controller.png') ?>" style="max-width:14px;">
                             <a target="" href="<?= controller('setup@detailFile', $fileController[2]) ?>"
                                 style="color: #2c3e50;cursor:pointer">
-                                <span style="margin-left: 7px;"><?= $fileController[2] ?></span>
+                                <span style="margin-left: 3px;font-size:14px"><?= $fileController[2] ?></span>
                             </a>
+
+                            <!-- Tombol Delete Controller -->
+                            <a class="delete-table" data-table="<?= $fileController[2] ?>" data-url="<?= controller('setup@deleteFileController', $fileController[2]) ?>">
+                                <img class="delete-png float-right" src="<?= asset('setup/cancel.png') ?>" style="max-width:8px;margin-left: 5px;margin-top:11.3px">
+                            </a>
+
                         </span><br>
                         <?php } ?>
                     </div>

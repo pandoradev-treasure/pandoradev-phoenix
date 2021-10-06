@@ -553,7 +553,7 @@ $content .= '
 
         alert('Berhasil membuat controller '.$namaFile);
 
-        view('setup/controller');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
 
@@ -627,7 +627,7 @@ $content .= '
     {
         unlink('../controller/'.$request->id);
         alert('Berhasil Dihapus!');
-        view('setup/controller');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function editNamaController($request)
