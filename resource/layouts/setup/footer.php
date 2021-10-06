@@ -1,13 +1,13 @@
 <!-- Footer -->
 </div>
-<footer <?= $attrForSideBar ?> class="text-center text-lg-start bg-light text-muted" style="bottom: 0;position: absolute;width:100%">
+<!-- <footer <?= $attrForSideBar ?> class="text-center text-lg-start bg-light text-muted" style="bottom: 0;position: absolute;width:100%"> -->
   <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+  <!-- <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
     © <?= date('Y') ?> Copyright:
     <a class="text-reset fw-bold">PANDORADEV</a>
-  </div>
+  </div> -->
   <!-- Copyright -->
-</footer>
+<!-- </footer> -->
 </div>
 <!-- Footer -->
 <!-- Bootstrap core JS-->
