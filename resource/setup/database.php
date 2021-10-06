@@ -78,6 +78,16 @@
                                     maka fitur login & register akan otomatis terbuat.</small>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Redirect</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control w-25" name="redirect" value="<?= $REDIRECT ?>">
+                                <small id="emailHelp" class="form-text text-muted">
+                                    Masukan sesuai nama folder/file yang akan diload pertama kali.
+                                </small>
+                            </div>
+                        </div>
                         <div class="float-right">
                             <button type="submit" name="process-configuration"
                                 class="btn btn-sm btn-primary">Selesai</button>

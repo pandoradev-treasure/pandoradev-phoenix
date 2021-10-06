@@ -267,6 +267,7 @@
         $user     = "" ? 'root'     : $request->user;
         $password = "" ? ''         : $request->password;
         $auth     = $request->featured_auth;
+        $redirect = $request->redirect;
 
         if ($request->exist_database) {
 
@@ -335,7 +336,7 @@ $content .= '
     #$AUTH = FITUR LOGIN & REGISTER
     #Ubah isi variable $AUTH dari false menjadi true, jika ingin mengaktifkan fitur Login & Register
 
-    $REDIRECT      = "";
+    $REDIRECT      = "'.$redirect.'";
     //$REDIRECT = UNTUK REDIRECT / PINDAH HALAMAN PADA SAAT PANDORACODE DIAKSES
 
     $CHECKDB       = false;
