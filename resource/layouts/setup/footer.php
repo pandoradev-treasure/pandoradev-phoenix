@@ -431,7 +431,7 @@ foreach (glob("../controller/*") as $key => $see) {
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3400,
+                    timer: 4400,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                         toast.addEventListener('mouseenter', Swal.stopTimer)
