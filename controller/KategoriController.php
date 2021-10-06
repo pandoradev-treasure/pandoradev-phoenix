@@ -24,7 +24,7 @@
         *di function ini anda bisa memberikan kode
         *untuk persiapan edit data
         */
-				$data = query()->table('kategori',$request->id)->single();
+				$data = query()->table('kategori')->where('id',$request->id)->single();
 				view('backend/kategori/form-edit',compact('data'));
 
     }

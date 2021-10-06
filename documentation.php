@@ -220,12 +220,105 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
+									<th>Query</th>
+									<td><code>query();</code></td>
+								</tr>
+								<tr>
+									<th>Raw</th>
+									<td><code>raw(" custom your query ");</code></td>
+								</tr>
+								<tr>
+									<th>Where</th>
+									<td><code>where("kolom","operator","data");</code></td>
+								</tr>
+								<tr>
+									<th>Table</th>
+									<td><code>table("nama_table");</code></td>
+								</tr>
+								<tr>
+									<th>Select</th>
+									<td><code>select("nama_kolom");</code></td>
+								</tr>
+								<tr>
+									<th>Get</th>
+									<td><code>get();</code></td>
+								</tr>
+								<tr>
+									<th>Single</th>
+									<td><code>single();</code></td>
+								</tr>
+								<tr>
+									<th>OrderBy</th>
+									<td><code>orderBy("nama_kolom","type_order");</code></td>
+								</tr>
+								<tr>
+									<th>Limit</th>
+									<td><code>limit(max_limit);</code></td>
+								</tr>
+								<tr>
+									<th>Join</th>
+									<td><code>join("nama_table","nama_kolom");</code></td>
+								</tr>
+								<tr>
 									<th>Create / Insert</th>
-									<td><code>insert("nama_tabel"," '$value1','$value2' ")</code></td>
+									<td><code>insert("nama_tabel",[ '$value1' => '$value1', '$value2' => '$value2' ]);</code></td>
+								</tr>
+								<tr>
+									<th>Update</th>
+									<td><code>update("nama_tabel",[ '$value1' => '$value1', '$value2' => '$value2' ], id );</code></td>
+								</tr>
+								<tr>
+									<th>Delete</th>
+									<td><code>delete("nama_tabel", id );</code></td>
+								</tr>
+								<tr>
+									<th>View</th>
+									<td><code>view("target_url",parsing_data);</code></td>
+								</tr>
+								<tr>
+									<th>Connected View</th>
+									<td><code>exampleMethod()->view("target_url","pesan");</code></td>
+								</tr>
+								<tr>
+									<th>Check</th>
+									<td><code>check(eksekusi_data);</code></td>
+								</tr>
+								<tr>
+									<th>Alert</th>
+									<td><code>alert("judul_pesan","pesan","type_alert");</code></td>
+								</tr>
+								<tr>
+									<th>Hitung</th>
+									<td><code>hitung(data);</code></td>
+								</tr>
+								<tr>
+									<th>Asset</th>
+									<td><code>asset("target_url");</code></td>
+								</tr>
+								<tr>
+									<th>Controller</th>
+									<td><code>controller("namaController@method", id);</code></td>
+								</tr>
+								<tr>
+									<th>URL</th>
+									<td><code>url("target_url");</code></td>
+								</tr>
+								<tr>
+									<th>TombolHapus</th>
+									<td><code>tombolHapus("target","value","attribt");</code></td>
+								</tr>
+								<tr>
+									<th>tombolEdit</th>
+									<td><code>tombolEdit("target","value","attribt");</code></td>
+								</tr>
+								<tr>
+									<th>TombolForm</th>
+									<td><code>tombolForm();</code></td>
 								</tr>
 							</thead>
 						</table>
 						<h5>Penjelasan Helper : </h5>
+
 						<div class="callout-block callout-block-info">
 							<div class="content">
 								<h4 class="callout-title">
@@ -233,16 +326,29 @@
 										<i class="fas fa-info-circle"></i>
 									</span>
 									<!--//icon-holder-->
-									insertData("nama_tabel"," '$value1','$value2' ")
+									query();
 								</h4>
-								<p> Digunakan untuk Insert data kedalam tabel, menerima 2 (dua) parameter
-									, dimana parameter <code>( "nama_tabel" )</code> di isi dengan nama tabel yang akan digunakan untuk menyimpan data, dan <code>( " '$value1','$value2' " )</code> di isi dengan data yang ingin di simpan
+								<p> Digunakan untuk mengawali sebuah Query, function ini tidak menerima parameter contoh : <code>query()->function()</code></p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									raw("custom your query");
+								</h4>
+								<p> Digunakan untuk membuat query anda sendiri jika tidak ingin menggunakan query bawaan,
+									, menerima parameter yang berisi query. Contoh : <code>raw("SELECT * FROM table")</code>
 								</p>
 							</div>
 							<!--//content-->
 						</div>
 						<!--//callout-block-->
-
 						<div class="callout-block callout-block-info">
 							<div class="content">
 								<h4 class="callout-title">
@@ -250,17 +356,15 @@
 										<i class="fas fa-info-circle"></i>
 									</span>
 									<!--//icon-holder-->
-									updateData("nama_tabel"," nama_kolom = '$value', nama_kolom_2 = '$value2' ", "$id")
+									where("kolom","operator","data");
 								</h4>
-								<p>Digunakan untuk Update data, menerima 3 (tiga) parameter
-									, dimana parameter pertama <code>( "nama_tabel" )</code> di isi dengan nama tabel yang data di dalamnya akan di update, parameter kedua <code>( " nama_kolom = '$value', nama_kolom_2 = '$value2' " )</code> di isi dengan nama kolom <b>sesuai dengan nama kolom pada tabel</b>, beserta value (isi data) <b>baru</b>, dan parameter ketiga <code>( "$id" )</code> di isi <b>id</b> yang akan di gunakan untuk seleksi data yang akan di update.
-
+								<p> Digunakan untuk memebri kondisi pada query
+									, menerima 3 parameter. Contoh : <code>where("username","=","irfan");</code>
 								</p>
 							</div>
 							<!--//content-->
 						</div>
 						<!--//callout-block-->
-
 						<div class="callout-block callout-block-info">
 							<div class="content">
 								<h4 class="callout-title">
@@ -268,17 +372,15 @@
 										<i class="fas fa-info-circle"></i>
 									</span>
 									<!--//icon-holder-->
-									deleteData("nama_tabel", "$id")
+									table("nama_table");
 								</h4>
-								<p>Digunakan untuk Menghapus data, menerima 2 (dua) parameter
-									, dimana parameter pertama <code>( "nama_tabel" )</code> di isi dengan nama tabel yang data di dalamnya akan di hapus, parameter kedua <code>( "$id" )</code> di isi <b>id</b> yang akan di gunakan untuk seleksi data yang akan di hapus.
-
+								<p> Digunakan untuk mengambil tabel pada database
+									, menerima 1 parameter. Contoh : <code>table("users");;</code>
 								</p>
 							</div>
 							<!--//content-->
 						</div>
 						<!--//callout-block-->
-
 						<div class="callout-block callout-block-info">
 							<div class="content">
 								<h4 class="callout-title">
@@ -286,16 +388,15 @@
 										<i class="fas fa-info-circle"></i>
 									</span>
 									<!--//icon-holder-->
-									ambilTabel("nama_tabel")
+									select("nama_kolom");
 								</h4>
-								<p> Digunakan untuk mengambil tabel di database, menerima 1 (satu) parameter <code>("nama_tabel") </code> di isi dengan nama tabel yang ingin di ambil.
-
+								<p> Digunakan untuk memilih kolom pada database
+									, menerima 1 parameter. Contoh : <code>select("id");</code>
 								</p>
 							</div>
 							<!--//content-->
 						</div>
 						<!--//callout-block-->
-
 						<div class="callout-block callout-block-info">
 							<div class="content">
 								<h4 class="callout-title">
@@ -303,16 +404,15 @@
 										<i class="fas fa-info-circle"></i>
 									</span>
 									<!--//icon-holder-->
-									ambilData("$variableTable")
+									get();
 								</h4>
-								<p>Digunakan untuk mengambil/mendapatkan data dalam tabel di database, menerima 1 (satu) parameter <code>("$variableTable") </code> di isi dengan <b> variabel yang berisi function</b> <code>ambilData("$variableTable")</code>.
-
+								<p> Digunakan untuk mengembalikan hasil query dengan jumlah banyak
+									, tidak menerima parameter. Contoh : <code>query()->example()->get()</code>
 								</p>
 							</div>
 							<!--//content-->
 						</div>
 						<!--//callout-block-->
-
 						<div class="callout-block callout-block-info">
 							<div class="content">
 								<h4 class="callout-title">
@@ -320,16 +420,15 @@
 										<i class="fas fa-info-circle"></i>
 									</span>
 									<!--//icon-holder-->
-									relation("table","relation_table","select_column")
+									single();
 								</h4>
-								<p>Digunakan untuk membuat relasi antar tabel, menerima 3 (tiga) parameter, dimana parameter pertama <code>( "tabel" )</code> di isi dengan nama <b>tabel</b> yang akan digunakan sebagai <b>tabel Primary</b>, parameter kedua <code>( "relation_tabel" )</code> di isi dengan nama <b>tabel</b> yang akan digunakan sebagai <b>tabel Foreign</b>, dan parameter ketiga <code>( "select_column" )</code> parameter ini bersifat <b>NULL</b>,boleh di isi apabila terdapat nama kolom yang <b>sama</b> di tabel Primary dan tabel Foreign, yang digunakan untuk membedakan kolom yang sama tersebut contoh : <code>tabel.kolom AS kolom_alias</code>.
-
+								<p> Digunakan untuk mengembalikan hasil query dengan jumlah 1 (satu)
+									, tidak menerima parameter. Contoh : <code>query()->example()->single();</code>
 								</p>
 							</div>
 							<!--//content-->
 						</div>
 						<!--//callout-block-->
-
 						<div class="callout-block callout-block-info">
 							<div class="content">
 								<h4 class="callout-title">
@@ -337,16 +436,15 @@
 										<i class="fas fa-info-circle"></i>
 									</span>
 									<!--//icon-holder-->
-									asset('nama_folder')
+									orderBy("nama_kolom","type_order");
 								</h4>
-								<p>Digunakan untuk menuju folder asset di dalam folder <b>public</b> , menerima 1 (satu) parameter, <code>( 'nama_folder' )</code> di isi dengan nama folder yang di tuju di dalam folder assset.
-
+								<p> Digunakan untuk mengurutkan pengembalian hasil query berdasarkan data terbaru atau data terlama
+									, menerima 2 parameter. Contoh : <code>orderBy("username","DESC");</code>
 								</p>
 							</div>
 							<!--//content-->
 						</div>
 						<!--//callout-block-->
-
 						<div class="callout-block callout-block-info">
 							<div class="content">
 								<h4 class="callout-title">
@@ -354,80 +452,10 @@
 										<i class="fas fa-info-circle"></i>
 									</span>
 									<!--//icon-holder-->
-									check($variable)
+									limit(max_limit);
 								</h4>
-								<p>Digunakan untuk menampilkan nilai, ini sama dengan <b>var_dump</b> namun dengan tampilan yang lebih menarik , menerima 1 (satu) parameter, <code>( $variabel )</code> di isi dengan variabel yang ingin di tampilkan nilainya.
-
-								</p>
-							</div>
-							<!--//content-->
-						</div>
-						<!--//callout-block-->
-
-						<div class="callout-block callout-block-info">
-							<div class="content">
-								<h4 class="callout-title">
-									<span class="callout-icon-holder me-1">
-										<i class="fas fa-info-circle"></i>
-									</span>
-									<!--//icon-holder-->
-									rupiah($variable)
-								</h4>
-								<p>Digunakan untuk merubah nilai dengan tipe <b>(Numeric)</b> menjadi nilai yang berformat Rupiah , menerima 1 (satu) parameter, <code>( $variabel )</code> di isi dengan variabel yang ingin dirubah nilainya ke dalam format Rupiah.
-
-								</p>
-							</div>
-							<!--//content-->
-						</div>
-						<!--//callout-block-->
-
-						<div class="callout-block callout-block-info">
-							<div class="content">
-								<h4 class="callout-title">
-									<span class="callout-icon-holder me-1">
-										<i class="fas fa-info-circle"></i>
-									</span>
-									<!--//icon-holder-->
-									rawQuery("query anda")
-								</h4>
-								<p>Digunakan untuk membuat query anda sendiri , menerima 1 (satu) parameter, <code>( "query anda" )</code> di isi query yang ingin anda gunakan.
-
-								</p>
-							</div>
-							<!--//content-->
-						</div>
-						<!--//callout-block-->
-
-						<div class="callout-block callout-block-info">
-							<div class="content">
-								<h4 class="callout-title">
-									<span class="callout-icon-holder me-1">
-										<i class="fas fa-info-circle"></i>
-									</span>
-									<!--//icon-holder-->
-									checkSama($list, $loopingData)
-								</h4>
-								<p>Digunakan untuk mendapatkan nilai dari <b>tabel Foreign</b>. Fungsi ini akan sangat berguna saat edit data, karena fungsi ini otomatis akan menampilkan option yang berkaitan dengan data yang akan kita edit, menerima 2 (dua) parameter
-									, dimana parameter pertama <code>( $list )</code> di isi dengan nama kolom yang berelasi di kolom Foreign ,misal : <code>'kelas_id'</code>, parameter kedua <code>( $loopingData )</code> di isi dengan nama kolom yang berisi data yang berkaintan dengan tabel <b>Primary</b>.
-
-								</p>
-							</div>
-							<!--//content-->
-						</div>
-						<!--//callout-block-->
-
-						<div class="callout-block callout-block-info">
-							<div class="content">
-								<h4 class="callout-title">
-									<span class="callout-icon-holder me-1">
-										<i class="fas fa-info-circle"></i>
-									</span>
-									<!--//icon-holder-->
-									notif($query, $table, $msg)
-								</h4>
-								<p>Digunakan untuk membuat notifikasi yang hanya akan berjalan ketika <b>berhasil</b>, menerima 3 (tiga) parameter
-									, dimana parameter pertama <code>( $query )</code> di isi dengan query anda, parameter kedua <code>( $table )</code> di isi dengan nama tabel yang di gunakan, dan parameter ketiga <code>( "$msg" )</code> di isi dengan <b>pesan</b> yang di tampilkan ketika berhasil.
-
+								<p> Digunakan untuk membatasi data yang tampil
+									, menerima 1 parameter. Contoh : <code>limit(10);</code>
 								</p>
 							</div>
 							<!--//content-->
