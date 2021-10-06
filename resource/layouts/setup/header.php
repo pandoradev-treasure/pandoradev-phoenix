@@ -78,7 +78,14 @@
     </audio>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
-        <div class="menu-sidebar border-end bg-white first-sidebar" id="sidebar-wrapper">
+        <?php
+            @$dataUrlSekarang = explode('/',$_SERVER['REQUEST_URI']);
+            $attrForSideBar = null;
+            if (@$dataUrlSekarang[3] == "") {
+                $attrForSideBar = "style='display:none'";
+            }
+        ?>
+        <div <?= $attrForSideBar ?> class="menu-sidebar border-end bg-white first-sidebar" id="sidebar-wrapper">
             <div class=" sidebar-heading border-bottom bg-light" style="font-size: 17px;">
                 <a href="<?= url('setup') ?>">
                     Pandora<b>Setup</b>
