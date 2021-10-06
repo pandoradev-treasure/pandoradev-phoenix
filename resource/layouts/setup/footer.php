@@ -45,6 +45,7 @@
 <script src="<?= asset('codemirror/addon/display/autorefresh.js') ?>"></script>
 <script src="<?= asset('codemirror/keymap/sublime.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
+<script src="<?= asset('codemirror/addon/display/placeholder.js') ?>"></script>
 <script>
     $(document).ready(function() {
         $('.preview').click(function(){
@@ -258,7 +259,6 @@ foreach (glob("../controller/*") as $key => $see) {
     var editor = CodeMirror.fromTextArea(document.getElementById('terminal'), {
         keyMap                 : "sublime",
         autoCloseBrackets      : true,
-        lineNumbers            : true,
         matchBrackets          : true,
         mode                   : "application/x-httpd-php",
         indentUnit             : 4,
@@ -279,6 +279,8 @@ foreach (glob("../controller/*") as $key => $see) {
     $('.data-code').text($('.data-code-old').text());
 
     editor.setSize(null, 350);
+
+    editor.focus();
 </script>
 
 <script>
@@ -405,3 +407,33 @@ foreach (glob("../controller/*") as $key => $see) {
         });
 
 </script>
+
+<?php
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
+        ?>
+
+        <script type="text/javascript">
+            $(document).keydown(function(e) {
+                
+                var key = undefined;
+                var possible = [ e.key, e.keyIdentifier, e.keyCode, e.which ];
+
+                while (key === undefined && possible.length > 0)
+                {
+                    key = possible.pop();
+                }
+
+                if (key == '13')
+                {
+                    e.preventDefault();
+                    $( ".execute-cmd" ).first().trigger( "click" );
+                    return false;
+                }
+                return true;
+                }); 
+        </script>
+
+        <?php
+        
+    }
+?>
