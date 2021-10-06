@@ -129,9 +129,15 @@
           return $this;
       }
 
-      function where($where, $with)
+      function where($where, $operator, $with = null)
       {
-          $this->where .= " WHERE $where = '$with'";
+        
+          if (!$with) {
+            $this->where .= " WHERE $where = '$with'";
+          }else{
+            $this->where .= " WHERE $where $operator '$with'";
+          }
+
           return $this;
       }
 
