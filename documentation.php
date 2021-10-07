@@ -71,7 +71,6 @@
 					</li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">Konfigurasi</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-2">Function Helper</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-3">Menu Sidebar</a></li>
 					<!-- <li class="nav-item"><a class="nav-link scrollto" href="#item-1-4">Section Item 1.4</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-5">Section Item 1.5</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-6">Section Item 1.6</a></li>
@@ -117,24 +116,24 @@
 							Sebagai contoh controller untuk insert data :
 						</p>
 						<h5>Lokasi penyimpanan :</h5> <code>Controller/Nama_controller.php</code>
-						<div class="docs-code-block">
-							<pre class="shadow-lg rounded"><code class=""><span style="color:#3498db">&lt;?php </span>
-
-   <span style="color:#3498db">include </span><span style="color:#2ecc71">'Controller.php'</span><span style="color:#3498db">; </span>
-
-   <span style="color:#9b59b6">function </span><span style="color:#3498db">namaFungsiAnda</span><span style="color:#f1c40f">(</span>$data<span style="color:#f1c40f">)</span>
-   <span style="color:#f1c40f">{</span>
-
-      $variable  = $data<span style="color:#9b59b6">[</span>'<span style="color:#2ecc71">input_name</span>'<span style="color:#9b59b6">]</span><span style="color:#3498db">;</span>
-      $variable2 = $data<span style="color:#9b59b6">[</span>'<span style="color:#2ecc71">input_name_2</span>'<span style="color:#9b59b6">]</span><span style="color:#3498db">;</span>
-      $insert    = <span style="color:#3498db">insertData</span><span style="color:#9b59b6">(</span>"<span style="color:#2ecc71">nama_tabel</span>","<span style="color: white;"> '$variable', '$variable2' </span>"<span style="color:#9b59b6">)</span><span style="color:#3498db">;</span>
-
-      <span>return </span><span style="color:#3498db">notif</span><span style="color:#9b59b6">(</span>$insert,"nama_tabel","Pesan jika perintah berhasil"<span style="color:#9b59b6">)</span>;
-
-   <span style="color:#f1c40f">}</span>
+						<div class="row">
+							<div class="col-md-7">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class=""></span><span>$kon = mysqli_connect('localhost','root','','nama_database');<br><span>mysqli_query($kon,"INSERT INTO nama_tabel VALUES('value1'='value1','value2'='value2')");</span>
+									</span>
 							</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
+							<div class="col-md-5">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6"><span style="color:#3498db">query<span style="color:#f1c40f">()</span>->insert<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">value</span>'<span style="color:#9b59b6">]</span><span style="color:#f1c40f">)</span></span></span>;
+							</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
 						</div>
-						<!--//docs-code-block-->
+						<!-- row -->
 
 						<h5>Untuk penulisan di form :</h5> <code>&lt;?= myController('NamaController','NamaFungsiAnda') ?></code>
 						<div class="docs-code-block">
@@ -261,7 +260,7 @@
 								</tr>
 								<tr>
 									<th>Create / Insert</th>
-									<td><code>insert("nama_tabel",[ '$value1' => '$value1', '$value2' => '$value2' ]);</code></td>
+									<td><code>insert("nama_tabel",[ value1, value2, value3 ]);</code></td>
 								</tr>
 								<tr>
 									<th>Update</th>
@@ -484,10 +483,10 @@
 										<i class="fas fa-info-circle"></i>
 									</span>
 									<!--//icon-holder-->
-									insert("nama_tabel",[ '$value1' => '$value1', '$value2' => '$value2' ]);
+									insert("nama_tabel",[ value1, value2, value3 ]);
 								</h4>
 								<p> Digunakan untuk insert/create data ke database
-									, menerima 2 parameter dimana parameter ke 1 berisi nama tabel, dan parameter ke 2 bersifat <b>(array)</b> yang berisi data. Contoh : <code>insert("users", [ 'username' => 'yuzron', 'email' => 'yuz@yuz.yuz' ]);</code>
+									, menerima 2 parameter dimana parameter ke 1 berisi nama tabel, dan parameter ke 2 bersifat <b>(array)</b> yang berisi data yang nantinya akan di masukkan dalam tabel di database, <b>dengan urutan kolom yang sama persis pada tabel di database</b>. Contoh :cx <code>insert("users", [ 'irfan','pandora@code.dev','phoenix' ]);</code>
 								</p>
 							</div>
 							<!--//content-->
@@ -503,7 +502,7 @@
 									update("nama_tabel",[ '$value1' => '$value1', '$value2' => '$value2' ], id );
 								</h4>
 								<p> Digunakan untuk update data ke database
-									, menerima 3 parameter dimana parameter ke 1 berisi nama tabel, parameter ke 2 bersifat <b>(array)</b> yang berisi data, dan parameter ke 3 adalah <b>ID</b>. Contoh : <code>insert("users", [ 'username' => 'yuzron', 'email' => 'yuz@yuz.yuz' ], id );</code>
+									, menerima 3 parameter dimana parameter ke 1 berisi nama tabel, parameter ke 2 bersifat <b>(array)</b> yang berisi data yang nantinya akan di masukkan dalam tabel di database, dan parameter ke 3 adalah <b>ID</b>. Contoh : <code>insert("users", [ 'username' => 'yuzron', 'email' => 'yuz@yuz.yuz' ], id );</code>
 								</p>
 							</div>
 							<!--//content-->
@@ -703,53 +702,6 @@
 						<!--//callout-block-->
 
 
-					</section>
-					<!--//section-->
-
-					<section class="docs-section" id="item-1-3">
-						<h2 class="section-heading">Menu Sidebar</h2>
-						<p>Berikut jika anda ingin mengatur konfigurasi sidebar</p>
-						<h5>Lokasi file :</h5>
-						<code>views/layouts/template-menu.php</code>
-						<div class="docs-code-block">
-							<pre class="shadow-lg rounded"><code class=""><span style="color:#3498db">&lt;?php </span>
-							
-   <span>$automaticCreateMenu</span> <span style="color:#3498db">     =</span> <span style="color:#7ed6df">true</span>;
-   <span>include 'automaticMenu.php';</span>
-
-<span style="color:#3498db">?&gt; </span>
-							</code></pre>
-						</div>
-						<h5>Penjelasan : </h5>
-						<ul>
-							<li><strong class="me-1">$automaticCreateMenu</strong> <code>Jika diubah menjadi true, maka fitur pembuatan menu otomatis akan aktif.</code></li>
-							<li><strong class="me-1">include 'automaticMenu.php'</strong> <code>Pemanggilan sistem perulangan (looping) menu otomatis.</code></li>
-						</ul><br>
-						<h2 class="section-heading">Kreasi menu sendiri</h2>
-						<p>
-							Jika anda mempunyai ide untuk membuat menu sendiri<br>
-							anda bisa merubah <strong>$automaticCreateMenu</strong> menjadi <strong>false</strong>
-						</p>
-						<h5>Lokasi file :</h5>
-						<code>views/layouts/template-menu.php</code>
-						<div class="docs-code-block">
-							<pre class="shadow-lg rounded"><code class=""><span style="color:#3498db">&lt;?php </span>
-							
-   <span>$automaticCreateMenu</span> <span style="color:#3498db">     =</span> <span style="color:#7ed6df">false</span>;
-   <span>include 'automaticMenu.php';</span>
-
-<span style="color:#3498db">?&gt; </span>
-							</code></pre>
-						</div>
-						<p>Kemudian tambahkan kode seperti ini dibawah syntax <strong>?&gt;</strong></p>
-						<div class="docs-code-block">
-							<pre class="shadow-lg rounded"><code class="">
-<span>&lt;</span><span style="color:#d0666f">a</span> <span>href='../nama_folder/data.php' class='nav-link &lt;?= $url[3] == 'nama_folder' ? 'active' : ''; ?&gt; '&gt;</span>
-	<span>&lt;i class='far fa-circle nav-icon'>&lt;/i></span>
-	<span>&lt;p></span>Nama Menu<span>&lt;/p></span>
-<span>&lt;/a></span>
-							</code></pre>
-						</div>
 					</section>
 					<!--//section-->
 
