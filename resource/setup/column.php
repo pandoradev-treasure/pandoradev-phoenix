@@ -57,18 +57,16 @@
 
                                 $db_primary_key = "";
                                 $db_auto_increment = "";
-                                echo "<pre>";
-                                $primary_key = ($see["Key"] == "PRI") ? "checked value='".$see[0]."'" : "";
+                                $primary_key = ($see["Key"] == "PRI") ? "checked value='".$see["Field"]."'" : "";
                                 while ($see = mysqli_fetch_assoc($query)) {
-                                    var_dump($see);
                                     if ($see["Key"] == "PRI") {
-                                        $db_primary_key = $see[0];
+                                        $db_primary_key = $see["Field"];
                                     }
                                     if ($see["Extra"] == "auto_increment") {
-                                        $db_auto_increment = $see[0];
+                                        $db_auto_increment = $see["Field"];
                                     }
 
-                                    $tipe     = explode("(", $see[1]);
+                                    $tipe     = explode("(", $see["Type"]);
                                     $dataType = $tipe[0];
                                     @$jumlah  = explode(")", $tipe[1]);
                                 ?>
@@ -91,13 +89,13 @@
                                         </td>
                                         <td><input name="length[]" tabindex="5" required type="number" class="form-control input-table" value="<?php echo $jumlah[0]; ?>"></td>
                                         <td>
-                                            <center><input class="input-table" tabindex="6" <?php echo ($see["Extra"] == "auto_increment") ? "checked value='".$see[0]."'" : ""; ?> name="auto_increment" type="radio"></center>
+                                            <center><input class="input-table" tabindex="6" <?php echo ($see["Extra"] == "auto_increment") ? "checked value='".$see["Field"]."'" : ""; ?> name="auto_increment" type="radio"></center>
                                         </td>
                                         <td>
-                                            <center><input class="input-table" tabindex="7" <?php echo ($see["Key"] == "PRI") ? "checked value='".$see[0]."'" : ""; ?> name="primary_key" type="radio"></center>
+                                            <center><input class="input-table" tabindex="7" <?php echo ($see["Key"] == "PRI") ? "checked value='".$see["Field"]."'" : ""; ?> name="primary_key" type="radio"></center>
                                         </td>
                                         <td>
-                                            <center><input class="input-table" tabindex="7" <?php echo ($see["Key"] == "PRI") ? "checked value='".$see[0]."'" : ""; ?> name="primary_key" type="checkbox"></center>
+                                            <center><input class="input-table" tabindex="7" <?php echo ($see["Null"] == "YES") ? "checked" : ""; ?> name="is_null[]" type="checkbox"></center>
                                         </td>
                                         <td>
                                             <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>

@@ -1,7 +1,7 @@
 <div class="container-fluid mt-4">
     <div class="row">
-        <div class="col-md-10 offset-md-1">
-            <div class="alert alert-light" role="alert">
+        <div class="col-md-10 offset-md-1" >
+            <div class="alert alert-light" role="alert" style="box-shadow:2px 2px 20px #e1e1e1">
                 <span style="font-size: 20px;font-family:calibri"><?= $DATABASE ?></span> <a href="database"
                     style="cursor: pointer;" class="">⚙️</a>
             </div>
@@ -36,7 +36,6 @@
                                 <th width="20%">Aksi</th>
                             </tr>
                         </thead>
-                        <button title="aing"></button>
                         <tbody>
                             <?php
                                 $query = $host->query("SHOW TABLES FROM $DATABASE WHERE tables_in_".$DATABASE." != 'type_data' ");

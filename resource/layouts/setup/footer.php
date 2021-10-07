@@ -331,6 +331,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
             row += `<td><input tabindex="5" name="length[]" required type="text" class="form-control" placeholder="panjang kolom"></td>`;
             row += `<td><center><input tabindex="6" name="auto_increment" type="radio"></center></td>`;
             row += `<td><center><input tabindex="7" name="primary_key" type="radio"></center></td>`;
+            row += `<td><center><input tabindex="7" name="is_null[]" type="checkbox" checked></center></td>`;
             row += `<td>
                         <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
                     </td>`;
