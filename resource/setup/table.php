@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <span style="font-size: 20px;font-family:calibri"><?= $DATABASE ?></span> <a href="database" style="cursor: pointer;" class="">⚙️</a>
                     <a href="<?= controller('setup@backupAllTable') ?>" class="float-right btn btn-sm btn-primary"><i class="far fa-task"></i>Backup Table</a>
-                    <a href="<?= controller('setup@importAllTable') ?>" class="float-right btn btn-sm btn-success"><i class="far fa-task"></i>Import Table</a>
+                    <a class="delete-table" data-denied="gagal cuy" data-url="<?= controller('setup@importAllTable') ?>" class="float-right btn btn-sm btn-success"><i class="far fa-task"></i>Import Table</a>
                 </div>
                 <div style="margin-top: 20px;" class="float-left">
                     <form class="form-inline" action="<?= controller('setup@store') ?>" method="POST">

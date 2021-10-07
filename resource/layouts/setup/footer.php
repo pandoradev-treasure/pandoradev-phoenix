@@ -359,12 +359,21 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
     $('.delete-table').click(function(el) {
         el.preventDefault();
 
-        var url = $(this).data('url');
-        var table = $(this).data('table');
+        var url       = $(this).data('url');
+        var table     = $(this).data('table');
+        var msg       = $(this).data('msg');
+        var deniedMsg = $(this).data('denied');
 
-        console.log(url);
+        if (!msg) {
+            msg = 'Apakah anda yakin ingin menghapus ' + table + '?';
+        }
+
+        if (!deniedMsg) {
+            deniedMsg = 'Gagal menghapus';
+        }
+
         Swal.fire({
-            title: 'Apakah anda yakin ingin menghapus ' + table + '?',
+            title: msg,
             showDenyButton: true,
             confirmButtonText: 'Hapus',
             denyButtonText: `Batal`,
@@ -373,7 +382,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
             if (result.isConfirmed) {
                 window.location = url;
             } else if (result.isDenied) {
-                Swal.fire('Gagal menghapus ' + table, '', 'info')
+                Swal.fire(deniedMsg, '', 'info')
             }
         })
     });
