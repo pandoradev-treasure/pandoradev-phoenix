@@ -393,13 +393,13 @@
     }
     /* END */
 
-    /* SECTION */
+    /* HITUNG DATA */
 
     function hitung($data)
     {
       return $data->num_rows;
     }
-    /* END SECTION */
+    /* END HITUNG DATA */
 
     /* 
       MENGGANTI DARI [ARRAY] KE OBJECT (SESSION)
