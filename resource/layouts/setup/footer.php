@@ -56,33 +56,6 @@
 <script src="<?= asset('codemirror/keymap/sublime.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/display/placeholder.js') ?>"></script>
-<script>
-    var editorTerminal = CodeMirror.fromTextArea(document.getElementById('terminal'), {
-        keyMap                 : "sublime",
-        autoCloseBrackets      : true,
-        matchBrackets          : true,
-        mode                   : "application/x-httpd-php",
-        indentUnit             : 4,
-        indentWithTabs         : true,
-        autoRefresh            : true,
-        theme                  : "the-matrix",
-        matchBrackets          : true,
-        showCursorWhenSelecting: true,
-        tabSize                : 2,
-        autoCloseTags          : true
-    });
-
-    editorTerminal.on('change', editor => {
-        console.log(editorTerminal.getValue());
-        $('.data-code').text(editorTerminal.getValue());
-    });
-
-    $('.data-code').text($('.data-code-old').text());
-
-    editorTerminal.setSize(null, 350);
-
-    editorTerminal.focus();
-</script>
 <?php
 if (isset($_SESSION["title_alert"])) {
 
