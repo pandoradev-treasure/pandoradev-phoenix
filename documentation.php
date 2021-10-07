@@ -40,14 +40,14 @@
 					</button>
 
 					<div class="site-logo">
-						<a class="navbar-brand" href="docs-page">
+						<a class="navbar-brand" href="index">
 							<span class="logo-text">Pandora<span class="text-alt">Docs</span></span>
 						</a>
 					</div>
 				</div>
-				<div class="docs-top-utilities d-flex justify-content-end align-items-center">
+				<!-- <div class="docs-top-utilities d-flex justify-content-end align-items-center">
 					<a href="views/demo/data.php" class="btn btn-primary d-none d-lg-flex">Mulai</a>
-				</div>
+				</div> -->
 				<!--//docs-top-utilities-->
 			</div>
 			<!--//container-->
@@ -71,8 +71,8 @@
 					</li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">Konfigurasi</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-2">Function Helper</a></li>
-					<!-- <li class="nav-item"><a class="nav-link scrollto" href="#item-1-4">Section Item 1.4</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-5">Section Item 1.5</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-4">Function CRUD</a></li>
+					<!-- <li class="nav-item"><a class="nav-link scrollto" href="#item-1-5">Section Item 1.5</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-6">Section Item 1.6</a></li>
 					<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-2"><span class="theme-icon-holder me-2"><i class="fas fa-arrow-down"></i></span>Versi</a>
 					</li>
@@ -89,7 +89,7 @@
 			<div class="container">
 				<article class="docs-article" id="section-1">
 					<header class="docs-header">
-						<h1 class="docs-heading">Pengenalan <span class="docs-time">Last updated: 21-07-2021 | V 0.05</span>
+						<h1 class="docs-heading">Pengenalan <span class="docs-time">Last updated: 7-10-2021 | V PHOENIX</span>
 						</h1>
 						<section class="docs-intro">
 							<strong>Pandoracode</strong> diciptakan untuk mempermudah urusan anda dalam membuat sebuah program web, <br>
@@ -106,7 +106,7 @@
 									<pre class="shadow-lg rounded"><code class="">
 <span>$koneksi = mysqli_connect('localhost','root','','nama_database');<br>
 <span>mysqli_query($koneksi,"INSERT INTO nama_tabel VALUES('value1','value2','value3','value4')");</span><br>
-<span>header('location:index.php');</span>
+<span>header('location:backend/buku/data.php');</span>
 </span>
 							</code></pre>
 								</div>
@@ -119,7 +119,8 @@
 								<div class="col-md-12">
 									<div class="docs-code-block">
 										<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
-<span style="color:#3498db">query<span style="color:#f1c40f">()</span>->insert<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">value</span>'<span style="color:#9b59b6">]</span><span style="color:#f1c40f">)</span>->view('index')</span></span>;
+<span style="color:#3498db">query<span style="color:#f1c40f">()</span>->insert<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">value</span>'<span style="color:#9b59b6">]</span><span style="color:#f1c40f">)</span>->view('backend/data/buku','Berhasil ditambahkan!')</span></span>;
+//jika query bernilai TRUE maka akan ke halaman data.php dengan membawa alert
 								</code></pre>
 								</div>
 								<!--//docs-code-block-->
@@ -243,7 +244,7 @@
 								</tr>
 								<tr>
 									<th>Update</th>
-									<td><code>update("nama_tabel",[ '$value1' => '$value1', '$value2' => '$value2' ], id );</code></td>
+									<td><code>update("nama_tabel",[ 'column1' => '$value1', 'column2' => '$value2' ], id );</code></td>
 								</tr>
 								<tr>
 									<th>Delete</th>
@@ -478,7 +479,7 @@
 										<i class="fas fa-info-circle"></i>
 									</span>
 									<!--//icon-holder-->
-									update("nama_tabel",[ '$value1' => '$value1', '$value2' => '$value2' ], id );
+									update("nama_tabel",[ 'column1' => '$value1', 'column2' => '$value2' ], id );
 								</h4>
 								<p> Digunakan untuk update data ke database
 									, menerima 3 parameter dimana parameter ke 1 berisi nama tabel, parameter ke 2 bersifat <b>(array)</b> yang berisi data yang nantinya akan di masukkan dalam tabel di database, dan parameter ke 3 adalah <b>ID</b>. Contoh : <code>insert("users", [ 'username' => 'yuzron', 'email' => 'yuz@yuz.yuz' ], id );</code>
@@ -684,33 +685,44 @@
 					</section>
 					<!--//section-->
 
-					<!-- <section class="docs-section" id="item-1-4">
-						<h2 class="section-heading">Section Item 1.4</h2>
+					<section class="docs-section" id="item-1-4">
+						<h2 class="section-heading">Function CRUD</h2>
+						<p>Berikut adalah contoh function-function / helper untuk membuat CRUD</p>
+
+
+						<h5>CREATE / INSERT:</h5>
+						<div class="row">
+								<div class="col-md-12">
+									<div class="docs-code-block">
+										<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
+<span style="color:#3498db">query<span style="color:#f1c40f">()</span>->insert<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">value</span>'<span style="color:#9b59b6">]</span><span style="color:#f1c40f">)</span>->view('backend/data/buku','Berhasil ditambahkan!')</span></span>;
+//jika query bernilai TRUE maka akan ke halaman data.php dengan membawa alert
+								</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
+						</div>
+
+						<h5>READ:</h5>
+						<div class="row">
+								<div class="col-md-12">
+									<div class="docs-code-block">
+										<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
+										query()
+									</span>;
+								</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
+						</div>
+
 						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis
 							leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis
 							felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio
 							in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec
 							arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
 
-
-						<h5>Pagination Example:</h5>
-						<nav aria-label="Page navigation example">
-							<ul class="pagination pl-0">
-								<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">Next</a></li>
-							</ul>
-						</nav>
-
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis
-							leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis
-							felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio
-							in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec
-							arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-
-					</section> -->
+					</section>
 					<!--//section-->
 					<!-- <section class="docs-section" id="item-1-5">
 						<h2 class="section-heading">Section Item 1.5</h2>
