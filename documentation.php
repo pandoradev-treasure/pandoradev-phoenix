@@ -96,49 +96,40 @@
 							kami sudah menyiapkan banyak helper di dalamnya, yang dimana helper ini akan terus berusaha kami kembangkan untuk anda
 						</section><br>
 						<!--//docs-intro-->
-
-						<div class="callout-block callout-block-info">
-							<div class="content">
-								<h4 class="callout-title">
-									<span class="callout-icon-holder me-1">
-										<i class="fas fa-bullhorn"></i>
-									</span>
-									<!--//icon-holder-->
-									Fitur Baru
-								</h4>
-								<p>
-									Sekarang anda bisa mebuat <a href="" class="theme-link">controller helper</a> anda sendiri.
-								</p>
-							</div>
-							<!--//content-->
-						</div>
 						<p>
-							Sebagai contoh controller untuk insert data :
+							Sebagai contoh <b>helper</b> untuk insert data :
 						</p>
-						<h5>Lokasi penyimpanan :</h5> <code>Controller/Nama_controller.php</code>
+						<code>Versi full native</code>
 						<div class="row">
-							<div class="col-md-7">
+							<div class="col-md-12">
 								<div class="docs-code-block">
-									<pre class="shadow-lg rounded"><code class=""></span><span>$kon = mysqli_connect('localhost','root','','nama_database');<br><span>mysqli_query($kon,"INSERT INTO nama_tabel VALUES('value1'='value1','value2'='value2')");</span>
-									</span>
-							</code></pre>
-								</div>
-								<!--//docs-code-block-->
-							</div>
-							<div class="col-md-5">
-								<div class="docs-code-block">
-									<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6"><span style="color:#3498db">query<span style="color:#f1c40f">()</span>->insert<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">value</span>'<span style="color:#9b59b6">]</span><span style="color:#f1c40f">)</span></span></span>;
+									<pre class="shadow-lg rounded"><code class="">
+<span>$koneksi = mysqli_connect('localhost','root','','nama_database');<br>
+<span>mysqli_query($koneksi,"INSERT INTO nama_tabel VALUES('value1','value2','value3','value4')");</span><br>
+<span>header('location:index.php');</span>
+</span>
 							</code></pre>
 								</div>
 								<!--//docs-code-block-->
 							</div>
 						</div>
 						<!-- row -->
+						<code>Versi helper</code>
+						<div class="row">
+								<div class="col-md-12">
+									<div class="docs-code-block">
+										<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
+<span style="color:#3498db">query<span style="color:#f1c40f">()</span>->insert<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">value</span>'<span style="color:#9b59b6">]</span><span style="color:#f1c40f">)</span>->view('index')</span></span>;
+								</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
+						</div>
 
-						<h5>Untuk penulisan di form :</h5> <code>&lt;?= myController('NamaController','NamaFungsiAnda') ?></code>
+						<h5>Untuk penulisan atribut action di form :</h5> <code>&lt;?php controller('NamaController@fungsi') ?></code>
 						<div class="docs-code-block">
 							<pre class="shadow-lg rounded"><code class="">
-  <span style="color:#3498db">&lt;</span><span style="color:#ff7979">form</span> <span style="color:#e056fd">action</span>=<span style="color:#3498db">"&lt;?= myController('NamaController','NamaFungsiAnda') ?>" </span><span style="color:#e056fd">method="POST"</span><span style="color:#3498db">></span>
+<span style="color:#3498db">&lt;</span><span style="color:#ff7979">form</span> <span style="color:#e056fd">action</span>=<span style="color:#3498db">"&lt;?php controller('NamaController@fungsi') ?>" </span><span style="color:#e056fd">method="POST"</span><span style="color:#3498db">></span>
 							</code></pre>
 						</div>
 
@@ -154,12 +145,8 @@
 
 						<div class="docs-code-block">
 							<pre class="shadow-lg rounded"><code class=""><span style="color:#3498db">&lt;?php </span>
-							
-   <span>$AUTH</span> <span style="color:#3498db">     =</span> <span style="color:#7ed6df">false</span>; 
 
    <span>$REDIRECT</span> <span style="color:#3498db"> =</span> <span style="color:#7ed6df">''</span>;
-
-   <span>$CHECKDB</span> <span style="color:#3498db">  =</span> <span style="color:#7ed6df">false</span>;
 
    <span>$HOST</span> <span style="color:#3498db">     =</span> <span style="color:#7ed6df">''</span>;
 
@@ -174,16 +161,8 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th>$AUTH</th>
-									<td><code>Jika diubah menjadi true, maka fitur login & register akan aktif.</code></td>
-								</tr>
-								<tr>
 									<th>$REDIRECT</th>
-									<td><code>Waktu awal akses, akan dipindah sesuai direktori yang anda isi, misalnya demo/data.php.</code></td>
-								</tr>
-								<tr>
-									<th>$CHECKDB</th>
-									<td><code>Jika diubah menjadi true, maka sistem akan cek database anda, apakah sudah benar.</code></td>
+									<td><code>Waktu awal akses, akan dipindah sesuai direktori yang anda isi, misalnya demo/data.</code></td>
 								</tr>
 								<tr>
 									<th>$HOST</th>
