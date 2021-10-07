@@ -1,28 +1,30 @@
 <div class="container-fluid mt-4">
     <div class="row">
-        <div class="col-md-10 offset-md-1">
-            <div class="alert alert-light" role="alert">
+        <div class="col-md-10 offset-md-1" >
+            <div class="alert alert-light" role="alert" style="box-shadow:2px 2px 20px #e1e1e1">
                 <span style="font-size: 20px;font-family:calibri"><?= $DATABASE ?></span> <a href="database"
                     style="cursor: pointer;" class="">⚙️</a>
             </div>
             <div class="card" style="box-shadow:2px 2px 36px #e1e1e1">
                 <div class="card-header">
-                    <div style="margin-top: 20px;" class="float-left">
+                    <div class="float-left">
                         <form class="form-inline" action="<?= controller('setup@store') ?>" method="POST">
-                            <div class="form-group mx-sm-3">
-                                <input type="text" required class="form-control" placeholder="Nama Tabel"
-                                    name="nama_table">
+                            <div class="form-group mr-1">
+                                <input type="text" required class="form-control form-control-sm" placeholder="Nama Tabel"
+                                    name="nama_table" autofocus>
                                 <input type="hidden" required class="form-control" value="true" name="check">
                             </div>
                             <button class="btn  btn-primary btn-sm" name="tambah_table" type="submit"><i
                                     class="fa fa-plus"></i></button>
                         </form>
-                    </div><br>
+                    </div>
 
-                    <a href="<?= controller('setup@backupAllTable') ?>" class="float-right btn btn-sm btn-primary"><i
-                            class="far fa-task"></i>Backup Table</a>
-                    <a class="delete-table" data-denied="gagal cuy" data-url="<?= controller('setup@importAllTable') ?>"
-                        class="float-right btn btn-sm btn-success"><i class="far fa-task"></i>Import Table</a>
+                    <div class="btn-group float-right">
+                        <a data-msg="Apakah anda yakin ingin <br><b>backup</b> semua table?" data-denied="Proses backup dicancel" data-url="<?= controller('setup@backupAllTable') ?>" class="btn btn-sm btn-outline-primary delete-table"><i
+                        class="far fa-task"></i>Backup Table</a>
+                        <a data-msg="Apakah anda yakin ingin <br><b>import</b> semua table?" data-denied="Proses import dicancel" data-url="<?= controller('setup@importAllTable') ?>"
+                            class="btn btn-sm btn-outline-success delete-table"><i class="far fa-task"></i>Import Table</a>
+                    </div>
                 </div>
 
                 <div class="card-body">
