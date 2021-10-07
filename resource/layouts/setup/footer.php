@@ -56,37 +56,6 @@
 <script src="<?= asset('codemirror/keymap/sublime.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/display/placeholder.js') ?>"></script>
-
-<!-- AING -->
-<script src="<?= asset('js/table_mysql.js') ?>"></script>
-
-<script>
-    var editorTerminal = CodeMirror.fromTextArea(document.getElementById('terminal'), {
-        keyMap                 : "sublime",
-        autoCloseBrackets      : true,
-        matchBrackets          : true,
-        mode                   : "application/x-httpd-php",
-        indentUnit             : 4,
-        indentWithTabs         : true,
-        autoRefresh            : true,
-        theme                  : "the-matrix",
-        matchBrackets          : true,
-        showCursorWhenSelecting: true,
-        tabSize                : 2,
-        autoCloseTags          : true
-    });
-
-    editorTerminal.on('change', editor => {
-        console.log(editorTerminal.getValue());
-        $('.data-code').text(editorTerminal.getValue());
-    });
-
-    $('.data-code').text($('.data-code-old').text());
-
-    editorTerminal.setSize(null, 350);
-
-    editorTerminal.focus();
-</script>
 <?php
 if (isset($_SESSION["title_alert"])) {
 
@@ -390,12 +359,21 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
     $('.delete-table').click(function(el) {
         el.preventDefault();
 
-        var url = $(this).data('url');
-        var table = $(this).data('table');
+        var url       = $(this).data('url');
+        var table     = $(this).data('table');
+        var msg       = $(this).data('msg');
+        var deniedMsg = $(this).data('denied');
 
-        console.log(url);
+        if (!msg) {
+            msg = 'Apakah anda yakin ingin menghapus ' + table + '?';
+        }
+
+        if (!deniedMsg) {
+            deniedMsg = 'Gagal menghapus';
+        }
+
         Swal.fire({
-            title: 'Apakah anda yakin ingin menghapus ' + table + '?',
+            title: msg,
             showDenyButton: true,
             confirmButtonText: 'Hapus',
             denyButtonText: `Batal`,
@@ -404,7 +382,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
             if (result.isConfirmed) {
                 window.location = url;
             } else if (result.isDenied) {
-                Swal.fire('Gagal menghapus ' + table, '', 'info')
+                Swal.fire(deniedMsg, '', 'info')
             }
         })
     });

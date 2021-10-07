@@ -5,13 +5,10 @@
                 <img src="<?= asset('setup/coding.png') ?>" style="max-width: 20px;" alt=""><span
                     style="font-size: 20px;">Terminal</span>
             </div>
-            <textarea class="mb-3 data-code-old"
-                id="terminal" placeholder="<?= @$data->cmd[0] ?>"></textarea>
-            <div class="card-body">
-                <textarea style="display: none;" autofocus name="execute" class="data-code" id="" cols="30"
-                    rows="10"></textarea>
-            </div>
-            <!-- for execute with moment jquery -->
+            <input class="form-control" style="background-color: #0a3d62;color: #78e08f;" name="execute">
+            
+            <?= @$data->cmd[0]; ?>
+
             <button class="execute-cmd" style="display: none;" type="submit">Ex</button>
         </form>
     </div>

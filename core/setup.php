@@ -889,6 +889,6 @@ $content .= '
      function ExecuteCmd($request)
      {
         $cmd = system($request->execute);
-        $cmd = [$cmd];
+        $cmd = ["<div class='card card-body mt-2'>$cmd</div>"];
         view('setup/cmd', compact('cmd'));
      }
