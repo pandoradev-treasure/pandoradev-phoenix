@@ -116,9 +116,9 @@
 						<!-- row -->
 						<code>Versi helper</code>
 						<div class="row">
-								<div class="col-md-12">
-									<div class="docs-code-block">
-										<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
+							<div class="col-md-12">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
 <span style="color:#3498db">query<span style="color:#f1c40f">()</span>->insert<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">value</span>'<span style="color:#9b59b6">]</span><span style="color:#f1c40f">)</span>->view('backend/data/buku','Berhasil ditambahkan!')</span></span>;
 //jika query bernilai TRUE maka akan ke halaman data.php dengan membawa alert
 								</code></pre>
@@ -692,9 +692,9 @@
 
 						<h5>CREATE / INSERT:</h5>
 						<div class="row">
-								<div class="col-md-12">
-									<div class="docs-code-block">
-										<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
+							<div class="col-md-12">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
 <span style="color:#3498db">query<span style="color:#f1c40f">()</span>->insert<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">value</span>'<span style="color:#9b59b6">]</span><span style="color:#f1c40f">)</span>->view('backend/data/buku','Berhasil ditambahkan!')</span></span>;
 //jika query bernilai TRUE maka akan ke halaman data.php dengan membawa alert
 								</code></pre>
@@ -705,22 +705,47 @@
 
 						<h5>READ:</h5>
 						<div class="row">
-								<div class="col-md-12">
-									<div class="docs-code-block">
-										<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
-										query()
-									</span>;
+							<div class="col-md-12">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class="">
+<span style="color:#3498db">foreach<span style="color:#f1c40f">(<span style="color:#3498db">query<span style="color:#9b59b6">()</span>->table<span style="color:#9b59b6">('nama_tabel')</span>->get<span style="color:#9b59b6">()</span></span> as $data ){
+	$data['???'];
+}</span>;
 								</code></pre>
 								</div>
 								<!--//docs-code-block-->
 							</div>
 						</div>
 
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis
-							leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis
-							felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio
-							in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec
-							arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
+						<h5>UPDATE:</h5>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
+<span style="color:#3498db">query<span style="color:#f1c40f">()</span>->update<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">nama_kolom'=>'value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">nama_kolom'=>'value</span>'<span style="color:#9b59b6">]<span style="color:#f1c40f;">, $id</span></span><span style="color:#f1c40f">)</span>->view('backend/data/buku','Berhasil diupdate!')</span></span>;
+//jika query bernilai TRUE maka akan ke halaman data.php dengan membawa alert
+								</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
+						</div>
+
+						<h5>DELETE:</h5>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
+<span style="color:#3498db">query<span style="color:#f1c40f">()</span>->delete<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">, <span style="color:#f1c40f;">$id</span></span><span style="color:#f1c40f">)</span><span style="color:#3498db">->view('backend/data/buku','Berhasil dihapus!')</span></span></span>;
+//jika query bernilai TRUE maka akan ke halaman data.php dengan membawa alert
+								</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
+						</div>
+
+						<p>
+							Semoga yang kita lakukan bermanfaat :)
+						</p>
 
 					</section>
 					<!--//section-->
