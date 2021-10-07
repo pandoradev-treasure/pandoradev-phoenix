@@ -56,6 +56,10 @@
 <script src="<?= asset('codemirror/keymap/sublime.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/display/placeholder.js') ?>"></script>
+
+<!-- AING -->
+<script src="<?= asset('js/table_mysql.js') ?>"></script>
+
 <script>
     var editorTerminal = CodeMirror.fromTextArea(document.getElementById('terminal'), {
         keyMap                 : "sublime",
