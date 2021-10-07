@@ -66,7 +66,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Auth</label>
                             <div class="col-sm-10">
                                 <select name="featured_auth" class="form-control w-50" id="">
@@ -77,7 +77,7 @@
                                 <small id="emailHelp" class="form-text text-muted">Jika anda pilih <b>aktif</b>
                                     maka fitur login & register akan otomatis terbuat.</small>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Redirect</label>
