@@ -24,8 +24,8 @@
                         <p>
                             Note : 
                             <br>    
-                            <span class="text-danger">saat ada perubahan PRIMARY KEY ke kolom lain maka AUTO INCREMENT akan dihapus</span><br>
-                            <span class="text-danger">saat ada perubahan AUTO INCREMENT ke kolom lain maka PRIMARY KEY akan mengikuti</span><br>
+                            <!-- <span class="text-danger">saat ada perubahan PRIMARY KEY ke kolom lain maka AUTO INCREMENT akan dihapus</span><br>
+                            <span class="text-danger">saat ada perubahan AUTO INCREMENT ke kolom lain maka PRIMARY KEY akan mengikuti</span><br> -->
                         </p>
                         <table class="table table-valign-middle table-bordered mt-2">
                             <thead>
