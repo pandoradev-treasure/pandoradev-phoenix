@@ -771,15 +771,22 @@ $content .= '
                         <th>Kolom 1</th>
                         <th>Kolom 2</th>
                         <th>Kolom 3</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>A</td>
-                        <td>B</td>
-                        <td>C</td>
-                    </tr>
+                    <?php foreach( query()->table("nama_table")->get() AS $item ){ ?>
+                     <tr>
+                        <td> <?= $no++ ?> </td>
+                        <td> <?= $item["name_column"] ?> </td>
+                        <td> <?= $item["name_column"] ?> </td>
+                        <td> <?= $item["name_column"] ?> </td>
+                        <td> 
+                            <a href="" class="btn btn-danger btn-sm shadow">Hapus</a>
+                            <a href="" class="btn btn-primary btn-sm shadow">Edit</a>
+                        </td>
+                     </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

@@ -1,5 +1,0 @@
-CREATE TABLE `coba` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
