@@ -302,7 +302,38 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
     
     
 ?>
+<script>
+    $('.delete-table').click(function(el) {
+        el.preventDefault();
 
+        var url       = $(this).data('url');
+        var table     = $(this).data('table');
+        var msg       = $(this).data('msg');
+        var deniedMsg = $(this).data('denied');
+
+        if (!msg) {
+            msg = 'Apakah anda yakin ingin menghapus ' + table + '?';
+        }
+
+        if (!deniedMsg) {
+            deniedMsg = 'Gagal menghapus';
+        }
+
+        Swal.fire({
+            title: msg,
+            showDenyButton: true,
+            confirmButtonText: 'Hapus',
+            denyButtonText: `Batal`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                window.location = url;
+            } else if (result.isDenied) {
+                Swal.fire(deniedMsg, '', 'info')
+            }
+        })
+    });
+</script>
 <script>
     $(document).ready(function() {
         
@@ -357,36 +388,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
         var x = $(this).parents('tr').find('td > .input-table').removeAttr("required");
     });
 
-    $('.delete-table').click(function(el) {
-        el.preventDefault();
-
-        var url       = $(this).data('url');
-        var table     = $(this).data('table');
-        var msg       = $(this).data('msg');
-        var deniedMsg = $(this).data('denied');
-
-        if (!msg) {
-            msg = 'Apakah anda yakin ingin menghapus ' + table + '?';
-        }
-
-        if (!deniedMsg) {
-            deniedMsg = 'Gagal menghapus';
-        }
-
-        Swal.fire({
-            title: msg,
-            showDenyButton: true,
-            confirmButtonText: 'Hapus',
-            denyButtonText: `Batal`,
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                window.location = url;
-            } else if (result.isDenied) {
-                Swal.fire(deniedMsg, '', 'info')
-            }
-        })
-    });
+    
 </script>
 
 
