@@ -590,9 +590,9 @@
                             class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                            <form action="" method="POST">
+                            <!-- <form action="" method="POST">
                                 <button name="cek-update" class="btn btn-outline-primary btn-sm">Update versi</button>
-                            </form>
+                            </form> -->
                         </ul>
                     </div>
                 </div>

@@ -11,15 +11,10 @@
         <li class="nav-item">
             
             <!-- Perbanyak bagian ini -->	
-            <a href='<?php url('backend/folder/file') ?>' class='nav-link layout'>
+            <a href='<?php url('backend/buku/data') ?>' class='nav-link layout'>
                 <i class='far fa-circle nav-icon'></i>
-                <p>Nama menu</p>
+                <p>Buku</p>
             </a>
-						<a href='<?php url('backend/users/data') ?>' class='nav-link layout'>
-                <i class='far fa-circle nav-icon'></i>
-                <p>Users</p>
-            </a>
-						
             
         </li>
         
