@@ -442,17 +442,22 @@ $content .= '
     function backupDataTable($table)
     {
         global $DATABASE;
-        $table = $table->id;
-        mkdir("../database/table/".$table);
-        $myfile  = fopen("../database/table/$table/".date("d-m-Y").".sql", "w") or die("Unable to open file!");
+        // var_dump($table);
+        $nama_table = $table->id;
+        $data = query()->table($nama_table)->get();
+        foreach ($data as $key => $value) {
+            var_dump($value);
+        }
+        // $table = $table->id;
+        // mkdir("../database/table/".$table);
+        // $myfile  = fopen("../database/table/$table/".date("d-m-Y").".sql", "w") or die("Unable to open file!");
 
-        $show_table = mysqli_fetch_object(query()->raw("SHOW CREATE TABLE $table"));
+        // $show_table = mysqli_fetch_object(query()->raw("SHOW CREATE TABLE $table"));
 
-        $content = $show_table->{"Create Table"};
-        fwrite($myfile, $content);
-        fclose($myfile);
-
-        view('setup/table');
+        // $content = $show_table->{"Create Table"};
+        // fwrite($myfile, $content);
+        // fclose($myfile);
+        // view('setup/table');
     }
 
 
