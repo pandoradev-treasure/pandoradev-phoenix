@@ -8,6 +8,6 @@
     $HOST          = "";
     $USER          = "";
     $PASSWORD      = "";
-    $DATABASE      = "";
+    $DATABASE      = "pandoracode_development";
 
     #Jika Host, User, Password tidak diisi maka otomatis akan mengikuti settingan default XAMPP

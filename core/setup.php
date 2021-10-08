@@ -434,21 +434,33 @@ $content .= '
     {
         global $DATABASE;
         // var_dump($table);
+        echo "<pre>";
         $nama_table = $table->id;
-        $data = query()->table($nama_table)->get();
-        foreach ($data as $key => $value) {
-            var_dump($value);
+        $data_kolom = query()->raw("DESC $nama_table");
+        $kolom      = null;
+        foreach ($data_kolom as $see) {
+            $kolom[] = $see["Field"];
         }
-        // $table = $table->id;
-        // mkdir("../database/table/".$table);
-        // $myfile  = fopen("../database/table/$table/".date("d-m-Y").".sql", "w") or die("Unable to open file!");
+        $sql_table = "INSERT INTO $nama_table(".implode(",", $kolom).") VALUES ";
+        
+        $values      = null;
+        $data_table = query()->table($nama_table)->get();
+        foreach ($data_table as $see) {
+            $cek_data = "(";
+            $cek_data .= implode(", ",$see);
+            $cek_data .= ")";
+            $values[] = $cek_data;
+        }
+        $sql_table .= implode(", \n",$values);
 
-        // $show_table = mysqli_fetch_object(query()->raw("SHOW CREATE TABLE $table"));
+        mkdir("../database/data/".$nama_table);
+        $myfile  = fopen("../database/data/$nama_table/".date("d-m-Y").".sql", "w") or die("Unable to open file!");
 
-        // $content = $show_table->{"Create Table"};
-        // fwrite($myfile, $content);
-        // fclose($myfile);
-        // view('setup/table');
+        fwrite($myfile, $sql_table);
+        fclose($myfile);
+        var_dump($myfile);
+        die();
+        view('setup/table');
     }
 
 
