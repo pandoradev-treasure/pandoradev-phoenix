@@ -6,59 +6,63 @@
 
         $table = $request->nama_table;
 
-        @$query = "DROP TABLE type_data";
-        $host->query($query);
+        $check_type_data = query()->raw("SELECT id FROM type_data")->num_rows;
 
-        $query = "CREATE TABLE type_data (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, type_data VARCHAR(30) NOT NULL, name_data VARCHAR(30) NOT NULL)";
-        $host->query($query);
+        if ($check_type_data != 37) {
 
-        // numeric
-        query()->insert('type_data',["numeric","INT"]);
-        query()->insert('type_data',["numeric","TINYINT"]);
-        query()->insert('type_data',["numeric","SMALLINT"]);
-        query()->insert('type_data',["numeric","MEDIUMINT"]);
-        query()->insert('type_data',["numeric","BIGINT"]);
-        query()->insert('type_data',["numeric","DECIMAL"]);
-        query()->insert('type_data',["numeric","FLOAT"]);
-        query()->insert('type_data',["numeric","DOUBLE"]);
-        query()->insert('type_data',["numeric","BIT"]);
-        query()->insert('type_data',["numeric","BOOLEAN"]);
+            @$query = "DROP TABLE type_data";
+            $host->query($query);
 
-        // string
-        query()->insert('type_data',["string","VARCHAR"]);
-        query()->insert('type_data',["string","TEXT"]);
-        query()->insert('type_data',["string","CHAR"]);
-        query()->insert('type_data',["string","BINARY"]);
-        query()->insert('type_data',["string","VARBINARY"]);
-        query()->insert('type_data',["string","TINYBLOB"]);
-        query()->insert('type_data',["string","BLOB"]);
-        query()->insert('type_data',["string","MEDIUMBLOB"]);
-        query()->insert('type_data',["string","LONGBLOB"]);
-        query()->insert('type_data',["string","TINYTEXT"]);
-        query()->insert('type_data',["string","MEDIUMTEXT"]);
-        query()->insert('type_data',["string","LONGTEXT"]);
-        query()->insert('type_data',["string","ENUM"]);
-        query()->insert('type_data',["string","SET"]);
+            $query = "CREATE TABLE type_data (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, type_data VARCHAR(30) NOT NULL, name_data VARCHAR(30) NOT NULL)";
+            $host->query($query);
 
-        // date
-        query()->insert('type_data',["date","DATE"]);
-        query()->insert('type_data',["date","TIME"]);
-        query()->insert('type_data',["date","DATETIME"]);
-        query()->insert('type_data',["date","TIMESTAMP"]);
-        query()->insert('type_data',["date","YEAR"]);
-        
-        // spatial
-        query()->insert('type_data',["spatial","GEOMETRY"]);
-        query()->insert('type_data',["spatial","POINT"]);
-        query()->insert('type_data',["spatial","LINESTRING"]);
-        query()->insert('type_data',["spatial","POLYGON"]);
-        query()->insert('type_data',["spatial","GEOMETRYCOLLECTION"]);
-        query()->insert('type_data',["spatial","MULTILINESTRING"]);
-        query()->insert('type_data',["spatial","MULTIPOINT"]);
-        query()->insert('type_data',["spatial","MULTIPOLYGON"]);
+            // numeric
+            query()->insert('type_data',["numeric","INT"]);
+            query()->insert('type_data',["numeric","TINYINT"]);
+            query()->insert('type_data',["numeric","SMALLINT"]);
+            query()->insert('type_data',["numeric","MEDIUMINT"]);
+            query()->insert('type_data',["numeric","BIGINT"]);
+            query()->insert('type_data',["numeric","DECIMAL"]);
+            query()->insert('type_data',["numeric","FLOAT"]);
+            query()->insert('type_data',["numeric","DOUBLE"]);
+            query()->insert('type_data',["numeric","BIT"]);
+            query()->insert('type_data',["numeric","BOOLEAN"]);
 
+            // string
+            query()->insert('type_data',["string","VARCHAR"]);
+            query()->insert('type_data',["string","TEXT"]);
+            query()->insert('type_data',["string","CHAR"]);
+            query()->insert('type_data',["string","BINARY"]);
+            query()->insert('type_data',["string","VARBINARY"]);
+            query()->insert('type_data',["string","TINYBLOB"]);
+            query()->insert('type_data',["string","BLOB"]);
+            query()->insert('type_data',["string","MEDIUMBLOB"]);
+            query()->insert('type_data',["string","LONGBLOB"]);
+            query()->insert('type_data',["string","TINYTEXT"]);
+            query()->insert('type_data',["string","MEDIUMTEXT"]);
+            query()->insert('type_data',["string","LONGTEXT"]);
+            query()->insert('type_data',["string","ENUM"]);
+            query()->insert('type_data',["string","SET"]);
 
-        $query = "CREATE TABLE $table (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY)";
+            // date
+            query()->insert('type_data',["date","DATE"]);
+            query()->insert('type_data',["date","TIME"]);
+            query()->insert('type_data',["date","DATETIME"]);
+            query()->insert('type_data',["date","TIMESTAMP"]);
+            query()->insert('type_data',["date","YEAR"]);
+            
+            // spatial
+            query()->insert('type_data',["spatial","GEOMETRY"]);
+            query()->insert('type_data',["spatial","POINT"]);
+            query()->insert('type_data',["spatial","LINESTRING"]);
+            query()->insert('type_data',["spatial","POLYGON"]);
+            query()->insert('type_data',["spatial","GEOMETRYCOLLECTION"]);
+            query()->insert('type_data',["spatial","MULTILINESTRING"]);
+            query()->insert('type_data',["spatial","MULTIPOINT"]);
+            query()->insert('type_data',["spatial","MULTIPOLYGON"]);
+        }
+
+        $query = "CREATE TABLE $table (id INT(11) UNSIGNED)";
         $host->query($query);
 
         $table = [$table];
@@ -111,57 +115,70 @@
     {
         global $host;
 
-        $table           = $request->table;
-        $table_new       = $request->nama_table;
-        
-        echo "<pre>";
-        $desc_table      = $host->query("DESC $table");
+        $table              = $request->table;
+        $table_new          = $request->nama_table;
+        $desc_table         = $host->query("DESC $table");
         
         //COLUMN
-        $name_column    = $request->name_column;
-        $length         = $request->length;
-        $status_delete  = $request->deleted;
-        $data_type_data = $request->type_data;
-        $type_column    = $request->new_data;
-        
+        $name_column        = $request->name_column;
+        $length             = $request->length;
+        $status_delete      = $request->deleted;
+        $data_type_data     = $request->type_data;
+        $type_column        = $request->new_data;
         
         // PRIMARY
-        $old_primary     = $request->primary_old;
-        $new_primary     = $request->primary_key;
+        $old_primary        = $request->primary_old;
+        $new_primary        = $request->primary_key;
         
         // AUTO INCREMENT
-        $old_auto_increment     = $request->auto_increment_old;
-        $new_auto_increment     = $request->auto_increment;
-        
+        $old_auto_increment = $request->auto_increment_old;
+        $new_auto_increment = $request->auto_increment;
 
+        // IS_NULL
+        $is_null            = $request->is_null;
+        
         $sql_table = "";
 
+        // RENAME TABLE
         if ($table != $table_new) {
             $sql_table .= "RENAME TABLE $table TO $table_new";
         }
-        for ($i=0; $i < count($request->total_column); $i++) { 
-            $pecah_type_data = explode("-",$data_type_data[$i]);
-            $type_data          = $pecah_type_data[0];
-            $nama_type_data     = $pecah_type_data[1];
 
-            $see_field = mysqli_fetch_array($desc_table);
+        for ($i=0; $i < count($request->total_column); $i++) { 
+            $pecah_type_data       = explode("-",$data_type_data[$i]);
+            $type_data             = $pecah_type_data[0];
+            $nama_type_data        = $pecah_type_data[1];
+
+            $see_field             = mysqli_fetch_array($desc_table);
 
             $pecah_old_type_data   = explode("(", $see_field[1]);
             $old_name_type_data    = strtoupper($pecah_old_type_data[0]);
             @$old_length_type_data = explode(")", $pecah_old_type_data[1]);
 
+            $old_is_null           = $see_field["Null"];
+            $new_is_null           = ($is_null[$i] == "on") ? "YES" : "NO";
+
+            // IS NULL?
+            $check_is_null = "";
+            if ($is_null[$i] == "on") {
+                $check_is_null = "NULL";
+            }else{
+                $check_is_null = "NOT NULL";
+            }
+
             // ADD FIELD
             if (!empty($name_column[$i]) && !empty($nama_type_data) && !empty($length[$i]) && $type_column[$i] == "yes") {
-                $sql_table .= "ALTER TABLE $table ADD COLUMN ".$name_column[$i]." ".$nama_type_data."(".$length[$i].");";
+                $sql_table .= "ALTER TABLE $table ADD COLUMN ".$name_column[$i]." ".$nama_type_data."(".$length[$i].") $check_is_null;";
             }
 
             // EDIT FIELD
+            var_dump($old_is_null != $new_is_null);
             if ($type_column[$i] == "no") {
-                if ($see_field[0] != $name_column[$i] || $old_name_type_data != $nama_type_data || $old_length_type_data[0] != $length[$i] ) {
+                if ($see_field[0] != $name_column[$i] || $old_name_type_data != $nama_type_data || $old_length_type_data[0] != $length[$i] || $old_is_null != $new_is_null) {
                     if ($name_column[$i] == $old_auto_increment) {
-                        $sql_table .= "ALTER TABLE $table CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].") AUTO_INCREMENT;";
+                        $sql_table .= "ALTER TABLE $table CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].") $check_is_null AUTO_INCREMENT;";
                     }else{
-                        $sql_table .= "ALTER TABLE $table CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].");";
+                        $sql_table .= "ALTER TABLE $table CHANGE ".$see_field[0]." ".$name_column[$i]." ".$nama_type_data."(".$length[$i].") $check_is_null;";
                         
                     }
                 }
@@ -197,22 +214,14 @@
             }
         }
 
-        
         $all_sql = explode(";", $sql_table);
         for ($i=0; $i < count($all_sql); $i++) { 
             if (!empty($all_sql[$i])) {
-                var_dump($all_sql[$i]);
                 $check = $host->query($all_sql[$i].";");
-                var_dump($check);
             }
         }
         
         view('setup/table');
-    }
-
-    function fixingUpdateColumn($request)
-    {
-
     }
     
     function edit($request, $table)
@@ -331,18 +340,9 @@
         $content = "<?php\n\n";
 
 $content .= '
-    $AUTH          = '.$auth.';
-    
-    #$AUTH = FITUR LOGIN & REGISTER
-    #Ubah isi variable $AUTH dari false menjadi true, jika ingin mengaktifkan fitur Login & Register
 
     $REDIRECT      = "'.$redirect.'";
     //$REDIRECT = UNTUK REDIRECT / PINDAH HALAMAN PADA SAAT PANDORACODE DIAKSES
-
-    $CHECKDB       = false;
-
-    #$CHECK = PENGECEKAN DATABASE
-    #Ubah isi variable $CHECK dari false menjadi true, jika ingin mengaktifkan fungsi check database
 
     $HOST          = "'.$host.'";
     $USER          = "'.$user.'";
@@ -771,15 +771,22 @@ $content .= '
                         <th>Kolom 1</th>
                         <th>Kolom 2</th>
                         <th>Kolom 3</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>A</td>
-                        <td>B</td>
-                        <td>C</td>
-                    </tr>
+                    <?php foreach( query()->table("nama_table")->get() AS $item ){ ?>
+                     <tr>
+                        <td> <?= $no++ ?> </td>
+                        <td> <?= $item["name_column"] ?> </td>
+                        <td> <?= $item["name_column"] ?> </td>
+                        <td> <?= $item["name_column"] ?> </td>
+                        <td> 
+                            <a href="" class="btn btn-danger btn-sm shadow">Hapus</a>
+                            <a href="" class="btn btn-primary btn-sm shadow">Edit</a>
+                        </td>
+                     </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -889,6 +896,6 @@ $content .= '
      function ExecuteCmd($request)
      {
         $cmd = system($request->execute);
-        $cmd = [$cmd];
+        $cmd = ["<div class='card card-body mt-2'>$cmd</div>"];
         view('setup/cmd', compact('cmd'));
      }

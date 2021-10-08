@@ -6,38 +6,41 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="col-11">
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-file"></i></div>
-                                        </div>
-                                        <input type="text" name="nama_table" class="form-control" placeholder="Nama Table" value="<?= $data->table[0]; ?>">
+                                <div class="input-group" data-toggle="tooltip" title="Nama Table">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-table"></i></div>
                                     </div>
+                                    <input type="text" name="nama_table" class="form-control form-control-sm" placeholder="Nama Table" value="<?= $data->table[0]; ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="input-group " data-toggle="tooltip" title="Total Kolom">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text" ><i class="fa fa-calculator"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm total-table" placeholder="Nama Table" value="<?= $data->table[0]; ?>" disabled>
                                 </div>
                             </div>
                             <div class="col-md-1 ml-auto">
-                                <button class="btn float-right add-column btn-primary" type="submit"> <i class="fa fa-plus"></i> </button>
+                                <button class="btn float-right add-column btn-primary btn-sm" type="button"> <i class="fa fa-plus"></i> </button>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <p>
-                            Note : 
-                            <br>    
-                            <span class="text-danger">saat ada perubahan PRIMARY KEY ke kolom lain maka AUTO INCREMENT akan dihapus</span><br>
-                            <span class="text-danger">saat ada perubahan AUTO INCREMENT ke kolom lain maka PRIMARY KEY akan mengikuti</span><br>
-                        </p>
-                        <table class="table table-valign-middle table-bordered mt-2">
+                        <table class="table table-valign-middle table-bordered">
                             <thead>
                                 <tr>
-                                    <th width="30%">Nama</th>
+                                    <th width="30%">Nama Kolom</th>
                                     <th width="20%">Jenis</th>
                                     <th width="20%">Panjang / Nilai</th>
                                     <th>
-                                        <center>Auto Increment</center>
+                                        <center data-toggle="tooltip" data-placement="top" title="Auto Increment">A_I</center>
                                     </th>
                                     <th>
                                         <center>Primary</center>
+                                    </th>
+                                    <th>
+                                        <center>Null</center>
                                     </th>
                                     <th>
                                         <center>Aksi</center>
@@ -54,22 +57,22 @@
 
                                 $db_primary_key = "";
                                 $db_auto_increment = "";
-                                $primary_key = ($see[3] == "PRI") ? "checked value='".$see[0]."'" : "";
-                                while ($see = mysqli_fetch_row($query)) {
-                                    if ($see[3] == "PRI") {
-                                        $db_primary_key = $see[0];
+                                $primary_key = ($see["Key"] == "PRI") ? "checked value='".$see["Field"]."'" : "";
+                                while ($see = mysqli_fetch_assoc($query)) {
+                                    if ($see["Key"] == "PRI") {
+                                        $db_primary_key = $see["Field"];
                                     }
-                                    if ($see[5] == "auto_increment") {
-                                        $db_auto_increment = $see[0];
+                                    if ($see["Extra"] == "auto_increment") {
+                                        $db_auto_increment = $see["Field"];
                                     }
 
-                                    $tipe     = explode("(", $see[1]);
+                                    $tipe     = explode("(", $see["Type"]);
                                     $dataType = $tipe[0];
                                     @$jumlah  = explode(")", $tipe[1]);
                                 ?>
                                     <input type="hidden" value="<?= $table ?>" name="table">
                                     <tr>
-                                        <td><input name="name_column[]" tabindex="1" required type="text" class="form-control input-table name_column <?php echo ($see[3] == "PRI") ? "old_primary" : ""; ?> <?php echo ($see[5] == "auto_increment") ? "old_auto_increment" : ""; ?>" value="<?php echo $see[0]; ?>" ></td>
+                                        <td><input name="name_column[]" tabindex="1" required type="text" class="form-control input-table name_column <?php echo ($see["Key"] == "PRI") ? "old_primary" : ""; ?> <?php echo ($see["Extra"] == "auto_increment") ? "old_auto_increment" : ""; ?>" value="<?php echo $see["Field"]; ?>" ></td>
                                         
                                         <td>
                                             <select name="type_data[]" tabindex="3" id="" class="form-control js-example-basic-single input-table">
@@ -86,10 +89,13 @@
                                         </td>
                                         <td><input name="length[]" tabindex="5" required type="number" class="form-control input-table" value="<?php echo $jumlah[0]; ?>"></td>
                                         <td>
-                                            <center><input class="input-table" tabindex="6" <?php echo ($see[5] == "auto_increment") ? "checked value='".$see[0]."'" : ""; ?> name="auto_increment" type="radio"></center>
+                                            <center><input class="input-table" tabindex="6" <?php echo ($see["Extra"] == "auto_increment") ? "checked value='".$see["Field"]."'" : ""; ?> name="auto_increment" type="radio"></center>
                                         </td>
                                         <td>
-                                            <center><input class="input-table" tabindex="7" <?php echo ($see[3] == "PRI") ? "checked value='".$see[0]."'" : ""; ?> name="primary_key" type="radio"></center>
+                                            <center><input class="input-table" tabindex="7" <?php echo ($see["Key"] == "PRI") ? "checked value='".$see["Field"]."'" : ""; ?> name="primary_key" type="radio"></center>
+                                        </td>
+                                        <td>
+                                            <center><input class="input-table" tabindex="7" <?php echo ($see["Null"] == "YES") ? "checked" : ""; ?> name="is_null[]" type="checkbox"></center>
                                         </td>
                                         <td>
                                             <center><a class="btn btn-danger btn-sm delete-column"><i class="fa fa-trash"></i></a></center>
@@ -103,8 +109,8 @@
                                     <input name="primary_old" type="hidden" <?php echo (!empty($db_primary_key)) ? "value='$db_primary_key'" : ""; ?>>
                                     <input name="auto_increment_old" type="hidden" <?php echo (!empty($db_auto_increment)) ? "value='$db_auto_increment'" : ""; ?>>
                             </tbody>
-                        </table><br>
-                        <div class="float-right">
+                        </table>
+                        <div class="float-right mt-3">
                             <button tabindex="8" type="submit" class="btn btn-primary btn-sm" name="send">
                                 Simpan
                             </button>
@@ -125,8 +131,8 @@
                             ?>
                         </div>
                     </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
 </div>

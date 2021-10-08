@@ -6,4 +6,4 @@ RewriteRule ^(.*)$ $1.php
 # redirect all requests to non-existing resources to special handler
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-dWWW
-RewriteRule ^(.+)$ /oop_pandoracode/core/app.php?params=$1 [L,NC]
+RewriteRule ^(.+)$ /pandoracode-phoenix/core/app.php?params=$1 [L,NC]

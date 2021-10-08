@@ -40,14 +40,14 @@
 					</button>
 
 					<div class="site-logo">
-						<a class="navbar-brand" href="docs-page">
+						<a class="navbar-brand" href="index">
 							<span class="logo-text">Pandora<span class="text-alt">Docs</span></span>
 						</a>
 					</div>
 				</div>
-				<div class="docs-top-utilities d-flex justify-content-end align-items-center">
+				<!-- <div class="docs-top-utilities d-flex justify-content-end align-items-center">
 					<a href="views/demo/data.php" class="btn btn-primary d-none d-lg-flex">Mulai</a>
-				</div>
+				</div> -->
 				<!--//docs-top-utilities-->
 			</div>
 			<!--//container-->
@@ -71,9 +71,8 @@
 					</li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">Konfigurasi</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-2">Function Helper</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-3">Menu Sidebar</a></li>
-					<!-- <li class="nav-item"><a class="nav-link scrollto" href="#item-1-4">Section Item 1.4</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-5">Section Item 1.5</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-4">Function CRUD</a></li>
+					<!-- <li class="nav-item"><a class="nav-link scrollto" href="#item-1-5">Section Item 1.5</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-6">Section Item 1.6</a></li>
 					<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-2"><span class="theme-icon-holder me-2"><i class="fas fa-arrow-down"></i></span>Versi</a>
 					</li>
@@ -90,56 +89,48 @@
 			<div class="container">
 				<article class="docs-article" id="section-1">
 					<header class="docs-header">
-						<h1 class="docs-heading">Pengenalan <span class="docs-time">Last updated: 21-07-2021 | V 0.05</span>
+						<h1 class="docs-heading">Pengenalan <span class="docs-time">Last updated: 7-10-2021 | V PHOENIX</span>
 						</h1>
 						<section class="docs-intro">
 							<strong>Pandoracode</strong> diciptakan untuk mempermudah urusan anda dalam membuat sebuah program web, <br>
 							kami sudah menyiapkan banyak helper di dalamnya, yang dimana helper ini akan terus berusaha kami kembangkan untuk anda
 						</section><br>
 						<!--//docs-intro-->
-
-						<div class="callout-block callout-block-info">
-							<div class="content">
-								<h4 class="callout-title">
-									<span class="callout-icon-holder me-1">
-										<i class="fas fa-bullhorn"></i>
-									</span>
-									<!--//icon-holder-->
-									Fitur Baru
-								</h4>
-								<p>
-									Sekarang anda bisa mebuat <a href="" class="theme-link">controller helper</a> anda sendiri.
-								</p>
-							</div>
-							<!--//content-->
-						</div>
 						<p>
-							Sebagai contoh controller untuk insert data :
+							Sebagai contoh <b>helper</b> untuk insert data :
 						</p>
-						<h5>Lokasi penyimpanan :</h5> <code>Controller/Nama_controller.php</code>
-						<div class="docs-code-block">
-							<pre class="shadow-lg rounded"><code class=""><span style="color:#3498db">&lt;?php </span>
-
-   <span style="color:#3498db">include </span><span style="color:#2ecc71">'Controller.php'</span><span style="color:#3498db">; </span>
-
-   <span style="color:#9b59b6">function </span><span style="color:#3498db">namaFungsiAnda</span><span style="color:#f1c40f">(</span>$data<span style="color:#f1c40f">)</span>
-   <span style="color:#f1c40f">{</span>
-
-      $variable  = $data<span style="color:#9b59b6">[</span>'<span style="color:#2ecc71">input_name</span>'<span style="color:#9b59b6">]</span><span style="color:#3498db">;</span>
-      $variable2 = $data<span style="color:#9b59b6">[</span>'<span style="color:#2ecc71">input_name_2</span>'<span style="color:#9b59b6">]</span><span style="color:#3498db">;</span>
-      $insert    = <span style="color:#3498db">insertData</span><span style="color:#9b59b6">(</span>"<span style="color:#2ecc71">nama_tabel</span>","<span style="color: white;"> '$variable', '$variable2' </span>"<span style="color:#9b59b6">)</span><span style="color:#3498db">;</span>
-
-      <span>return </span><span style="color:#3498db">notif</span><span style="color:#9b59b6">(</span>$insert,"nama_tabel","Pesan jika perintah berhasil"<span style="color:#9b59b6">)</span>;
-
-   <span style="color:#f1c40f">}</span>
+						<code>Versi full native</code>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class="">
+<span>$koneksi = mysqli_connect('localhost','root','','nama_database');<br>
+<span>mysqli_query($koneksi,"INSERT INTO nama_tabel VALUES('value1','value2','value3','value4')");</span><br>
+<span>header('location:backend/buku/data.php');</span>
+</span>
 							</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
 						</div>
-						<!--//docs-code-block-->
+						<!-- row -->
+						<code>Versi helper</code>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
+<span style="color:#3498db">query<span style="color:#f1c40f">()</span>->insert<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">value</span>'<span style="color:#9b59b6">]</span><span style="color:#f1c40f">)</span>->view('backend/data/buku','Berhasil ditambahkan!')</span></span>;
+//jika query bernilai TRUE maka akan ke halaman data.php dengan membawa alert
+								</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
+						</div>
 
-						<h5>Untuk penulisan di form :</h5> <code>&lt;?= myController('NamaController','NamaFungsiAnda') ?></code>
+						<h5>Untuk penulisan atribut action di form :</h5> <code>&lt;?php controller('NamaController@fungsi') ?></code>
 						<div class="docs-code-block">
 							<pre class="shadow-lg rounded"><code class="">
-  <span style="color:#3498db">&lt;</span><span style="color:#ff7979">form</span> <span style="color:#e056fd">action</span>=<span style="color:#3498db">"&lt;?= myController('NamaController','NamaFungsiAnda') ?>" </span><span style="color:#e056fd">method="POST"</span><span style="color:#3498db">></span>
+<span style="color:#3498db">&lt;</span><span style="color:#ff7979">form</span> <span style="color:#e056fd">action</span>=<span style="color:#3498db">"&lt;?php controller('NamaController@fungsi') ?>" </span><span style="color:#e056fd">method="POST"</span><span style="color:#3498db">></span>
 							</code></pre>
 						</div>
 
@@ -155,12 +146,8 @@
 
 						<div class="docs-code-block">
 							<pre class="shadow-lg rounded"><code class=""><span style="color:#3498db">&lt;?php </span>
-							
-   <span>$AUTH</span> <span style="color:#3498db">     =</span> <span style="color:#7ed6df">false</span>; 
 
    <span>$REDIRECT</span> <span style="color:#3498db"> =</span> <span style="color:#7ed6df">''</span>;
-
-   <span>$CHECKDB</span> <span style="color:#3498db">  =</span> <span style="color:#7ed6df">false</span>;
 
    <span>$HOST</span> <span style="color:#3498db">     =</span> <span style="color:#7ed6df">''</span>;
 
@@ -175,16 +162,8 @@
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th>$AUTH</th>
-									<td><code>Jika diubah menjadi true, maka fitur login & register akan aktif.</code></td>
-								</tr>
-								<tr>
 									<th>$REDIRECT</th>
-									<td><code>Waktu awal akses, akan dipindah sesuai direktori yang anda isi, misalnya demo/data.php.</code></td>
-								</tr>
-								<tr>
-									<th>$CHECKDB</th>
-									<td><code>Jika diubah menjadi true, maka sistem akan cek database anda, apakah sudah benar.</code></td>
+									<td><code>Waktu awal akses, akan dipindah sesuai direktori yang anda isi, misalnya demo/data.</code></td>
 								</tr>
 								<tr>
 									<th>$HOST</th>
@@ -261,11 +240,11 @@
 								</tr>
 								<tr>
 									<th>Create / Insert</th>
-									<td><code>insert("nama_tabel",[ '$value1' => '$value1', '$value2' => '$value2' ]);</code></td>
+									<td><code>insert("nama_tabel",[ value1, value2, value3 ]);</code></td>
 								</tr>
 								<tr>
 									<th>Update</th>
-									<td><code>update("nama_tabel",[ '$value1' => '$value1', '$value2' => '$value2' ], id );</code></td>
+									<td><code>update("nama_tabel",[ 'column1' => '$value1', 'column2' => '$value2' ], id );</code></td>
 								</tr>
 								<tr>
 									<th>Delete</th>
@@ -277,7 +256,7 @@
 								</tr>
 								<tr>
 									<th>Connected View</th>
-									<td><code>exampleMethod()->view("target_url","pesan");</code></td>
+									<td><code>example()->view("target_url","pesan");</code></td>
 								</tr>
 								<tr>
 									<th>Check</th>
@@ -297,7 +276,7 @@
 								</tr>
 								<tr>
 									<th>Controller</th>
-									<td><code>controller("namaController@method", id);</code></td>
+									<td><code>controller("namaController@method", params);</code></td>
 								</tr>
 								<tr>
 									<th>URL</th>
@@ -305,11 +284,11 @@
 								</tr>
 								<tr>
 									<th>TombolHapus</th>
-									<td><code>tombolHapus("target","value","attribt");</code></td>
+									<td><code>tombolHapus("target","value","attribut");</code></td>
 								</tr>
 								<tr>
 									<th>tombolEdit</th>
-									<td><code>tombolEdit("target","value","attribt");</code></td>
+									<td><code>tombolEdit("target","value","attribut");</code></td>
 								</tr>
 								<tr>
 									<th>TombolForm</th>
@@ -461,84 +440,314 @@
 							<!--//content-->
 						</div>
 						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									join("nama_table","nama_kolom");
+								</h4>
+								<p> Digunakan untuk membuat relasi <b>INNER JOIN</b> pada tabel database
+									, menerima 2 parameter. Contoh : <code>join("categori","nama");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									insert("nama_tabel",[ value1, value2, value3 ]);
+								</h4>
+								<p> Digunakan untuk insert/create data ke database
+									, menerima 2 parameter dimana parameter ke 1 berisi nama tabel, dan parameter ke 2 bersifat <b>(array)</b> yang berisi data yang nantinya akan di masukkan dalam tabel di database, <b>dengan urutan kolom yang sama persis pada tabel di database</b>. Contoh :cx <code>insert("users", [ 'irfan','pandora@code.dev','phoenix' ]);</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									update("nama_tabel",[ 'column1' => '$value1', 'column2' => '$value2' ], id );
+								</h4>
+								<p> Digunakan untuk update data ke database
+									, menerima 3 parameter dimana parameter ke 1 berisi nama tabel, parameter ke 2 bersifat <b>(array)</b> yang berisi data yang nantinya akan di masukkan dalam tabel di database, dan parameter ke 3 adalah <b>ID</b>. Contoh : <code>insert("users", [ 'username' => 'yuzron', 'email' => 'yuz@yuz.yuz' ], id );</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									delete("nama_tabel", id );
+								</h4>
+								<p> Digunakan untuk menghapus data di database
+									, menerima 2 parameter dimana parameter ke 1 berisi nama tabel, dan parameter ke 2 adalah <b>ID</b>. Contoh : <code>delete("users", id );</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									view("target_url",parsing_data);
+								</h4>
+								<p> Digunakan untuk meredirect kehalaman yang di inginkan dengan membawa data
+									, menerima 2 parameter dimana parameter ke 1 berisi target_url, dan parameter ke 2 adalah data parsingnya. Contoh : <code>view("home/index",compact('data'));</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									example()->view("target_url","pesan");
+								</h4>
+								<p> Digunakan untuk meredirect kehalaman yang di inginkan dengan membawa pessan <b>alert</b> yang dibuat secara otomatis
+									, menerima 2 parameter dimana parameter ke 1 berisi target_url, dan parameter ke 2 adalah pesan yang ingin anda sampaikan. Contoh : <code>query()->tabel('users')->view("home/index","sukses!");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									check(eksekusi_data);
+								</h4>
+								<p> Digunakan untuk mengeksekusi kode dengan tampilan interaktif hasil karya para DEVELOPER PANDORACODE
+									, menerima 1 parameter. Contoh : <code>check('qwertyuiop');</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									alert("judul_pesan","pesan","type_alert");
+								</h4>
+								<p> Digunakan untuk menampilkan alert
+									, menerima 3 parameter. Contoh : <code>alert("Update","Berhasil Update Data","success");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									hitung(data);
+								</h4>
+								<p> Digunakan untuk menghitung jumlah data
+									, menerima 1 parameter. Contoh : <code>hitung($data);</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									asset("target_url");
+								</h4>
+								<p> Digunakan untuk mengarah ke directori yang ada di dalam folder asset
+									, menerima 1 parameter. Contoh : <code>asset("/img/pandoracode.jpg");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									controller("namaController@method", params);
+								</h4>
+								<p> Digunakan untuk mengarah ke controller
+									, menerima 2 parameter. Contoh : <code>controller("UsersContoller@index", $data);</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									url("target_url");
+								</h4>
+								<p> Digunakan untuk mengarah ke directori folder view
+									, menerima 2 parameter. Contoh : <code>url("about/index");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									tombolHapus("target","value","attribt");
+								</h4>
+								<p> Digunakan untuk membuat tombol hapus otomatis
+									, menerima 3 parameter dimana parameter ke 1 berisi target_url saat di klik <b><code>href=""</code></b>,parameter ke 2 berisi value dan parameter ke 3 berisi attribut. Contoh : <code>tombolHapus(controller(UsersController@Hapus),"Hapus","attribut");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									tombolEdit("target","value","attribt");
+								</h4>
+								<p> Digunakan untuk membuat tombol Edit otomatis
+									, menerima 3 parameter dimana parameter ke 1 berisi target_url saat di klik <b><code>href=""</code></b>,parameter ke 2 berisi value dan parameter ke 3 berisi attribut. Contoh : <code>tombolHapus(controller(UsersController@Edit),"Edit","attribut");</code>
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+						<div class="callout-block callout-block-info">
+							<div class="content">
+								<h4 class="callout-title">
+									<span class="callout-icon-holder me-1">
+										<i class="fas fa-info-circle"></i>
+									</span>
+									<!--//icon-holder-->
+									tombolForm();
+								</h4>
+								<p> Digunakan untuk membuat tombol khusus di form yang sudah di handle oleh programer PANDORACODE
+									,tidak menerima parameter . Contoh : <code>tombolForm();</code> hasilnya : menampilkan 3 tombol, yaitu submit,reset,kembali
+								</p>
+							</div>
+							<!--//content-->
+						</div>
+						<!--//callout-block-->
+
 
 					</section>
 					<!--//section-->
 
-					<section class="docs-section" id="item-1-3">
-						<h2 class="section-heading">Menu Sidebar</h2>
-						<p>Berikut jika anda ingin mengatur konfigurasi sidebar</p>
-						<h5>Lokasi file :</h5>
-						<code>views/layouts/template-menu.php</code>
-						<div class="docs-code-block">
-							<pre class="shadow-lg rounded"><code class=""><span style="color:#3498db">&lt;?php </span>
-							
-   <span>$automaticCreateMenu</span> <span style="color:#3498db">     =</span> <span style="color:#7ed6df">true</span>;
-   <span>include 'automaticMenu.php';</span>
+					<section class="docs-section" id="item-1-4">
+						<h2 class="section-heading">Function CRUD</h2>
+						<p>Berikut adalah contoh function-function / helper untuk membuat CRUD</p>
 
-<span style="color:#3498db">?&gt; </span>
-							</code></pre>
+
+						<h5>CREATE / INSERT:</h5>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
+<span style="color:#3498db">query<span style="color:#f1c40f">()</span>->insert<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">value</span>'<span style="color:#9b59b6">]</span><span style="color:#f1c40f">)</span>->view('backend/data/buku','Berhasil ditambahkan!')</span></span>;
+//jika query bernilai TRUE maka akan ke halaman data.php dengan membawa alert
+								</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
 						</div>
-						<h5>Penjelasan : </h5>
-						<ul>
-							<li><strong class="me-1">$automaticCreateMenu</strong> <code>Jika diubah menjadi true, maka fitur pembuatan menu otomatis akan aktif.</code></li>
-							<li><strong class="me-1">include 'automaticMenu.php'</strong> <code>Pemanggilan sistem perulangan (looping) menu otomatis.</code></li>
-						</ul><br>
-						<h2 class="section-heading">Kreasi menu sendiri</h2>
+
+						<h5>READ:</h5>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class="">
+<span style="color:#3498db">foreach<span style="color:#f1c40f">(<span style="color:#3498db">query<span style="color:#9b59b6">()</span>->table<span style="color:#9b59b6">('nama_tabel')</span>->get<span style="color:#9b59b6">()</span></span> as $data ){
+	$data['???'];
+}</span>;
+								</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
+						</div>
+
+						<h5>UPDATE:</h5>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
+<span style="color:#3498db">query<span style="color:#f1c40f">()</span>->update<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">,</span>[</span>'<span style="color:#2ecc71">nama_kolom'=>'value</span>'<span style="color:#f1c40f;">,</span>'<span style="color:#2ecc71">nama_kolom'=>'value</span>'<span style="color:#9b59b6">]<span style="color:#f1c40f;">, $id</span></span><span style="color:#f1c40f">)</span>->view('backend/data/buku','Berhasil diupdate!')</span></span>;
+//jika query bernilai TRUE maka akan ke halaman data.php dengan membawa alert
+								</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
+						</div>
+
+						<h5>DELETE:</h5>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="docs-code-block">
+									<pre class="shadow-lg rounded"><code class=""><span style="color:#9b59b6">
+<span style="color:#3498db">query<span style="color:#f1c40f">()</span>->delete<span style="color:#f1c40f">(</span><span style="color:#9b59b6"></span>'<span style="color:#2ecc71">name_tabel</span>'<span style="color:#9b59b6"><span style="color:#f1c40f">, <span style="color:#f1c40f;">$id</span></span><span style="color:#f1c40f">)</span><span style="color:#3498db">->view('backend/data/buku','Berhasil dihapus!')</span></span></span>;
+//jika query bernilai TRUE maka akan ke halaman data.php dengan membawa alert
+								</code></pre>
+								</div>
+								<!--//docs-code-block-->
+							</div>
+						</div>
+
 						<p>
-							Jika anda mempunyai ide untuk membuat menu sendiri<br>
-							anda bisa merubah <strong>$automaticCreateMenu</strong> menjadi <strong>false</strong>
+							Semoga yang kita lakukan bermanfaat :)
 						</p>
-						<h5>Lokasi file :</h5>
-						<code>views/layouts/template-menu.php</code>
-						<div class="docs-code-block">
-							<pre class="shadow-lg rounded"><code class=""><span style="color:#3498db">&lt;?php </span>
-							
-   <span>$automaticCreateMenu</span> <span style="color:#3498db">     =</span> <span style="color:#7ed6df">false</span>;
-   <span>include 'automaticMenu.php';</span>
 
-<span style="color:#3498db">?&gt; </span>
-							</code></pre>
-						</div>
-						<p>Kemudian tambahkan kode seperti ini dibawah syntax <strong>?&gt;</strong></p>
-						<div class="docs-code-block">
-							<pre class="shadow-lg rounded"><code class="">
-<span>&lt;</span><span style="color:#d0666f">a</span> <span>href='../nama_folder/data.php' class='nav-link &lt;?= $url[3] == 'nama_folder' ? 'active' : ''; ?&gt; '&gt;</span>
-	<span>&lt;i class='far fa-circle nav-icon'>&lt;/i></span>
-	<span>&lt;p></span>Nama Menu<span>&lt;/p></span>
-<span>&lt;/a></span>
-							</code></pre>
-						</div>
 					</section>
-					<!--//section-->
-
-					<!-- <section class="docs-section" id="item-1-4">
-						<h2 class="section-heading">Section Item 1.4</h2>
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis
-							leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis
-							felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio
-							in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec
-							arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-
-
-						<h5>Pagination Example:</h5>
-						<nav aria-label="Page navigation example">
-							<ul class="pagination pl-0">
-								<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">Next</a></li>
-							</ul>
-						</nav>
-
-						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis
-							leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis
-							felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio
-							in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec
-							arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
-
-					</section> -->
 					<!--//section-->
 					<!-- <section class="docs-section" id="item-1-5">
 						<h2 class="section-heading">Section Item 1.5</h2>
