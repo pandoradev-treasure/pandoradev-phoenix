@@ -52,6 +52,7 @@
 
                                 $table = $data->table[0];
                                 $query = $host->query("DESC " . $table);
+                                
 
                                 $no = 1;
 

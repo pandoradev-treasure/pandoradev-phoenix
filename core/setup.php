@@ -265,7 +265,8 @@
         query()->delete($table, $id);
 
         $table = [$table];
-        
+
+        alert("Berhasil hapus data", "Berhasil backup data", "success");
         view('setup/view',compact('table'));
     }
 
@@ -300,28 +301,6 @@
                 view('setup/table');
             }else{
             }
-
-            // if ($conn->query($sql) === TRUE) {
-
-            //     echo '<div style="display:none"></div>';
-            //     echo ' <script type="text/javascript">
-            //                 Swal.fire({
-            //                     icon: "success",
-            //                     title: "Berhasil!",
-            //                     text: "Konfigurasi berhasil untuk database '.$database.'",
-            //                 })
-            //         </script> ';
-
-            // } else {
-            //     echo '<div style="display:none"></div>';
-            //     echo ' <script type="text/javascript">
-            //                 Swal.fire({
-            //                     icon: "error",
-            //                     title: "Oops...",
-            //                     text: "Gagal konek dengan database '.$DATABASE.' '.$conn->error.'",
-            //                 })
-            //             </script> ';
-            // }
 
             $conn->close();
             
@@ -369,12 +348,9 @@ $content .= '
         /* Move File from images to copyImages folder */
 
         if( !rename($filePath, $destinationFilePath) ) {  
-
             echo "File can't be moved!";  
-
-        }  
-
-        else {  
+        }else {  
+            alert("Berhasil tersambung ke database", "Berhasil backup data", "success");
             view('setup/table');
         }
     }
@@ -393,6 +369,8 @@ $content .= '
                 }
             }   
         }   
+
+        alert("Berhasil import semua table", "Berhasil backup data", "success");
         view('setup/table');
     }
 
@@ -411,6 +389,8 @@ $content .= '
             fwrite($myfile, $content);
             fclose($myfile);
         }
+
+        alert("Berhasil backup semua table", "Berhasil backup data", "success");
         view('setup/table');
     }
 
@@ -427,14 +407,14 @@ $content .= '
         fwrite($myfile, $content);
         fclose($myfile);
 
+        alert("Berhasil backup table", "Berhasil backup data", "success");
         view('setup/table');
     }
 
     function backupDataTable($table)
     {
         global $DATABASE;
-        // var_dump($table);
-        echo "<pre>";
+
         $nama_table = $table->id;
         $data_kolom = query()->raw("DESC $nama_table");
         $kolom      = null;
@@ -446,9 +426,9 @@ $content .= '
         $values      = null;
         $data_table = query()->table($nama_table)->get();
         foreach ($data_table as $see) {
-            $cek_data = "(";
-            $cek_data .= implode(", ",$see);
-            $cek_data .= ")";
+            $cek_data = "('";
+            $cek_data .= implode("', '",$see);
+            $cek_data .= "')";
             $values[] = $cek_data;
         }
         $sql_table .= implode(", \n",$values);
@@ -458,9 +438,33 @@ $content .= '
 
         fwrite($myfile, $sql_table);
         fclose($myfile);
-        var_dump($myfile);
-        die();
-        view('setup/table');
+
+        $table = [$nama_table];
+
+        alert("Berhasil backup data", "Berhasil backup data", "success");
+        view('setup/view', compact('table'));
+    }
+
+    function importDataTable($table)
+    {
+        $hit = 0;
+        foreach (glob("../database/data/$table->id") as $see) {
+            $hit = count(glob($see."/*.*"));
+            foreach (glob($see."/*.*") as $lihat) {
+                if ($hit == 1) {
+                    $content = file_get_contents($lihat);
+                    $backup  = query()->raw($content);
+                }else{
+                    $hit--;
+                }
+            }   
+        }   
+
+        $nama_table = $table->id;
+        $table = [$nama_table];
+
+        alert("Berhasil import semua data table", "Berhasil backup data", "success");
+        view('setup/view', compact('table'));
     }
 
 
