@@ -26,7 +26,7 @@
                             <label>Apa yang ingin anda tanyakan ?</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" class="form-control text-wa">
+                            <input type="text" class="form-control text-wa" autofocus placeholder="Silahkan Masukkan Pertanyaan anda di sini">
                         </div>
                         <div class="col-md-2">
                             <a href="https://wa.me/6289691159186" class="btn btn-success w-100 button-wa"><i class="fab fa-whatsapp"></i> Kirim Pesan</a>
