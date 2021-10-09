@@ -68,7 +68,6 @@
         $table = [$table];
         $check = [$request->check];
 
-        view('setup/column', compact('table','check'));
     }
 
     // function processColumn($request)
@@ -221,6 +220,7 @@
             }
         }
         
+        alert("Berhasil merubah table", "Berhasil backup data", "success");
         view('setup/table');
     }
     
@@ -251,7 +251,8 @@
         if ($cancel) {
             $_SESSION["alert_delete_table"] = "Berhasil Dihapus!";
         }
-
+        
+        alert("Berhasil hapus table", "Berhasil backup data", "success");
         view('setup/table');
 
     }

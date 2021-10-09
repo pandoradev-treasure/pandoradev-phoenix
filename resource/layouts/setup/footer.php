@@ -57,6 +57,7 @@
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/display/placeholder.js') ?>"></script>
 <script src="<?= asset('js/table_mysql.js') ?>"></script>
+<script src="<?= asset('js/about_pandoradev.js') ?>"></script>
 <?php
 if (isset($_SESSION["title_alert"])) {
 
