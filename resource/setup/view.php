@@ -8,6 +8,7 @@
                         <a target="_blank" href="http://localhost/phpmyadmin/sql.php?server=1&db=<?= $DATABASE ?>&table=<?= $data->table[0] ?>" class="btn btn-sm btn-outline-info">phpMyAdmin</a>
                         <a href="<?= controller('setup@backupDataTable', $data->table[0]) ?>" class="btn btn-sm btn-outline-primary">Backup Data</a>
                         <a href="<?= controller('setup@importDataTable', $data->table[0]) ?>" class="btn btn-sm btn-outline-success">Import Data</a>
+                        <a href="<?= url('setup/table') ?>" class="btn btn-sm btn-outline-dark">kembali</a>
                     </div>
                 </div>
             </div>
@@ -53,11 +54,6 @@
                             </tbody>
                         </table>
                     </form>
-                    <div class="float-right mt-3">
-                        <a href="<?= url('setup/table') ?>" class="btn btn-outline-dark btn-sm">
-                            Kembali
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
