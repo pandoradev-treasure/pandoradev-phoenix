@@ -9,10 +9,8 @@
                     </p>
                     <p class="lead">
                         Email : <a href="mailto:pandoradevofficial@gmail.com">pandoradevofficial@gmail.com</a>
-                    </p>
-                    <p class="lead">
-                        Kontak Support : <a href="wa.me/6289692259186">Ma's Irfan</a> / <a href="wa.me/6289676315535">Yus Laks</a>
-
+                        <br>
+                        Kontak Support : <a target="_blank" href="https://wa.me/6289691159186/?text=saya ingin tahu lebih banyak tentang pandoracode phoenix">Ma's Irfan</a> / <a target="_blank" href="https://wa.me/6289676315535/?text=saya ingin tahu lebih banyak tentang pandoracode phoenix">Yus Laks</a>
                     </p>
                 </div>
             </div>
@@ -29,7 +27,7 @@
                             <input type="text" class="form-control text-wa" autofocus placeholder="Silahkan Masukkan Pertanyaan anda di sini">
                         </div>
                         <div class="col-md-2">
-                            <a href="https://wa.me/6289691159186" class="btn btn-success w-100 button-wa"><i class="fab fa-whatsapp"></i> Kirim Pesan</a>
+                            <a target="_blank" href="https://wa.me/6289691159186" class="btn btn-success w-100 button-wa"><i class="fab fa-whatsapp"></i> Kirim Pesan</a>
                         </div>
                     </div>
                 </div>
