@@ -123,7 +123,7 @@
                     <div id="accordion">
                         <div class="card">
 
-                            <?php echo (strstr($_SERVER['REQUEST_URI'], 'backend')) ? $class = "show" : ""; ?>
+                            <?php (strstr($_SERVER['REQUEST_URI'], 'backend')) ? $class = "show" : ""; ?>
 
                             <div id="collapseOne" class="collapse <?= $class ?>" aria-labelledby="headingOne"
                                 data-parent="#accordion">
@@ -159,7 +159,7 @@
 
                     <div id="accordionSecond">
                         <div class="card">
-                            <?php echo (strstr($_SERVER['REQUEST_URI'], 'frontend')) ? $classFrontend = "show" : ""; ?>
+                            <?php (strstr($_SERVER['REQUEST_URI'], 'frontend')) ? $classFrontend = "show" : ""; ?>
                             <div id="collapseTwo" class="collapse <?= $classFrontend ?>" aria-labelledby="headingOne"
                                 data-parent="#accordionSecond">
                                 <div class="card-body">
