@@ -18,7 +18,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text" ><i class="fa fa-calculator"></i></div>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm total-table" placeholder="Nama Table" value="<?= $data->table[0]; ?>" disabled>
+                                    <input type="text" class="form-control form-control-sm total-table" placeholder="Nama Table" disabled>
                                 </div>
                             </div>
                             <div class="col-md-1 ml-auto">

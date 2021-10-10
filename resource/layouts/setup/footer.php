@@ -347,9 +347,9 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
         var row = null;
 
         row += `<tr>`;
-            row += `<td><input tabindex="2" type="text" name="name_column[]" required class="form-control" placeholder="Nama kolom"></td>`;
+            row += `<td><input tabindex="2" type="text" name="name_column[]" required class="input-table form-control" placeholder="Nama kolom"></td>`;
             row += `<td>
-                        <select tabindex="4" name="type_data[]" id="" class="form-control js-example-basic-single">
+                        <select tabindex="4" name="type_data[]" id="" class="input-table form-control js-example-basic-single">
                         <?php
                                                     $type_data = $host->query("SELECT * FROM type_data");
                                                     while ($listTypeData = mysqli_fetch_assoc($type_data)) {
@@ -360,7 +360,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
                                                 ?>
                         </select>
                     </td>`;
-            row += `<td><input tabindex="5" name="length[]" required type="text" class="form-control" placeholder="panjang kolom"></td>`;
+            row += `<td><input tabindex="5" name="length[]" required type="text" class="input-table form-control" placeholder="panjang kolom"></td>`;
             row += `<td><center><input tabindex="6" name="auto_increment" type="radio"></center></td>`;
             row += `<td><center><input tabindex="7" name="primary_key" type="radio"></center></td>`;
             row += `<td><center><input tabindex="7" name="is_null[]" type="checkbox" checked></center></td>`;
@@ -382,12 +382,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
         $("input[name='auto_increment']").val($(this).parents('tr').find("input.name_column").val());
     });
 
-    $('body').on('click','.delete-column',function(){
-        $(this).parents('tr').hide();
-        
-        var x = $(this).parents('tr').find('input.deleted').val("true");
-        var x = $(this).parents('tr').find('td > .input-table').removeAttr("required");
-    });
+    
 
     
 </script>
