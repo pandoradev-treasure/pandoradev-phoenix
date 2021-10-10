@@ -68,6 +68,8 @@
         $table = [$table];
         $check = [$request->check];
 
+        // alert("Berhasil ", "Berhasil backup data", "success");
+        view('setup/column', compact('table'));
     }
 
     // function processColumn($request)

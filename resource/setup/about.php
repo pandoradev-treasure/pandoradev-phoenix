@@ -38,7 +38,7 @@
 
         <div class="col-md-3 ml-auto">
             <div class="card shadow">
-                <img src="https://statics.indozone.news/content/2020/10/11/Byspg31/sinopsis-wall-e-2008-perjalanan-luar-angkasa-robot-pengumpul-sampah93_700.jpg" alt="" class="card-img-top">
+                <img src="<?php asset('setup/yusron.webp') ?>" alt="" class="card-img-top">
                 <div class="card-body text-center">
                     <h5>CORE DEVELOPER</h5>
                     <p>Yus Laks</p>
@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-3">
             <div class="card shadow">
-                <img src="https://statics.indozone.news/content/2020/10/11/Byspg31/sinopsis-wall-e-2008-perjalanan-luar-angkasa-robot-pengumpul-sampah93_700.jpg" alt="" class="card-img-top">
+                <img src="<?php asset('setup/irfan.jpg') ?>" alt="" class="card-img-top">
                 <div class="card-body text-center">
                     <h5>DATABASE DEVELOPER</h5>
                     <p>Ma's Irfan</p>
@@ -56,7 +56,7 @@
         </div>
         <div class="col-md-3 mr-auto">
             <div class="card shadow">
-                <img src="https://statics.indozone.news/content/2020/10/11/Byspg31/sinopsis-wall-e-2008-perjalanan-luar-angkasa-robot-pengumpul-sampah93_700.jpg" alt="" class="card-img-top">
+                <img src="<?php asset('setup/fajar.webp') ?>" alt="" class="card-img-top">
                 <div class="card-body text-center">
                     <h5>DOCS WRITER & TESTER</h5>
                     <p>jar's</p>
