@@ -1,9 +1,14 @@
 <div class="container-fluid mt-4">
     <div class="row">
         <div class="col-md-10 offset-md-1" >
-            <div class="alert alert-light" role="alert" style="box-shadow:2px 2px 20px #e1e1e1">
-                <span style="font-size: 20px;font-family:calibri"><?= $DATABASE ?></span> <a href="database"
-                    style="cursor: pointer;" class="">⚙️</a>
+            <div class="card" style="box-shadow:2px 2px 20px #e1e1e1">
+                <div class="card-body py-3">
+                    <span style="font-size: 20px;font-family:calibri"><?= $DATABASE ?></span> <a href="database"
+                    style="cursor: pointer;" class="" title-bottom="Setting database">⚙️</a>
+                    <a target="_blank" href="http://localhost/phpmyadmin/db_structure.php?server=1&db=<?= $DATABASE ?>" class="btn btn-outline-info btn-sm float-right">
+                        phpMyAdmin
+                    </a>
+                </div>
             </div>
             <div class="card" style="box-shadow:2px 2px 36px #e1e1e1">
                 <div class="card-header">
@@ -14,16 +19,16 @@
                                     name="nama_table" autofocus>
                                 <input type="hidden" required class="form-control" value="true" name="check">
                             </div>
-                            <button class="btn  btn-primary btn-sm" name="tambah_table" type="submit"><i
+                            <button class="btn  btn-primary btn-sm" name="tambah_table" type="submit" title="Add Table"><i
                                     class="fa fa-plus"></i></button>
                         </form>
                     </div>
 
                     <div class="btn-group float-right">
                         <a data-msg="Apakah anda yakin ingin <br><b>backup</b> semua table?" data-denied="Proses backup dicancel" data-url="<?= controller('setup@backupAllTable') ?>" class="btn btn-sm btn-outline-primary delete-table"><i
-                        class="far fa-task"></i>Backup Table</a>
+                        class="far fa-task"></i>Backup All Table</a>
                         <a data-msg="Apakah anda yakin ingin <br><b>import</b> semua table?" data-denied="Proses import dicancel" data-url="<?= controller('setup@importAllTable') ?>"
-                            class="btn btn-sm btn-outline-success delete-table"><i class="far fa-task"></i>Import Table</a>
+                            class="btn btn-sm btn-outline-success delete-table"><i class="far fa-task"></i>Import All Table</a>
                     </div>
                 </div>
 
@@ -33,7 +38,7 @@
                             <tr>
                                 <th width="5%">No</th>
                                 <th>Nama Tabel</th>
-                                <th width="20%">Aksi</th>
+                                <th class="text-center" width="20%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,21 +53,19 @@
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <div class="btn-group">
-
                                             <a href="<?= controller('setup@backupTable', $see[0]) ?>"
-                                                class="btn btn-success btn-sm hover-btn mr-1" data-toggle="tooltip"
+                                                class="btn btn-success btn-sm hover-btn mr-1"
                                                 title="Backup This Table"><i class="fa fa-file"></i></a>
                                             <a href="<?= controller('setup@viewData',$see[0]) ?>"
-                                                class="btn btn-warning btn-sm hover-btn mr-1" data-toggle="tooltip"
-                                                title="Show Data"><i class="fa fa-eye"></i></a>
+                                                class="btn btn-warning btn-sm hover-btn mr-1"
+                                                title="Show Data"><i class="fa fa-search"></i></a>
                                             <a href="<?= controller('setup@edit', $see[0]) ?>"
-                                                class="btn btn-primary btn-sm hover-btn mr-1" data-toggle="tooltip"
+                                                class="btn btn-primary btn-sm hover-btn mr-1"
                                                 title="Edit Table"><i class="fa fa-edit"></i></a>
                                             <a data-table="<?= $see[0] ?>"
                                                 data-url="<?= controller('setup@deleteTable', $see[0]) ?>"
                                                 class="btn btn-danger btn-sm hover-btn mr-1 delete-table"
-                                                data-toggle="tooltip" title="Delete Table"><i
-                                                    class="fa fa-trash"></i></a>
+                                                title="Delete Table"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </div>
                                 </td>

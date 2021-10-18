@@ -25,6 +25,11 @@
         echo "http://$_SERVER[HTTP_HOST]/$projectName[1]/$target";
     }
 
+    function this_url()
+    {
+      return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    }
+
     function controller($controllerName, $id = 0)
     {
 
@@ -87,6 +92,7 @@
       }
 
       @$_SESSION["data"] = $anchor;
+      
       header('location:../'.$target);
 
     }
@@ -403,7 +409,8 @@
 
     /* 
       MENGGANTI DARI [ARRAY] KE OBJECT (SESSION)
-      $data ini akan dipakai untuk view yang memakain function compact
+      $data ini akan dipakai untuk view yang memakai function compact
     */
     @$data = json_decode(json_encode($_SESSION["data"]));
-    /* END */
+
+    

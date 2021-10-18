@@ -68,7 +68,8 @@
         $table = [$table];
         $check = [$request->check];
 
-        view('setup/column', compact('table','check'));
+        // alert("Berhasil ", "Berhasil backup data", "success");
+        view('setup/column', compact('table'));
     }
 
     // function processColumn($request)
@@ -221,6 +222,7 @@
             }
         }
         
+        alert("Berhasil merubah table", "Berhasil backup data", "success");
         view('setup/table');
     }
     
@@ -251,7 +253,8 @@
         if ($cancel) {
             $_SESSION["alert_delete_table"] = "Berhasil Dihapus!";
         }
-
+        
+        alert("Berhasil hapus table", "Berhasil backup data", "success");
         view('setup/table');
 
     }
@@ -265,7 +268,8 @@
         query()->delete($table, $id);
 
         $table = [$table];
-        
+
+        alert("Berhasil hapus data", "Berhasil backup data", "success");
         view('setup/view',compact('table'));
     }
 
@@ -300,28 +304,6 @@
                 view('setup/table');
             }else{
             }
-
-            // if ($conn->query($sql) === TRUE) {
-
-            //     echo '<div style="display:none"></div>';
-            //     echo ' <script type="text/javascript">
-            //                 Swal.fire({
-            //                     icon: "success",
-            //                     title: "Berhasil!",
-            //                     text: "Konfigurasi berhasil untuk database '.$database.'",
-            //                 })
-            //         </script> ';
-
-            // } else {
-            //     echo '<div style="display:none"></div>';
-            //     echo ' <script type="text/javascript">
-            //                 Swal.fire({
-            //                     icon: "error",
-            //                     title: "Oops...",
-            //                     text: "Gagal konek dengan database '.$DATABASE.' '.$conn->error.'",
-            //                 })
-            //             </script> ';
-            // }
 
             $conn->close();
             
@@ -369,12 +351,9 @@ $content .= '
         /* Move File from images to copyImages folder */
 
         if( !rename($filePath, $destinationFilePath) ) {  
-
             echo "File can't be moved!";  
-
-        }  
-
-        else {  
+        }else {  
+            alert("Berhasil tersambung ke database", "Berhasil backup data", "success");
             view('setup/table');
         }
     }
@@ -393,6 +372,8 @@ $content .= '
                 }
             }   
         }   
+
+        alert("Berhasil import semua table", "Berhasil backup data", "success");
         view('setup/table');
     }
 
@@ -411,6 +392,8 @@ $content .= '
             fwrite($myfile, $content);
             fclose($myfile);
         }
+
+        alert("Berhasil backup semua table", "Berhasil backup data", "success");
         view('setup/table');
     }
 
@@ -427,23 +410,64 @@ $content .= '
         fwrite($myfile, $content);
         fclose($myfile);
 
+        alert("Berhasil backup table", "Berhasil backup data", "success");
         view('setup/table');
     }
 
     function backupDataTable($table)
     {
         global $DATABASE;
-        $table = $table->id;
-        mkdir("../database/table/".$table);
-        $myfile  = fopen("../database/table/$table/".date("d-m-Y").".sql", "w") or die("Unable to open file!");
 
-        $show_table = mysqli_fetch_object(query()->raw("SHOW CREATE TABLE $table"));
+        $nama_table = $table->id;
+        $data_kolom = query()->raw("DESC $nama_table");
+        $kolom      = null;
+        foreach ($data_kolom as $see) {
+            $kolom[] = $see["Field"];
+        }
+        $sql_table = "INSERT INTO $nama_table(".implode(",", $kolom).") VALUES ";
+        
+        $values      = null;
+        $data_table = query()->table($nama_table)->get();
+        foreach ($data_table as $see) {
+            $cek_data = "('";
+            $cek_data .= implode("', '",$see);
+            $cek_data .= "')";
+            $values[] = $cek_data;
+        }
+        $sql_table .= implode(", \n",$values);
 
-        $content = $show_table->{"Create Table"};
-        fwrite($myfile, $content);
+        mkdir("../database/data/".$nama_table);
+        $myfile  = fopen("../database/data/$nama_table/".date("d-m-Y").".sql", "w") or die("Unable to open file!");
+
+        fwrite($myfile, $sql_table);
         fclose($myfile);
 
-        view('setup/table');
+        $table = [$nama_table];
+
+        alert("Berhasil backup data", "Berhasil backup data", "success");
+        view('setup/view', compact('table'));
+    }
+
+    function importDataTable($table)
+    {
+        $hit = 0;
+        foreach (glob("../database/data/$table->id") as $see) {
+            $hit = count(glob($see."/*.*"));
+            foreach (glob($see."/*.*") as $lihat) {
+                if ($hit == 1) {
+                    $content = file_get_contents($lihat);
+                    $backup  = query()->raw($content);
+                }else{
+                    $hit--;
+                }
+            }   
+        }   
+
+        $nama_table = $table->id;
+        $table = [$nama_table];
+
+        alert("Berhasil import semua data table", "Berhasil backup data", "success");
+        view('setup/view', compact('table'));
     }
 
 
