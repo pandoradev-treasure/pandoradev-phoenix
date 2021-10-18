@@ -9,6 +9,16 @@
     error_reporting(0);
     ini_set('display_errors', 0);
 
+    if(!empty($_SESSION["data"])){
+        $nama_array = array_keys($_SESSION["data"]);
+        if(empty($_SESSION["data"][$nama_array[0]]["url"])){
+           $_SESSION["data"][$nama_array[0]]["url"] = this_url();
+        }else{
+            
+        }
+    }
+    
+
     if ($_GET['params'] == 'dokumentasi') {
         
         include '../documentation.php';
@@ -36,14 +46,13 @@
 
             $url           = $_GET['params'];
 
-            // echo "<pre>";
-            // var_dump($url);
-            // check($url);
-            $layoutsHeader = include "../resource/layouts/backend/header.php";
-            $getfile       = include "../resource/views/$url.php";
+            $layoutsHeader = require_once "../resource/layouts/backend/header.php";
+            $getfile       = require_once "../resource/views/$url.php";
             $layoutsFooter = include "../resource/layouts/backend/footer.php";
             
-
+            
+            
+            
         }
         //end
     }

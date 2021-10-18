@@ -5,7 +5,7 @@
         </div>
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
-</section>
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -133,7 +133,7 @@
 </script>
 
 <?php
-  if ($_SESSION["alert"] ) {
+  if (isset($_SESSION["alert"] )) {
     $msg = $_SESSION["alert"];
   ?>
     <script>
@@ -163,10 +163,6 @@ if (isset($_SESSION["title_alert"])) {
           '<?= $alert ?>',
           '<?= $type_alert ?>'
         );
-
-        <?php
-            unset($_SESSION["data"]);    
-        ?>
     </script>
 
     <?php
@@ -192,7 +188,21 @@ if (isset($_SESSION["title_alert"])) {
 unset($_SESSION["title_alert"]);
 unset($_SESSION["message_alert"]);
 unset($_SESSION["type_alert"]);
-unset($_SESSION["data"]); 
+
+if(!empty($_SESSION["data"])){
+  $nama_array = array_keys($_SESSION["data"]);
+  if(!empty($_SESSION["data"][$nama_array[0]]["url"])){
+      if($_SESSION["data"][$nama_array[0]]["url"] != this_url()){
+        ?>
+        <script>
+          location.reload();
+        </script>
+        <?php
+          unset($_SESSION["data"]);
+      }
+  }
+}
 ?>
+
 </body>
 </html>

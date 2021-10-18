@@ -78,7 +78,7 @@ if (isset($_SESSION["title_alert"])) {
         });
 
         <?php
-            unset($_SESSION["data"]);    
+            // unset($_SESSION["data"]);    
         ?>
     </script>
 
@@ -104,8 +104,7 @@ if (isset($_SESSION["title_alert"])) {
 }
 unset($_SESSION["title_alert"]);
 unset($_SESSION["message_alert"]);
-unset($_SESSION["type_alert"]);
-unset($_SESSION["data"]); 
+unset($_SESSION["type_alert"]); 
 ?>
 <script>
     $('.preview').click(function(){
@@ -337,8 +336,6 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
 </script>
 <script>
     $(document).ready(function() {
-        
-
         $('.sidebarT').hide();
     });
 
@@ -350,14 +347,14 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
             row += `<td><input tabindex="2" type="text" name="name_column[]" required class="input-table form-control" placeholder="Nama kolom"></td>`;
             row += `<td>
                         <select tabindex="4" name="type_data[]" id="" class="input-table form-control js-example-basic-single">
-                        <?php
-                                                    $type_data = $host->query("SELECT * FROM type_data");
-                                                    while ($listTypeData = mysqli_fetch_assoc($type_data)) {
-                                                ?>
-                                                    <option <?php echo ($listTypeData['type_data'] == strtoupper($dataType)) ? "selected" : "";?> value="<?= $listTypeData['type_data'] ?>-<?= $listTypeData['name_data'] ?>"><?= $listTypeData['name_data'] ?></option>
-                                                <?php
-                                                    }
-                                                ?>
+                            <?php
+                                $type_data = $host->query("SELECT * FROM type_data");
+                                while ($listTypeData = mysqli_fetch_assoc($type_data)) {
+                            ?>
+                                <option <?php echo ($listTypeData['type_data'] == strtoupper($dataType)) ? "selected" : "";?> value="<?= $listTypeData['type_data'] ?>-<?= $listTypeData['name_data'] ?>"><?= $listTypeData['name_data'] ?></option>
+                            <?php
+                                }
+                            ?>
                         </select>
                     </td>`;
             row += `<td><input tabindex="5" name="length[]" required type="text" class="input-table form-control" placeholder="panjang kolom"></td>`;
@@ -373,18 +370,6 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
 
         $('tbody').append(row);
     });
-
-    $("input[name='primary_key']").change(function(){
-        $("input[name='primary_key']").val($(this).parents('tr').find("input.name_column").val());
-    });
-    
-    $("input[name='auto_increment']").change(function(){
-        $("input[name='auto_increment']").val($(this).parents('tr').find("input.name_column").val());
-    });
-
-    
-
-    
 </script>
 
 

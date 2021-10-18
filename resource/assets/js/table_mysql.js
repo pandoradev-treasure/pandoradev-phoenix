@@ -22,5 +22,13 @@ $(document).ready(function() {
 
         $(".total-table").val(parseInt($(".total-table").val()) - 1);
     });
+
+    $("input[name='primary_key']").change(function(){
+        $("input[name='primary_key']").val($(this).parents('tr').find("input.name_column").val());
+    });
+    
+    $("input[name='auto_increment']").change(function(){
+        $("input[name='auto_increment']").val($(this).parents('tr').find("input.name_column").val());
+    });
 });
 
