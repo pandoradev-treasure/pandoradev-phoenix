@@ -510,8 +510,8 @@ $content .= '
 
         query()->insert('nama_table',[
 
-            '$'request->name_inputan1, /*isikan sebagai input/select dll...*/
-            '$'request->name_inputan2 /*isikan sebagai input/select dll...*/
+            '$'request->name_inputan1, /*isikan sebagai isi atribut name elemen input/select dll...*/
+            '$'request->name_inputan2 /*isikan sebagai isi atribut name elemen input/select dll...*/
 
         ])->view('backend/folder/file','pesan jika berhasil');
 
@@ -947,4 +947,11 @@ $content .= '
         $file = [$file];
 
         view('setup/editor-mode', compact('file'));
+     }
+
+     function EditorModeGetMenu()
+     {
+        $file = ["../resource/layouts/backend/menu.php"];
+        //  check($file);
+         view('setup/editor-mode', compact('file'));
      }
