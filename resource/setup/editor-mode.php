@@ -35,6 +35,7 @@
                 <!-- TOMBOL ROCKET -->
                 <?php
                     $namefile = str_replace("../","",str_replace("resource/views/","",$file));
+                    $hideElements = "";
                     if (strpos($namefile, 'controller') !== false) {
                         $hideElements = 'style="display:none !important"';
                     }
@@ -44,7 +45,7 @@
                 </a>
                 <button class="btn-save save-file">simpan</button>
             </div>
-            <textarea style="position: absolute;" class="text-editor" name="new_code" id="code-mirror"><?= file_get_contents($file) ?></textarea>
+            <textarea style="position: absolute;" class="text-editor" name="new_code" id="code-mirror"><?= @file_get_contents($file) ?></textarea>
         </form>
         <div class="col-md-2" style="position: absolute;z-index: 9999;">
             <div class="collapse multi-collapse ml-2 mt-2" id="CollapseMenuView">
