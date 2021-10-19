@@ -5,7 +5,7 @@
 
     <span style="margin-left: 10px;">|</span>
 
-    <a style="margin-left: 10px;color:white" type="button" data-toggle="collapse" href="#CollapseMenuView" role="button" aria-expanded="false"
+    <a style="margin-left: 10px;color:white" class="coba" type="button" data-toggle="collapse" href="#CollapseMenuView" role="button" aria-expanded="false"
         aria-controls="CollapseMenuView">
         Views
     </a>
@@ -44,7 +44,12 @@
                 </a>
                 <button class="btn-save save-file">simpan</button>
             </div>
-            <textarea style="position: absolute;" class="text-editor" name="new_code" id="code-mirror"><?= file_get_contents($file) ?></textarea>
+
+            <?php
+                if ($file) {
+            ?>
+                <textarea style="position: absolute;" class="text-editor" name="new_code" id="code-mirror"><?= file_get_contents($file) ?></textarea>
+            <?php } ?>
         </form>
         <div class="col-md-2" style="position: absolute;z-index: 9999;">
             <div class="collapse multi-collapse ml-2 mt-2" id="CollapseMenuView">
