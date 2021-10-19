@@ -14,26 +14,15 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php asset('plugins/fontawesome-free/css/all.min.css'); ?>">
+    <link rel="stylesheet" href="<?= asset('plugins/fontawesome-free/css/all.min.css'); ?>">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet"
-        href="<?php asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'); ?>">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="<?php asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css'); ?>">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="<?php asset('plugins/jqvmap/jqvmap.min.css'); ?>">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php asset('dist/css/adminlte.min.css'); ?>">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="<?php asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="<?php asset('plugins/daterangepicker/daterangepicker.css'); ?>">
+    <link rel="stylesheet" href="<?= asset('dist/css/adminlte.min.css'); ?>">
     <!-- summernote -->
-    <link rel="stylesheet" href="<?php asset('plugins/summernote/summernote-bs4.min.css'); ?>">
+    <link rel="stylesheet" href="<?= asset('plugins/summernote/summernote-bs4.min.css'); ?>">
     <!-- Datatable -->
-    <link rel="stylesheet" href="<?php asset('plugins/dataTables.bootstrap4.min.css'); ?>">
+    <link rel="stylesheet" href="<?= asset('plugins/dataTables.bootstrap4.min.css'); ?>">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="<?= asset('codemirror/lib/codemirror.css'); ?>">
@@ -60,12 +49,70 @@
         filter: invert(38%) sepia(33%) saturate(2930%) hue-rotate(193deg) brightness(112%) contrast(102%);
     }
 
-    *{
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    .CodeMirror {
+        font-family: 'Fira Code';
+        height: auto;
     }
+    
+    .tools-editor{
+        /* background-color: #FC427B; */
+        background-image: linear-gradient(to right,#3B3B98, #B33771,#FC427B);
+        color: white;
+        padding: 6px;
+    }
+
+    .tools-btn{
+        border: 1px solid #48dbfb;
+        border-radius: 5px;
+        padding: 4px;
+        color:white;
+    }
+    
+    .img-icon{
+        max-width: 25px;
+        margin-left : 14px
+    }
+    
+    .btn-save{
+        float           : right;
+        border-radius   : 5px;
+        border          : 2px solid #C4E538;
+        color           : #C4E538;
+        background-color: transparent;
+        display: none;
+    }
+
+    .btn-save:hover{
+        border          : 2px solid #12CBC4;
+        color           : #12CBC4;
+    }
+
+    .btn-edit{
+        float           : right;
+        border-radius   : 5px;
+        border          : 2px solid #18dcff;
+        color           : #18dcff;
+        margin-right    : 6px;
+        background-color: transparent;
+    }
+
+    .btn-edit:hover{
+        border          : 2px solid #7d5fff;
+        color           : #7d5fff;
+    }
+
 </style>
 
-<body>
+<?php
+    @$dataUrlSekarang = explode('/',$_SERVER['REQUEST_URI']);
+    $attrForSideBar = null;
+    
+    if (@$dataUrlSekarang[3] == "editor-mode") {
+        $attrForSideBar = "style='background-color:#212121'";
+    }
+?>
+
+<body <?= $attrForSideBar ?>>
     <audio id="myAudioSuccess">
         <source src="<?= asset('success.mp3'); ?>" type="audio/ogg">
         <source src="<?= asset('success.mp3'); ?>" type="audio/mpeg">
@@ -78,9 +125,8 @@
         Your browser does not support the audio element.
     </audio>
     <?php
-        @$dataUrlSekarang = explode('/',$_SERVER['REQUEST_URI']);
-        $attrForSideBar = null;
-        if (@$dataUrlSekarang[3] == "") {
+        
+        if (@$dataUrlSekarang[3] == "" || @$dataUrlSekarang[3] == "editor-modes") {
             $attrForSideBar = "style='display:none'";
         }
     ?>
@@ -144,6 +190,10 @@
                                     <a href="<?= url('setup/backend-list-view'); ?>"
                                         class="list-group-item list-group-item-action list-group-item-light"><img
                                             src="<?= asset('setup/list-view.png'); ?>" style="max-width:20px"> List View </a>
+
+                                    <a href="<?= url('setup/editor-mode'); ?>"
+                                        class="list-group-item list-group-item-action list-group-item-light"><img
+                                            src="<?= asset('setup/clean-code.png'); ?>" style="max-width:20px"> Editor Mode </a>
 
                                 </div>
                             </div>
@@ -542,6 +592,14 @@
         <!-- Page content wrapper-->
         <div id="page-content-wrapper">
             <!-- Top navigation-->
+            <?php
+            
+                if (@$dataUrlSekarang[3] == "editor-mode") {
+                    $attrForSideBar = "style='display:none'";
+                }
+
+            ?>
+
             <nav <?= $attrForSideBar ?> class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <div class="container-fluid" style="padding: 3.5px;">
                     <button class="show-hide btn mr-2 btn-sm"><img src="<?= asset('setup/list.png'); ?>" alt="" style="max-width: 17px;"></button>

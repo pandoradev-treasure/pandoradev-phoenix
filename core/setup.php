@@ -504,68 +504,54 @@ $content .= '
 
         if ($request->auto_function) {
             $content .= "
-            
+
     function TambahData('$'request)
     {
 
-        /*
-        *[PandoraCode]
-        *di function ini anda bisa memberikan kode
-        *untuk tambah data, berikut contoh kode insert :
-        */
-        query()->insert('table',[
+        query()->insert('nama_table',[
 
-            '$'request->x /*isikan sebagai name inputan*/
+            '$'request->name_inputan1, /*isikan sebagai input/select dll...*/
+            '$'request->name_inputan2 /*isikan sebagai input/select dll...*/
 
-        ])->view('folder/file','Berhasil Ditambahkan!');
+        ])->view('backend/folder/file','pesan jika berhasil');
 
     }
 
     function EditData('$'request)
     {
 
-        /*
-        *[PandoraCode]
-        *di function ini anda bisa memberikan kode
-        *untuk persiapan edit data
-        */
+        '$'variable = query()->table('nama_table')->where('id','$'request->id)->single();
 
-        '$'variable = query()->table('table')->where('id','$'request->id)->single();
-
-        view('folder/file', compact('variable'));
+        view('backend/folder/file', compact('variable'));
 
     }
 
     function UpdateData('$'request)
     {
 
-        /*
-        *[PandoraCode]
-        *di function ini anda bisa memberikan kode
-        *untuk update data
-        */
-
-        query()->update('table',[
+        query()->update('nama_table',[
 
             'column' => '$'request->name_input,
             'column2' => '$'request->name_input2,
 
-        ], '$'request->id)->view('folder/file','pesan jika berhasil');
+            /*
+            *column adalah nama kolom table anda
+            *kemudian name_input adalah atribut name dari elemen input/select dll...
+            */
+
+        ], '$'request->id)->view('backend/folder/file','pesan jika berhasil');
 
     }
 
     function HapusData('$'request)
     {
 
-        /*
-        *[PandoraCode]
-        *di function ini anda bisa memberikan kode
-        *untuk delete data
-        */
+        query()->delete('nama_table', '$'request->id)->view('backend/folder/file','pesan jika berhasil');
 
-        query()->delete('table', '$'request->id)->view('folder/file','pesan jika berhasil');
+    }
 
-    }"
+    /*[PandoraCode - Phoenix - Controller]*/
+    "
     
     ;    
         }
@@ -784,7 +770,9 @@ $content .= '
         <h3 class="card-title">
             Judul
         </h3>
-        <a href="" class="btn btn-sm btn-primary shadow float-right">Tambah</a>
+        <a href="<?php url("backend/folder/file") ?>" class="btn btn-sm btn-primary shadow float-right">
+            <i class="fa fa-plus"></i>
+        </a>
     </div><!-- /.card-header -->
     <div class="card-body">
         <div class="tab-content p-0">
@@ -799,18 +787,29 @@ $content .= '
                     </tr>
                 </thead>
                 <tbody>
+
                     <?php foreach( query()->table("nama_table")->get() AS $item ){ ?>
-                     <tr>
-                        <td> <?= $no++ ?> </td>
-                        <td> <?= $item["name_column"] ?> </td>
-                        <td> <?= $item["name_column"] ?> </td>
-                        <td> <?= $item["name_column"] ?> </td>
-                        <td> 
-                            <a href="" class="btn btn-danger btn-sm shadow">Hapus</a>
-                            <a href="" class="btn btn-primary btn-sm shadow">Edit</a>
-                        </td>
-                     </tr>
+
+                        <tr>
+                            <td> <?= $no++ ?> </td>
+                            <td> <?= $item["name_column"] ?> </td>
+                            <td> <?= $item["name_column"] ?> </td>
+                            <td> <?= $item["name_column"] ?> </td>
+                            <td>
+                                <!-- Tombol Hapus -->
+                                <a href="<?php controller("NamaController@HapusData", $item["id"]) ?>" class="btn btn-danger btn-sm shadow">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                                <!-- Tombol Edit -->
+                                <a href="<?php controller("NamaController@EditData", $item["id"]) ?>" class="btn btn-primary btn-sm shadow">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+
+                            </td>
+                        </tr>
+
                     <?php } ?>
+
                 </tbody>
             </table>
         </div>
@@ -827,14 +826,15 @@ $content .= '
     </div><!-- /.card-header -->
     <div class="card-body">
         <div class="tab-content p-0">
-            <form action="" method="POST">
+            <form action="<?php controller("NamaController@TambahData") ?>" method="POST">
         
                 <div class="form-group">
                     <label for="">Label</label>
-                    <input type="text" name="name_of_field" class="form-control">
+                    <input type="text" name="???" class="form-control">
                 </div>
 
                 <?php tombolForm() ?>
+                <!-- Agar fungsi tombol kembali berfungsi dengan baik, pastikan anda punya file dengan nama data.php -->
 
             </form>
         </div>
@@ -860,6 +860,7 @@ $content .= '
      {
         unlink('../resource/views/backend/'.$id);
         alert('Berhasil Dihapus!');
+        unset($_SESSION['data']);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
      }
 
@@ -922,4 +923,28 @@ $content .= '
         $cmd = system($request->execute);
         $cmd = ["<div class='card card-body mt-2'>$cmd</div>"];
         view('setup/cmd', compact('cmd'));
+     }
+
+     //EDITOR MODE
+     function EditorModeDetailFile($request, $file)
+     {
+         $file = [$file];
+        //  check($file);
+         view('setup/editor-mode', compact('file'));
+     }
+
+     function EditorModeSaveFile($request, $file)
+     {
+        $myfile  = fopen("$file", "w") or die("Unable to open file!");
+        
+        $content = $request->new_code;
+
+        fwrite($myfile, $content);
+        fclose($myfile);
+
+        alert('Berhasil');
+        
+        $file = [$file];
+
+        view('setup/editor-mode', compact('file'));
      }

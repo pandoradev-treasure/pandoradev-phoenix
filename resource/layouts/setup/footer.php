@@ -28,14 +28,6 @@
 <!-- Bootstrap 4 -->
 <script src="<?= asset('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 
-<!-- JQVMap -->
-<script src="<?= asset('plugins/jqvmap/jquery.vmap.min.js') ?>"></script>
-<script src="<?= asset('plugins/jqvmap/maps/jquery.vmap.usa.js') ?>"></script>
-<!-- jQuery Knob Chart -->
-<script src="<?= asset('plugins/jquery-knob/jquery.knob.min.js') ?>"></script>
-
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="<?= asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') ?>"></script>
 <!-- Summernote -->
 <script src="<?= asset('plugins/summernote/summernote-bs4.min.js') ?>"></script>
 <!-- AdminLTE App -->
@@ -45,7 +37,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?= asset('dist/js/pages/dashboard.js') ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="<?php asset('plugins/sweetalert2@11') ?>"></script>
+<script src="<?= asset('plugins/sweetalert2@11') ?>"></script>
 <script src="<?= asset('codemirror/lib/codemirror.js') ?>"></script>
 <script src="<?= asset('codemirror/mode/php/php.js') ?>"></script>
 <script src="<?= asset('codemirror/mode/htmlmixed/htmlmixed.js') ?>"></script>
@@ -56,7 +48,13 @@
 <script src="<?= asset('codemirror/keymap/sublime.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/display/placeholder.js') ?>"></script>
+
+<?php
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/table') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/column') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/view') !== false ){
+?>
 <script src="<?= asset('js/table_mysql.js') ?>"></script>
+<?php } ?>
+
 <script src="<?= asset('js/about_pandoradev.js') ?>"></script>
 <?php
 if (isset($_SESSION["title_alert"])) {
@@ -196,11 +194,11 @@ unset($_SESSION["type_alert"]);
 
     $('.data-code').text($('.data-code-old').text());
 
-    editorCode.setSize(null, 1000);
+    // editorCode.setSize(null, 1000);
 
 </script>
 <?php
-    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-menu') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-header') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-footer') !== false) {
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-menu') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-header') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/backend-footer') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/editor-mode') !== false) {
         ?>
 
         <script type="text/javascript">
@@ -277,7 +275,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'setup/cmd') !== false ) {
 ?>
 
 <?php
-    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false) {
+    if (strpos($_SERVER['REQUEST_URI'], 'setup/backend-detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/detail-file') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/editor-mode') !== false) {
         ?>
 
         <script type="text/javascript">
@@ -437,5 +435,3 @@ foreach (glob("../controller/*") as $key => $see) {
         editor.setSize(null, 1000);
     </script>
 <?php } ?>
-
-
