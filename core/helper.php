@@ -12,13 +12,6 @@
       echo $projectName[1]."/".$target;
     }
 
-    function asset($target)
-    {
-      $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
-      $root        = $_SERVER['HTTP_HOST'];
-      echo "http://$root/$projectName[1]/resource/assets/$target";
-    }
-
     function url($target)
     {
         $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
@@ -413,4 +406,39 @@
     */
     @$data = json_decode(json_encode($_SESSION["data"]));
 
+    /*
+    * ALL ABOUT FILES
+    */
+
+    function files($nameField)
+    {
+      return $_FILES[$nameField]['name'];
+    }
+
+    function asset($target)
+    {
+      $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
+      $root        = $_SERVER['HTTP_HOST'];
+      return "http://$root/$projectName[1]/resource/assets/$target";
+    }
+
+    function move($tmp, $target)
+    {
+      $tmp = $_FILES[$tmp]['tmp_name'];
+      return move_uploaded_file($tmp, $target);
+    }
+
+    function resource($target)
+    {
+      $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
+      $root        = $_SERVER['HTTP_HOST'];
+      return "http://$root/$projectName[1]/resource/$target";
+    }
+
+    function FunctionName(Type $var = null)
+    {
+      # code...
+    }
+
+    /**END FILES */
     

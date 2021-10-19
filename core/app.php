@@ -9,15 +9,6 @@
     // error_reporting(0);
     // ini_set('display_errors', 0);
 
-    if(!empty($_SESSION["data"])){
-        $nama_array = array_keys($_SESSION["data"]);
-        if(empty($_SESSION["data"][$nama_array[0]]["url"])){
-           $_SESSION["data"][$nama_array[0]]["url"] = this_url();
-        }else{
-            
-        }
-    }
-    
 
     if ($_GET['params'] == 'dokumentasi') {
         
@@ -41,6 +32,16 @@
         $layoutsFooter = include "../resource/layouts/setup/footer.php";
 
     }else{
+
+        if(!empty($_SESSION["data"])){
+            $nama_array = array_keys($_SESSION["data"]);
+            if(empty($_SESSION["data"][$nama_array[0]]["url"])){
+               $_SESSION["data"][$nama_array[0]]["url"] = this_url();
+            }else{
+                
+            }
+        }
+
         //auto redirect
         if ($_GET['params']) {
 
