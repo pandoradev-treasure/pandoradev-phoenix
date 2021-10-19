@@ -5,6 +5,9 @@
 
     <span style="margin-left: 10px;">|</span>
 
+    <a href="<?php controller('setup@EditorModeGetMenu') ?>" style="margin-left: 10px;color:white">
+        Menu
+    </a>
     <a style="margin-left: 10px;color:white" class="coba" type="button" data-toggle="collapse" href="#CollapseMenuView" role="button" aria-expanded="false"
         aria-controls="CollapseMenuView">
         Views
@@ -29,26 +32,25 @@
 
         ?>
         <form action="<?php controller('setup@EditorModeSaveFile', $file) ?>" method="POST">
-            <div style="color: white;padding-top:3px;padding-bottom:3px;">
-                <img src="<?= asset('setup/folder.png') ?>" style="max-width: 15px;margin-right:7px" alt=""><?= str_replace("../","",str_replace("resource/views/","",$file)) ?>
-
-                <!-- TOMBOL ROCKET -->
-                <?php
-                    $namefile = str_replace("../","",str_replace("resource/views/","",$file));
-                    $hideElements = "";
-                    if (strpos($namefile, 'controller') !== false) {
-                        $hideElements = 'style="display:none !important"';
-                    }
-                ?>
-                <a title="Ke halaman <?= str_replace('../resource/views/backend/','',$file) ?>" target="_blank" href="<?= url('backend/'.str_replace('resource/views/','',str_replace('.php','',$file))) ?>" <?= $hideElements ?>>
-                    <img src="<?= asset('setup/rocket.png') ?>" style="max-width: 15px;margin-left:4px" alt="">
-                </a>
-                <button class="btn-save save-file">simpan</button>
-            </div>
 
             <?php
                 if ($file) {
             ?>
+                <div style="color: white;padding-top:3px;padding-bottom:3px;">
+                    <img src="<?= asset('setup/folder.png') ?>" style="max-width: 15px;margin-right:7px" alt=""><?= str_replace("../","",str_replace("resource/views/","",$file)) ?>
+
+                    <!-- TOMBOL ROCKET -->
+                    <?php
+                        $namefile = str_replace("../","",str_replace("resource/views/","",$file));
+                        if (strpos($namefile, 'controller') !== false) {
+                            $hideElements = 'style="display:none !important"';
+                        }
+                    ?>
+                    <a title="Ke halaman <?= str_replace('../resource/views/backend/','',$file) ?>" target="_blank" href="<?= url('backend/'.str_replace('resource/views/','',str_replace('.php','',$file))) ?>" <?= $hideElements ?>>
+                        <img src="<?= asset('setup/rocket.png') ?>" style="max-width: 15px;margin-left:4px" alt="">
+                    </a>
+                    <button class="btn-save save-file">simpan</button>
+                </div>    
                 <textarea style="position: absolute;" class="text-editor" name="new_code" id="code-mirror"><?= file_get_contents($file) ?></textarea>
             <?php } ?>
         </form>
