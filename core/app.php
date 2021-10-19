@@ -6,8 +6,8 @@
     @include 'helper.php';
     @include 'database.php';
 
-    error_reporting(0);
-    ini_set('display_errors', 0);
+    // error_reporting(0);
+    // ini_set('display_errors', 0);
 
     if(!empty($_SESSION["data"])){
         $nama_array = array_keys($_SESSION["data"]);

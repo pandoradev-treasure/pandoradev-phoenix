@@ -58,8 +58,8 @@
 
                                 $db_primary_key = "";
                                 $db_auto_increment = "";
-                                $primary_key = ($see["Key"] == "PRI") ? "checked value='".$see["Field"]."'" : "";
                                 while ($see = mysqli_fetch_assoc($query)) {
+                                    $primary_key = ($see["Key"] == "PRI") ? "checked value='".$see["Field"]."'" : "";
                                     if ($see["Key"] == "PRI") {
                                         $db_primary_key = $see["Field"];
                                     }
