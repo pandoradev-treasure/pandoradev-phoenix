@@ -12,6 +12,9 @@
         aria-controls="CollapseMenuView">
         Views
     </a>
+    <a href="<?php controller('setup@EditorModeGetScript') ?>" style="margin-left: 10px;color:white">
+        Script
+    </a>
     <a style="margin-left: 10px;color:white" type="button" data-toggle="collapse" data-target="#CollapseMenuController" aria-expanded="false"
         aria-controls="CollapseMenuController">
         Controllers
@@ -42,7 +45,7 @@
                     <!-- TOMBOL ROCKET -->
                     <?php
                         $namefile = str_replace("../","",str_replace("resource/views/","",$file));
-                        if (strpos($namefile, 'controller') !== false) {
+                        if (strpos($namefile, 'controller') !== false || strpos($namefile, '.js') !== false) {
                             $hideElements = 'style="display:none !important"';
                         }
                     ?>
@@ -50,8 +53,20 @@
                         <img src="<?= asset('setup/rocket.png') ?>" style="max-width: 15px;margin-left:4px" alt="">
                     </a>
                     <button class="btn-save save-file">simpan</button>
-                </div>    
-                <textarea style="position: absolute;" class="text-editor" name="new_code" id="code-mirror"><?= file_get_contents($file) ?></textarea>
+                </div>
+                
+                <!-- CEK APAKAH FILE SCRIPT/PHP -->
+                <?php
+
+                    if (strpos($file, '.js') !== false) {
+
+                ?>
+                    <textarea style="position: absolute;" class="text-editor" name="new_code" id="code-mirror-js"><?= file_get_contents($file) ?></textarea>
+                <?php }else{ ?>
+                    <textarea style="position: absolute;" class="text-editor" name="new_code" id="code-mirror"><?= file_get_contents($file) ?></textarea>
+                <?php } ?>
+                <!-- END CHECK -->
+
             <?php } ?>
         </form>
         <div class="col-md-2" style="position: absolute;z-index: 9999;">
@@ -207,11 +222,45 @@
                         <span>
                             <img class="export-png" src="<?= asset('setup/controller.png'); ?>" style="max-width:16px;">
                             <a href="<?php controller('setup@EditorModeDetailFile', "../controller/$fileController[2]") ?>"><?= $fileController[2] ?></a>
-
+                             
                             <!-- HAPUS CONTROLLER -->
                             <a class="delete-table" data-table="<?= $fileController[2] ?>" data-url="<?= controller('setup@deleteFileController', $fileController[2]); ?>">
                                 <img class="delete-png float-right" src="<?= asset('setup/cancel.png'); ?>" style="max-width:8px;margin-left: 5px;margin-top:11.3px">
                             </a>
+                            
+                            <!-- EDIT CONTROLLER -->
+                            <a data-toggle="modal" data-target="#modalEditController<?= str_replace('.','',$fileController[2]) ?>">
+                                <img class="export-png float-right" src="<?= asset('setup/edit.png'); ?>" style="max-width:8px;margin-left: 5px;margin-top:11.3px">
+                            </a>
+
+                            <!-- MODAL EDIT CONTROLLER -->
+                            <div class="modal fade" id="modalEditController<?= str_replace('.','',$fileController[2]) ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Nama Controller </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="<?= controller('setup@editNamaController') ?>" method="POST">
+                                            <div class="modal-body">
+                                                <div class="form-inline">
+                                                    <div class="form-group mb-2">
+                                                        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="<?= $fileController[2] ?>">
+                                                    </div>
+                                                    <div class="form-group mx-sm-3 mb-2">
+                                                        <label class="sr-only">Nama Baru</label>
+                                                        <input name="new_name_file" required type="text" class="form-control" placeholder="Nama Baru">
+                                                    </div>
+                                                    <input type="hidden" name="old_file" value="<?= $fileController[2] ?>">
+                                                    <button type="submit" class="btn btn-primary btn-sm mb-2">Ubah</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </span><br>
                         <?php endforeach ?>
                     </div>

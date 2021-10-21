@@ -36,7 +36,7 @@
 <script src="<?= asset('dist/js/demo.js') ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?= asset('dist/js/pages/dashboard.js') ?>"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="<?= asset('dist/js/select2.min.js') ?>"></script>
 <script src="<?= asset('plugins/sweetalert2@11') ?>"></script>
 <script src="<?= asset('codemirror/lib/codemirror.js') ?>"></script>
 <script src="<?= asset('codemirror/mode/php/php.js') ?>"></script>
@@ -44,10 +44,53 @@
 <script src="<?= asset('codemirror/mode/xml/xml.js') ?>"></script>
 <script src="<?= asset('codemirror/mode/clike/clike.js') ?>"></script>
 <script src="<?= asset('codemirror/mode/css/css.js') ?>"></script>
+<script src="<?= asset('codemirror/mode/javascript/javascript.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/display/autorefresh.js') ?>"></script>
 <script src="<?= asset('codemirror/keymap/sublime.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/edit/closetag.js') ?>"></script>
 <script src="<?= asset('codemirror/addon/display/placeholder.js') ?>"></script>
+<script>
+    var editorCodeJS = CodeMirror.fromTextArea(document.getElementById('code-mirror-js'), {
+        keyMap                 : "sublime",
+        autoCloseBrackets      : true,
+        lineNumbers            : true,
+        matchBrackets          : true,
+        mode                   : "javascript",
+        indentUnit             : 4,
+        indentWithTabs         : true,
+        autoRefresh            : true,
+        theme                  : "material-darker",
+        matchBrackets          : true,
+        showCursorWhenSelecting: true,
+        tabSize                : 2,
+        autoCloseTags          : true
+    });
+</script>
+<script>
+    var editorCode = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
+        keyMap                 : "sublime",
+        autoCloseBrackets      : true,
+        lineNumbers            : true,
+        matchBrackets          : true,
+        mode                   : "application/x-httpd-php",
+        indentUnit             : 4,
+        indentWithTabs         : true,
+        autoRefresh            : true,
+        theme                  : "material-darker",
+        matchBrackets          : true,
+        showCursorWhenSelecting: true,
+        tabSize                : 2,
+        autoCloseTags          : true
+    });
+
+    editorCode.on('change', editor => {
+        console.log(editorCode.getValue());
+        $('.data-code').text(editorCode.getValue());
+    });
+
+    $('.data-code').text($('.data-code-old').text());
+
+</script>
 
 <?php
     if (strpos($_SERVER['REQUEST_URI'], 'setup/table') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/column') !== false || strpos($_SERVER['REQUEST_URI'], 'setup/view') !== false ){
@@ -171,28 +214,6 @@ unset($_SESSION["type_alert"]);
                 return false;
             }
         });
-    var editorCode = CodeMirror.fromTextArea(document.getElementById('code-mirror'), {
-        keyMap                 : "sublime",
-        autoCloseBrackets      : true,
-        lineNumbers            : true,
-        matchBrackets          : true,
-        mode                   : "application/x-httpd-php",
-        indentUnit             : 4,
-        indentWithTabs         : true,
-        autoRefresh            : true,
-        theme                  : "material-darker",
-        matchBrackets          : true,
-        showCursorWhenSelecting: true,
-        tabSize                : 2,
-        autoCloseTags          : true
-    });
-
-    editorCode.on('change', editor => {
-        console.log(editorCode.getValue());
-        $('.data-code').text(editorCode.getValue());
-    });
-
-    $('.data-code').text($('.data-code-old').text());
 
     // editorCode.setSize(null, 1000);
 

@@ -187,9 +187,9 @@
                                         class="list-group-item list-group-item-action list-group-item-light"><img
                                             src="<?= asset('setup/footer.png'); ?>" style="max-width:20px"> Footer </a>
 
-                                    <a href="<?= url('setup/backend-list-view'); ?>"
+                                    <!-- <a href="<?= url('setup/backend-list-view'); ?>"
                                         class="list-group-item list-group-item-action list-group-item-light"><img
-                                            src="<?= asset('setup/list-view.png'); ?>" style="max-width:20px"> List View </a>
+                                            src="<?= asset('setup/list-view.png'); ?>" style="max-width:20px"> List View </a> -->
 
                                     <a href="<?= url('setup/editor-mode'); ?>"
                                         class="list-group-item list-group-item-action list-group-item-light"><img
@@ -231,9 +231,9 @@
                         </div>
                     </div>
 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
+                    <!-- <a class="list-group-item list-group-item-action list-group-item-light p-3 layoutku"
                         href="<?= url('setup/about'); ?>"><i class="fa fa-question"></i>
-                        About </a>
+                        About </a> -->
                 <?php endif ?>
             </div>
             <!-- footer -->

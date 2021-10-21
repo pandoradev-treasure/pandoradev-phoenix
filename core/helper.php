@@ -242,6 +242,12 @@
 
         return new self;
       }
+
+      function getId()
+      {
+          global $host;
+          return $host->insert_id;
+      }
       /* END CREATE */
 
       /* UPDATE */
@@ -410,15 +416,27 @@
     * ALL ABOUT FILES
     */
 
-    function files($nameField)
+    function files($nameField, $formatType = null)
     {
-      return $_FILES[$nameField]['name'];
+      if ($formatType) {
+        
+        return $formatType.'.'.pathinfo($_FILES[$nameField]['name'], PATHINFO_EXTENSION);
+
+      }else{
+
+        return $_FILES[$nameField]['name'];
+
+      }
     }
 
     function asset($target)
     {
       $projectName = explode("/",$_SERVER['SCRIPT_NAME']);
       $root        = $_SERVER['HTTP_HOST'];
+
+      if (strpos($_SERVER['REQUEST_URI'], 'core/controller') !== false) {
+        return "../resource/assets/$target";
+      }
       return "http://$root/$projectName[1]/resource/assets/$target";
     }
 
@@ -435,9 +453,15 @@
       return "http://$root/$projectName[1]/resource/$target";
     }
 
-    function FunctionName(Type $var = null)
+    function hapus($file)
     {
-      # code...
+      return unlink(asset($file));
+    }
+    
+    function getId()
+    {
+      global $host;
+      return $host->insert_id;
     }
 
     /**END FILES */

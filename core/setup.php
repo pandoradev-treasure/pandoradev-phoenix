@@ -655,24 +655,23 @@ $content .= '
         if ($cekFile) {
 
             alert('Nama File Sudah Ada!','Gunakan nama lain','error');
-            view('setup/detail-file', compact('file'));
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
             
         }else{
-            
-            unlink('../controller/'.$request->old_file);
 
             $myfile  = fopen("../controller/$namaFile", "w") or die("Unable to open file!");
 
-            $content = $request->data_new_code;
+            $content = file_get_contents('../controller/'.$request->old_file);
 
             fwrite($myfile, $content);
             fclose($myfile);
 
+            unlink('../controller/'.$request->old_file);
             alert('Berhasil','Berhasil mengupdate nama file controller!');
             
             $file = [$namaFile];
 
-            view('setup/detail-file', compact('file'));
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
 
         }
 
@@ -826,7 +825,7 @@ $content .= '
     </div><!-- /.card-header -->
     <div class="card-body">
         <div class="tab-content p-0">
-            <form action="<?php controller("NamaController@TambahData") ?>" method="POST">
+            <form action="<?php controller("NamaController@TambahData") ?>" method="POST" enctype="multipart/form-data">
         
                 <div class="form-group">
                     <label for="">Label</label>
@@ -952,6 +951,13 @@ $content .= '
      function EditorModeGetMenu()
      {
         $file = ["../resource/layouts/backend/menu.php"];
+        //  check($file);
+         view('setup/editor-mode', compact('file'));
+     }
+
+     function EditorModeGetScript()
+     {
+        $file = ["../resource/assets/backend/js/backend-main.js"];
         //  check($file);
          view('setup/editor-mode', compact('file'));
      }
