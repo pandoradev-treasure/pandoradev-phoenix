@@ -45,7 +45,7 @@
                     <!-- TOMBOL ROCKET -->
                     <?php
                         $namefile = str_replace("../","",str_replace("resource/views/","",$file));
-                        if (strpos($namefile, 'controller') !== false || strpos($namefile, '.js') !== false) {
+                        if (strpos($namefile, 'controller') !== false || strpos($namefile, '.js') !== false || strpos($namefile, 'menu.php') !== false) {
                             $hideElements = 'style="display:none !important"';
                         }
                     ?>
